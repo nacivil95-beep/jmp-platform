@@ -1,0 +1,959 @@
+/* 
+  XiteCore Smart Site Platform - 다크 관제 UI 스타일시트
+  레퍼런스 이미지 정밀 재현 버전
+*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* 배경 컬러 팔레트 (다크 네이비) */
+  --bg-root:     #0d111a;
+  --bg-header:   #111827;
+  --bg-sidebar:  #111827;
+  --bg-card:     #1a2133;
+  --bg-card2:    #141d2e;
+  --bg-inner:    #111827;
+  --border:      #2a3347;
+
+  /* 텍스트 */
+  --text-white:  #f0f4ff;
+  --text-muted:  #8899bb;
+  --text-dim:    #4a5a7a;
+
+  /* 포인트 컬러 */
+  --orange:      #ff6d00;
+  --orange-light:#ff8c2a;
+  --orange-dim:  rgba(255,109,0,0.15);
+  --blue:        #2979ff;
+  --green:       #00c46a;
+  --red:         #ff3d44;
+  --yellow:      #ffc107;
+
+  --radius:      6px;
+  --radius-sm:   4px;
+  --transition:  all 0.2s ease;
+}
+
+/* 리셋 */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--bg-root);
+  color: var(--text-white);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* ─── 레이아웃 골격 ─── */
+#app {
+  display: grid;
+  grid-template-rows: 44px 1fr;
+  grid-template-columns: 40px 1fr;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* 헤더 */
+#header {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex; align-items: center; gap: 10px;
+}
+
+.logo-badge {
+  display: flex; align-items: center; gap: 6px;
+}
+
+.logo-icon {
+  width: 26px; height: 26px;
+  background: var(--orange);
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; color: #fff;
+  font-family: 'Outfit', sans-serif;
+}
+
+.logo-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px; font-weight: 800; color: #fff;
+}
+
+.logo-sub {
+  font-size: 11px; color: var(--text-muted);
+  font-weight: 400;
+  border-left: 1px solid var(--border);
+  padding-left: 10px;
+  display: flex; align-items: center; gap: 5px;
+}
+
+.logo-sub span { color: var(--orange); font-weight: 600; }
+
+.header-project-title {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px 12px;
+  font-size: 11px;
+  color: var(--text-muted);
+  max-width: 500px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.safety-day-badge {
+  display: flex; align-items: center; gap: 6px;
+  background: #ffd400;
+  border: 1px solid #ffea00;
+  border-radius: var(--radius);
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: #1a1400;
+  white-space: nowrap;
+  box-shadow: 0 0 10px rgba(255, 212, 0, 0.55), inset 0 0 0 1px rgba(255,255,255,0.25);
+  animation: safetyPulse 2.2s ease-in-out infinite;
+}
+
+.safety-day-badge i {
+  color: #1a1400;
+  font-size: 12px;
+}
+
+@keyframes safetyPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 212, 0, 0.45), inset 0 0 0 1px rgba(255,255,255,0.25); }
+  50%      { box-shadow: 0 0 16px rgba(255, 212, 0, 0.9), inset 0 0 0 1px rgba(255,255,255,0.4); }
+}
+
+.header-right {
+  display: flex; align-items: center; gap: 12px;
+}
+
+.hdr-btn {
+  background: none; border: none;
+  color: var(--text-muted);
+  font-size: 13px; cursor: pointer;
+  transition: var(--transition);
+  display: flex; align-items: center; gap: 5px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 11px;
+}
+.hdr-btn:hover { color: var(--text-white); }
+
+.hdr-excel-status {
+  font-size: 10px;
+  color: var(--text-dim);
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hdr-excel-status.error { color: var(--red); }
+
+.hdr-divider {
+  width: 1px; height: 16px;
+  background: var(--border);
+}
+
+#live-clock {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 11px; color: var(--text-muted);
+  background: rgba(255,255,255,0.03);
+  padding: 3px 8px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+/* 좌측 사이드바 */
+#sidebar {
+  grid-column: 1;
+  grid-row: 2;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  gap: 6px;
+}
+
+.sb-btn {
+  width: 28px; height: 28px;
+  background: none; border: none;
+  color: var(--text-dim);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; cursor: pointer;
+  transition: var(--transition);
+}
+.sb-btn:hover, .sb-btn.active {
+  background: var(--orange-dim);
+  color: var(--orange);
+}
+
+/* 메인 콘텐츠 영역 */
+#main {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px;
+  height: calc(100vh - 44px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* 상단 위젯 행 */
+#top-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.7fr 0.7fr 1.4fr 1.2fr;
+  gap: 6px;
+  flex: 1 1 340px;
+  min-height: 340px;
+}
+
+/* 하단 행 */
+#bottom-row {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 6px;
+  flex: 1 1 340px;
+  min-height: 340px;
+}
+
+/* ─── 공통 카드 ─── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.card-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px 5px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.card-title {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 700;
+  color: var(--text-white);
+}
+
+.card-title i { font-size: 10px; }
+
+.card-actions {
+  display: flex; gap: 6px;
+  color: var(--text-dim); font-size: 10px;
+}
+
+.card-actions i { cursor: pointer; transition: var(--transition); }
+.card-actions i:hover { color: var(--text-muted); }
+
+.nw-inline-btn {
+  background: none; border: none;
+  color: var(--text-dim);
+  font-size: 10px; cursor: pointer;
+  display: flex; align-items: center; gap: 4px;
+  font-family: 'Noto Sans KR', sans-serif;
+  transition: var(--transition);
+  padding: 0;
+}
+.nw-inline-btn:hover { color: var(--text-muted); }
+
+.card-body {
+  padding: 8px;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── 탭 컴포넌트 ─── */
+.widget-tabs {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.wtab {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 10px;
+  font-family: 'Noto Sans KR', sans-serif;
+  padding: 2px 7px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.wtab.active {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ─── 1단 기상 현황 ─── */
+.weather-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.weather-section-title {
+  font-size: 10px; color: var(--text-dim); font-weight: 600;
+  margin-top: 4px;
+}
+
+.weather-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-inner);
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.w-label {
+  font-size: 10px; color: var(--text-muted);
+  display: flex; align-items: center; gap: 4px;
+}
+
+.w-value {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px; font-weight: 600;
+}
+
+.w-value.temp { color: var(--orange-light); }
+.w-value.normal { color: var(--text-white); }
+.w-value.zero { color: var(--text-dim); }
+
+.w-updated-note {
+  margin-top: 6px;
+  font-size: 9px;
+  color: var(--text-dim);
+  text-align: right;
+}
+.w-updated-note.error {
+  color: var(--red);
+  font-weight: 600;
+}
+
+/* ─── 작업 위험도 (체감온도 기반 온열/한랭질환 예방 안내) ─── */
+.w-value.caution { color: var(--yellow); }
+.w-value.warning { color: var(--orange-light); }
+.w-value.danger  { color: var(--red); }
+
+.risk-badge-row {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 8px;
+}
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--bg-inner);
+  color: var(--text-dim);
+}
+.risk-badge.level-safe    { background: rgba(0,196,106,0.15); color: var(--green); }
+.risk-badge.level-caution { background: rgba(255,193,7,0.15); color: var(--yellow); }
+.risk-badge.level-warning { background: var(--orange-dim);    color: var(--orange-light); }
+.risk-badge.level-danger  { background: rgba(255,61,68,0.18); color: var(--red); }
+
+.risk-guide-text {
+  font-size: 9.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  padding: 4px 8px 0;
+  text-align: right;
+}
+.risk-guide-text.level-warning,
+.risk-guide-text.level-danger { color: var(--orange-light); font-weight: 600; }
+.risk-guide-text.level-danger { color: var(--red); }
+
+/* ─── 인원 현황 카드 - 폭염/한파 경고 배너 ─── */
+.worker-alert-banner {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+.worker-alert-banner.show { display: flex; }
+.worker-alert-banner.level-caution { background: rgba(255,193,7,0.15); color: var(--yellow); }
+.worker-alert-banner.level-warning { background: var(--orange-dim); color: var(--orange-light); }
+.worker-alert-banner.level-danger  { background: rgba(255,61,68,0.18); color: var(--red); }
+
+/* ─── 날짜 선택 (작업일보 실데이터 – 인원/장비 카드 공통) ─── */
+.date-select {
+  background: var(--bg-inner);
+  border: 1px solid var(--border);
+  color: var(--text-white);
+  font-size: 10px;
+  font-family: 'Noto Sans KR', sans-serif;
+  padding: 3px 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+}
+.date-select:hover { border-color: var(--orange); }
+
+.date-select-weather {
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-left: auto;
+}
+
+/* ─── 2단 인원 현황 ─── */
+.worker-main-stats-compact {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.worker-main-stats-compact .worker-stat { flex: 1; }
+
+.worker-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg-inner);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+}
+
+.worker-count {
+  font-family: 'Outfit', sans-serif;
+  font-size: 30px; font-weight: 800; line-height: 1;
+  color: var(--text-white);
+}
+.worker-count.orange { color: var(--orange); }
+
+.worker-label {
+  font-size: 10px; color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* 인원 현황 – 금일 투입 직종별 소형 표 */
+.worker-role-scroll {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 6px;
+}
+.mini-role-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+}
+.mini-role-table tr { border-bottom: 1px solid var(--border); }
+.mini-role-table tr:last-child { border-bottom: none; }
+.mini-role-table td { padding: 4px 3px; color: var(--text-muted); }
+.mini-role-table td:last-child {
+  text-align: right;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  color: var(--text-white);
+}
+.mini-role-empty {
+  text-align: center !important;
+  color: var(--text-dim) !important;
+  padding: 12px 0 !important;
+}
+
+/* ─── 3단 장비 현황 ─── */
+.equip-table-scroll {
+  flex: 1;
+  overflow-y: auto;
+}
+.equip-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+}
+
+.equip-table tr {
+  border-bottom: 1px solid var(--border);
+}
+.equip-table tr:last-child { border-bottom: none; }
+
+.equip-table td {
+  padding: 5px 3px;
+  color: var(--text-muted);
+}
+
+.equip-table td:last-child {
+  text-align: right;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  color: var(--text-white);
+}
+
+.equip-table .total-row td {
+  color: var(--text-white);
+  border-top: 1px solid var(--border);
+  padding-top: 7px;
+  font-weight: 700;
+}
+
+.equip-qty-0 { color: var(--text-dim) !important; }
+.equip-qty-pos { color: var(--orange-light) !important; }
+
+/* ─── 공정율 및 작업일보 ─── */
+.progress-summary {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--bg-inner);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 7px 9px;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+.progress-summary .ps-plan { color: var(--text-muted); }
+.progress-summary .ps-actual { color: var(--green); font-weight: 700; }
+.progress-summary .ps-diff-pos { color: var(--green); font-weight: 700; }
+.progress-summary .ps-diff-neg { color: var(--yellow); font-weight: 700; }
+
+.progress-report-cols {
+  display: flex;
+  gap: 6px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.progress-report-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-inner);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 7px 8px;
+  overflow: hidden;
+}
+
+.progress-report-title {
+  font-size: 10px; font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 5px;
+  display: flex; align-items: center; gap: 5px;
+  flex-shrink: 0;
+}
+.progress-report-title i { color: var(--orange); font-size: 9px; }
+
+.progress-report-text {
+  flex: 1;
+  overflow-y: auto;
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  font-family: 'Noto Sans KR', sans-serif;
+  white-space: pre-wrap;
+}
+.progress-report-text .pr-empty { color: var(--text-dim); }
+
+.progress-report-text::-webkit-scrollbar { width: 4px; }
+.progress-report-text::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+/* ─── 5단 탄소배출 ─── */
+.carbon-total-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+  background: var(--bg-inner);
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.carbon-val-big {
+  font-family: 'Outfit', sans-serif;
+  font-size: 24px; font-weight: 800;
+  color: var(--orange);
+}
+.carbon-val-unit {
+  font-size: 9px; color: var(--text-muted); margin-left: 4px;
+}
+
+.carbon-chart-wrap {
+  height: 100px;
+  position: relative;
+  flex-shrink: 0;
+  margin-bottom: 6px;
+}
+
+.carbon-bar-wrap {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+/* ─── 하단: Site Map ─── */
+#map-card {
+  position: relative;
+}
+
+#leaflet-map {
+  width: 100%;
+  height: 100%;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.map-overlay-top {
+  position: absolute; top: 36px; left: 8px; right: 8px;
+  display: flex; justify-content: space-between;
+  z-index: 500; pointer-events: none;
+}
+
+.map-type-btns {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  pointer-events: all;
+}
+
+.map-type-btn {
+  background: rgba(17,24,39,0.9);
+  border: none; padding: 3px 10px;
+  font-size: 10px; color: var(--text-muted);
+  cursor: pointer; font-family: 'Noto Sans KR';
+  transition: var(--transition);
+}
+.map-type-btn.active {
+  background: var(--orange);
+  color: #fff; font-weight: 600;
+}
+
+.map-sidebar-tools {
+  position: absolute; top: 44px; left: 8px;
+  z-index: 500;
+  background: rgba(17,24,39,0.92);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: flex; flex-direction: column;
+  gap: 2px; padding: 4px;
+}
+
+.map-tool-btn {
+  width: 22px; height: 22px;
+  background: none; border: none;
+  color: var(--text-muted); font-size: 10px;
+  border-radius: 3px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.map-tool-btn:hover, .map-tool-btn.active {
+  background: var(--orange-dim); color: var(--orange);
+}
+
+/* 지도 마커 스타일 */
+.site-marker {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.site-marker.orange { background: var(--orange); box-shadow: 0 0 6px rgba(255,109,0,0.8); }
+.site-marker.blue { background: var(--blue); box-shadow: 0 0 6px rgba(41,121,255,0.8); }
+.site-marker.green { background: var(--green); box-shadow: 0 0 6px rgba(0,196,106,0.8); }
+
+/* ─── 하단: 토공사 현황 ─── */
+.earth-donut-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 4px 0;
+}
+
+.donut-item {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+}
+
+.donut-wrap {
+  position: relative; width: 84px; height: 84px;
+}
+
+.donut-center {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center; pointer-events: none;
+}
+
+.donut-pct {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px; font-weight: 800;
+  color: var(--text-white); display: block; line-height: 1;
+}
+
+.donut-lbl {
+  font-size: 9px; color: var(--text-dim);
+  margin-top: 1px; display: block;
+}
+
+.donut-name {
+  font-size: 10px; font-weight: 600; color: var(--text-muted);
+}
+
+.earth-divider {
+  font-size: 9px; color: var(--text-dim);
+  background: var(--bg-inner);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 3px;
+  flex-shrink: 0;
+}
+
+.earth-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+}
+
+.earth-table th {
+  background: var(--bg-inner);
+  color: var(--text-dim);
+  font-weight: 600;
+  padding: 4px 5px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.earth-table td {
+  padding: 4px 5px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.earth-table td:first-child { text-align: left; color: var(--text-white); font-weight: 500; }
+
+.earth-table .pct-cell {
+  color: var(--orange);
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+}
+
+.earth-table-scroll {
+  flex: 1; overflow-y: auto; min-height: 0;
+}
+
+/* 스크롤바 전역 설정 */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ─── 네이버 날씨 모달 ─── */
+.nw-modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 2000;
+  align-items: center; justify-content: center;
+}
+.nw-modal-overlay.open { display: flex; }
+
+.nw-modal-box {
+  width: min(900px, 92vw);
+  height: min(720px, 88vh);
+  background: var(--bg-panel, #111827);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.nw-modal-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px; font-weight: 600;
+  color: var(--text-white);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.nw-modal-btn {
+  background: none; border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 10px; padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer; margin-left: 6px;
+  font-family: 'Noto Sans KR', sans-serif;
+  transition: var(--transition);
+}
+.nw-modal-btn:hover { color: var(--text-white); border-color: var(--orange); }
+
+.nw-modal-body {
+  flex: 1; position: relative;
+  background: #0b0f17;
+}
+
+.nw-modal-body iframe {
+  width: 100%; height: 100%; border: none;
+}
+
+.nw-loading, .nw-fallback {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.nw-fallback-btn {
+  background: var(--orange);
+  color: #fff; border: none;
+  padding: 8px 16px; border-radius: var(--radius-sm);
+  font-size: 12px; cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+}
+
+/* ─── 작업현황 모달 (작업일보 – 금일 작업현황 / 명일 작업사항) ─── */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 2100;
+  align-items: center; justify-content: center;
+}
+.modal-overlay.show { display: flex; }
+
+.modal-box {
+  width: min(880px, 92vw);
+  height: min(640px, 86vh);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.modal-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.modal-title {
+  font-size: 13px; font-weight: 700;
+  color: var(--text-white);
+  display: flex; align-items: center; gap: 6px;
+}
+.modal-title i { color: var(--orange); }
+.modal-hdr-right { display: flex; align-items: center; gap: 10px; }
+.modal-weather { font-size: 11px; color: var(--text-muted); }
+
+.modal-close {
+  background: none; border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.modal-close:hover { color: var(--text-white); border-color: var(--orange); }
+
+.modal-progress {
+  padding: 8px 14px;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--bg-inner);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.modal-body {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  overflow: hidden;
+}
+
+.modal-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-inner);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  overflow: hidden;
+}
+
+.modal-col-title {
+  font-size: 11px; font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px;
+  flex-shrink: 0;
+}
+.modal-col-title i { color: var(--orange); font-size: 10px; }
+
+.modal-text {
+  flex: 1;
+  overflow-y: auto;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  font-family: 'Noto Sans KR', sans-serif;
+  white-space: pre-wrap;
+}
+.modal-empty { color: var(--text-dim); }
+
+/* 스크롤바 공통 (다크 테마에 맞춰 얇게) */
+.worker-role-scroll::-webkit-scrollbar,
+.equip-table-scroll::-webkit-scrollbar,
+.modal-text::-webkit-scrollbar {
+  width: 5px;
+}
+.worker-role-scroll::-webkit-scrollbar-thumb,
+.equip-table-scroll::-webkit-scrollbar-thumb,
+.modal-text::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}

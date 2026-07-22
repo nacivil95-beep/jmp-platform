@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XiteCore Smart Site Platform</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div id="app">
+
+  <!-- ──────────────────────── 헤더 ──────────────────────── -->
+  <header id="header">
+    <div class="header-left">
+      <!-- 로고 -->
+      <div class="logo-badge">
+        <div class="logo-icon">JMP</div>
+        <span class="logo-text">진천메가폴리스 통합 관제 플랫폼</span>
+      </div>
+      <!-- SK, 토우 서브 브랜드 -->
+      <div class="logo-sub">
+      <span>SK ecoplant, <span style="color:#ffffff;">토우건설</span></span> Smart Site Platform
+      </div>
+      <!-- 현장명 -->
+      <div class="header-project-title">
+        진천메가폴리스 산업단지 조성사업
+      </div>
+      <!-- 무재해 기산일(2026-01-12) 기준 경과일수 배지 (app.js updateNoAccidentDayCount()가 매초 자동 갱신) -->
+      <div class="safety-day-badge" id="no-accident-day-count-wrap">
+        <i class="fa-solid fa-helmet-safety"></i>
+        <span id="no-accident-day-count">무재해 -일 달성</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div id="live-clock">--:--:--</div>
+      <div class="hdr-divider"></div>
+      <input type="file" id="excel-file-input" accept=".xlsx" style="display:none">
+      <span class="hdr-excel-status" id="excel-load-status"></span>
+      <button class="hdr-btn" id="excel-load-btn" title="엑셀 파일을 한 번 선택해두면, 다음부터는 앱을 열 때 자동으로 최신 내용을 불러옵니다(Chrome/Edge)"><i class="fa-solid fa-file-excel"></i> 작업일보 불러오기</button>
+      <button class="hdr-btn"><i class="fa-solid fa-gear"></i> 화면설정</button>
+      <button class="hdr-btn"><i class="fa-solid fa-user-shield"></i> 관리자페이지</button>
+    </div>
+  </header>
+
+  <!-- ──────────────────────── 좌측 사이드바 ──────────────────────── -->
+  <nav id="sidebar">
+    <button class="sb-btn active" title="대시보드"><i class="fa-solid fa-table-cells-large"></i></button>
+    <button class="sb-btn" title="인원"><i class="fa-solid fa-users"></i></button>
+    <button class="sb-btn" title="장비"><i class="fa-solid fa-truck-pickup"></i></button>
+    <button class="sb-btn" title="계측"><i class="fa-solid fa-gauge"></i></button>
+    <button class="sb-btn" title="CCTV"><i class="fa-solid fa-video"></i></button>
+    <button class="sb-btn" title="지도"><i class="fa-solid fa-map"></i></button>
+  </nav>
+
+  <!-- ──────────────────────── 메인 그리드 ──────────────────────── -->
+  <div id="main">
+
+    <!-- [상단 행] 5개 위젯 가로 배치 -->
+    <div id="top-row">
+
+      <!-- 위젯 1: 현장 기상 현황 -->
+      <div class="card" id="weather-card">
+        <div class="card-hdr">
+          <div class="card-title">
+            <i class="fa-solid fa-cloud-sun" style="color:#60a5fa;"></i> 현장 기상 현황
+          </div>
+          <div class="card-actions">
+            <button class="nw-inline-btn" id="naver-weather-btn"><i class="fa-solid fa-cloud-sun-rain"></i> 네이버날씨보기</button>
+            <i class="fa-solid fa-rotate"></i>
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="weather-list">
+            <!-- 날씨 상태 -->
+            <div class="weather-row" id="w-status-row">
+              <span class="w-label"><i class="fa-solid fa-cloud"></i> 현재 날씨</span>
+              <span class="w-value normal" id="w-status">-</span>
+            </div>
+            <!-- 기온 -->
+            <div class="weather-section-title">● 기온</div>
+            <div class="weather-row">
+              <span class="w-label"><i class="fa-solid fa-temperature-half"></i> 현재</span>
+              <span class="w-value temp" id="w-temp">24.9℃</span>
+            </div>
+            <div class="weather-row">
+              <span class="w-label">최고</span>
+              <span class="w-value normal" id="w-temp-max">27.1℃</span>
+            </div>
+            <!-- 풍속 -->
+            <div class="weather-section-title">● 풍속</div>
+            <div class="weather-row">
+              <span class="w-label"><i class="fa-solid fa-wind"></i> 현재</span>
+              <span class="w-value zero" id="w-wind">0 m/s</span>
+            </div>
+            <div class="weather-row">
+              <span class="w-label">최고</span>
+              <span class="w-value normal" id="w-wind-max">8 m/s</span>
+            </div>
+            <!-- 강수량 -->
+            <div class="weather-section-title">● 강수량</div>
+            <div class="weather-row">
+              <span class="w-label"><i class="fa-solid fa-droplet"></i> 시간</span>
+              <span class="w-value zero" id="w-rain">0 mm</span>
+            </div>
+            <div class="weather-row">
+              <span class="w-label">일누적</span>
+              <span class="w-value zero" id="w-rain-acc">0 mm</span>
+            </div>
+            <!-- 작업 위험도: 체감온도 기반 온열/한랭질환 예방 안내 (고용노동부 산업안전보건기준에 관한 규칙 제558~561조 기준) -->
+            <div class="weather-section-title">● 작업 위험도</div>
+            <div class="weather-row">
+              <span class="w-label"><i class="fa-solid fa-person-burst"></i> 체감온도</span>
+              <span class="w-value normal" id="w-feels-like">-</span>
+            </div>
+          </div>
+          <div class="risk-badge-row"><span class="risk-badge" id="w-risk-badge">-</span></div>
+          <div class="risk-guide-text" id="w-risk-guide"></div>
+          <div class="w-updated-note" id="w-updated-note">기상청 데이터 불러오는 중...</div>
+        </div>
+      </div>
+
+      <!-- 위젯 2: 인원 현황 -->
+      <div class="card" id="worker-card">
+        <div class="card-hdr">
+          <div class="card-title">
+            <i class="fa-solid fa-users" style="color:#a78bfa;"></i> 인원 현황
+          </div>
+          <div class="card-actions">
+            <i class="fa-solid fa-rotate"></i>
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- 공구 탭 -->
+          <div class="widget-tabs" id="worker-date-tabs">
+            <select class="date-select" id="worker-date-select"></select>
+            <button class="nw-inline-btn" id="work-status-btn"><i class="fa-solid fa-clipboard-list"></i> 작업현황</button>
+          </div>
+          <div class="worker-main-stats-compact">
+            <div class="worker-stat">
+              <div class="worker-count" id="worker-staff">-</div>
+              <div class="worker-label">시공사(직원)</div>
+            </div>
+            <div class="worker-stat">
+              <div class="worker-count orange" id="worker-sub">-</div>
+              <div class="worker-label">협력사(외주)</div>
+            </div>
+          </div>
+          <div class="worker-role-scroll">
+            <table class="mini-role-table" id="worker-role-table"><tbody></tbody></table>
+          </div>
+          <!-- 체감온도 연동 온열/한랭질환 경고 배너 (weather-card 위험도와 동기화) -->
+          <div class="worker-alert-banner" id="worker-heat-banner"></div>
+        </div>
+      </div>
+
+      <!-- 위젯 3: 장비 현황 -->
+      <div class="card" id="equip-card">
+        <div class="card-hdr">
+          <div class="card-title">
+            <i class="fa-solid fa-truck-pickup" style="color:#fb923c;"></i> 장비 현황
+          </div>
+          <div class="card-actions">
+            <i class="fa-solid fa-rotate"></i>
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="widget-tabs" id="equip-date-tabs">
+            <select class="date-select" id="equip-date-select"></select>
+            <span class="date-select-weather" id="equip-date-weather"></span>
+          </div>
+          <div class="equip-table-scroll">
+            <table class="equip-table" id="equip-table">
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 위젯 4: 공정율 및 작업일보 -->
+      <div class="card" id="progress-card">
+        <div class="card-hdr">
+          <div class="card-title">
+            <i class="fa-solid fa-diagram-project" style="color:#34d399;"></i> 공정율 및 작업일보
+          </div>
+          <div class="card-actions">
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="progress-summary" id="progress-summary"></div>
+          <div class="progress-report-cols">
+            <div class="progress-report-col">
+              <div class="progress-report-title"><i class="fa-solid fa-list-check"></i> 금일 작업현황</div>
+              <div class="progress-report-text" id="progress-work-today"></div>
+            </div>
+            <div class="progress-report-col">
+              <div class="progress-report-title"><i class="fa-solid fa-forward"></i> 명일 작업사항</div>
+              <div class="progress-report-text" id="progress-work-tomorrow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 위젯 5: 탄소배출현황(장비) -->
+      <div class="card" id="carbon-card">
+        <div class="card-hdr">
+          <div class="card-title">
+            <i class="fa-solid fa-leaf" style="color:#4ade80;"></i> 탄소배출현황(장비)
+          </div>
+          <div class="card-actions">
+            <i class="fa-solid fa-rotate"></i>
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- 탄소 총량 -->
+          <div class="carbon-total-header">
+            <span style="font-size:10px; color:var(--text-muted);">누적배출량합계</span>
+            <div>
+              <span class="carbon-val-big" id="carbon-total">18,095.6</span>
+              <span class="carbon-val-unit">ton CO₂</span>
+            </div>
+          </div>
+          <!-- 도넛 차트 -->
+          <div class="carbon-chart-wrap">
+            <canvas id="carbon-donut"></canvas>
+          </div>
+          <!-- 막대 차트 -->
+          <div class="carbon-bar-wrap">
+            <canvas id="carbon-bar"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /top-row -->
+
+    <!-- [하단 행] Site Map + 토공사 현황 -->
+    <div id="bottom-row">
+
+      <!-- Site Map -->
+      <div class="card" id="map-card">
+        <div class="card-hdr">
+          <div class="card-title">
+            <i class="fa-solid fa-map-location-dot" style="color:#38bdf8;"></i> Site Map
+          </div>
+          <div class="card-actions">
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <!-- Leaflet 지도 컨테이너 -->
+        <div id="leaflet-map"></div>
+
+        <!-- 지도 사이드 도구 -->
+        <div class="map-sidebar-tools">
+          <button class="map-tool-btn active" title="전체"><i class="fa-solid fa-compress"></i></button>
+          <button class="map-tool-btn" title="CCTV"><i class="fa-solid fa-video"></i></button>
+          <button class="map-tool-btn" title="장비"><i class="fa-solid fa-truck"></i></button>
+          <button class="map-tool-btn" title="센서"><i class="fa-solid fa-gauge"></i></button>
+        </div>
+
+        <!-- 지도/위성 전환 -->
+        <div class="map-type-btns" style="position:absolute;top:40px;right:8px;z-index:500;">
+          <button class="map-type-btn" id="map-normal-btn">지도</button>
+          <button class="map-type-btn active" id="map-satellite-btn">위성</button>
+          <button class="map-type-btn" id="map-image-btn">항공사진</button>
+        </div>
+      </div>
+
+      <!-- 토공사 현황 -->
+      <div class="card" id="earth-card">
+        <div class="card-hdr">
+          <div class="card-title">
+            <i class="fa-solid fa-mountain" style="color:#fb923c;"></i> 토공사 현황
+          </div>
+          <div class="card-actions">
+            <i class="fa-solid fa-rotate"></i>
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- 공구 탭 + 날짜 선택 (작업일보 날짜별 누계 반영) -->
+          <div class="widget-tabs" id="earth-date-tabs">
+            <button class="wtab active" data-tab="earth" data-val="all">전체</button>
+            <select class="date-select" id="earth-date-select" style="margin-left:auto;"></select>
+          </div>
+
+          <!-- 도넛 3개 -->
+          <div class="earth-donut-row">
+            <div class="donut-item">
+              <div class="donut-wrap">
+                <canvas id="donut-total"></canvas>
+                <div class="donut-center">
+                  <span class="donut-pct" id="pct-total">0%</span>
+                  <span class="donut-lbl">Total</span>
+                </div>
+              </div>
+              <div class="donut-name">전체 토공</div>
+            </div>
+            <div class="donut-item">
+              <div class="donut-wrap">
+                <canvas id="donut-cut"></canvas>
+                <div class="donut-center">
+                  <span class="donut-pct" id="pct-cut">0%</span>
+                  <span class="donut-lbl">Cut</span>
+                </div>
+              </div>
+              <div class="donut-name">절토량</div>
+            </div>
+            <div class="donut-item">
+              <div class="donut-wrap">
+                <canvas id="donut-fill"></canvas>
+                <div class="donut-center">
+                  <span class="donut-pct" id="pct-fill">0%</span>
+                  <span class="donut-lbl">Fill</span>
+                </div>
+              </div>
+              <div class="donut-name">성토량</div>
+            </div>
+          </div>
+
+          <!-- 절토량 테이블 -->
+          <div class="earth-divider" id="earth-section-label">절토량</div>
+          <div class="earth-table-scroll">
+            <table class="earth-table">
+              <thead>
+                <tr>
+                  <th>구분</th><th>설계(㎥)</th><th>시공(㎥)</th><th>잔여(㎥)</th><th>공정률</th><th>시공 시작</th><th>최종 계측</th>
+                </tr>
+              </thead>
+              <tbody id="earth-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /bottom-row -->
+
+  </div><!-- /main -->
+
+</div><!-- /app -->
+
+  <!-- ──────────────────────── 작업현황 모달 ──────────────────────── -->
+  <div class="modal-overlay" id="work-status-modal">
+    <div class="modal-box">
+      <div class="modal-hdr">
+        <div class="modal-title"><i class="fa-solid fa-clipboard-list"></i> 작업일보 <span id="modal-date-label">-</span></div>
+        <div class="modal-hdr-right">
+          <span class="modal-weather" id="modal-weather"></span>
+          <button class="modal-close" id="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="modal-progress" id="modal-progress"></div>
+      <div class="modal-body">
+        <div class="modal-col">
+          <div class="modal-col-title"><i class="fa-solid fa-list-check"></i> 금일 작업현황</div>
+          <div class="modal-text" id="modal-work-today"></div>
+        </div>
+        <div class="modal-col">
+          <div class="modal-col-title"><i class="fa-solid fa-forward"></i> 명일 작업사항</div>
+          <div class="modal-text" id="modal-work-tomorrow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="dailyData.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
