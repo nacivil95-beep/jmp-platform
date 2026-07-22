@@ -602,12 +602,146 @@ function renderEquip(key) {
     const isTotal = i === list.length - 1;
     const countClass = item.count === 0 ? "equip-qty-0" : "equip-qty-pos";
     tbody.insertAdjacentHTML("beforeend", `
-      <tr${isTotal ? ' class="total-row"' : ""}>
+      <tr${isTotal ? ' class="total-row"' : ' class="equip-row-clickable" title="규격별 상세 보기"'}>
         <td>${item.name}</td>
         <td class="${countClass}">${item.count}대</td>
       </tr>
     `);
+    if (!isTotal) {
+      const tr = tbody.lastElementChild;
+      tr.addEventListener("click", () => openEquipDetailPopup(item.name, key));
+    }
   });
+}
+
+// ── 장비 세부 규격 팝업(새창) ──
+// 장비 현황 표에서 특정 장비(대분류)를 클릭하면, 해당 날짜 기준 규격별 보유/투입 대수를 새 창으로 띄웁니다.
+function openEquipDetailPopup(type, key) {
+  const rep = DAILY_REPORTS[key];
+  if (!rep) return;
+
+  const details = (rep.equipment_detail || []).filter(d => d.type === type);
+  const dateLabel = rep.date || key;
+
+  const rowsHtml = details.length
+    ? details.map(d => {
+        const specLabel = d.spec ? escapeHtml(d.spec) : "-";
+        const countClass = d.today === 0 ? "equip-qty-0" : "equip-qty-pos";
+        return `
+          <tr>
+            <td>${specLabel}</td>
+            <td>${fmt(d.prev)}대</td>
+            <td class="${countClass}">${fmt(d.today)}대</td>
+            <td>${fmt(d.cum)}대</td>
+          </tr>
+        `;
+      }).join("")
+    : `<tr><td colspan="4" class="equip-popup-empty">규격별 세부 데이터가 없습니다.</td></tr>`;
+
+  const totalToday = details.reduce((sum, d) => sum + (d.today || 0), 0);
+  const totalPrev = details.reduce((sum, d) => sum + (d.prev || 0), 0);
+  const totalCum = details.reduce((sum, d) => sum + (d.cum || 0), 0);
+
+  const html = `
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>${escapeHtml(type)} 규격별 상세 - ${escapeHtml(dateLabel)}</title>
+<style>
+  :root {
+    --bg-root: #0d111a;
+    --bg-card: #1a2133;
+    --bg-inner: #111827;
+    --border: #2a3347;
+    --text-white: #f0f4ff;
+    --text-muted: #8899bb;
+    --text-dim: #4a5a7a;
+    --orange-light: #fdba74;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 20px;
+    background: var(--bg-root);
+    color: var(--text-white);
+    font-family: "Pretendard", "Malgun Gothic", -apple-system, sans-serif;
+  }
+  .popup-hdr {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+  }
+  .popup-title { font-size: 16px; font-weight: 700; }
+  .popup-date { font-size: 12px; color: var(--text-muted); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 13px;
+  }
+  th {
+    background: var(--bg-inner);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  td { border-bottom: 1px solid var(--border); color: var(--text-white); }
+  tr:last-child td { border-bottom: none; }
+  th:not(:first-child), td:not(:first-child) { text-align: right; }
+  .equip-qty-0 { color: var(--text-dim); }
+  .equip-qty-pos { color: var(--orange-light); font-weight: 600; }
+  .total-row td { background: var(--bg-inner); font-weight: 700; }
+  .equip-popup-empty { text-align: center; color: var(--text-dim); padding: 20px; }
+</style>
+</head>
+<body>
+  <div class="popup-hdr">
+    <div class="popup-title">${escapeHtml(type)} · 규격별 상세</div>
+    <div class="popup-date">${escapeHtml(dateLabel)} 기준</div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>규격</th>
+        <th>전일누계</th>
+        <th>금일투입</th>
+        <th>누계</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${rowsHtml}
+      <tr class="total-row">
+        <td>합계</td>
+        <td>${fmt(totalPrev)}대</td>
+        <td>${fmt(totalToday)}대</td>
+        <td>${fmt(totalCum)}대</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
+  `;
+
+  const popup = window.open("", "_blank", "width=480,height=560,resizable=yes,scrollbars=yes");
+  if (!popup) {
+    alert("팝업이 차단되었습니다. 브라우저 팝업 차단을 해제해주세요.");
+    return;
+  }
+  popup.document.open();
+  popup.document.write(html);
+  popup.document.close();
 }
 
 // ── 작업현황 모달(금일 작업현황 / 명일 작업사항) ──
@@ -1244,7 +1378,7 @@ function initMap() {
   // 2) IMAGE_BOUNDS: 이미지의 남서(SW)/북동(NE) 모서리 실제 좌표 [lat, lng]를 지정하세요.
   //                  이 좌표에 맞춰 이미지가 지도 위 정확한 위치·크기로 겹쳐집니다.
   //                  (구글맵/카카오맵 등에서 이미지 촬영 범위의 좌상단·우하단 좌표를 확인해 입력)
-  const IMAGE_URL = "assets/site-aerial.png";
+  const IMAGE_URL = "assets/site-aerial.jpg";
   const IMAGE_BOUNDS = [
     [36.7633826, 127.4420], // 남서(SW) 모서리 (좌표 보정: 기존 위치에서 남쪽으로 124m 이동)
     [36.7873826, 127.4695]  // 북동(NE) 모서리 (좌표 보정: 기존 위치에서 남쪽으로 124m 이동)
