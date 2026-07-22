@@ -50,7 +50,7 @@ html, body {
 #app {
   display: grid;
   grid-template-rows: 44px 1fr;
-  grid-template-columns: 40px 1fr;
+  grid-template-columns: 1fr;
   height: 100vh;
   width: 100vw;
 }
@@ -174,36 +174,9 @@ html, body {
   border: 1px solid var(--border);
 }
 
-/* 좌측 사이드바 */
-#sidebar {
-  grid-column: 1;
-  grid-row: 2;
-  background: var(--bg-sidebar);
-  border-right: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 0;
-  gap: 6px;
-}
-
-.sb-btn {
-  width: 28px; height: 28px;
-  background: none; border: none;
-  color: var(--text-dim);
-  border-radius: var(--radius-sm);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; cursor: pointer;
-  transition: var(--transition);
-}
-.sb-btn:hover, .sb-btn.active {
-  background: var(--orange-dim);
-  color: var(--orange);
-}
-
 /* 메인 콘텐츠 영역 */
 #main {
-  grid-column: 2;
+  grid-column: 1;
   grid-row: 2;
   display: flex;
   flex-direction: column;
@@ -214,10 +187,10 @@ html, body {
   overflow-x: hidden;
 }
 
-/* 상단 위젯 행 */
+/* 상단 위젯 행 (기상 / 인원 / 장비 / 공정율) */
 #top-row {
   display: grid;
-  grid-template-columns: 1.1fr 0.7fr 0.7fr 1.4fr 1.2fr;
+  grid-template-columns: 1.1fr 0.9fr 0.9fr 1.6fr;
   gap: 6px;
   flex: 1 1 340px;
   min-height: 340px;
@@ -590,40 +563,6 @@ html, body {
   border-radius: 4px;
 }
 
-/* ─── 5단 탄소배출 ─── */
-.carbon-total-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 6px;
-  background: var(--bg-inner);
-  padding: 6px 8px;
-  border-radius: var(--radius-sm);
-  flex-shrink: 0;
-}
-
-.carbon-val-big {
-  font-family: 'Outfit', sans-serif;
-  font-size: 24px; font-weight: 800;
-  color: var(--orange);
-}
-.carbon-val-unit {
-  font-size: 9px; color: var(--text-muted); margin-left: 4px;
-}
-
-.carbon-chart-wrap {
-  height: 100px;
-  position: relative;
-  flex-shrink: 0;
-  margin-bottom: 6px;
-}
-
-.carbon-bar-wrap {
-  flex: 1;
-  min-height: 0;
-  position: relative;
-}
-
 /* ─── 하단: Site Map ─── */
 #map-card {
   position: relative;
@@ -956,4 +895,136 @@ html, body {
 .modal-text::-webkit-scrollbar-thumb {
   background: var(--border);
   border-radius: 4px;
+}
+
+/* =========================================================================
+   반응형 – 태블릿/모바일
+   전략: #top-row(기상/인원/장비/공정율)와 #bottom-row(지도/토공사)는 데스크톱에서
+   grid로 가로 배치되지만, 좁은 화면에서는 display:contents로 두 그룹의 경계를
+   없애고 #main(flex-column)의 자식으로 흡수시켜 카드 6개를 하나의 세로 목록으로
+   만듭니다. 이렇게 하면 order 속성으로 그룹 구분 없이 우선순위대로 재배열할 수
+   있습니다(현장에서 자주 보는 인원/공정율/기상을 위로, 장비/지도/토공사는 아래로).
+   ========================================================================= */
+
+/* ── 1단계: 태블릿 (1024px 이하) – top-row 2열로 축소, bottom-row는 유지 ── */
+@media (max-width: 1024px) {
+  #top-row {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 320px;
+  }
+  #bottom-row {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 360px;
+  }
+}
+
+/* ── 2단계: 모바일 (640px 이하) – 전체 세로 1열 스택 + 우선순위 재배열 ── */
+@media (max-width: 640px) {
+  html, body {
+    overflow-y: auto;
+  }
+
+  #app {
+    grid-template-rows: auto 1fr;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  /* 헤더: 2줄로 감싸고, 프로젝트명/서브브랜드 텍스트는 공간이 없으니 숨김 */
+  #header {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 44px;
+    padding: 6px 10px;
+    row-gap: 6px;
+  }
+  .header-left {
+    flex-wrap: wrap;
+    gap: 6px;
+    row-gap: 4px;
+  }
+  .logo-sub,
+  .header-project-title {
+    display: none;
+  }
+  .logo-text {
+    font-size: 12px;
+  }
+  .safety-day-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+  .header-right {
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .hdr-btn span,
+  .hdr-btn {
+    font-size: 10px;
+  }
+  .hdr-excel-status {
+    max-width: 90px;
+  }
+
+  #main {
+    height: auto;
+    overflow-y: visible;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  /* top-row/bottom-row 경계를 없애 #main의 flex 자식으로 흡수 (order 재배열용) */
+  #top-row,
+  #bottom-row {
+    display: contents;
+  }
+
+  .card {
+    min-height: 300px;
+    flex: none;
+  }
+
+  /* 현장에서 모바일로 가장 자주 확인하는 순서: 인원 → 공정율/작업일보 → 기상
+     → 장비 → 지도 → 토공사 */
+  #worker-card   { order: 1; }
+  #progress-card { order: 2; }
+  #weather-card  { order: 3; }
+  #equip-card    { order: 4; }
+  #map-card      { order: 5; min-height: 280px; }
+  #earth-card    { order: 6; min-height: 380px; }
+
+  /* 표가 많은 카드는 가로 스크롤로 무너짐 방지 */
+  .equip-table-scroll,
+  .earth-table-scroll {
+    overflow-x: auto;
+  }
+  .earth-table {
+    min-width: 480px;
+  }
+
+  .earth-donut-row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* 작업현황 모달: 좁은 화면에서는 2컬럼 대신 세로로 쌓기 */
+  .modal-box {
+    width: 96vw;
+    height: 90vh;
+  }
+  .modal-body {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  /* 터치 대상 최소 크기 확보 */
+  .date-select,
+  .wtab,
+  .nw-inline-btn,
+  .map-type-btn,
+  .map-tool-btn {
+    min-height: 26px;
+  }
 }

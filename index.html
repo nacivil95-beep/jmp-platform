@@ -47,16 +47,6 @@
     </div>
   </header>
 
-  <!-- ──────────────────────── 좌측 사이드바 ──────────────────────── -->
-  <nav id="sidebar">
-    <button class="sb-btn active" title="대시보드"><i class="fa-solid fa-table-cells-large"></i></button>
-    <button class="sb-btn" title="인원"><i class="fa-solid fa-users"></i></button>
-    <button class="sb-btn" title="장비"><i class="fa-solid fa-truck-pickup"></i></button>
-    <button class="sb-btn" title="계측"><i class="fa-solid fa-gauge"></i></button>
-    <button class="sb-btn" title="CCTV"><i class="fa-solid fa-video"></i></button>
-    <button class="sb-btn" title="지도"><i class="fa-solid fa-map"></i></button>
-  </nav>
-
   <!-- ──────────────────────── 메인 그리드 ──────────────────────── -->
   <div id="main">
 
@@ -205,37 +195,6 @@
               <div class="progress-report-title"><i class="fa-solid fa-forward"></i> 명일 작업사항</div>
               <div class="progress-report-text" id="progress-work-tomorrow"></div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 위젯 5: 탄소배출현황(장비) -->
-      <div class="card" id="carbon-card">
-        <div class="card-hdr">
-          <div class="card-title">
-            <i class="fa-solid fa-leaf" style="color:#4ade80;"></i> 탄소배출현황(장비)
-          </div>
-          <div class="card-actions">
-            <i class="fa-solid fa-rotate"></i>
-            <i class="fa-solid fa-expand"></i>
-          </div>
-        </div>
-        <div class="card-body">
-          <!-- 탄소 총량 -->
-          <div class="carbon-total-header">
-            <span style="font-size:10px; color:var(--text-muted);">누적배출량합계</span>
-            <div>
-              <span class="carbon-val-big" id="carbon-total">18,095.6</span>
-              <span class="carbon-val-unit">ton CO₂</span>
-            </div>
-          </div>
-          <!-- 도넛 차트 -->
-          <div class="carbon-chart-wrap">
-            <canvas id="carbon-donut"></canvas>
-          </div>
-          <!-- 막대 차트 -->
-          <div class="carbon-bar-wrap">
-            <canvas id="carbon-bar"></canvas>
           </div>
         </div>
       </div>

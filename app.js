@@ -38,14 +38,6 @@ const DATA = {
   // 아래 EARTH_ITEM_ORDER/EARTH_GROUP은 항목 표시 순서와 절토/성토 그룹 분류만 담당하는
   // 메타데이터이며(수치는 없음), 실제 수치 렌더링은 renderEarth() 함수를 참고하세요.
 
-  carbon: {
-    total: 18095.6,
-    ratioLabels: ["덤프트럭", "살수차", "도저", "굴착기", "기타"],
-    ratioData: [50, 10, 15, 20, 5],
-    trendLabels: ["07.12", "07.13", "07.14", "07.15", "07.16", "07.17", "07.18"],
-    trendData:   [42.1, 38.5, 45.0, 52.3, 48.7, 35.2, 41.6]
-  },
-
   // Leaflet 지도 핀 마커들 (충북 진천군 문백면 은탄리 778-1 일원, 주변 개발구역 포함)
   markers: [
     { lat: 36.7886922, lng: 127.4440195, color: "orange", name: "1공구 장비집결지" },
@@ -1213,66 +1205,6 @@ function renderProgressCard(key) {
 }
 
 // =========================================================================
-// 8. 탄소배출 차트 2종 (도넛 + 막대 트렌드)
-// =========================================================================
-function initCarbonCharts() {
-  // 도넛 차트 – 장비별 배출 비중
-  const donutCtx = document.getElementById("carbon-donut").getContext("2d");
-  if (ChartInstances.carbonDonut) ChartInstances.carbonDonut.destroy();
-  ChartInstances.carbonDonut = new Chart(donutCtx, {
-    type: "doughnut",
-    data: {
-      labels: DATA.carbon.ratioLabels,
-      datasets: [{
-        data: DATA.carbon.ratioData,
-        backgroundColor: ["#ff6d00","#ffd43b","#4ade80","#60a5fa","#94a3b8"],
-        borderWidth: 1,
-        borderColor: "#1a2133"
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      cutout: "64%",
-      plugins: {
-        legend: {
-          position: "right",
-          labels: {
-            boxWidth: 8, padding: 6,
-            color: "#8899bb",
-            font: { size: 9, family: "Noto Sans KR" }
-          }
-        }
-      }
-    }
-  });
-
-  // 막대 트렌드 차트 – 일별 탄소 배출량
-  const barCtx = document.getElementById("carbon-bar").getContext("2d");
-  if (ChartInstances.carbonBar) ChartInstances.carbonBar.destroy();
-  ChartInstances.carbonBar = new Chart(barCtx, {
-    type: "bar",
-    data: {
-      labels: DATA.carbon.trendLabels,
-      datasets: [{
-        label: "배출량(ton)",
-        data: DATA.carbon.trendData,
-        backgroundColor: "rgba(255,109,0,0.75)",
-        borderRadius: 2,
-        borderWidth: 0
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { grid: { color: "rgba(255,255,255,0.04)" }, ticks: { color: "#4a5a7a", font: { size: 8, family: "Outfit" } } },
-        y: { grid: { color: "rgba(255,255,255,0.04)" }, ticks: { color: "#4a5a7a", font: { size: 8, family: "Outfit" } } }
-      }
-    }
-  });
-}
-
-// =========================================================================
 // 9. 토공사 도넛 3개 + 테이블 바인딩
 // =========================================================================
 function makeEarthDonut(id, pct, color) {
@@ -1419,6 +1351,14 @@ function initMap() {
   mapBtns.normal.addEventListener("click", () => switchMapLayer("normal"));
   mapBtns.image.addEventListener("click", () => switchMapLayer("image"));
 
+  // 반응형 레이아웃에서 화면 폭/방향이 바뀌면(모바일 회전 등) 지도 컨테이너 크기도
+  // 다시 계산해줘야 타일이 밀리거나 빈 영역이 생기지 않습니다.
+  let resizeTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => map.invalidateSize(), 200);
+  });
+
   // 핀 마커 배치 – 마커 타입별 색상 적용
   const colorMap = { orange: "#ff6d00", blue: "#2979ff", green: "#00c46a" };
   DATA.markers.forEach(m => {
@@ -1500,9 +1440,6 @@ function init() {
 
   // 4-1) 작업일보 엑셀 "불러오기" 버튼 초기화 (서버 없이 로컬 파일 선택 → 즉시 갱신)
   initExcelLoader();
-
-  // 7) 탄소배출 차트 2종 초기화
-  initCarbonCharts();
 
   // 9) Leaflet 위성 지도 초기화 (지도는 DOM이 완전히 그려진 후 마운트해야 레이아웃 깨지지 않음)
   initMap();
