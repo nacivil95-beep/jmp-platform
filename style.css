@@ -1032,12 +1032,12 @@ html, body {
     min-height: 300px;
   }
 
-  /* 모바일에서 보고 싶은 순서: 기상 → 인원 → 장비 → 공정율/작업일보
+  /* 모바일에서 보고 싶은 순서: 기상 → 공정율/작업일보 → 인원 → 장비
      → 품질관리 → Site Map → 토공사 */
   #weather-card  { order: 1; }
-  #worker-card   { order: 2; height: 300px; }
-  #equip-card    { order: 3; height: 340px; }
-  #progress-card { order: 4; }
+  #progress-card { order: 2; }
+  #worker-card   { order: 3; height: 300px; }
+  #equip-card    { order: 4; height: 340px; }
   #quality-card  { order: 5; height: 340px; }
   #map-card      { order: 6; min-height: 280px; }
   #earth-card    { order: 7; min-height: 380px; }
