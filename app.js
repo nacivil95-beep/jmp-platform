@@ -1258,7 +1258,7 @@ function renderEarth(key) {
   makeEarthDonut("donut-cut",   cutPct,   "#2979ff");
   makeEarthDonut("donut-fill",  fillPct,  "#00c46a");
 
-  // 테이블 행 주입 – 항목별 설계/누계(시공)/잔여/공정률/시공 시작/최종 계측(선택 날짜)
+  // 테이블 행 주입 – 항목별 설계/누계(시공)/잔여/공정률 (절토/성토 구분 없이 하나의 표)
   const tbody = document.getElementById("earth-tbody");
   tbody.innerHTML = "";
   EARTH_ITEM_ORDER.forEach(type => {
@@ -1273,12 +1273,181 @@ function renderEarth(key) {
         <td>${fmt(item.cum)}</td>
         <td>${fmt(remain)}</td>
         <td class="pct-cell">${pct.toFixed(1)}%</td>
-        <td>${item.start}</td>
-        <td>${rep.date || key}</td>
       </tr>
     `);
   });
 }
+
+// =========================================================================
+// 10-1. 품질관리 현황 (다짐전함수비 / 평판재하시험) – QUALITY_DATA(qualityData.js) 연동
+// =========================================================================
+// 판정 문자열은 시험 종류마다 다릅니다 (함수비: 적합/부적합, 평판재하: 합격/불합격).
+// 통일해서 다루기 위해 "적합/합격"만 통과로 보고 나머지는 모두 불합격으로 취급합니다.
+function isQualityPass(judge) {
+  return judge === "적합" || judge === "합격";
+}
+
+let currentQualityType = "moisture";
+
+function renderQuality(type) {
+  if (typeof QUALITY_DATA === "undefined") return;
+  currentQualityType = type;
+
+  const list = (type === "plate" ? QUALITY_DATA.plate : QUALITY_DATA.moisture) || [];
+  const total = list.length;
+  const passCount = list.filter(r => isQualityPass(r.judge)).length;
+  const failCount = total - passCount;
+  const passRate = total > 0 ? Math.round((passCount / total) * 1000) / 10 : 0;
+
+  const summaryEl = document.getElementById("quality-summary");
+  if (summaryEl) {
+    summaryEl.innerHTML = `
+      <div class="quality-stat">
+        <div class="quality-stat-value">${fmt(total)}</div>
+        <div class="quality-stat-label">전체 시험</div>
+      </div>
+      <div class="quality-stat">
+        <div class="quality-stat-value pass">${fmt(passCount)}</div>
+        <div class="quality-stat-label">적합</div>
+      </div>
+      <div class="quality-stat">
+        <div class="quality-stat-value fail">${fmt(failCount)}</div>
+        <div class="quality-stat-label">부적합</div>
+      </div>
+      <div class="quality-stat">
+        <div class="quality-stat-value">${passRate}%</div>
+        <div class="quality-stat-label">적합률</div>
+      </div>
+    `;
+  }
+
+  const tbody = document.getElementById("quality-tbody");
+  if (!tbody) return;
+  tbody.innerHTML = "";
+
+  if (total === 0) {
+    tbody.innerHTML = `<tr><td colspan="4" class="quality-table-empty">시험 데이터가 없습니다.</td></tr>`;
+    return;
+  }
+
+  // 최근 시험이 위로 오도록 정렬 (날짜 내림차순, 날짜 같으면 시험번호 내림차순)
+  const sorted = [...list].sort((a, b) => {
+    if (a.date !== b.date) return (b.date || "").localeCompare(a.date || "");
+    return String(b.no).localeCompare(String(a.no), undefined, { numeric: true });
+  });
+
+  sorted.forEach(rec => {
+    const pass = isQualityPass(rec.judge);
+    const badgeClass = pass ? "pass" : "fail";
+    tbody.insertAdjacentHTML("beforeend", `
+      <tr>
+        <td>${escapeHtml(String(rec.no))}</td>
+        <td>${escapeHtml(rec.date || "-")}</td>
+        <td>${escapeHtml(rec.location || "-")}</td>
+        <td><span class="quality-judge-badge ${badgeClass}">${escapeHtml(rec.judge || "-")}</span></td>
+      </tr>
+    `);
+    tbody.lastElementChild.addEventListener("click", () => openQualityDetailModal(type, rec));
+  });
+}
+
+// ── 품질시험 상세 모달 ──
+function openQualityDetailModal(type, rec) {
+  const modal = document.getElementById("quality-detail-modal");
+  const titleEl = document.getElementById("quality-modal-title");
+  const judgeEl = document.getElementById("quality-modal-judge");
+  const bodyEl = document.getElementById("quality-modal-body");
+  if (!modal || !bodyEl) return;
+
+  const pass = isQualityPass(rec.judge);
+  const typeLabel = type === "plate" ? "평판재하시험" : "다짐전 함수비 시험";
+
+  if (titleEl) titleEl.textContent = `${typeLabel} · 시험번호 ${rec.no}`;
+  if (judgeEl) {
+    judgeEl.textContent = rec.judge || "-";
+    judgeEl.className = `quality-modal-judge-badge ${pass ? "pass" : "fail"}`;
+  }
+
+  let html = `
+    <div class="quality-detail-grid">
+      <div class="quality-detail-item"><span class="label">시험 일자</span><span class="value">${escapeHtml(rec.date || "-")}</span></div>
+      <div class="quality-detail-item"><span class="label">위치 및 부위</span><span class="value">${escapeHtml(rec.location || "-")}</span></div>
+  `;
+
+  if (type === "plate") {
+    html += `
+      <div class="quality-detail-item"><span class="label">지반반력계수(K30)</span><span class="value">${fmt(rec.k30)} MN/㎥</span></div>
+      <div class="quality-detail-item"><span class="label">기준치</span><span class="value">${fmt(rec.standard)} MN/㎥ 이상</span></div>
+      <div class="quality-detail-item"><span class="label">재하판 지름</span><span class="value">${fmt(rec.plate_diameter)} mm</span></div>
+      <div class="quality-detail-item"><span class="label">평판 면적</span><span class="value">${fmt(rec.plate_area)} ㎠</span></div>
+      <div class="quality-detail-item"><span class="label">초기 하중</span><span class="value">${escapeHtml(rec.initial_load || "-")}</span></div>
+    `;
+    html += `</div>`;
+    if (rec.conclusion) {
+      html += `<div class="quality-conclusion-box">${escapeHtml(rec.conclusion)}</div>`;
+    }
+  } else {
+    html += `
+      <div class="quality-detail-item"><span class="label">함수비 평균</span><span class="value">${fmt(rec.avg)}%</span></div>
+      <div class="quality-detail-item"><span class="label">관리 범위</span><span class="value">${rec.range_min != null ? `${fmt(rec.range_min)} ~ ${fmt(rec.range_max)}%` : "-"}</span></div>
+    `;
+    html += `</div>`;
+
+    if (rec.samples && rec.samples.length) {
+      html += `
+        <div class="quality-detail-subtitle">측정 상세 (용기별)</div>
+        <table class="quality-samples-table">
+          <thead>
+            <tr><th>측정 위치</th><th>용기 번호</th><th>젖은 흙(g)</th><th>마른 흙(g)</th><th>물 무게(g)</th><th>함수비(%)</th></tr>
+          </thead>
+          <tbody>
+            ${rec.samples.map(s => `
+              <tr>
+                <td>${escapeHtml(s.label)}</td>
+                <td>${escapeHtml(s.container)}</td>
+                <td>${fmt(s.wet)}</td>
+                <td>${fmt(s.dry)}</td>
+                <td>${fmt(s.water)}</td>
+                <td>${fmt(s.moisture)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+  }
+
+  if (rec.testers && (rec.testers.tester || rec.testers.checker || rec.testers.manager)) {
+    html += `
+      <div class="quality-detail-subtitle">시험 담당</div>
+      <div class="quality-detail-grid">
+        <div class="quality-detail-item"><span class="label">시험자</span><span class="value">${escapeHtml(rec.testers.tester || "-")}</span></div>
+        <div class="quality-detail-item"><span class="label">확인자</span><span class="value">${escapeHtml(rec.testers.checker || "-")}</span></div>
+        <div class="quality-detail-item"><span class="label">건설사업관리기술인</span><span class="value">${escapeHtml(rec.testers.manager || "-")}</span></div>
+      </div>
+    `;
+  }
+
+  bodyEl.innerHTML = html;
+  modal.classList.add("show");
+}
+
+function closeQualityDetailModal() {
+  const modal = document.getElementById("quality-detail-modal");
+  if (modal) modal.classList.remove("show");
+}
+
+function initQualityModal() {
+  const closeBtn = document.getElementById("quality-modal-close-btn");
+  const overlay = document.getElementById("quality-detail-modal");
+  if (closeBtn) closeBtn.addEventListener("click", closeQualityDetailModal);
+  if (overlay) {
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeQualityDetailModal();
+    });
+  }
+}
+
 
 // =========================================================================
 // 10. Leaflet 위성 지도 초기화 및 마커 배치
@@ -1396,6 +1565,7 @@ function initTabs() {
     // 탭 종류에 따라 렌더 함수 호출 (인원/장비/토공사는 날짜 <select>로 갱신되며, 이 "전체" 탭은
     // 현재 선택된 작업일보 날짜 기준으로 다시 렌더링만 담당합니다. val은 향후 1/2/3공구 구분용으로 남겨둡니다)
     if (tab === "earth" && currentReportDate) renderEarth(currentReportDate);
+    if (tab === "quality") renderQuality(val);
   });
 }
 
@@ -1497,6 +1667,10 @@ function init() {
     renderEarth(currentReportDate);
   }
   initWorkStatusModal();
+
+  // 4-2) 품질관리 현황(함수비/평판재하시험) 초기 렌더링 및 상세 모달 초기화
+  renderQuality(currentQualityType);
+  initQualityModal();
 
   // 4-1) 작업일보 엑셀 "불러오기" 버튼 초기화 (서버 없이 로컬 파일 선택 → 즉시 갱신)
   initExcelLoader();
