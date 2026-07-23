@@ -991,15 +991,15 @@ html, body {
     flex: none;
   }
 
-  /* 현장에서 모바일로 가장 자주 확인하는 순서: 인원 → 공정율/작업일보 → 기상
-     → 장비 → 지도 → 토공사 → 품질관리 */
-  #worker-card   { order: 1; }
-  #progress-card { order: 2; }
-  #weather-card  { order: 3; }
-  #equip-card    { order: 4; }
-  #map-card      { order: 5; min-height: 280px; }
-  #earth-card    { order: 6; min-height: 380px; }
-  #quality-card  { order: 7; min-height: 340px; }
+  /* 모바일에서 보고 싶은 순서: 기상 → 인원 → 장비 → 공정율/작업일보
+     → 품질관리 → Site Map → 토공사 */
+  #weather-card  { order: 1; }
+  #worker-card   { order: 2; }
+  #equip-card    { order: 3; height: 340px; }
+  #progress-card { order: 4; }
+  #quality-card  { order: 5; height: 340px; }
+  #map-card      { order: 6; min-height: 280px; }
+  #earth-card    { order: 7; min-height: 380px; }
 
   /* 표가 많은 카드는 가로 스크롤로 무너짐 방지 */
   .equip-table-scroll,
