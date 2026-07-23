@@ -1028,3 +1028,95 @@ html, body {
     min-height: 26px;
   }
 }
+
+/* ========================================================================
+   접근 잠금 화면 (클라이언트단 비밀번호) - app.js의 initLockScreen()과 연동
+   ======================================================================== */
+#lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-root);
+}
+#lock-screen.hidden { display: none; }
+
+.lock-box {
+  width: 320px;
+  padding: 36px 32px 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+
+.lock-icon {
+  width: 52px; height: 52px;
+  margin: 0 auto 16px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--orange-dim);
+  color: var(--orange);
+  font-size: 20px;
+}
+
+.lock-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px; font-weight: 800;
+  color: var(--text-white);
+  margin-bottom: 6px;
+}
+
+.lock-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+#lock-form { display: flex; flex-direction: column; gap: 10px; }
+
+.lock-input {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--bg-inner);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-white);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: var(--transition);
+}
+.lock-input:focus { border-color: var(--orange); }
+.lock-input.shake { animation: lock-shake 0.3s; }
+
+.lock-submit-btn {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--orange);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: #1a1400;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.lock-submit-btn:hover { background: var(--orange-light); }
+
+.lock-error {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--red);
+  display: none;
+}
+.lock-error.show { display: block; }
+
+@keyframes lock-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}

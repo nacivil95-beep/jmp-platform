@@ -12,6 +12,23 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
+  <!-- ──────────────────────── 접근 잠금 화면 ──────────────────────── -->
+  <!-- 직원 전용 안내: URL을 우연히 알게 된 외부인의 접근을 막기 위한 간단한 비밀번호 화면입니다.
+       클라이언트단 체크라 완전한 보안은 아니며, 개발자도구로 우회 가능한 수준의 1차 방어입니다. -->
+  <div id="lock-screen">
+    <div class="lock-box">
+      <div class="lock-icon"><i class="fa-solid fa-lock"></i></div>
+      <div class="lock-title">JMP 통합 관제 플랫폼</div>
+      <div class="lock-sub">비밀번호를 입력해주세요</div>
+      <form id="lock-form" autocomplete="off">
+        <input type="password" id="lock-password-input" class="lock-input" placeholder="비밀번호" autocomplete="off">
+        <button type="submit" class="lock-submit-btn">입장</button>
+      </form>
+      <div class="lock-error" id="lock-error">비밀번호가 올바르지 않습니다.</div>
+    </div>
+  </div>
+
 <div id="app">
 
   <!-- ──────────────────────── 헤더 ──────────────────────── -->

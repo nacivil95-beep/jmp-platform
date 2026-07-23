@@ -1414,6 +1414,66 @@ function initNaverWeatherModal() {
 }
 
 // =========================================================================
+// 12-2. 접근 잠금 화면 (클라이언트단 비밀번호)
+// =========================================================================
+// ※ 이 방식은 완전한 보안이 아닙니다. 개발자도구에서 아래 해시값과 로직을 보면 우회할 수
+//    있는 수준의 "1차 방어"이며, 목적은 URL을 우연히 알게 된 외부인의 접근을 막는 것입니다.
+//    (검색엔진 크롤링, 링크 오공유 등으로 인한 의도치 않은 노출 방지)
+//    진짜 보안이 필요하다면 Cloudflare Access 등 서버/엣지단 인증을 추가로 적용해야 합니다.
+// ※ 평문 비밀번호 대신 SHA-256 해시만 코드에 남겨, 소스를 봐도 원문이 바로 보이지 않게 처리했습니다.
+//    비밀번호를 바꾸려면 브라우저 콘솔에서 아래처럼 새 해시를 만들어 LOCK_PASSWORD_HASH에 넣어주세요.
+//    crypto.subtle.digest("SHA-256", new TextEncoder().encode("새비밀번호"))
+//      .then(b => console.log([...new Uint8Array(b)].map(x => x.toString(16).padStart(2,"0")).join("")));
+const LOCK_PASSWORD_HASH = "13fe2e8ab61465cb3bb02f2779eb3ce841c2d1f80387318aa78229bed3da15e7";
+const LOCK_STORAGE_KEY = "jmp_site_unlocked_v1";
+
+async function sha256Hex(text) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+// 비밀번호 확인 후 통과하면 onUnlocked()를 호출해 나머지 앱 초기화를 진행합니다.
+// (잠금 화면에 막혀있는 동안에는 기상 API 호출/지도 로딩 등 불필요한 작업을 하지 않기 위해
+//  전체 초기화를 잠금 해제 시점까지 미룹니다.)
+function initLockScreen(onUnlocked) {
+  const screen = document.getElementById("lock-screen");
+  const form = document.getElementById("lock-form");
+  const input = document.getElementById("lock-password-input");
+  const error = document.getElementById("lock-error");
+
+  function unlock() {
+    screen.classList.add("hidden");
+    onUnlocked();
+  }
+
+  // 같은 브라우저에서 이전에 통과한 적이 있으면 바로 통과 (매번 재입력 방지)
+  if (localStorage.getItem(LOCK_STORAGE_KEY) === "1") {
+    unlock();
+    return;
+  }
+
+  input.focus();
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const val = input.value;
+    if (!val) return;
+    const hash = await sha256Hex(val);
+    if (hash === LOCK_PASSWORD_HASH) {
+      localStorage.setItem(LOCK_STORAGE_KEY, "1");
+      unlock();
+    } else {
+      error.classList.add("show");
+      input.classList.remove("shake");
+      void input.offsetWidth; // 리플로우 강제 – 연속 오답 시에도 흔들림 애니메이션 재생되게 함
+      input.classList.add("shake");
+      input.value = "";
+      input.focus();
+    }
+  });
+}
+
+// =========================================================================
 // 13. 초기화 진입점
 // =========================================================================
 function init() {
@@ -1448,4 +1508,6 @@ function init() {
   initNaverWeatherModal();
 }
 
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", function() {
+  initLockScreen(init);
+});
