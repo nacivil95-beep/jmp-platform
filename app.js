@@ -518,7 +518,8 @@ function initReportDateSelects() {
   const selects = [
     document.getElementById("worker-date-select"),
     document.getElementById("equip-date-select"),
-    document.getElementById("earth-date-select")
+    document.getElementById("earth-date-select"),
+    document.getElementById("progress-date-select")
   ];
   selects.forEach(sel => {
     if (!sel) return;
@@ -534,7 +535,7 @@ function initReportDateSelects() {
 function setReportDate(key) {
   if (!DAILY_REPORTS[key]) return;
   currentReportDate = key;
-  ["worker-date-select", "equip-date-select", "earth-date-select"].forEach(id => {
+  ["worker-date-select", "equip-date-select", "earth-date-select", "progress-date-select"].forEach(id => {
     const sel = document.getElementById(id);
     if (sel && sel.value !== key) sel.value = key;
   });
@@ -554,9 +555,12 @@ function renderWorkers(key) {
   const staffRow = rep.personnel.find(r => r.role.replace(/\s/g, "") === "직원");
   const staffToday = staffRow ? staffRow.today : 0;
   const subToday = Math.max(totalToday - staffToday, 0);
+  const equipToday = rep.equipment_total ? (rep.equipment_total.today || 0) : 0;
 
   document.getElementById("worker-staff").textContent = fmt(staffToday);
   document.getElementById("worker-sub").textContent = fmt(subToday);
+  document.getElementById("worker-equip-personnel").textContent = fmt(equipToday);
+  document.getElementById("worker-total-count").textContent = fmt(staffToday + subToday + equipToday) + "명";
 
   const tbody = document.querySelector("#worker-role-table tbody");
   if (!tbody) return;
@@ -1176,6 +1180,15 @@ function initExcelLoader() {
 // =========================================================================
 // 7. 공정율 및 작업일보 카드 렌더링
 // =========================================================================
+const WEEKDAY_KR = ["일", "월", "화", "수", "목", "금", "토"];
+
+function formatDateWithWeekday(dateStr) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return dateStr;
+  return `${dateStr} (${WEEKDAY_KR[d.getDay()]})`;
+}
+
 function renderProgressCard(key) {
   const rep = DAILY_REPORTS[key];
   const summaryEl = document.getElementById("progress-summary");

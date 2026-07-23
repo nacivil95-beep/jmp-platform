@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JMP Smart Site Platform</title>
+  <title>XiteCore Smart Site Platform</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -37,7 +37,7 @@
       <!-- 로고 -->
       <div class="logo-badge">
         <div class="logo-icon">JMP</div>
-        <span class="logo-text">진천메가폴리스 스마트 통합 플랫폼</span>
+        <span class="logo-text">진천메가폴리스 통합 관제 플랫폼</span>
       </div>
       <!-- SK, 토우 서브 브랜드 -->
       <div class="logo-sub">
@@ -132,77 +132,14 @@
         </div>
       </div>
 
-      <!-- 위젯 2+3: 인원 현황 + 장비 현황 (같은 열에 세로로 쌓임, 장비는 스크롤로 확인) -->
-      <div class="card-stack" id="worker-equip-col">
-
-        <!-- 위젯 2: 인원 현황 -->
-        <div class="card" id="worker-card">
-          <div class="card-hdr">
-            <div class="card-title">
-              <i class="fa-solid fa-users" style="color:#a78bfa;"></i> 인원 현황
-            </div>
-            <div class="card-actions">
-              <i class="fa-solid fa-rotate"></i>
-              <i class="fa-solid fa-expand"></i>
-            </div>
-          </div>
-          <div class="card-body">
-            <!-- 공구 탭 -->
-            <div class="widget-tabs" id="worker-date-tabs">
-              <select class="date-select" id="worker-date-select"></select>
-              <button class="nw-inline-btn" id="work-status-btn"><i class="fa-solid fa-clipboard-list"></i> 작업현황</button>
-            </div>
-            <div class="worker-main-stats-compact">
-              <div class="worker-stat">
-                <div class="worker-count" id="worker-staff">-</div>
-                <div class="worker-label">시공사(직원)</div>
-              </div>
-              <div class="worker-stat">
-                <div class="worker-count orange" id="worker-sub">-</div>
-                <div class="worker-label">협력사(외주)</div>
-              </div>
-            </div>
-            <div class="worker-role-scroll">
-              <table class="mini-role-table" id="worker-role-table"><tbody></tbody></table>
-            </div>
-            <!-- 체감온도 연동 온열/한랭질환 경고 배너 (weather-card 위험도와 동기화) -->
-            <div class="worker-alert-banner" id="worker-heat-banner"></div>
-          </div>
-        </div>
-
-        <!-- 위젯 3: 장비 현황 -->
-        <div class="card" id="equip-card">
-          <div class="card-hdr">
-            <div class="card-title">
-              <i class="fa-solid fa-truck-pickup" style="color:#fb923c;"></i> 장비 현황
-            </div>
-            <div class="card-actions">
-              <i class="fa-solid fa-rotate"></i>
-              <i class="fa-solid fa-expand"></i>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="widget-tabs" id="equip-date-tabs">
-              <select class="date-select" id="equip-date-select"></select>
-              <span class="date-select-weather" id="equip-date-weather"></span>
-            </div>
-            <div class="equip-table-scroll">
-              <table class="equip-table" id="equip-table">
-                <tbody></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /worker-equip-col -->
-
-      <!-- 위젯 4: 공정율 및 작업일보 -->
+      <!-- 위젯 2: 공정율 및 작업일보 -->
       <div class="card" id="progress-card">
         <div class="card-hdr">
           <div class="card-title">
             <i class="fa-solid fa-diagram-project" style="color:#34d399;"></i> 공정율 및 작업일보
           </div>
           <div class="card-actions">
+            <select class="date-select" id="progress-date-select"></select>
             <i class="fa-solid fa-expand"></i>
           </div>
         </div>
@@ -220,6 +157,70 @@
           </div>
         </div>
       </div>
+
+      <!-- 위젯 3+4: 인원 현황 + 장비 현황 (같은 열에 세로로 쌓임, 장비는 스크롤로 확인) -->
+      <div class="card-stack" id="worker-equip-col">
+
+        <!-- 위젯 2: 인원 현황 -->
+        <div class="card" id="worker-card">
+          <div class="card-hdr">
+            <div class="card-title">
+              <i class="fa-solid fa-users" style="color:#a78bfa;"></i> 인원 현황
+            </div>
+            <div class="card-actions">
+              <select class="date-select" id="worker-date-select"></select>
+              <i class="fa-solid fa-rotate"></i>
+              <i class="fa-solid fa-expand"></i>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="worker-main-stats-compact">
+              <div class="worker-stat">
+                <div class="worker-count" id="worker-staff">-</div>
+                <div class="worker-label">시공사(직원)</div>
+              </div>
+              <div class="worker-stat">
+                <div class="worker-count orange" id="worker-sub">-</div>
+                <div class="worker-label">협력사(외주)</div>
+              </div>
+              <div class="worker-stat">
+                <div class="worker-count blue" id="worker-equip-personnel">-</div>
+                <div class="worker-label">장비인원</div>
+              </div>
+            </div>
+            <div class="worker-total-bar">
+              <span class="worker-total-label"><i class="fa-solid fa-people-group"></i> 현장 총인원</span>
+              <span class="worker-total-count" id="worker-total-count">-</span>
+            </div>
+            <div class="worker-role-scroll">
+              <table class="mini-role-table" id="worker-role-table"><tbody></tbody></table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 위젯 3: 장비 현황 -->
+        <div class="card" id="equip-card">
+          <div class="card-hdr">
+            <div class="card-title">
+              <i class="fa-solid fa-truck-pickup" style="color:#fb923c;"></i> 장비 현황
+            </div>
+            <div class="card-actions">
+              <select class="date-select" id="equip-date-select"></select>
+              <span class="date-select-weather" id="equip-date-weather"></span>
+              <i class="fa-solid fa-rotate"></i>
+              <i class="fa-solid fa-expand"></i>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="equip-table-scroll">
+              <table class="equip-table" id="equip-table">
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /worker-equip-col -->
 
       <!-- 위젯 5: 품질관리 현황 (공정율/작업일보 바로 옆) -->
       <div class="card" id="quality-card">
@@ -295,15 +296,15 @@
             <i class="fa-solid fa-mountain" style="color:#fb923c;"></i> 토공사 현황
           </div>
           <div class="card-actions">
+            <select class="date-select" id="earth-date-select"></select>
             <i class="fa-solid fa-rotate"></i>
             <i class="fa-solid fa-expand"></i>
           </div>
         </div>
         <div class="card-body">
-          <!-- 공구 탭 + 날짜 선택 (작업일보 날짜별 누계 반영) -->
+          <!-- 공구 탭 (작업일보 날짜별 누계 반영) -->
           <div class="widget-tabs" id="earth-date-tabs">
             <button class="wtab active" data-tab="earth" data-val="all">전체</button>
-            <select class="date-select" id="earth-date-select" style="margin-left:auto;"></select>
           </div>
 
           <!-- 도넛 3개 -->

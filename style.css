@@ -190,7 +190,7 @@ html, body {
 /* 상단 위젯 행 (기상 / 인원+장비 / 공정율 / 품질관리) */
 #top-row {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr 1.1fr 1.1fr;
+  grid-template-columns: 0.75fr 1.4fr 1.0fr 1.05fr;
   gap: 6px;
   flex: 1 1 340px;
   min-height: 340px;
@@ -252,6 +252,15 @@ html, body {
 
 .card-actions i { cursor: pointer; transition: var(--transition); }
 .card-actions i:hover { color: var(--text-muted); }
+
+.progress-date {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px; font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-inner);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+}
 
 .nw-inline-btn {
   background: none; border: none;
@@ -418,7 +427,6 @@ html, body {
 .date-select-weather {
   font-size: 9px;
   color: var(--text-dim);
-  margin-left: auto;
 }
 
 /* ─── 2단 인원 현황 ─── */
@@ -440,14 +448,39 @@ html, body {
 
 .worker-count {
   font-family: 'Outfit', sans-serif;
-  font-size: 30px; font-weight: 800; line-height: 1;
+  font-size: 22px; font-weight: 800; line-height: 1;
   color: var(--text-white);
 }
 .worker-count.orange { color: var(--orange); }
+.worker-count.blue { color: #60a5fa; }
 
 .worker-label {
-  font-size: 10px; color: var(--text-muted);
+  font-size: 9.5px; color: var(--text-muted);
   margin-top: 3px;
+  white-space: nowrap;
+}
+
+/* 인원 현황 – 시공사+협력사+장비인원을 합산한 현장 총인원 강조 바 */
+.worker-total-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-inner);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+.worker-total-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  display: flex; align-items: center; gap: 5px;
+}
+.worker-total-count {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px; font-weight: 800;
+  color: var(--green);
 }
 
 /* 인원 현황 – 금일 투입 직종별 소형 표 */
