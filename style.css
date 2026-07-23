@@ -991,10 +991,18 @@ html, body {
     flex: none;
   }
 
+  /* .card-stack > .card 규칙이 .card보다 선택자 우선순위가 높아서,
+     모바일에서도 flex:1 1 0 / min-height:0 이 그대로 적용되는 바람에
+     인원현황·장비현황 카드가 높이 0으로 찌그러져 안 보이던 문제를 여기서 덮어씀 */
+  .card-stack > .card {
+    flex: none;
+    min-height: 300px;
+  }
+
   /* 모바일에서 보고 싶은 순서: 기상 → 인원 → 장비 → 공정율/작업일보
      → 품질관리 → Site Map → 토공사 */
   #weather-card  { order: 1; }
-  #worker-card   { order: 2; }
+  #worker-card   { order: 2; height: 300px; }
   #equip-card    { order: 3; height: 340px; }
   #progress-card { order: 4; }
   #quality-card  { order: 5; height: 340px; }
