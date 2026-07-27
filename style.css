@@ -410,8 +410,11 @@ html, body {
 .worker-alert-banner.level-warning { background: var(--orange-dim); color: var(--orange-light); }
 .worker-alert-banner.level-danger  { background: rgba(255,61,68,0.18); color: var(--red); }
 
-/* ─── 날짜 선택 (작업일보 실데이터 – 인원/장비 카드 공통) ─── */
-.date-select {
+/* ─── 날짜 선택 버튼 (작업일보 실데이터 – 공정율/인원/장비/토공사 카드 공통, 캘린더 팝업 트리거) ─── */
+.date-picker-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   background: var(--bg-inner);
   border: 1px solid var(--border);
   color: var(--text-white);
@@ -422,11 +425,15 @@ html, body {
   cursor: pointer;
   outline: none;
 }
-.date-select:hover { border-color: var(--orange); }
-
-.date-select-weather {
-  font-size: 9px;
-  color: var(--text-dim);
+.date-picker-btn:hover,
+.date-picker-btn.active { border-color: var(--orange); }
+.date-picker-btn::after {
+  content: "";
+  width: 0; height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 4px solid var(--text-dim);
+  margin-left: 1px;
 }
 
 /* ─── 2단 인원 현황 ─── */
@@ -1067,7 +1074,7 @@ html, body {
   }
 
   /* 터치 대상 최소 크기 확보 */
-  .date-select,
+  .date-picker-btn,
   .wtab,
   .nw-inline-btn,
   .map-type-btn,
@@ -1296,4 +1303,73 @@ html, body {
 .quality-modal-body::-webkit-scrollbar-thumb {
   background: var(--border);
   border-radius: 4px;
+}
+
+/* ========================================================================
+   날짜 선택 캘린더 팝업 - date-picker-btn 클릭 시 뜨는 공용 달력
+   (공정율/인원/장비/토공사 카드에서 공유해서 사용, app.js의 openDatePicker()가 위치를 잡음)
+   ======================================================================== */
+.date-calendar-popup {
+  position: fixed;
+  z-index: 3000;
+  display: none;
+  width: 216px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.55);
+  padding: 10px 10px 8px;
+}
+.date-calendar-popup.show { display: block; }
+
+.dcp-header {
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text-white);
+  margin-bottom: 8px;
+}
+
+.dcp-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+.dcp-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+
+.dcp-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10.5px;
+  color: var(--text-dim);
+  border-radius: 6px;
+  cursor: default;
+}
+.dcp-day.empty { visibility: hidden; }
+
+.dcp-day.has-data {
+  color: var(--text-white);
+  background: var(--bg-inner);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.dcp-day.has-data:hover { background: var(--orange-dim); color: var(--orange-light); }
+
+.dcp-day.today { box-shadow: inset 0 0 0 1px var(--border); }
+
+.dcp-day.selected {
+  background: var(--orange);
+  color: #1a1400;
+  font-weight: 700;
 }
