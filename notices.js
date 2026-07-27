@@ -25,7 +25,17 @@ let SITE_NOTICES = [
     title: "체감온도 33.6도",
     body: "현장에서는 매시간 15분씩 휴식을 취해주시기 바랍니다.",
     startDate: "",
-    endDate: "",
+    endDate: "2026-07-27",
+    pinned: false
+  },
+  {
+    id: "sample-002",
+    team: "공무팀",
+    level: "info",
+    title: "비상주감리 현장방문",
+    body: "7월 28일 비상주감리 현장 방문합니다.",
+    startDate: "",
+    endDate: "2026-07-27",
     pinned: false
   }
 ];
