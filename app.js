@@ -1760,6 +1760,76 @@ function initLockScreen(onUnlocked) {
 // =========================================================================
 // 13. 초기화 진입점
 // =========================================================================
+// =========================================================================
+// 12-3. 공지사항 팝업 (notices.js의 SITE_NOTICES 연동)
+// =========================================================================
+const NOTICE_DISMISS_KEY = "jmp_notice_dismissed_date";
+
+function getTodayDateStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+// startDate/endDate가 지정된 공지만 오늘 날짜 기준으로 필터링하고, pinned 공지를 앞으로 정렬합니다.
+function getActiveNotices() {
+  if (typeof SITE_NOTICES === "undefined" || !Array.isArray(SITE_NOTICES)) return [];
+  const today = getTodayDateStr();
+  return SITE_NOTICES
+    .filter(n => {
+      if (n.startDate && today < n.startDate) return false;
+      if (n.endDate && today > n.endDate) return false;
+      return true;
+    })
+    .sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
+}
+
+function renderNoticeList(list) {
+  const container = document.getElementById("notice-list");
+  if (!container) return;
+  container.innerHTML = list.map(n => `
+    <div class="notice-card level-${escapeHtml(n.level || "info")}">
+      <div class="notice-card-top">
+        <span class="notice-team-tag">${escapeHtml(n.team || "공지")}</span>
+        ${n.endDate ? `<span class="notice-date-range">~${escapeHtml(n.endDate.slice(5).replace("-", "/"))}</span>` : ""}
+      </div>
+      <div class="notice-title">${escapeHtml(n.title || "")}</div>
+      <div class="notice-body">${String(n.body || "").replace(/\n/g, "<br>")}</div>
+    </div>
+  `).join("");
+}
+
+function closeNoticePopup() {
+  const overlay = document.getElementById("notice-overlay");
+  const checkbox = document.getElementById("notice-hide-today-checkbox");
+  // "오늘 하루 보지 않기"를 체크한 채로 닫은 경우에만 오늘 날짜를 저장해서 재접속 시 다시 안 뜨게 합니다.
+  // 체크 안 하고 닫으면(x버튼/바깥클릭/닫기버튼 전부 동일) 다음 접속·새로고침 때 다시 뜹니다.
+  if (checkbox && checkbox.checked) {
+    localStorage.setItem(NOTICE_DISMISS_KEY, getTodayDateStr());
+  }
+  if (overlay) overlay.classList.remove("show");
+}
+
+function initNoticePopup() {
+  const overlay = document.getElementById("notice-overlay");
+  if (!overlay) return;
+
+  const active = getActiveNotices();
+  if (!active.length) return; // 노출할 공지가 없으면 팝업 자체를 띄우지 않음
+
+  if (localStorage.getItem(NOTICE_DISMISS_KEY) === getTodayDateStr()) return; // 오늘 "보지 않기" 선택함
+
+  renderNoticeList(active);
+  overlay.classList.add("show");
+
+  const closeX = document.getElementById("notice-close-x");
+  const closeBtn = document.getElementById("notice-close-btn");
+  if (closeX) closeX.addEventListener("click", closeNoticePopup);
+  if (closeBtn) closeBtn.addEventListener("click", closeNoticePopup);
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeNoticePopup();
+  });
+}
+
 function init() {
   // 1) 실시간 시계 가동
   updateClock();
@@ -1794,6 +1864,9 @@ function init() {
 
   // 10) 네이버 날씨 모달 버튼 이벤트 등록
   initNaverWeatherModal();
+
+  // 11) 공지사항 팝업 (notices.js에 등록된 공지가 있을 때만 노출)
+  initNoticePopup();
 }
 
 document.addEventListener("DOMContentLoaded", function() {

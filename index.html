@@ -29,6 +29,24 @@
     </div>
   </div>
 
+  <!-- ──────────────────────── 공지사항 팝업 (notices.js 데이터 연동) ──────────────────────── -->
+  <div class="notice-overlay" id="notice-overlay">
+    <div class="notice-box">
+      <div class="notice-hdr">
+        <div class="notice-hdr-title"><i class="fa-solid fa-bullhorn"></i> 공지사항</div>
+        <button type="button" class="notice-close-x" id="notice-close-x"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="notice-list" id="notice-list"></div>
+      <div class="notice-footer">
+        <label class="notice-hide-today">
+          <input type="checkbox" id="notice-hide-today-checkbox">
+          <span>오늘 하루 보지 않기</span>
+        </label>
+        <button type="button" class="notice-close-btn" id="notice-close-btn">닫기</button>
+      </div>
+    </div>
+  </div>
+
 <div id="app">
 
   <!-- ──────────────────────── 헤더 ──────────────────────── -->
@@ -400,6 +418,7 @@
 
 <script src="dailyData.js"></script>
 <script src="qualityData.js"></script>
+<script src="notices.js"></script>
 <script src="app.js"></script>
   <!-- ──────────────────────── 날짜 선택 캘린더 팝업 (공정율/인원/장비/토공사 카드 공통) ──────────────────────── -->
   <div class="date-calendar-popup" id="date-calendar-popup">
