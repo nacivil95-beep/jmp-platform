@@ -513,37 +513,141 @@ function dateOptionLabel(key) {
   return `${md} (${rep.weather || "-"})`;
 }
 
-// 날짜 선택 <select> 2개(인원/장비 카드)를 채우고 서로 동기화합니다.
+// 날짜 선택 버튼 4개(공정율/인원/장비/토공사 카드)를 채우고 서로 동기화합니다.
+// 실제 선택 UI는 캘린더 팝업(#date-calendar-popup)이 담당하며, 이 버튼들은 트리거 역할만 합니다.
+const DATE_PICKER_BTN_IDS = ["progress-date-select", "worker-date-select", "equip-date-select", "earth-date-select"];
+
 function initReportDateSelects() {
-  const selects = [
-    document.getElementById("worker-date-select"),
-    document.getElementById("equip-date-select"),
-    document.getElementById("earth-date-select"),
-    document.getElementById("progress-date-select")
-  ];
-  selects.forEach(sel => {
-    if (!sel) return;
-    sel.innerHTML = REPORT_DATE_KEYS.map(k =>
-      `<option value="${k}"${k === currentReportDate ? " selected" : ""}>${dateOptionLabel(k)}</option>`
-    ).join("");
-    sel.addEventListener("change", (e) => {
-      setReportDate(e.target.value);
+  DATE_PICKER_BTN_IDS.forEach(id => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleDatePicker(btn);
     });
+  });
+  refreshDatePickerButtons();
+  initDatePickerGlobalHandlers();
+}
+
+function refreshDatePickerButtons() {
+  DATE_PICKER_BTN_IDS.forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn && currentReportDate) btn.textContent = dateOptionLabel(currentReportDate);
   });
 }
 
 function setReportDate(key) {
   if (!DAILY_REPORTS[key]) return;
   currentReportDate = key;
-  ["worker-date-select", "equip-date-select", "earth-date-select", "progress-date-select"].forEach(id => {
-    const sel = document.getElementById(id);
-    if (sel && sel.value !== key) sel.value = key;
-  });
+  refreshDatePickerButtons();
   renderWorkers(key);
   renderEquip(key);
   renderWorkStatusModal(key);
   renderProgressCard(key);
   renderEarth(key);
+}
+
+// ── 날짜 선택 캘린더 팝업 ──
+let datePickerOpenTrigger = null;
+
+function toggleDatePicker(triggerEl) {
+  const popup = document.getElementById("date-calendar-popup");
+  if (!popup) return;
+  if (popup.classList.contains("show") && datePickerOpenTrigger === triggerEl) {
+    closeDatePicker();
+    return;
+  }
+  openDatePicker(triggerEl);
+}
+
+function openDatePicker(triggerEl) {
+  const popup = document.getElementById("date-calendar-popup");
+  if (!popup) return;
+
+  renderDatePickerGrid();
+
+  datePickerOpenTrigger = triggerEl;
+  triggerEl.classList.add("active");
+
+  const rect = triggerEl.getBoundingClientRect();
+  const popupWidth = popup.offsetWidth || 216;
+  let left = rect.right - popupWidth; // 기본은 트리거 오른쪽 끝에 맞춰 왼쪽으로 펼침
+  if (left < 8) left = Math.min(rect.left, window.innerWidth - popupWidth - 8);
+  let top = rect.bottom + 6;
+
+  popup.style.left = `${Math.max(8, left)}px`;
+  popup.style.top = `${top}px`;
+  popup.classList.add("show");
+
+  // 화면 아래로 넘치면 트리거 위쪽에 띄우기
+  const popupRect = popup.getBoundingClientRect();
+  if (popupRect.bottom > window.innerHeight - 8) {
+    popup.style.top = `${rect.top - popupRect.height - 6}px`;
+  }
+}
+
+function closeDatePicker() {
+  const popup = document.getElementById("date-calendar-popup");
+  if (popup) popup.classList.remove("show");
+  if (datePickerOpenTrigger) datePickerOpenTrigger.classList.remove("active");
+  datePickerOpenTrigger = null;
+}
+
+function initDatePickerGlobalHandlers() {
+  const popup = document.getElementById("date-calendar-popup");
+  if (!popup) return;
+  document.addEventListener("click", (e) => {
+    if (!popup.classList.contains("show")) return;
+    if (popup.contains(e.target)) return;
+    if (datePickerOpenTrigger && datePickerOpenTrigger.contains(e.target)) return;
+    closeDatePicker();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDatePicker();
+  });
+  window.addEventListener("resize", closeDatePicker);
+}
+
+function renderDatePickerGrid() {
+  if (!REPORT_DATE_KEYS.length || !currentReportDate) return;
+  const sample = DAILY_REPORTS[REPORT_DATE_KEYS[0]];
+  const [year, month] = (sample.date || "").split("-").map(Number);
+  if (!year || !month) return;
+
+  const labelEl = document.getElementById("dcp-month-label");
+  if (labelEl) labelEl.textContent = `${year}년 ${String(month).padStart(2, "0")}월`;
+
+  const firstWeekday = new Date(year, month - 1, 1).getDay(); // 0=일
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const now = new Date();
+  const todayKey = (now.getFullYear() === year && now.getMonth() + 1 === month)
+    ? String(now.getDate()).padStart(2, "0") : null;
+
+  const grid = document.getElementById("dcp-grid");
+  if (!grid) return;
+  grid.innerHTML = "";
+
+  for (let i = 0; i < firstWeekday; i++) {
+    grid.insertAdjacentHTML("beforeend", `<span class="dcp-day empty"></span>`);
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const key = String(d).padStart(2, "0");
+    const hasData = !!DAILY_REPORTS[key] && REPORT_DATE_KEYS.includes(key);
+    const cls = ["dcp-day"];
+    if (hasData) cls.push("has-data");
+    if (key === currentReportDate) cls.push("selected");
+    if (key === todayKey) cls.push("today");
+    grid.insertAdjacentHTML("beforeend",
+      `<span class="${cls.join(" ")}"${hasData ? ` data-key="${key}"` : ""} title="${hasData ? dateOptionLabel(key) : ""}">${d}</span>`);
+  }
+
+  grid.querySelectorAll(".dcp-day.has-data").forEach(el => {
+    el.addEventListener("click", () => {
+      setReportDate(el.dataset.key);
+      closeDatePicker();
+    });
+  });
 }
 
 // ── 인원 현황 ──
@@ -585,9 +689,6 @@ function renderWorkers(key) {
 function renderEquip(key) {
   const rep = DAILY_REPORTS[key];
   if (!rep) return;
-
-  const weatherEl = document.getElementById("equip-date-weather");
-  if (weatherEl) weatherEl.textContent = rep.weather ? `날씨: ${rep.weather}` : "";
 
   const list = rep.equipment.map(item => ({ name: item.type, count: item.today }));
   list.push({ name: "합계", count: rep.equipment_total.today || 0 });
@@ -1659,6 +1760,77 @@ function initLockScreen(onUnlocked) {
 // =========================================================================
 // 13. 초기화 진입점
 // =========================================================================
+// =========================================================================
+// 12-3. 공지사항 팝업 (notices.js의 SITE_NOTICES 연동)
+// =========================================================================
+const NOTICE_DISMISS_KEY = "jmp_notice_dismissed_date";
+
+function getTodayDateStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+// startDate/endDate가 지정된 공지만 오늘 날짜 기준으로 필터링하고, pinned 공지를 앞으로 정렬합니다.
+function getActiveNotices() {
+  if (typeof SITE_NOTICES === "undefined" || !Array.isArray(SITE_NOTICES)) return [];
+  const today = getTodayDateStr();
+  return SITE_NOTICES
+    .filter(n => {
+      if (n.startDate && today < n.startDate) return false;
+      if (n.endDate && today > n.endDate) return false;
+      return true;
+    })
+    .sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
+}
+
+function renderNoticeList(list) {
+  const container = document.getElementById("notice-list");
+  if (!container) return;
+  container.innerHTML = list.map(n => `
+    <div class="notice-card level-${escapeHtml(n.level || "info")}">
+      <div class="notice-card-top">
+        <span class="notice-team-tag">${escapeHtml(n.team || "공지")}</span>
+        ${n.endDate ? `<span class="notice-date-range">~${escapeHtml(n.endDate.slice(5).replace("-", "/"))}</span>` : ""}
+      </div>
+      <div class="notice-title">${escapeHtml(n.title || "")}</div>
+      ${n.image ? `<img class="notice-image" src="${escapeHtml(n.image)}" alt="${escapeHtml(n.title || "공지 이미지")}">` : ""}
+      <div class="notice-body">${String(n.body || "").replace(/\n/g, "<br>")}</div>
+    </div>
+  `).join("");
+}
+
+function closeNoticePopup() {
+  const overlay = document.getElementById("notice-overlay");
+  const checkbox = document.getElementById("notice-hide-today-checkbox");
+  // "오늘 하루 보지 않기"를 체크한 채로 닫은 경우에만 오늘 날짜를 저장해서 재접속 시 다시 안 뜨게 합니다.
+  // 체크 안 하고 닫으면(x버튼/바깥클릭/닫기버튼 전부 동일) 다음 접속·새로고침 때 다시 뜹니다.
+  if (checkbox && checkbox.checked) {
+    localStorage.setItem(NOTICE_DISMISS_KEY, getTodayDateStr());
+  }
+  if (overlay) overlay.classList.remove("show");
+}
+
+function initNoticePopup() {
+  const overlay = document.getElementById("notice-overlay");
+  if (!overlay) return;
+
+  const active = getActiveNotices();
+  if (!active.length) return; // 노출할 공지가 없으면 팝업 자체를 띄우지 않음
+
+  if (localStorage.getItem(NOTICE_DISMISS_KEY) === getTodayDateStr()) return; // 오늘 "보지 않기" 선택함
+
+  renderNoticeList(active);
+  overlay.classList.add("show");
+
+  const closeX = document.getElementById("notice-close-x");
+  const closeBtn = document.getElementById("notice-close-btn");
+  if (closeX) closeX.addEventListener("click", closeNoticePopup);
+  if (closeBtn) closeBtn.addEventListener("click", closeNoticePopup);
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeNoticePopup();
+  });
+}
+
 function init() {
   // 1) 실시간 시계 가동
   updateClock();
@@ -1693,6 +1865,9 @@ function init() {
 
   // 10) 네이버 날씨 모달 버튼 이벤트 등록
   initNaverWeatherModal();
+
+  // 11) 공지사항 팝업 (notices.js에 등록된 공지가 있을 때만 노출)
+  initNoticePopup();
 }
 
 document.addEventListener("DOMContentLoaded", function() {

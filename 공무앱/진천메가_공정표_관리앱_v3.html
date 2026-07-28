@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>예정공정표 관리앱 · 진천메가폴리스 v3</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Pretendard:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1410;--paper:#f5f0e8;--paper-dark:#ede7d9;--accent:#c0392b;--accent-light:#e74c3c;--gold:#b8860b;--muted:#8a7f72;--line:#d4cbbe;--card:#faf7f2;--shadow:rgba(26,20,16,0.12);--blue:#185fa5;--green:#1d9e75;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Pretendard',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;background-image:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(180,160,120,0.15) 27px,rgba(180,160,120,0.15) 28px);}
+header{background:var(--ink);color:var(--paper);padding:14px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px var(--shadow);flex-wrap:wrap;}
+header h1{font-family:'Nanum Myeongjo',serif;font-size:1.3rem;font-weight:800;letter-spacing:-0.5px;white-space:nowrap;}
+header .sub{font-size:0.75rem;color:var(--muted);letter-spacing:0.05em;}
+.api-badge{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:5px 12px;font-size:0.75rem;color:var(--muted);cursor:pointer;transition:border-color 0.2s,color 0.2s;flex-shrink:0;margin-left:auto;}
+.api-badge:hover{border-color:var(--accent);color:var(--accent);}
+.api-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--muted);transition:background 0.3s;}
+.api-badge.active .dot{background:#2ecc71;box-shadow:0 0 6px #2ecc7188;}
+.api-badge.active{color:#2ecc71;border-color:rgba(46,204,113,0.3);}
+.api-panel{background:var(--card);border-bottom:1px solid var(--line);padding:16px 32px;display:none;animation:fadeIn 0.2s;}
+.api-panel.open{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+.api-panel-title{font-size:0.72rem;font-weight:700;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
+.api-row{display:flex;gap:8px;align-items:center;}
+.api-row input{flex:1;font-family:'Courier New',monospace;font-size:0.8rem;padding:8px 12px;border:1px solid var(--line);background:var(--paper);border-radius:6px;color:var(--ink);outline:none;transition:border-color 0.2s;}
+.api-row input:focus{border-color:var(--accent);}
+.btn-save-key{padding:8px 18px;background:var(--accent);border:none;border-radius:6px;color:#fff;font-size:0.8rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Pretendard',sans-serif;transition:background 0.15s;}
+.btn-save-key:hover{background:var(--accent-light);}
+.api-hint{margin-top:7px;font-size:0.72rem;color:var(--muted);}
+.api-hint a{color:var(--gold);text-decoration:none;}
+.api-hint a:hover{text-decoration:underline;}
+main{max-width:980px;margin:0 auto;padding:20px 16px 60px;}
+
+/* ── 공사일정 헤더 ── */
+.project-header{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin-bottom:16px;display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;}
+.project-title-block{flex:1;min-width:200px;}
+.project-title{font-family:'Nanum Myeongjo',serif;font-size:1.05rem;font-weight:700;}
+.project-meta{font-size:0.76rem;color:var(--muted);margin-top:3px;}
+
+/* 공사일정 날짜 */
+.schedule-dates{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;background:var(--paper-dark);border-radius:7px;padding:10px 14px;border:1px solid var(--line);}
+.date-field{display:flex;flex-direction:column;gap:4px;min-width:110px;}
+.date-label{font-size:0.66rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;}
+.date-input{font-family:'Pretendard',sans-serif;font-size:0.82rem;padding:6px 8px;border:1px solid var(--line);background:var(--paper);border-radius:5px;color:var(--ink);outline:none;transition:border-color 0.2s;width:100%;}
+.date-input:focus{border-color:var(--accent);}
+.date-sep{width:1px;background:var(--line);align-self:stretch;margin:2px 2px;}
+
+/* 검색 모드 토글 */
+.search-mode-block{display:flex;gap:6px;align-items:flex-end;flex-direction:column;}
+.search-mode-label{font-size:0.66rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;}
+.search-mode-btns{display:flex;border:1.5px solid var(--line);border-radius:6px;overflow:hidden;}
+.search-mode-btn{padding:6px 14px;background:transparent;border:none;cursor:pointer;font-family:'Pretendard',sans-serif;font-size:0.78rem;font-weight:600;color:var(--muted);transition:all 0.18s;white-space:nowrap;}
+.search-mode-btn.active{background:var(--ink);color:var(--paper);}
+.search-mode-btn:not(:last-child){border-right:1.5px solid var(--line);}
+
+/* 기준 선택기 */
+.month-selector{display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;}
+.month-selector label{font-size:0.75rem;color:var(--muted);font-weight:600;}
+.month-input-wrap{display:flex;align-items:center;gap:6px;}
+.month-input-wrap input[type=range]{width:110px;accent-color:var(--accent);}
+.month-num{width:40px;height:32px;text-align:center;font-size:0.95rem;font-weight:700;border:1.5px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);outline:none;}
+.month-num:focus{border-color:var(--accent);}
+/* 날짜 기준 선택기 */
+.date-selector{display:none;align-items:center;gap:8px;flex-shrink:0;}
+.date-selector label{font-size:0.75rem;color:var(--muted);font-weight:600;}
+.date-sel-input{font-family:'Pretendard',sans-serif;font-size:0.82rem;padding:5px 8px;border:1.5px solid var(--line);background:var(--paper);border-radius:5px;color:var(--ink);outline:none;}
+.date-sel-input:focus{border-color:var(--accent);}
+
+.mode-tabs{display:flex;gap:0;margin-bottom:18px;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;}
+.mode-tab{flex:1;padding:10px 6px;text-align:center;background:transparent;border:none;cursor:pointer;font-family:'Nanum Myeongjo',serif;font-size:0.88rem;font-weight:700;color:var(--muted);transition:all 0.2s;}
+.mode-tab:not(:last-child){border-right:1.5px solid var(--ink);}
+.mode-tab.active{background:var(--ink);color:var(--paper);}
+.mode-tab .tab-sub{display:block;font-family:'Pretendard',sans-serif;font-size:0.63rem;font-weight:400;opacity:0.7;margin-top:2px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px var(--shadow);}
+.card-title{font-family:'Nanum Myeongjo',serif;font-size:0.85rem;font-weight:700;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.card-title::before{content:'';display:inline-block;width:14px;height:2px;background:var(--accent);}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px;}
+.metric-box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;}
+.metric-label{font-size:0.68rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;}
+.metric-value{font-size:1.45rem;font-weight:700;font-family:'Nanum Myeongjo',serif;color:var(--ink);}
+.metric-sub{font-size:0.68rem;color:var(--muted);margin-top:3px;}
+.progress-wrap{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin:4px 0;}
+.progress-fill{height:100%;border-radius:4px;background:var(--accent);transition:width 0.5s;}
+.progress-fill.blue{background:var(--blue);}
+.progress-fill.green{background:var(--green);}
+.data-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+.data-table th{background:var(--paper-dark);padding:7px 9px;text-align:left;font-weight:600;font-size:0.7rem;color:var(--muted);border-bottom:1.5px solid var(--line);letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;}
+.data-table td{padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:middle;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:hover td{background:rgba(0,0,0,0.018);}
+.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:0.64rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;}
+.badge-active{background:#e8f5e9;color:#2e7d32;}
+.badge-future{background:#e3f2fd;color:#1565c0;}
+.badge-done{background:#f5f5f5;color:#757575;}
+.gantt-scroll{overflow-x:auto;border-radius:6px;border:1px solid var(--line);}
+.gantt-table{border-collapse:collapse;font-size:0.7rem;min-width:700px;}
+.gantt-table th{background:var(--paper-dark);padding:5px 5px;text-align:center;font-weight:600;color:var(--muted);border:0.5px solid var(--line);white-space:nowrap;}
+.gantt-table td{border:0.5px solid var(--line);padding:3px 5px;white-space:nowrap;}
+.gantt-table td.name-cell{text-align:left;max-width:180px;overflow:hidden;text-overflow:ellipsis;font-size:0.74rem;background:var(--card);position:sticky;left:0;z-index:2;}
+.gantt-table td.amt-cell{text-align:right;font-size:0.7rem;color:var(--muted);background:var(--card);position:sticky;left:180px;z-index:2;min-width:70px;}
+.gantt-bar-cell{padding:2px 2px !important;z-index:0;position:relative;}
+.chart-area{position:relative;width:100%;height:210px;}
+.filter-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px;}
+.filter-row label{font-size:0.73rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;}
+.filter-row select,.filter-row input[type=text]{font-family:'Pretendard',sans-serif;font-size:0.82rem;padding:6px 10px;border:1px solid var(--line);background:var(--paper);border-radius:5px;color:var(--ink);outline:none;transition:border-color 0.2s;}
+.filter-row select:focus,.filter-row input:focus{border-color:var(--accent);}
+.ai-btn-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+.ai-btn{padding:9px 16px;background:transparent;border:1.5px solid var(--line);border-radius:6px;font-family:'Pretendard',sans-serif;font-size:0.8rem;font-weight:600;color:var(--ink);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px;}
+.ai-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(192,57,43,0.04);}
+.generate-btn{width:100%;margin-top:12px;padding:12px;background:var(--ink);color:var(--paper);border:none;border-radius:6px;font-family:'Nanum Myeongjo',serif;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:0.02em;transition:background 0.2s,transform 0.1s;position:relative;overflow:hidden;}
+.generate-btn:hover{background:#2d2520;}
+.generate-btn:active{transform:scale(0.99);}
+.generate-btn:disabled{background:var(--muted);cursor:not-allowed;}
+.generate-btn .btn-text{transition:opacity 0.2s;}
+.generate-btn.loading .btn-text{opacity:0;}
+.spinner{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:20px;height:20px;border:2px solid rgba(245,240,232,0.3);border-top-color:var(--paper);border-radius:50%;animation:spin 0.7s linear infinite;}
+.generate-btn.loading .spinner{display:block;}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+.result-area{display:none;animation:fadeUp 0.3s ease;}
+.result-area.show{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.result-label{font-family:'Nanum Myeongjo',serif;font-size:0.88rem;font-weight:700;color:var(--accent);letter-spacing:0.04em;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.result-label::before{content:'✦';font-size:0.7rem;}
+.result-box{background:var(--paper);border:1.5px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;padding:16px 18px;font-size:0.9rem;line-height:1.85;color:var(--ink);white-space:pre-wrap;min-height:100px;}
+.error-box{background:#fde8e8;border:1px solid #f5c6c6;border-radius:6px;padding:10px 14px;font-size:0.85rem;color:#c0392b;display:none;margin-top:10px;}
+.error-box.show{display:block;}
+.copy-btn{font-family:'Pretendard',sans-serif;font-size:0.73rem;padding:4px 12px;border:1px solid var(--line);background:transparent;border-radius:20px;cursor:pointer;color:var(--muted);font-weight:600;transition:all 0.2s;}
+.copy-btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.copy-btn.copied{background:#155724;color:white;border-color:#155724;}
+.result-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.info-table{width:100%;font-size:0.85rem;border-collapse:collapse;}
+.info-table tr{border-bottom:1px solid var(--line);}
+.info-table tr:last-child{border-bottom:none;}
+.info-table td{padding:7px 4px;}
+.info-table td:first-child{color:var(--muted);font-size:0.73rem;font-weight:600;text-transform:uppercase;width:140px;}
+.info-table td:last-child{font-weight:600;}
+
+/* ── 공종 조회 개선 ── */
+/* 대공종 행 */
+.major-row td{background:var(--paper-dark) !important;font-weight:700 !important;font-family:'Nanum Myeongjo',serif;}
+.major-row:hover td{background:#e5dfd0 !important;}
+.toggle-btn{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border:1px solid var(--line);border-radius:4px;background:var(--paper);font-size:0.7rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all 0.18s;white-space:nowrap;}
+.toggle-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(192,57,43,0.05);}
+.toggle-btn.open{border-color:var(--ink);background:var(--ink);color:var(--paper);}
+.toggle-btn .arr{transition:transform 0.2s;display:inline-block;}
+.toggle-btn.open .arr{transform:rotate(90deg);}
+/* 세부공종 행 */
+.sub-row td{background:#fefcf8 !important;}
+.sub-row td:first-child{padding-left:22px !important;}
+.sub-row{display:none;}
+.sub-row.visible{display:table-row;}
+
+/* 기간 선택 범위 요약 */
+.period-summary{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--paper-dark);border:1px solid var(--line);border-radius:6px;padding:10px 14px;margin-bottom:14px;}
+.period-summary label{font-size:0.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
+.period-summary select,.period-summary input{font-family:'Pretendard',sans-serif;font-size:0.82rem;padding:5px 8px;border:1px solid var(--line);background:var(--paper);border-radius:5px;color:var(--ink);outline:none;}
+.period-summary select:focus,.period-summary input:focus{border-color:var(--accent);}
+.period-result{margin-left:auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.period-stat{text-align:right;}
+.period-stat-label{font-size:0.65rem;color:var(--muted);font-weight:600;}
+.period-stat-val{font-size:1rem;font-weight:700;font-family:'Nanum Myeongjo',serif;color:var(--ink);}
+.period-stat-val.accent{color:var(--accent);}
+
+/* 간트 대공종 확장 */
+.gantt-major-row td.name-cell,.gantt-major-row td.amt-cell{background:var(--paper-dark) !important;}
+.gantt-major-row .gantt-bar-cell{background-color:transparent;}
+.gantt-sub-row{display:none;}
+.gantt-sub-row td.name-cell,.gantt-sub-row td.amt-cell{background:#fefcf8 !important;}
+.gantt-sub-row td.name-cell{padding-left:18px !important;font-size:0.7rem;color:var(--muted);}
+.gantt-sub-row .gantt-bar-cell{background-color:transparent;}
+.gantt-sub-row.visible{display:table-row;}
+.gantt-toggle{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border:1px solid var(--line);border-radius:3px;background:var(--paper);font-size:0.65rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all 0.18s;vertical-align:middle;margin-left:6px;}
+.gantt-toggle:hover{border-color:var(--accent);color:var(--accent);}
+.gantt-toggle.open{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.gantt-toggle .ga{transition:transform 0.2s;display:inline-block;}
+.gantt-toggle.open .ga{transform:rotate(90deg);}
+
+@media(max-width:600px){main{padding:12px 10px 48px;}.metrics-grid{grid-template-columns:repeat(2,1fr);}header{padding:12px 14px;gap:8px;}.schedule-dates{gap:6px;}.date-field{min-width:90px;}.month-selector{width:100%;margin-left:0;}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>예정공정표 관리</h1>
+  <span class="sub">진천 메가폴리스 산업단지 · 36개월 · Gemini AI</span>
+  <div class="api-badge" id="apiBadge" onclick="APP.toggleApiPanel()">
+    <div class="dot" id="apiDot"></div>
+    <span id="apiStatusText">API 키 설정</span>
+  </div>
+</header>
+
+<div class="api-panel" id="apiPanel">
+  <div class="api-panel-title">🔑 Gemini API Key</div>
+  <div class="api-row">
+    <input type="text" id="apiKeyInput" placeholder="AIza..." autocomplete="off" spellcheck="false">
+    <button class="btn-save-key" onclick="APP.saveApiKey()">저장</button>
+  </div>
+  <div class="api-hint">
+    API 키가 없으신가요? → <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio에서 무료 발급</a> · 입력한 키는 이 브라우저에만 저장됩니다.
+  </div>
+</div>
+
+<main>
+  <!-- 프로젝트 헤더 -->
+  <div class="project-header">
+    <div class="project-title-block">
+      <div class="project-title">진천 메가폴리스 산업단지 조성사업</div>
+      <div class="project-meta">총 도급금액 : 208,195,454천원 &nbsp;|&nbsp; 공사기간 : 36개월 &nbsp;|&nbsp; 직접공사비 : 152,011,077천원</div>
+    </div>
+    <!-- 착공일 (년월일 모드에서 날짜↔개월 변환용, 숨김 상태로 유지) -->
+    <input type="hidden" id="dateStart" value="">
+    <input type="hidden" id="dateEnd" value="">
+    <input type="hidden" id="dateContract" value="">
+
+    <!-- 기준 선택 모드 -->
+    <div class="search-mode-block">
+      <span class="search-mode-label">기준 선택</span>
+      <div class="search-mode-btns">
+        <button class="search-mode-btn active" id="btnModeMonth" onclick="APP.setSearchMode('month')">개월수</button>
+        <button class="search-mode-btn" id="btnModeDate" onclick="APP.setSearchMode('date')">년월일</button>
+      </div>
+    </div>
+    <!-- 착공일 입력 (년월일 모드 활성화 시만 표시) -->
+    <div id="startDateWrap" style="display:none;flex-direction:column;gap:4px;">
+      <span class="date-label">🏗️ 착공일 설정</span>
+      <input type="date" class="date-input" id="dateStartVisible" onchange="APP.onStartDateChange()" style="min-width:130px;">
+    </div>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="mode-tab active" id="tab-overview" onclick="APP.setTab('overview')">개요<span class="tab-sub">공정 현황 대시보드</span></button>
+    <button class="mode-tab" id="tab-monthly" onclick="APP.setTab('monthly')">월별 공정<span class="tab-sub">월별 투입 분석</span></button>
+    <button class="mode-tab" id="tab-items" onclick="APP.setTab('items')">공종 조회<span class="tab-sub">공종별 상세 검색</span></button>
+    <button class="mode-tab" id="tab-gantt" onclick="APP.setTab('gantt')">간트차트<span class="tab-sub">공정 일정 시각화</span></button>
+    <button class="mode-tab" id="tab-ai" onclick="APP.setTab('ai')">AI 분석<span class="tab-sub">Gemini 공무 도우미</span></button>
+  </div>
+
+  <!-- 개요 -->
+  <div id="pane-overview">
+    <!-- 기준월 선택기 (개요 탭) -->
+    <div class="period-summary" style="margin-bottom:14px;">
+      <label>📌 기준월 설정</label>
+      <div id="ov-month-wrap" style="display:flex;align-items:center;gap:8px;">
+        <input type="range" id="monthRange" min="1" max="36" value="10" oninput="APP.syncMonth('range')" style="width:120px;accent-color:var(--accent);">
+        <input type="number" class="month-num" id="monthNum" min="1" max="36" value="10" oninput="APP.syncMonth('num')">
+        <span style="font-size:0.78rem;color:var(--muted);">개월차</span>
+      </div>
+      <div id="ov-date-wrap" style="display:none;align-items:center;gap:8px;">
+        <input type="date" class="date-sel-input" id="baseDateInput" onchange="APP.onBaseDateChange()">
+        <span style="font-size:0.75rem;color:var(--accent);font-weight:700;" id="baseDateMonthLabel"></span>
+      </div>
+    </div>
+    <div class="metrics-grid" id="overview-metrics"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
+      <div class="card" style="margin-bottom:0"><div class="card-title">전체 공정 S-Curve</div><div class="chart-area"><canvas id="scurveChart"></canvas></div></div>
+      <div class="card" style="margin-bottom:0"><div class="card-title">공종별 금액 비중</div><div class="chart-area"><canvas id="pieChart"></canvas></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">현재 진행 공종 <span id="active-cnt" style="font-size:0.73rem;color:var(--accent);margin-left:6px;font-family:'Pretendard'"></span></div>
+      <table class="data-table"><thead><tr><th>공종명</th><th>이번달 공정비율</th><th>누계 달성</th><th style="text-align:right">금액(천원)</th></tr></thead><tbody id="active-tbody"></tbody></table>
+    </div>
+  </div>
+
+  <!-- 월별 공정 -->
+  <div id="pane-monthly" style="display:none">
+    <div class="period-summary" style="margin-bottom:14px;">
+      <label>📅 조회 월 선택</label>
+      <div id="mo-month-wrap" style="display:flex;align-items:center;gap:8px;">
+        <select id="month-sel" onchange="APP.renderMonthly()"></select>
+        <span style="font-size:0.78rem;color:var(--muted);">개월차</span>
+      </div>
+      <div id="mo-date-wrap" style="display:none;align-items:center;gap:8px;">
+        <input type="date" class="date-sel-input" id="moDateInput" onchange="APP.onMoDateChange()">
+        <span style="font-size:0.75rem;color:var(--accent);font-weight:700;" id="moDateMonthLabel"></span>
+      </div>
+    </div>
+    <div class="metrics-grid" id="monthly-metrics"></div>
+    <div class="card"><div class="card-title">월별 공정 투입량</div><div class="chart-area"><canvas id="monthlyBarChart"></canvas></div></div>
+    <div class="card">
+      <div class="card-title" id="monthly-items-title">해당 월 진행 공종</div>
+      <table class="data-table"><thead><tr><th>공종명</th><th>이번달 비율</th><th>누계 비율</th><th style="text-align:right">금액(천원)</th></tr></thead><tbody id="monthly-tbody"></tbody></table>
+    </div>
+  </div>
+
+  <!-- 공종 조회 (개선) -->
+  <div id="pane-items" style="display:none">
+    <!-- 기간 선택 공정율/금액 요약 -->
+    <div class="period-summary">
+      <label>📅 기간 선택</label>
+      <!-- 개월수 모드 -->
+      <div id="it-month-wrap" style="display:flex;align-items:center;gap:6px;">
+        <select id="period-from" onchange="APP.updatePeriodSummary()"></select>
+        <span style="font-size:0.8rem;color:var(--muted);">~</span>
+        <select id="period-to" onchange="APP.updatePeriodSummary()"></select>
+        <span style="font-size:0.75rem;color:var(--muted);">개월차</span>
+      </div>
+      <!-- 년월일 모드 -->
+      <div id="it-date-wrap" style="display:none;align-items:center;gap:6px;">
+        <input type="date" class="date-sel-input" id="it-date-from" onchange="APP.updatePeriodSummaryDate()">
+        <span style="font-size:0.8rem;color:var(--muted);">~</span>
+        <input type="date" class="date-sel-input" id="it-date-to" onchange="APP.updatePeriodSummaryDate()">
+        <span style="font-size:0.75rem;color:var(--accent);font-weight:700;" id="it-date-range-label"></span>
+      </div>
+      <div class="period-result" id="period-result">
+        <div class="period-stat"><div class="period-stat-label">기간 공정율</div><div class="period-stat-val accent" id="period-ratio">-</div></div>
+        <div class="period-stat"><div class="period-stat-label">기간 금액(천원)</div><div class="period-stat-val" id="period-amt">-</div></div>
+        <div class="period-stat"><div class="period-stat-label">전체 누계 공정율</div><div class="period-stat-val" id="period-cumul">-</div></div>
+      </div>
+    </div>
+    <div class="filter-row">
+      <label>대분류</label>
+      <select id="major-filter" onchange="APP.renderItems()"><option value="">전체</option></select>
+      <input type="text" id="item-search" placeholder="공종명 검색..." oninput="APP.renderItems()" style="min-width:160px;">
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table class="data-table">
+        <thead><tr>
+          <th>공종명</th>
+          <th>대분류</th>
+          <th style="text-align:center">시작</th>
+          <th style="text-align:center">완료</th>
+          <th style="text-align:right">금액(천원)</th>
+          <th>전체 공정비율</th>
+          <th>기간 공정율</th>
+          <th style="text-align:right">기간 금액(천원)</th>
+          <th>상태</th>
+        </tr></thead>
+        <tbody id="items-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 간트차트 (개선) -->
+  <div id="pane-gantt" style="display:none">
+    <div class="period-summary" style="margin-bottom:10px;">
+      <label>📌 기준월 (현재 위치 표시)</label>
+      <div id="ga-month-wrap" style="display:flex;align-items:center;gap:8px;">
+        <input type="range" id="ganttMonthRange" min="1" max="36" value="10" oninput="APP.syncGanttMonth('range')" style="width:110px;accent-color:var(--accent);">
+        <input type="number" class="month-num" id="ganttMonthNum" min="1" max="36" value="10" oninput="APP.syncGanttMonth('num')" style="width:44px;">
+        <span style="font-size:0.78rem;color:var(--muted);">개월차</span>
+      </div>
+      <div id="ga-date-wrap" style="display:none;align-items:center;gap:8px;">
+        <input type="date" class="date-sel-input" id="ganttDateInput" onchange="APP.onGanttDateChange()">
+        <span style="font-size:0.75rem;color:var(--accent);font-weight:700;" id="ganttDateLabel"></span>
+      </div>
+    </div>
+    <div class="filter-row">
+      <label>대분류</label>
+      <select id="gantt-major" onchange="APP.renderGantt()"><option value="">전체</option></select>
+      <label>표시 범위</label>
+      <select id="gantt-range" onchange="APP.renderGantt()">
+        <option value="12">1~12개월</option>
+        <option value="24">1~24개월</option>
+        <option value="36" selected>전체 36개월</option>
+      </select>
+    </div>
+    <div class="gantt-scroll" id="gantt-wrap"></div>
+    <div id="gantt-legend" style="margin-top:8px;flex-wrap:wrap;display:flex;gap:2px 0;"></div>
+    <p style="font-size:0.7rem;color:var(--muted);margin-top:6px">■ 색 진하기 = 해당 공종 내 상대적 공정 비중 &nbsp;|&nbsp; 노란 배경/테두리 = 현재 기준월 &nbsp;|&nbsp; 공종마다 다른 색상 사용 &nbsp;|&nbsp; ▶ 버튼 = 세부공종 펼치기</p>
+  </div>
+
+  <!-- AI 분석 -->
+  <div id="pane-ai" style="display:none">
+    <div class="card">
+      <div class="card-title">빠른 분석 요청</div>
+      <div class="ai-btn-grid">
+        <button class="ai-btn" onclick="APP.askGemini('monthly_report')"><span>📋</span> 이번달 공정 현황 보고서</button>
+        <button class="ai-btn" onclick="APP.askGemini('risk')"><span>⚠️</span> 리스크 &amp; 중점 관리 공종</button>
+        <button class="ai-btn" onclick="APP.askGemini('peak')"><span>📈</span> 공정 집중 시기 분석</button>
+        <button class="ai-btn" onclick="APP.askGemini('summary')"><span>📊</span> 공종별 금액 비중 분석</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">직접 질문</div>
+      <textarea id="ai-question" rows="3" style="width:100%;font-family:'Pretendard',sans-serif;font-size:0.9rem;line-height:1.7;padding:10px 12px;border:1px solid var(--line);background:var(--paper);border-radius:6px;color:var(--ink);resize:vertical;outline:none;" placeholder="공정표 관련해서 궁금한 점을 입력하세요. 예) 10개월차에 어떤 공종이 가장 바쁜가요?"></textarea>
+      <button class="generate-btn" onclick="APP.askGeminiCustom()">
+        <span class="btn-text">✦ Gemini에게 분석 요청</span>
+        <div class="spinner"></div>
+      </button>
+      <div class="error-box" id="ai-error"></div>
+    </div>
+    <div class="result-area" id="ai-result">
+      <div class="result-header">
+        <div class="result-label">Gemini 분석 결과</div>
+        <button class="copy-btn" id="ai-copy-btn" onclick="APP.copyResult()">복사</button>
+      </div>
+      <div class="result-box" id="ai-result-box"></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="card-title">공정표 요약 정보</div>
+      <table class="info-table" id="summary-table"></table>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+const APP = (function() {
+  // ── 데이터 ──
+  const TOTAL_AMT = 208195454;
+  const CUMUL = {"1":0.00304,"2":0.00585,"3":0.01008,"4":0.01473,"5":0.02101,"6":0.03135,"7":0.03908,"8":0.04978,"9":0.06299,"10":0.12259,"11":0.18263,"12":0.24198,"13":0.29357,"14":0.34606,"15":0.39806,"16":0.44551,"17":0.49358,"18":0.54189,"19":0.58589,"20":0.63079,"21":0.66906,"22":0.70819,"23":0.74656,"24":0.77787,"25":0.80869,"26":0.83383,"27":0.86061,"28":0.88791,"29":0.90740,"30":0.92405,"31":0.94491,"32":0.96138,"33":0.98040,"34":0.99446,"35":0.99702,"36":1.0};
+  const MONTHLY = {"1":0.00304,"2":0.00281,"3":0.00423,"4":0.00465,"5":0.00628,"6":0.01034,"7":0.00773,"8":0.01070,"9":0.01321,"10":0.05960,"11":0.06004,"12":0.05935,"13":0.05159,"14":0.05249,"15":0.05200,"16":0.04745,"17":0.04807,"18":0.04831,"19":0.04400,"20":0.04490,"21":0.03827,"22":0.03913,"23":0.03837,"24":0.03131,"25":0.03082,"26":0.02514,"27":0.02678,"28":0.02730,"29":0.01949,"30":0.01665,"31":0.02086,"32":0.01647,"33":0.01902,"34":0.01406,"35":0.00256,"36":0.00301};
+  const ITEMS = [
+    {lv:1,major:"1. 토 공",name:"1. 토 공",amt:104325081,ratio:0.5011,m:{1:0.00031,2:0.00141,3:0.00178,4:0.00311,5:0.0044,6:0.00653,7:0.00475,8:0.00544,9:0.00541,10:0.04095,11:0.04138,12:0.04017,13:0.03353,14:0.03423,15:0.03296,16:0.02849,17:0.02801,18:0.02789,19:0.02367,20:0.02343,21:0.01639,22:0.01688,23:0.01688,24:0.01347,25:0.01305,26:0.00981,27:0.01115,28:0.00892,29:0.00134,31:0.00134,32:0.00134,33:0.00134,34:0.00134}},
+    {lv:3,major:"1. 토 공",name:"흙깍기(토사/리핑암/발파암)/소할",amt:44981792,ratio:0.21609,m:{1:0.00014,2:0.0006,3:0.00075,4:0.00135,5:0.00195,6:0.00285,7:0.0021,8:0.0024,9:0.0024,10:0.01789,11:0.01789,12:0.01789,13:0.01489,14:0.01489,15:0.01439,16:0.01289,17:0.0125,18:0.01239,19:0.01039,20:0.01039,21:0.00739,22:0.00739,23:0.00739,24:0.00539,25:0.00539,26:0.00439,27:0.00439,28:0.0034}},
+    {lv:3,major:"1. 토 공",name:"토량운반",amt:37041017,ratio:0.178,m:{1:0.00014,2:0.00054,3:0.00068,4:0.00122,5:0.00176,6:0.00257,7:0.0019,8:0.00217,9:0.00217,10:0.01618,11:0.01618,12:0.01618,13:0.01346,14:0.01346,15:0.01296,16:0.01156,17:0.01115,18:0.01105,19:0.00929,20:0.00929,21:0.00661,22:0.00661,23:0.00661,24:0.00481,25:0.00481,26:0.00393,27:0.00393,28:0.00304}},
+    {lv:3,major:"1. 토 공",name:"흙쌓기(토사/암)",amt:14855571,ratio:0.07138,m:{1:0.00006,2:0.00022,3:0.00027,4:0.00049,5:0.0007,6:0.00103,7:0.00076,8:0.00087,9:0.00087,10:0.00649,11:0.00649,12:0.00649,13:0.0054,14:0.0054,15:0.00521,16:0.00464,17:0.00448,18:0.00443,19:0.00373,20:0.00373,21:0.00265,22:0.00265,23:0.00265,24:0.00193,25:0.00193,26:0.00158,27:0.00158,28:0.00122}},
+    {lv:3,major:"1. 토 공",name:"비탈면보호공",amt:2605925,ratio:0.01252,m:{12:0.00213,13:0.00168,14:0.00168,15:0.00168,16:0.00168,17:0.00168,18:0.00168,19:0.00168,20:0.00168,21:0.00168,22:0.00168}},
+    {lv:3,major:"1. 토 공",name:"구조물터파기",amt:1633129,ratio:0.00785,m:{9:0.00018,10:0.00133,11:0.00133,12:0.00133,13:0.00133,14:0.00055}},
+    {lv:3,major:"1. 토 공",name:"면고르기(절토)",amt:585789,ratio:0.00282,m:{7:0.00007,8:0.00014,9:0.00017,10:0.00017,11:0.00017,12:0.00017,13:0.00017,14:0.00017,15:0.00017,16:0.00017,17:0.00017,18:0.00017,19:0.00017,20:0.00017,21:0.00017,22:0.00017,23:0.00017,24:0.00007}},
+    {lv:1,major:"2. 우수공",name:"2. 우수공",amt:21439954,ratio:0.103,m:{9:0.00218,10:0.01215,11:0.01239,12:0.01185,13:0.00935,14:0.00999,15:0.01165,16:0.01224,17:0.01267,18:0.01297,19:0.01005,20:0.01072,21:0.01021,22:0.01058,23:0.01063,24:0.00829,25:0.00869,26:0.00645,27:0.00795,28:0.01228,29:0.00428}},
+    {lv:3,major:"2. 우수공",name:"우수관로(D250~D1350)",amt:1033429,ratio:0.00497,m:{10:0.00063,11:0.00063,12:0.00063,13:0.00043,14:0.00063,15:0.00063,16:0.00063,17:0.00063,18:0.00063,19:0.00063,20:0.00063,21:0.00063}},
+    {lv:1,major:"3. 오수공",name:"3. 오수공",amt:1777279,ratio:0.00854,m:{13:0.0003,14:0.00074,15:0.00074,16:0.00122,17:0.00148,18:0.00148,19:0.00148,20:0.0011}},
+    {lv:1,major:"4. 상수공",name:"4. 상수공",amt:3005799,ratio:0.01444,m:{12:0.00044,13:0.00044,14:0.00131,15:0.00131,16:0.00131,17:0.00131,18:0.00131,19:0.00119,20:0.00119}},
+    {lv:1,major:"5. 도로 및 포장공",name:"5. 도로 및 포장공",amt:9883678,ratio:0.04747,m:{21:0.00139,22:0.00268,23:0.00244,24:0.00418,25:0.00459,26:0.00418,27:0.00418,28:0.00508,29:0.00508}},
+    {lv:3,major:"5. 도로 및 포장공",name:"경계블럭설치(경계석,L형측구)",amt:1240413,ratio:0.00596,m:{22:0.00071,23:0.00071,24:0.00119,25:0.00119,26:0.00119,27:0.00119}},
+    {lv:3,major:"5. 도로 및 포장공",name:"아스콘포장(기층,중간층,표층)",amt:209013,ratio:0.001,m:{26:0.0005,27:0.0005,28:0.0001}},
+    {lv:1,major:"6. 조경공",name:"6. 조경공",amt:4417192,ratio:0.02121,m:{1:0.00041,2:0.00041,3:0.00041,4:0.00041,5:0.00041,6:0.00041,7:0.00041,8:0.00041,9:0.00041,10:0.00041,11:0.00041,12:0.00041,13:0.00041,14:0.00041,15:0.00041,16:0.00041,17:0.00041,18:0.00041,19:0.00041,20:0.00041,21:0.00041,22:0.00041,23:0.00041,24:0.00041,25:0.00041,26:0.00041,27:0.00041,28:0.00041,29:0.00041,30:0.00041,31:0.00041,32:0.00041,33:0.00041,34:0.00041,35:0.00041}},
+    {lv:1,major:"7. 구조물공",name:"7. 구조물공",amt:1388434,ratio:0.00667,m:{13:0.00052,14:0.00097,15:0.00097,16:0.00097,17:0.00097,18:0.00097}},
+    {lv:1,major:"8. 농수로공",name:"8. 농수로공",amt:55947,ratio:0.000269,m:{23:0.00013,24:0.000139}},
+    {lv:1,major:"9. 하천공",name:"9. 하천공",amt:1348297,ratio:0.00648,m:{18:0.00045,19:0.00075,20:0.00075,21:0.00075,22:0.00114,23:0.00114,24:0.00075,25:0.00075}},
+    {lv:1,major:"10. 저류지공",name:"10. 저류지공",amt:562755,ratio:0.0027,m:{22:0.00066,23:0.00066,24:0.00066,25:0.00036,26:0.00036}},
+    {lv:1,major:"11. 부대공",name:"11. 부대공",amt:3806661,ratio:0.01829,m:{1:0.00035,2:0.00035,3:0.00035,4:0.00035,5:0.00035,6:0.00035,7:0.00035,8:0.00035,9:0.00035,10:0.00035,11:0.00035,12:0.00035,13:0.00035,14:0.00035,15:0.00035,16:0.00035,17:0.00035,18:0.00035,19:0.00035,20:0.00035,21:0.00035,22:0.00035,23:0.00035,24:0.00035,25:0.00035,26:0.00035,27:0.00035,28:0.00035,29:0.00035,30:0.00035,31:0.00035,32:0.00035,33:0.00035,34:0.00035,35:0.00035,36:0.00035}},
+    {lv:1,major:"12. 폐기물처리용역",name:"12. 폐기물처리용역",amt:1113010,ratio:0.00535,m:{1:0.00054,2:0.00054,3:0.00054,4:0.00054,5:0.00054,6:0.00054,7:0.00054}},
+    {lv:1,major:"13. 제경비 및 기타",name:"13. 제경비 및 기타",amt:50916191,ratio:0.24459,m:{1:0.00143,2:0.00105,3:0.00113,4:0.00019,5:0.00053,6:0.00204,7:0.00127,8:0.00249,9:0.00382,10:0.02547,11:0.02462,12:0.02407,13:0.02007,14:0.02107,15:0.01908,16:0.01703,17:0.01808,18:0.01808,19:0.01577,20:0.0172,21:0.01766,22:0.01682,23:0.0166,24:0.01289,25:0.01328,26:0.0119,27:0.01135,28:0.00755,29:0.00855,30:0.01589,31:0.02001,32:0.01512,33:0.01862,34:0.01272,35:0.00215,36:0.00266}},
+    {lv:1,major:"14. 전기공사",name:"14. 전기공사",amt:4155176,ratio:0.01996,m:{28:0.0019,29:0.00361,30:0.00041,31:0.00051,32:0.00001,33:0.00005}}
+  ];
+  const MAJORS = ITEMS.filter(i=>i.lv===1).map(i=>i.name);
+
+  // ── 상태 ──
+  let apiKey = localStorage.getItem('gemini_schedule_key') || '';
+  let currentTab = 'overview';
+  let searchMode = 'month'; // 'month' | 'date'
+  let scChart = null, pChart = null, mbChart = null;
+  // 간트 전용 기준월 (overview와 독립)
+  let ganttMonth = 10;
+
+  // ── 유틸 ──
+  const fmt = n => Math.round(n).toLocaleString('ko-KR');
+  const pct = r => (r*100).toFixed(2)+'%';
+  const getCM = () => parseInt(document.getElementById('monthNum').value) || 10;
+  const isActiveIn = (item, m) => !!(item.m && item.m[m] && item.m[m] > 0);
+  function getStartEnd(item) {
+    const ms = Object.keys(item.m).map(Number).filter(m => item.m[m] > 0);
+    if (!ms.length) return {start:0, end:0};
+    return {start: Math.min(...ms), end: Math.max(...ms)};
+  }
+
+  // ── 착공일 ──
+  function getStartDate() {
+    return document.getElementById('dateStartVisible')?.value || document.getElementById('dateStart').value || '';
+  }
+
+  // ── 날짜 → 개월수/일자 변환 (착공일=1개월차 1일, 1개월=30일 기준 일할계산) ──
+  function dateToDays(dateStr) {
+    const startStr = getStartDate();
+    if (!startStr || !dateStr) return null;
+    const start = new Date(startStr); start.setHours(0,0,0,0);
+    const target = new Date(dateStr); target.setHours(0,0,0,0);
+    return Math.round((target - start) / (1000 * 60 * 60 * 24)); // 착공일=0일
+  }
+
+  // 날짜 → {month(1~36), dayInMonth(1~30), diffDays} : 30일=1개월 기준
+  function dateToMonthDay(dateStr) {
+    const diffDaysRaw = dateToDays(dateStr);
+    if (diffDaysRaw === null) return null;
+    const d = Math.max(0, diffDaysRaw); // 착공일 이전 선택 시 착공일(0일)로 고정
+    const month = Math.min(36, Math.floor(d / 30) + 1);
+    const dayInMonth = Math.min(30, (d % 30) + 1); // 1~30일째
+    return { month, dayInMonth, diffDays: d };
+  }
+
+  // 날짜 → 개월차(정수). 기존 호출부(공종활성판정, 간트 등) 호환용
+  function dateToMonth(dateStr) {
+    const md = dateToMonthDay(dateStr);
+    return md ? md.month : null;
+  }
+
+  // 날짜 → 그 날짜까지의 정확한 누계 공정율 (전월까지 누계 + 이번달 몫 × 경과일/30)
+  function cumulRatioAtDate(dateStr) {
+    const md = dateToMonthDay(dateStr);
+    if (!md) return null;
+    const prevCumul = md.month > 1 ? (CUMUL[md.month - 1] || 0) : 0;
+    const monthlyR = MONTHLY[md.month] || 0;
+    const frac = Math.min(1, md.dayInMonth / 30);
+    return prevCumul + monthlyR * frac;
+  }
+
+  // 임의 기간(fromInfo~toInfo, 30일/월 기준)의 일할 합산 - MONTHLY 테이블이나 개별 공종 m객체 모두에 사용
+  function proratedSum(monthlyObj, fromInfo, toInfo) {
+    if (!fromInfo || !toInfo) return 0;
+    if (toInfo.month < fromInfo.month) return 0;
+    if (fromInfo.month === toInfo.month) {
+      const days = Math.max(0, toInfo.dayInMonth - fromInfo.dayInMonth + 1);
+      return (monthlyObj[fromInfo.month] || 0) * (days / 30);
+    }
+    let sum = (monthlyObj[fromInfo.month] || 0) * ((30 - fromInfo.dayInMonth + 1) / 30);
+    for (let m = fromInfo.month + 1; m < toInfo.month; m++) sum += (monthlyObj[m] || 0);
+    sum += (monthlyObj[toInfo.month] || 0) * (toInfo.dayInMonth / 30);
+    return sum;
+  }
+
+  // 개월차 → 날짜 (역변환, 30일/월 기준 - dateToMonth와 왕복 일관성 유지)
+  function monthToDate(m) {
+    const startStr = getStartDate();
+    if (!startStr) return '';
+    const start = new Date(startStr); start.setHours(0,0,0,0);
+    start.setDate(start.getDate() + (m - 1) * 30);
+    return start.toISOString().split('T')[0];
+  }
+
+  // ── 착공일 변경 ──
+  function onStartDateChange() {
+    const v = document.getElementById('dateStartVisible').value;
+    document.getElementById('dateStart').value = v;
+    // 모든 날짜 입력 기반 선택기 갱신
+    refreshDateLabels();
+  }
+
+  function refreshDateLabels() {
+    // 개요/간트 날짜 라벨
+    const cm = getCM();
+    const d = monthToDate(cm);
+    if (d) {
+      const bdi = document.getElementById('baseDateInput');
+      if (bdi && !bdi.value) bdi.value = d;
+      const md = dateToMonthDay(bdi ? bdi.value : d) || {month:cm, dayInMonth:1};
+      document.getElementById('baseDateMonthLabel').textContent = '→ '+md.month+'개월차 '+md.dayInMonth+'일째';
+    }
+    const gm = ganttMonth;
+    const gd = monthToDate(gm);
+    if (gd) {
+      const gdi = document.getElementById('ganttDateInput');
+      if (gdi && !gdi.value) gdi.value = gd;
+      const gmd = dateToMonthDay(gdi ? gdi.value : gd) || {month:gm, dayInMonth:1};
+      document.getElementById('ganttDateLabel').textContent = '→ '+gmd.month+'개월차 '+gmd.dayInMonth+'일째';
+    }
+  }
+
+  // ── 날짜 변경 핸들러 ──
+  function onDateChange() { /* legacy - no-op */ }
+
+  function onBaseDateChange() {
+    const dateStr = document.getElementById('baseDateInput').value;
+    const md = dateToMonthDay(dateStr);
+    if (md) {
+      document.getElementById('monthNum').value = md.month;
+      document.getElementById('monthRange').value = md.month;
+      document.getElementById('baseDateMonthLabel').textContent = '→ '+md.month+'개월차 '+md.dayInMonth+'일째';
+      refreshCurrent();
+    }
+  }
+
+  function onMoDateChange() {
+    const dateStr = document.getElementById('moDateInput').value;
+    const md = dateToMonthDay(dateStr);
+    if (md) {
+      document.getElementById('month-sel').value = md.month;
+      document.getElementById('moDateMonthLabel').textContent = '→ '+md.month+'개월차 '+md.dayInMonth+'일째';
+      renderMonthly();
+    }
+  }
+
+  function onGanttDateChange() {
+    const dateStr = document.getElementById('ganttDateInput').value;
+    const md = dateToMonthDay(dateStr);
+    if (md) {
+      ganttMonth = md.month;
+      document.getElementById('ganttMonthNum').value = md.month;
+      document.getElementById('ganttMonthRange').value = md.month;
+      document.getElementById('ganttDateLabel').textContent = '→ '+md.month+'개월차 '+md.dayInMonth+'일째';
+      renderGantt();
+    }
+  }
+
+  function syncGanttMonth(from) {
+    const r = document.getElementById('ganttMonthRange');
+    const n = document.getElementById('ganttMonthNum');
+    if (from === 'range') { n.value = r.value; }
+    else { let v = parseInt(n.value)||1; v = Math.min(36,Math.max(1,v)); n.value = v; r.value = v; }
+    ganttMonth = parseInt(n.value);
+    if (searchMode === 'date') {
+      const d = monthToDate(ganttMonth);
+      if (d) { document.getElementById('ganttDateInput').value = d; document.getElementById('ganttDateLabel').textContent = '→ '+ganttMonth+'개월차 1일째'; }
+    }
+    renderGantt();
+  }
+
+  // ── 검색 모드 전환 ──
+  function setSearchMode(mode) {
+    searchMode = mode;
+    document.getElementById('btnModeMonth').classList.toggle('active', mode==='month');
+    document.getElementById('btnModeDate').classList.toggle('active', mode==='date');
+
+    // 착공일 입력 표시
+    document.getElementById('startDateWrap').style.display = mode==='date' ? 'flex' : 'none';
+
+    // 개요 탭
+    document.getElementById('ov-month-wrap').style.display = mode==='month' ? 'flex' : 'none';
+    document.getElementById('ov-date-wrap').style.display = mode==='date' ? 'flex' : 'none';
+
+    // 월별 탭
+    document.getElementById('mo-month-wrap').style.display = mode==='month' ? 'flex' : 'none';
+    document.getElementById('mo-date-wrap').style.display = mode==='date' ? 'flex' : 'none';
+
+    // 공종조회 탭
+    document.getElementById('it-month-wrap').style.display = mode==='month' ? 'flex' : 'none';
+    document.getElementById('it-date-wrap').style.display = mode==='date' ? 'flex' : 'none';
+
+    // 간트 탭
+    document.getElementById('ga-month-wrap').style.display = mode==='month' ? 'flex' : 'none';
+    document.getElementById('ga-date-wrap').style.display = mode==='date' ? 'flex' : 'none';
+
+    if (mode==='date') {
+      const cm = getCM();
+      const d = monthToDate(cm);
+      if (d) {
+        const bdi = document.getElementById('baseDateInput');
+        if (bdi) { bdi.value = d; document.getElementById('baseDateMonthLabel').textContent = '→ '+cm+'개월차 1일째'; }
+        const gdi = document.getElementById('ganttDateInput');
+        if (gdi) { gdi.value = monthToDate(ganttMonth)||d; document.getElementById('ganttDateLabel').textContent = '→ '+ganttMonth+'개월차 1일째'; }
+        const mdi = document.getElementById('moDateInput');
+        const ms = parseInt(document.getElementById('month-sel').value)||cm;
+        if (mdi) { mdi.value = monthToDate(ms)||d; document.getElementById('moDateMonthLabel').textContent = '→ '+ms+'개월차 1일째'; }
+        // 공종조회 기간 날짜
+        const pf = parseInt(document.getElementById('period-from').value)||1;
+        const pt = parseInt(document.getElementById('period-to').value)||36;
+        const idf = document.getElementById('it-date-from');
+        const idt = document.getElementById('it-date-to');
+        if (idf) idf.value = monthToDate(pf)||'';
+        if (idt) idt.value = monthToDate(pt)||'';
+        updateItDateRangeLabel(pf, pt);
+      }
+    }
+    refreshCurrent();
+  }
+
+  function updateItDateRangeLabel(from, to) {
+    const el = document.getElementById('it-date-range-label');
+    if (el) el.textContent = from+'~'+to+'개월차';
+  }
+
+  function updatePeriodSummaryDate() {
+    const fromStr = document.getElementById('it-date-from').value;
+    const toStr = document.getElementById('it-date-to').value;
+    const from = dateToMonth(fromStr) || 1;
+    const to = dateToMonth(toStr) || 36;
+    document.getElementById('period-from').value = from;
+    document.getElementById('period-to').value = Math.max(from, to);
+    updateItDateRangeLabel(from, Math.max(from, to));
+    updatePeriodSummary();
+  }
+
+  // ── API 키 ──
+  function updateApiStatus(active) {
+    const badge = document.getElementById('apiBadge');
+    document.getElementById('apiDot').style.background = active ? '#2ecc71' : '';
+    document.getElementById('apiStatusText').textContent = active ? 'API 키 설정됨' : 'API 키 설정';
+    active ? badge.classList.add('active') : badge.classList.remove('active');
+  }
+  function toggleApiPanel() { document.getElementById('apiPanel').classList.toggle('open'); }
+  function saveApiKey() {
+    const val = document.getElementById('apiKeyInput').value.trim();
+    if (!val) { alert('API 키를 입력해주세요.'); return; }
+    apiKey = val;
+    localStorage.setItem('gemini_schedule_key', val);
+    updateApiStatus(true);
+    document.getElementById('apiPanel').classList.remove('open');
+  }
+
+  // ── 기준월 ──
+  function syncMonth(from) {
+    const r = document.getElementById('monthRange');
+    const n = document.getElementById('monthNum');
+    if (from === 'range') { n.value = r.value; }
+    else { let v = parseInt(n.value)||1; v = Math.min(36, Math.max(1,v)); n.value = v; r.value = v; }
+    if (searchMode==='date') {
+      const d = monthToDate(parseInt(n.value));
+      if (d) { document.getElementById('baseDateInput').value = d; document.getElementById('baseDateMonthLabel').textContent = '→ '+n.value+'개월차 1일째'; }
+    }
+    refreshCurrent();
+  }
+
+  function refreshCurrent() {
+    if (currentTab === 'overview') renderOverview();
+    else if (currentTab === 'monthly') { document.getElementById('month-sel').value = getCM(); renderMonthly(); }
+    else if (currentTab === 'gantt') renderGantt();
+    else if (currentTab === 'items') { updatePeriodSummary(); renderItems(); }
+  }
+
+  // ── 탭 ──
+  function setTab(t) {
+    ['overview','monthly','items','gantt','ai'].forEach(id => {
+      document.getElementById('tab-'+id).classList.toggle('active', id===t);
+      document.getElementById('pane-'+id).style.display = id===t ? '' : 'none';
+    });
+    currentTab = t;
+    if (t==='overview') renderOverview();
+    else if (t==='monthly') renderMonthly();
+    else if (t==='items') { updatePeriodSummary(); renderItems(); }
+    else if (t==='gantt') renderGantt();
+    else if (t==='ai') renderAISummary();
+  }
+
+  // ── 개요 ──
+  function renderOverview() {
+    const cm = getCM();
+    let cR, mR, prevR, monthLabelTxt = cm+'개월차';
+    if (searchMode === 'date') {
+      const dateStr = document.getElementById('baseDateInput').value || monthToDate(cm);
+      const md = dateToMonthDay(dateStr);
+      if (md) {
+        cR = cumulRatioAtDate(dateStr);                                // 그 날짜까지의 정확한 누계 공정율(일할계산)
+        mR = (MONTHLY[md.month]||0) * Math.min(1, md.dayInMonth/30);   // 이번달 중 그 날짜까지 진행된 몫(일할)
+        prevR = MONTHLY[md.month-1]||0;                                // 비교는 월 전체 배정율 기준(전월과 동일 기준으로 비교)
+        monthLabelTxt = md.month+'개월차 '+md.dayInMonth+'일째';
+      }
+    }
+    if (cR === undefined) { cR = CUMUL[cm]||0; mR = MONTHLY[cm]||0; prevR = MONTHLY[cm-1]||0; }
+    const activeL1 = ITEMS.filter(i => i.lv===1 && isActiveIn(i,cm));
+    const up = (searchMode==='date' ? (MONTHLY[getCM()]||0) : mR) >= prevR;
+
+    document.getElementById('overview-metrics').innerHTML =
+      mkMetric('기준월', monthLabelTxt, '전체 36개월') +
+      mkMetric('누계 공정', (cR*100).toFixed(2)+'%', fmt(Math.round(TOTAL_AMT*cR))+'천원') +
+      mkMetric(searchMode==='date' ? '이번달 진행분(일할)' : '이번달 공정', (mR*100).toFixed(2)+'%', fmt(Math.round(TOTAL_AMT*mR))+'천원',
+        '<div class="progress-wrap" style="margin-top:6px"><div class="progress-fill" style="width:'+Math.min(100,mR/0.06*100).toFixed(0)+'%"></div></div>') +
+      mkMetricColor('전월 대비', (up?'▲':'▼')+' '+pct(Math.abs((searchMode==='date'?(MONTHLY[getCM()]||0):mR)-prevR)), '전월 '+pct(prevR), up?'var(--green)':'var(--accent)') +
+      mkMetric('진행 공종', activeL1.length+'개', '대분류 기준') +
+      mkMetric('총 도급금액', '208,195', '백만원');
+
+    document.getElementById('active-cnt').textContent = activeL1.length+'개 공종';
+    document.getElementById('active-tbody').innerHTML = activeL1.map(it => {
+      const mRi = it.m[cm]||0;
+      const cRi = Object.keys(it.m).filter(k=>parseInt(k)<=cm).reduce((s,k)=>s+(it.m[k]||0),0);
+      const done = it.ratio>0 ? Math.min(100,(cRi/it.ratio)*100) : 0;
+      return '<tr><td><strong>'+it.name+'</strong></td><td>'+pct(mRi)+'</td>' +
+        '<td><div style="display:flex;align-items:center;gap:6px"><div class="progress-wrap" style="width:80px;margin:0"><div class="progress-fill blue" style="width:'+done.toFixed(0)+'%"></div></div><span style="font-size:0.73rem">'+done.toFixed(0)+'%</span></div></td>' +
+        '<td style="text-align:right">'+fmt(it.amt)+'</td></tr>';
+    }).join('');
+
+    renderSCurve(cm);
+    renderPie();
+  }
+
+  function mkMetric(label, value, sub, extra) {
+    return '<div class="metric-box"><div class="metric-label">'+label+'</div><div class="metric-value">'+value+'</div><div class="metric-sub">'+sub+'</div>'+(extra||'')+'</div>';
+  }
+  function mkMetricColor(label, value, sub, color) {
+    return '<div class="metric-box"><div class="metric-label">'+label+'</div><div class="metric-value" style="color:'+color+';font-size:1.1rem">'+value+'</div><div class="metric-sub">'+sub+'</div></div>';
+  }
+
+  function getChartLabels() {
+    if (searchMode === 'date') {
+      const startStr = getStartDate();
+      if (startStr) {
+        return Array.from({length:36},(_,i)=>{
+          const ds = monthToDate(i+1); // 30일/월 기준, dateToMonth와 동일한 기준으로 표시
+          const d = new Date(ds);
+          return (d.getFullYear()+'.'+(d.getMonth()+1).toString().padStart(2,'0'));
+        });
+      }
+    }
+    return Array.from({length:36},(_,i)=>i+1+'개월');
+  }
+
+  function renderSCurve(cm) {
+    const labels = getChartLabels();
+    const data = labels.map((_,i)=>(CUMUL[i+1]||0)*100);
+    const ctx = document.getElementById('scurveChart').getContext('2d');
+    if (scChart) scChart.destroy();
+    scChart = new Chart(ctx, {
+      type:'line',
+      data:{labels, datasets:[{label:'누계공정(%)',data,borderColor:'#c0392b',backgroundColor:'rgba(192,57,43,0.08)',fill:true,tension:0.4,
+        pointRadius:data.map((_,i)=>i+1===cm?5:0),pointBackgroundColor:'#c0392b'}]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'누계: '+c.raw.toFixed(1)+'%'}}},
+        scales:{x:{ticks:{maxRotation:45,autoSkip:true,maxTicksLimit:12,font:{size:10}},grid:{display:false}},
+          y:{ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,0.06)'}}}}
+    });
+  }
+
+  function renderPie() {
+    const items = ITEMS.filter(i=>i.lv===1);
+    const ctx = document.getElementById('pieChart').getContext('2d');
+    if (pChart) pChart.destroy();
+    const colors = ['#c0392b','#185fa5','#1d9e75','#b8860b','#7f77dd','#d4537e','#639922','#d85a30','#888780','#0f6e56','#a32d2d','#3b6d11','#2c2c2a','#63380a'];
+    pChart = new Chart(ctx, {
+      type:'doughnut',
+      data:{labels:items.map(i=>i.name),datasets:[{data:items.map(i=>i.amt),backgroundColor:colors,borderWidth:1,borderColor:'#f5f0e8'}]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>(c.raw/TOTAL_AMT*100).toFixed(1)+'% ('+fmt(c.raw)+'천원)'}}}}
+    });
+  }
+
+  // ── 월별 공정 ──
+  function renderMonthly() {
+    const m = parseInt(document.getElementById('month-sel').value);
+    const mRfull = MONTHLY[m]||0, prevR = MONTHLY[m-1]||0;
+    let cR = CUMUL[m]||0, mR = mRfull, headTitle = m+'개월차 공정';
+    if (searchMode === 'date') {
+      const dateStr = document.getElementById('moDateInput').value || monthToDate(m);
+      const md = dateToMonthDay(dateStr);
+      if (md) {
+        cR = cumulRatioAtDate(dateStr);                        // 그 날짜까지의 정확한 누계 공정율(일할계산)
+        mR = mRfull * Math.min(1, md.dayInMonth/30);           // 이번달 중 그 날짜까지 진행된 몫(일할)
+        headTitle = md.month+'개월차 '+md.dayInMonth+'일째 진행분';
+      }
+    }
+    const up = mRfull >= prevR;
+    document.getElementById('monthly-metrics').innerHTML =
+      mkMetric(headTitle, (mR*100).toFixed(2)+'%', fmt(Math.round(TOTAL_AMT*mR))+'천원') +
+      mkMetric('누계 공정', (cR*100).toFixed(2)+'%', fmt(Math.round(TOTAL_AMT*cR))+'천원') +
+      mkMetric('진행 공종', ITEMS.filter(i=>i.lv===1&&isActiveIn(i,m)).length+'개', '대분류 기준') +
+      mkMetricColor('전월 대비', (up?'▲':'▼')+' '+pct(Math.abs(mRfull-prevR)), '전월 '+pct(prevR), up?'var(--green)':'var(--accent)');
+
+    document.getElementById('monthly-items-title').textContent = m+'개월차 진행 공종';
+    document.getElementById('monthly-tbody').innerHTML = ITEMS.filter(i=>i.lv===1&&isActiveIn(i,m)).map(it => {
+      const mRi = it.m[m]||0;
+      const cRi = Object.keys(it.m).filter(k=>parseInt(k)<=m).reduce((s,k)=>s+(it.m[k]||0),0);
+      return '<tr><td><strong>'+it.name+'</strong></td><td>'+pct(mRi)+'</td><td>'+pct(cRi)+'</td><td style="text-align:right">'+fmt(it.amt)+'</td></tr>';
+    }).join('');
+
+    const labels = getChartLabels();
+    const data = labels.map((_,i)=>(MONTHLY[i+1]||0)*100);
+    const colors = data.map((_,i)=>i+1===m?'#c0392b':'rgba(192,57,43,0.3)');
+    const ctx = document.getElementById('monthlyBarChart').getContext('2d');
+    if (mbChart) mbChart.destroy();
+    mbChart = new Chart(ctx, {
+      type:'bar',
+      data:{labels,datasets:[{label:'월별공정(%)',data,backgroundColor:colors,borderRadius:2}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{ticks:{maxRotation:45,autoSkip:true,maxTicksLimit:12,font:{size:10}},grid:{display:false}},
+          y:{ticks:{callback:v=>v.toFixed(1)+'%',font:{size:10}}}}}
+    });
+  }
+
+  // ── 기간 공정율 요약 ──
+  function updatePeriodSummary() {
+    const from = parseInt(document.getElementById('period-from').value)||1;
+    const to = parseInt(document.getElementById('period-to').value)||36;
+    const actualTo = Math.max(from, to);
+    if (parseInt(document.getElementById('period-to').value) < from) document.getElementById('period-to').value = actualTo;
+
+    let periodRatio, cumulTo;
+    if (searchMode === 'date') {
+      const fromStr = document.getElementById('it-date-from').value;
+      const toStr = document.getElementById('it-date-to').value;
+      const fromInfo = dateToMonthDay(fromStr);
+      const toInfo = dateToMonthDay(toStr);
+      if (fromInfo && toInfo && toInfo.month >= fromInfo.month) {
+        periodRatio = proratedSum(MONTHLY, fromInfo, toInfo);  // 시작/종료 날짜 기준 일할 합산
+        cumulTo = cumulRatioAtDate(toStr);                     // 종료일까지의 정확한 누계 공정율
+      }
+    }
+    if (periodRatio === undefined) {
+      // 기간 공정율 = 해당 기간 월별 공정율 합산 (전체 대비)
+      periodRatio = 0;
+      for (let m = from; m <= actualTo; m++) periodRatio += (MONTHLY[m]||0);
+      // 누계 공정율 (to 기준)
+      cumulTo = CUMUL[actualTo]||0;
+    }
+    // 기간 금액
+    const periodAmt = Math.round(TOTAL_AMT * periodRatio);
+
+    document.getElementById('period-ratio').textContent = pct(periodRatio);
+    document.getElementById('period-amt').textContent = fmt(periodAmt);
+    document.getElementById('period-cumul').textContent = pct(cumulTo);
+    renderItems();
+  }
+
+  // ── 공종 조회 (개선) ──
+  function monthLabel(m) {
+    if (!m) return '-';
+    if (searchMode === 'date') {
+      const startStr = getStartDate();
+      if (startStr) {
+        const ds = monthToDate(m); // 30일/월 기준, dateToMonth와 동일한 기준으로 표시
+        const d = new Date(ds);
+        return d.getFullYear()+'.'+(d.getMonth()+1).toString().padStart(2,'0');
+      }
+    }
+    return m+'개월';
+  }
+
+  function renderItems() {
+    const major = document.getElementById('major-filter').value;
+    const search = document.getElementById('item-search').value.toLowerCase();
+    const cm = getCM();
+    const from = parseInt(document.getElementById('period-from').value)||1;
+    const to = parseInt(document.getElementById('period-to').value)||36;
+
+    // 날짜모드일 때 일할계산용 시작/종료 정보
+    let fromInfo = null, toInfo = null;
+    if (searchMode === 'date') {
+      fromInfo = dateToMonthDay(document.getElementById('it-date-from').value);
+      toInfo = dateToMonthDay(document.getElementById('it-date-to').value);
+      if (!(fromInfo && toInfo && toInfo.month >= fromInfo.month)) { fromInfo = null; toInfo = null; }
+    }
+
+    // 대공종만 필터 (lv===1)
+    let majorItems = ITEMS.filter(i=>i.lv===1);
+    if (major) majorItems = majorItems.filter(i=>i.name===major);
+    if (search) majorItems = majorItems.filter(i=>i.name.toLowerCase().includes(search));
+
+    let html = '';
+    majorItems.forEach(it => {
+      const {start,end} = getStartEnd(it);
+      const status = !start ? 'future' : end<cm ? 'done' : start>cm ? 'future' : 'active';
+      const slabel = {active:'진행중',future:'미착수',done:'완료'}[status];
+      const scls = {active:'badge-active',future:'badge-future',done:'badge-done'}[status];
+
+      // 기간 공정율 (전체 대비 비율 합산, 날짜모드는 일할계산)
+      let periodR;
+      if (fromInfo && toInfo) periodR = proratedSum(it.m, fromInfo, toInfo);
+      else { periodR = 0; for (let m = from; m <= to; m++) periodR += (it.m[m]||0); }
+      // 기간 금액 (천원)
+      const periodAmt = Math.round(TOTAL_AMT * periodR);
+
+      // 세부공종 (lv===3, 같은 major)
+      const subs = ITEMS.filter(i=>i.lv===3 && i.major===it.major);
+      const hasChildren = subs.length > 0;
+      const rowId = 'major-'+it.major.replace(/[^a-z0-9]/gi,'_');
+
+      // 대공종 행
+      html += '<tr class="major-row" id="'+rowId+'">' +
+        '<td><strong>'+it.name+'</strong>' +
+        (hasChildren ? ' <button class="toggle-btn" id="btn-'+rowId+'" onclick="APP.toggleSubRows(\''+rowId+'\')"><span class="arr">▶</span> 세부공종</button>' : '') +
+        '</td>' +
+        '<td style="color:var(--muted);font-size:0.76rem">'+it.major+'</td>' +
+        '<td style="text-align:center">'+monthLabel(start)+'</td>' +
+        '<td style="text-align:center">'+monthLabel(end)+'</td>' +
+        '<td style="text-align:right">'+fmt(it.amt)+'</td>' +
+        '<td>'+pct(it.ratio||0)+'</td>' +
+        '<td style="color:var(--accent);font-weight:700">'+pct(periodR)+'</td>' +
+        '<td style="text-align:right;color:var(--blue);font-weight:600">'+fmt(periodAmt)+'</td>' +
+        '<td><span class="badge '+scls+'">'+slabel+'</span></td>' +
+        '</tr>';
+
+      // 세부공종 행 (숨김)
+      subs.forEach(sub => {
+        const {start:ss,end:se} = getStartEnd(sub);
+        const sstat = !ss ? 'future' : se<cm ? 'done' : ss>cm ? 'future' : 'active';
+        let subPeriodR;
+        if (fromInfo && toInfo) subPeriodR = proratedSum(sub.m, fromInfo, toInfo);
+        else { subPeriodR = 0; for (let m = from; m <= to; m++) subPeriodR += (sub.m[m]||0); }
+        const subPeriodAmt = Math.round(TOTAL_AMT * subPeriodR);
+        html += '<tr class="sub-row" data-parent="'+rowId+'">' +
+          '<td>↳ '+sub.name+'</td>' +
+          '<td style="font-size:0.75rem;color:var(--muted)">세부</td>' +
+          '<td style="text-align:center">'+monthLabel(ss)+'</td>' +
+          '<td style="text-align:center">'+monthLabel(se)+'</td>' +
+          '<td style="text-align:right">'+fmt(sub.amt)+'</td>' +
+          '<td>'+pct(sub.ratio||0)+'</td>' +
+          '<td style="color:var(--blue)">'+pct(subPeriodR)+'</td>' +
+          '<td style="text-align:right;color:var(--blue)">'+fmt(subPeriodAmt)+'</td>' +
+          '<td><span class="badge badge-'+sstat+'">'+{active:'진행중',future:'미착수',done:'완료'}[sstat]+'</span></td>' +
+          '</tr>';
+      });
+    });
+
+    document.getElementById('items-tbody').innerHTML = html;
+  }
+
+  // 세부공종 토글
+  function toggleSubRows(rowId) {
+    const subs = document.querySelectorAll('[data-parent="'+rowId+'"]');
+    const btn = document.getElementById('btn-'+rowId);
+    const isOpen = btn && btn.classList.contains('open');
+    subs.forEach(r => r.classList.toggle('visible', !isOpen));
+    if (btn) btn.classList.toggle('open', !isOpen);
+  }
+
+  // ── 간트차트 (개선) ──
+  function renderGantt() {
+    const major = document.getElementById('gantt-major').value;
+    const range = parseInt(document.getElementById('gantt-range').value);
+    const cm = ganttMonth;
+
+    let majorItems = ITEMS.filter(i=>i.lv===1);
+    if (major) majorItems = majorItems.filter(i=>i.name===major);
+
+    const months = Array.from({length:range},(_,i)=>i+1);
+    const ganttLabels = (() => {
+      if (searchMode === 'date') {
+        const startStr = getStartDate();
+        if (startStr) {
+          return months.map(m => {
+            const ds = monthToDate(m); // 30일/월 기준, dateToMonth와 동일한 기준으로 표시
+            const d = new Date(ds);
+            return (d.getFullYear()+'.'+(d.getMonth()+1).toString().padStart(2,'0'));
+          });
+        }
+      }
+      return months.map(m => m+'개월');
+    })();
+    const thCols = months.map((m,i) => '<th'+(m===cm?' style="background:#fff3cd;color:#856404"':'')+'>'+ganttLabels[i]+'</th>').join('');
+
+    // 공종별 색상 팔레트 (대공종마다 다른 색)
+    const COLORS = [
+      '192,57,43',   // 1.토공 - 빨강
+      '24,95,165',   // 2.우수공 - 파랑
+      '29,158,117',  // 3.오수공 - 초록
+      '184,134,11',  // 4.상수공 - 골드
+      '127,119,221', // 5.도로포장 - 보라
+      '212,83,126',  // 6.조경 - 핑크
+      '99,153,34',   // 7.구조물 - 연두
+      '216,90,48',   // 8.농수로 - 주황
+      '136,135,128', // 9.하천 - 회색
+      '15,110,86',   // 10.저류지 - 다크그린
+      '163,45,45',   // 11.부대공 - 다크레드
+      '59,109,17',   // 12.폐기물 - 다크연두
+      '44,44,42',    // 13.제경비 - 다크
+      '100,56,10',   // 14.전기 - 브라운
+    ];
+
+    let rows = '';
+    majorItems.forEach((it, idx) => {
+      const colorRGB = COLORS[idx % COLORS.length];
+      const gRowId = 'gantt-'+it.major.replace(/[^a-z0-9]/gi,'_');
+      const subs = ITEMS.filter(i=>i.lv===3 && i.major===it.major);
+      const hasSubs = subs.length > 0;
+
+      // 해당 공종의 최대 월별값 계산 (상대적 진하기 기준)
+      const maxVal = Math.max(...months.map(m => it.m[m]||0), 0.001);
+
+      // 대공종 셀
+      const cells = months.map(m => {
+        const v = it.m[m]||0;
+        const isCur = m===cm;
+        const cls = 'gantt-bar-cell';
+        if (!v) {
+          return '<td class="'+cls+'" style="min-width:18px;'+(isCur?'background:#fff8e0;':'')+'"></td>';
+        }
+        // opacity: 0.3(최소) ~ 1.0(최대), 해당 공종 내 상대 비교
+        const op = (0.3 + (v / maxVal) * 0.7).toFixed(2);
+        const bg = isCur ? 'rgba('+colorRGB+','+op+');outline:2px solid #856404;outline-offset:-2px' : 'rgba('+colorRGB+','+op+')';
+        return '<td class="'+cls+'" style="min-width:18px;background:'+bg+'" title="'+m+'월: '+pct(v)+'"></td>';
+      }).join('');
+
+      rows += '<tr class="gantt-major-row">' +
+        '<td class="name-cell" style="font-weight:700;" title="'+it.name+'">' +
+        it.name +
+        (hasSubs ? '<button class="gantt-toggle" id="gtbtn-'+gRowId+'" onclick="APP.toggleGanttSubs(\''+gRowId+'\')" title="세부공종 펼치기"><span class="ga">▶</span></button>' : '') +
+        '</td>' +
+        '<td class="amt-cell">'+fmt(it.amt/1000)+'백만</td>'+cells+'</tr>';
+
+      // 세부공종 (숨김)
+      subs.forEach(sub => {
+        const subMax = Math.max(...months.map(m => sub.m[m]||0), 0.001);
+        const subCells = months.map(m => {
+          const v = sub.m[m]||0;
+          const isCur = m===cm;
+          const cls = 'gantt-bar-cell';
+          if (!v) return '<td class="'+cls+'" style="min-width:18px;'+(isCur?'background:#fffde7;':'')+'"></td>';
+          const op = (0.2 + (v / subMax) * 0.65).toFixed(2);
+          const bg = isCur ? 'rgba('+colorRGB+','+op+');outline:2px solid #856404;outline-offset:-2px' : 'rgba('+colorRGB+','+op+')';
+          return '<td class="'+cls+'" style="min-width:18px;background:'+bg+'" title="'+m+'월: '+pct(v)+'"></td>';
+        }).join('');
+        rows += '<tr class="gantt-sub-row" data-gparent="'+gRowId+'">' +
+          '<td class="name-cell" title="'+sub.name+'" style="font-size:0.68rem;color:var(--muted);padding-left:18px !important;">↳ '+sub.name+'</td>' +
+          '<td class="amt-cell" style="font-size:0.67rem;">'+fmt(sub.amt/1000)+'백만</td>'+subCells+'</tr>';
+      });
+    });
+
+    // 범례
+    const activeMajors = majorItems.slice(0, COLORS.length);
+    const legend = activeMajors.map((it, idx) =>
+      '<span style="display:inline-flex;align-items:center;gap:4px;margin-right:12px;font-size:0.68rem;">' +
+      '<span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:rgba('+COLORS[idx%COLORS.length]+',0.75)"></span>'+it.name+'</span>'
+    ).join('');
+
+    document.getElementById('gantt-wrap').innerHTML =
+      '<table class="gantt-table"><thead><tr>' +
+      '<th style="min-width:180px;text-align:left">공종명</th><th style="min-width:70px">금액</th>' +
+      thCols + '</tr></thead><tbody>' + rows + '</tbody></table>';
+
+    // 범례 업데이트
+    const legendEl = document.getElementById('gantt-legend');
+    if (legendEl) legendEl.innerHTML = legend;
+  }
+
+  // 간트 세부공종 토글
+  function toggleGanttSubs(gRowId) {
+    const subs = document.querySelectorAll('[data-gparent="'+gRowId+'"]');
+    const btn = document.getElementById('gtbtn-'+gRowId);
+    const isOpen = btn && btn.classList.contains('open');
+    subs.forEach(r => r.classList.toggle('visible', !isOpen));
+    if (btn) btn.classList.toggle('open', !isOpen);
+  }
+
+  // ── AI 요약 ──
+  function renderAISummary() {
+    const cm = getCM();
+    const cR = CUMUL[cm]||0, mR = MONTHLY[cm]||0;
+    const act = ITEMS.filter(i=>i.lv===1&&isActiveIn(i,cm)).length;
+    const big = [...ITEMS.filter(i=>i.lv===1)].sort((a,b)=>b.amt-a.amt)[0];
+    document.getElementById('summary-table').innerHTML = [
+      ['현장명','진천메가폴리스 산업단지 조성사업'],
+      ['총 도급금액','208,195,454천원'],
+      ['공사기간','36개월'],
+      ['현재 기준월', cm+'개월차'],
+      ['누계 공정률', pct(cR)],
+      ['이번달 공정률', pct(mR)],
+      ['진행 공종수', act+'개 (대분류 기준)'],
+      ['공정 집중 시기','10~12개월차 (월 약 6%)'],
+      ['최대 금액 공종', big.name+' ('+fmt(big.amt)+'천원)'],
+    ].map(([k,v]) => '<tr><td>'+k+'</td><td>'+v+'</td></tr>').join('');
+  }
+
+  // ── Gemini ──
+  async function callGemini(prompt) {
+    if (!apiKey) throw new Error('API 키를 먼저 설정해주세요. 우측 상단 [API 키 설정] 버튼을 눌러 Gemini API 키를 입력하세요.');
+    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=' + apiKey;
+    const res = await fetch(url, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{maxOutputTokens:2000}})
+    });
+    if (!res.ok) { const e = await res.json().catch(()=>({})); throw new Error(e.error?.message||'API 오류 ('+res.status+')'); }
+    const data = await res.json();
+    return data.candidates[0].content.parts[0].text;
+  }
+
+  function buildContext() {
+    const cm = getCM();
+    const cR = CUMUL[cm]||0, mR = MONTHLY[cm]||0;
+    const act = ITEMS.filter(i=>i.lv===1&&isActiveIn(i,cm)).map(i=>i.name+'('+pct(i.m[cm]||0)+')').join(', ');
+    const top5 = [...ITEMS.filter(i=>i.lv===1)].sort((a,b)=>b.amt-a.amt).slice(0,5).map(i=>i.name+':'+fmt(i.amt)+'천원').join(', ');
+    return '[공정표 기본 정보]\n현장명: 진천 메가폴리스 산업단지 조성사업\n총 도급금액: 208,195,454천원 | 공사기간: 36개월\n현재 기준월: '+cm+'개월차\n누계 공정률: '+pct(cR)+' ('+fmt(Math.round(TOTAL_AMT*cR))+'천원)\n이번달('+cm+'개월차) 공정률: '+pct(mR)+' ('+fmt(Math.round(TOTAL_AMT*mR))+'천원)\n현재 진행 중인 공종: '+act+'\n금액 상위 공종: '+top5+'\n공정 집중 시기: 10~12개월차(월 약 6%), 이후 점차 감소';
+  }
+
+  async function askGemini(type) {
+    const ctx = buildContext();
+    const cm = getCM();
+    const prompts = {
+      monthly_report: '당신은 건설현장 공무 담당자를 돕는 전문가입니다.\n'+ctx+'\n\n위 공정표 데이터를 바탕으로 '+cm+'개월차 현장 공정현황 보고서를 작성해 주세요.\n- 보고서 형식(제목/현황/주요 진행 공종/특이사항/향후 예정)으로 구성\n- 실무 공무 보고서 스타일로 간결하게\n- 수치는 구체적으로 명시',
+      risk: '당신은 건설현장 공무 담당자를 돕는 전문가입니다.\n'+ctx+'\n\n'+cm+'개월차 이후 리스크 요소와 중점 관리 공종을 분석해 주세요.\n- 공정이 집중되는 시기와 공종\n- 금액 규모가 큰 공종의 진행 상황\n- 공정 지연 시 영향이 큰 공종\n- 실무적인 관리 포인트 3가지',
+      peak: '당신은 건설현장 공무 담당자를 돕는 전문가입니다.\n'+ctx+'\n\n전체 36개월 공정에서 공정 투입이 집중되는 시기를 분석해 주세요.\n- 전반기/중반기/후반기 특성\n- 공종별 시작/완료 시기\n- 자원(인력·장비) 집중 시기\n- 공정관리 전략 제안',
+      summary: '당신은 건설현장 공무 담당자를 돕는 전문가입니다.\n'+ctx+'\n\n공종별 금액 비중을 분석하고 특징을 설명해 주세요.\n- 전체 도급금액 대비 각 공종 비중(상위 5개 중심)\n- 토공 비중이 높은 이유(산업단지 조성 특성)\n- 공종 구성의 특징과 시사점'
+    };
+    await runAI(prompts[type]);
+  }
+
+  async function askGeminiCustom() {
+    const q = document.getElementById('ai-question').value.trim();
+    if (!q) { alert('질문을 입력해주세요.'); return; }
+    await runAI('당신은 건설현장 공무 담당자를 돕는 전문가입니다.\n'+buildContext()+'\n\n위 공정표 데이터를 바탕으로 다음 질문에 답해 주세요:\n'+q);
+  }
+
+  async function runAI(prompt) {
+    const btn = document.querySelector('#pane-ai .generate-btn');
+    const errEl = document.getElementById('ai-error');
+    const resEl = document.getElementById('ai-result');
+    btn.classList.add('loading'); btn.disabled = true;
+    errEl.classList.remove('show'); resEl.classList.remove('show');
+    try {
+      const text = await callGemini(prompt);
+      document.getElementById('ai-result-box').textContent = text;
+      resEl.classList.add('show');
+    } catch(err) {
+      errEl.textContent = err.message; errEl.classList.add('show');
+    } finally {
+      btn.classList.remove('loading'); btn.disabled = false;
+    }
+  }
+
+  function copyResult() {
+    const text = document.getElementById('ai-result-box').textContent;
+    const btn = document.getElementById('ai-copy-btn');
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '복사됨!'; btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = '복사'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  // ── 초기화 ──
+  function init() {
+    if (apiKey) { document.getElementById('apiKeyInput').value = apiKey; updateApiStatus(true); }
+
+    // 개월 선택기 (월별 탭)
+    const msel = document.getElementById('month-sel');
+    for (let m=1; m<=36; m++) { const o=document.createElement('option'); o.value=m; o.textContent=m+'개월차'; msel.appendChild(o); }
+    msel.value = getCM();
+
+    // 기간 선택기 (공종 조회)
+    const pfrom = document.getElementById('period-from');
+    const pto = document.getElementById('period-to');
+    for (let m=1; m<=36; m++) {
+      const o1=document.createElement('option'); o1.value=m; o1.textContent=m+'개월'; pfrom.appendChild(o1);
+      const o2=document.createElement('option'); o2.value=m; o2.textContent=m+'개월'; pto.appendChild(o2);
+    }
+    pfrom.value = 1; pto.value = 36;
+
+    // 대분류 필터 채우기
+    ['major-filter','gantt-major'].forEach(id => {
+      const sel = document.getElementById(id);
+      MAJORS.forEach(name => { const o=document.createElement('option'); o.value=name; o.textContent=name; sel.appendChild(o); });
+    });
+
+    // 저장된 착공일 불러오기
+    const savedStart = localStorage.getItem('jc_start_date');
+    if (savedStart) {
+      document.getElementById('dateStart').value = savedStart;
+      document.getElementById('dateStartVisible').value = savedStart;
+    }
+
+    ganttMonth = getCM();
+    document.getElementById('ganttMonthNum').value = ganttMonth;
+    document.getElementById('ganttMonthRange').value = ganttMonth;
+
+    renderOverview();
+    updatePeriodSummary();
+  }
+
+  window.addEventListener('DOMContentLoaded', init);
+
+  return { setTab, syncMonth, syncGanttMonth, toggleApiPanel, saveApiKey, renderMonthly, renderItems, renderGantt, askGemini, askGeminiCustom, copyResult, setSearchMode, onDateChange, onBaseDateChange, onMoDateChange, onGanttDateChange, onStartDateChange, toggleSubRows, toggleGanttSubs, updatePeriodSummary, updatePeriodSummaryDate };
+})();
+</script>
+</body>
+</html>
