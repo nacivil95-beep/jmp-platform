@@ -10,6 +10,8 @@
  *   level      : 공지 성격에 따른 색상 -  "info"(파랑, 일반안내) | "warning"(주황, 주의) | "danger"(빨강, 긴급/중요)
  *   title      : 공지 제목
  *   body       : 공지 내용. 줄바꿈은 \n 으로, 굵게 강조하고 싶으면 <b>이렇게</b> 감싸면 됩니다.
+ *   image      : (선택) 공지에 넣을 이미지 경로. 예: "assets/notice/heat_index.png"
+ *                이미지 파일을 assets 폴더 같은 곳에 넣어두고, 그 경로를 적어주면 제목 아래에 표시됩니다.
  *   startDate  : "YYYY-MM-DD" (선택) - 이 날짜부터 노출. 생략하면 등록 즉시부터 노출
  *   endDate    : "YYYY-MM-DD" (선택) - 이 날짜까지 노출(포함). 생략하면 계속 노출
  *   pinned     : true로 하면 다른 공지보다 항상 위쪽에 표시
@@ -18,24 +20,35 @@
  * (배열이 비어있으면[ ] 팝업 자체가 뜨지 않습니다)
  */
 let SITE_NOTICES = [
-  {
+   {
     id: "sample-001",
     team: "안전팀",
     level: "warning",
     title: "체감온도 33.6도",
     body: "현장에서는 매시간 15분씩 휴식을 취해주시기 바랍니다.",
     startDate: "",
-    endDate: "2026-07-27",
+    endDate: "2026-07-28",
     pinned: false
-  },
-  {
+   },
+   {
     id: "sample-002",
     team: "공무팀",
     level: "info",
-    title: "비상주감리 현장방문",
-    body: "7월 28일 비상주감리 현장 방문합니다.",
+    title: "기성신청(2회)",
+    body: "2회 기성신청은 8월 중순에 신청할 예정입니다.",
     startDate: "",
-    endDate: "2026-07-27",
+    endDate: "2026-08-31",
+    pinned: false
+   },
+   {
+    id: "notice-002",
+    team: "관리팀",
+    level: "info",
+    title: "Family Day 알림",
+    image: "assets/notice/family_day.png",
+    body: "자세한 내용은 위 이미지를 참고해주세요.",
+    startDate: "",
+    endDate: "2026-09-30",
     pinned: false
   }
 ];
