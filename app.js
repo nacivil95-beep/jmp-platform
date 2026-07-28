@@ -1793,6 +1793,7 @@ function renderNoticeList(list) {
         ${n.endDate ? `<span class="notice-date-range">~${escapeHtml(n.endDate.slice(5).replace("-", "/"))}</span>` : ""}
       </div>
       <div class="notice-title">${escapeHtml(n.title || "")}</div>
+      ${n.image ? `<img class="notice-image" src="${escapeHtml(n.image)}" alt="${escapeHtml(n.title || "공지 이미지")}">` : ""}
       <div class="notice-body">${String(n.body || "").replace(/\n/g, "<br>")}</div>
     </div>
   `).join("");
