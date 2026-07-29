@@ -21,6 +21,16 @@
  */
 let SITE_NOTICES = [
    {
+    id: "notice-003",
+    team: "관리자",
+    level: "info",
+    title: "자료업데이트관련",
+    body: "매일 10시에 자료가 업데이트 됩니다.",
+    startDate: "",
+    endDate: "",
+    pinned: true
+   },
+   {
     id: "sample-001",
     team: "안전팀",
     level: "warning",
