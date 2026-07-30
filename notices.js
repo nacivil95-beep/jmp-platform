@@ -32,22 +32,12 @@ let SITE_NOTICES = [
    },
    {
     id: "sample-001",
-    team: "안전팀",
-    level: "warning",
-    title: "체감온도 33.6도",
-    body: "현장에서는 매시간 15분씩 휴식을 취해주시기 바랍니다.",
-    startDate: "",
-    endDate: "2026-07-28",
-    pinned: false
-   },
-   {
-    id: "sample-002",
-    team: "공무팀",
+    team: "관리자",
     level: "info",
-    title: "기성신청(2회)",
-    body: "2회 기성신청은 8월 중순에 신청할 예정입니다.",
+    title: "주요일정 카드추가",
+    body: "주요일정을 캘린더형태에서 확인할 수 있습니다.",
     startDate: "",
-    endDate: "2026-08-31",
+    endDate: "",
     pinned: false
    },
    {
