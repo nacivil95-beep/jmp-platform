@@ -546,6 +546,7 @@ function setReportDate(key) {
   renderWorkStatusModal(key);
   renderProgressCard(key);
   renderEarth(key);
+  if (isSchedulePaneVisible()) renderSchedulePane();
 }
 
 // ── 날짜 선택 캘린더 팝업 ──
@@ -1090,6 +1091,7 @@ function applyWorkbookArrayBuffer(arrayBuffer, labelForStatus) {
     renderProgressCard(currentReportDate);
     renderEarth(currentReportDate);
   }
+  if (isSchedulePaneVisible()) renderSchedulePane();
   const now = new Date().toLocaleTimeString("ko-KR", { hour12: false });
   setExcelLoadStatus(`불러오기 완료: ${labelForStatus} (${now})`, false);
 }
@@ -1831,6 +1833,574 @@ function initNoticePopup() {
   });
 }
 
+// =========================================================================
+// 10-2. 팀별 공유공간 (5개 팀 탭 전환 + 공무/공사/안전보건/관리팀 표 데이터 표시)
+// 품질팀 탭은 기존 품질관리 위젯(renderQuality)을 그대로 재사용합니다.
+// =========================================================================
+// =========================================================================
+// 4-3-1. 공무팀 - 예정공정표(계획 대비 실적 S-curve) + 공종별 비중표
+// scheduleData.js(SCHEDULE_START_DATE/SCHEDULE_CUMUL/SCHEDULE_MONTHLY/SCHEDULE_MAJOR_ITEMS)
+// scheduleActuals.js(SCHEDULE_ACTUALS - 매달 손으로 기록하는 월말 실적)
+// 위 두 파일이 로딩되지 않은 환경(옛 배포본 등)에서도 에러 없이 조용히 건너뜁니다.
+// =========================================================================
+
+// 날짜(YYYY-MM-DD) → 착공일 기준 몇 개월차/그 달 며칠째인지 (1개월=30일 기준, 원본 공정표 앱과 동일 방식)
+function scheduleMonthIndexFromDate(dateStr) {
+  if (!dateStr || typeof SCHEDULE_START_DATE === "undefined" || !SCHEDULE_START_DATE) return null;
+  const start = new Date(SCHEDULE_START_DATE); start.setHours(0, 0, 0, 0);
+  const target = new Date(dateStr); target.setHours(0, 0, 0, 0);
+  if (isNaN(start.getTime()) || isNaN(target.getTime())) return null;
+  const diffDays = Math.round((target - start) / 86400000);
+  if (diffDays < 0) return { month: 0, dayInMonth: 0, diffDays };
+  const month = Math.floor(diffDays / 30) + 1;
+  const dayInMonth = (diffDays % 30) + 1;
+  return { month, dayInMonth, diffDays };
+}
+
+// 월차 정보(월차 + 그 달 며칠째)로 계획 누적 진행률(0~1) 일할 계산
+function scheduleCumulAt(monthInfo) {
+  if (!monthInfo || monthInfo.month <= 0) return 0;
+  const m = monthInfo.month;
+  if (m > 36) return 1;
+  const prevCumul = m > 1 ? (SCHEDULE_CUMUL[m - 1] || 0) : 0;
+  const monthlyR = SCHEDULE_MONTHLY[m] || 0;
+  const frac = Math.min(1, monthInfo.dayInMonth / 30);
+  return prevCumul + monthlyR * frac;
+}
+
+// 오늘 시점의 계획치 + (선택된 작업일보가 있다면) 실적 스냅샷을 계산합니다.
+function getScheduleTodaySnapshot() {
+  const now = new Date();
+  const todayStr = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0") + "-" + String(now.getDate()).padStart(2, "0");
+  const monthInfo = scheduleMonthIndexFromDate(todayStr);
+  const planPct = monthInfo ? scheduleCumulAt(monthInfo) * 100 : 0;
+
+  let actualPct = null, actualDate = null, actualMonthInfo = null;
+  if (typeof DAILY_REPORTS !== "undefined" && currentReportDate && DAILY_REPORTS[currentReportDate]) {
+    const rep = DAILY_REPORTS[currentReportDate];
+    if (rep.date && rep.progress && typeof rep.progress.actual === "number") {
+      actualDate = rep.date;
+      actualMonthInfo = scheduleMonthIndexFromDate(rep.date);
+      actualPct = rep.progress.actual;
+    }
+  }
+  return { todayStr, monthInfo, planPct, actualPct, actualDate, actualMonthInfo };
+}
+
+function isSchedulePaneVisible() {
+  const pane = document.getElementById("team-pane-공무팀");
+  return !!pane && pane.style.display !== "none";
+}
+
+// 프로젝트 전체 기간(착공일 ~ 착공일+36개월, 1개월=30일)의 마지막 날짜(YYYY-MM-DD)
+function scheduleProjectEndDateStr() {
+  if (typeof SCHEDULE_START_DATE === "undefined" || !SCHEDULE_START_DATE) return "";
+  const start = new Date(SCHEDULE_START_DATE); start.setHours(0, 0, 0, 0);
+  const end = new Date(start.getTime() + (36 * 30 - 1) * 86400000);
+  return end.getFullYear() + "-" + String(end.getMonth() + 1).padStart(2, "0") + "-" + String(end.getDate()).padStart(2, "0");
+}
+
+function scheduleTodayStr() {
+  const now = new Date();
+  return now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0") + "-" + String(now.getDate()).padStart(2, "0");
+}
+
+// 프로젝트 범위 안으로 날짜를 clamp
+function scheduleClampToProjectRange(dateStr) {
+  if (typeof SCHEDULE_START_DATE === "undefined" || !SCHEDULE_START_DATE) return dateStr;
+  const min = SCHEDULE_START_DATE, max = scheduleProjectEndDateStr();
+  if (dateStr < min) return min;
+  if (dateStr > max) return max;
+  return dateStr;
+}
+
+// 특정 공종(item)의 "그 공종 자체 대비" 누적 진행률(0~1)을 조회일 기준으로 계산합니다.
+// item.m 값의 합이 item.ratio(전체 계약금액 대비 비중)와 정확히 일치하지 않는 경우가 있어
+// (원본 공정표 앱 데이터 자체의 특성), item 자신의 m 합계를 100%로 정규화해서 계산합니다.
+function scheduleItemCumulFractionAt(item, monthInfo) {
+  if (!item.m) return 0;
+  const totalM = Object.values(item.m).reduce((a, b) => a + b, 0);
+  if (totalM <= 0 || !monthInfo || monthInfo.month <= 0) return 0;
+  const m = Math.min(monthInfo.month, 36);
+  let sum = 0;
+  for (let mm = 1; mm < m; mm++) sum += (item.m[mm] || 0);
+  if (monthInfo.month <= 36) {
+    const frac = Math.min(1, monthInfo.dayInMonth / 30);
+    sum += (item.m[m] || 0) * frac;
+  } else {
+    sum = totalM; // 프로젝트 기간을 넘어선 날짜는 100%로 처리
+  }
+  return Math.min(sum / totalM, 1);
+}
+
+// 조회 날짜 하나를 기준으로 계획/실적의 %와 금액(원)을 계산합니다.
+function getScheduleDateInfo(dateStr) {
+  const monthInfo = scheduleMonthIndexFromDate(dateStr);
+  const planFrac = monthInfo ? scheduleCumulAt(monthInfo) : 0;
+  const planPct = planFrac * 100;
+  const planAmt = (typeof SCHEDULE_TOTAL_AMT !== "undefined") ? planFrac * SCHEDULE_TOTAL_AMT : 0;
+
+  // 1) 작업일보(DAILY_REPORTS)에 조회일과 정확히 같은 날짜가 있으면 그 실적을 그대로 사용
+  let actualPct = null, actualSource = null;
+  if (typeof DAILY_REPORTS !== "undefined") {
+    const matchKey = Object.keys(DAILY_REPORTS).find(k => DAILY_REPORTS[k].date === dateStr);
+    if (matchKey && DAILY_REPORTS[matchKey].progress) {
+      actualPct = DAILY_REPORTS[matchKey].progress.actual;
+      actualSource = "작업일보";
+    }
+  }
+  // 2) 없으면, 조회일이 속한 달의 "월말 실적 기록"(scheduleActuals.js)이 있으면 참고용으로 사용
+  if (actualPct === null && monthInfo && monthInfo.month > 0 && typeof SCHEDULE_ACTUALS !== "undefined") {
+    const rec = SCHEDULE_ACTUALS[String(monthInfo.month)];
+    if (typeof rec === "number") {
+      actualPct = rec;
+      actualSource = `${monthInfo.month}개월차 말 기록`;
+    }
+  }
+  const actualAmt = (actualPct !== null && typeof SCHEDULE_TOTAL_AMT !== "undefined") ? (actualPct / 100) * SCHEDULE_TOTAL_AMT : null;
+
+  return { dateStr, monthInfo, planPct, planAmt, actualPct, actualAmt, actualSource };
+}
+
+function won(n) {
+  return Math.round(n).toLocaleString("ko-KR") + "천원";
+}
+
+function getScheduleSelectedDateStr() {
+  const input = document.getElementById("schedule-date-select");
+  if (input && input.value) return input.value;
+  return scheduleClampToProjectRange(scheduleTodayStr());
+}
+
+function initScheduleDatePicker() {
+  const input = document.getElementById("schedule-date-select");
+  const todayBtn = document.getElementById("schedule-date-today-btn");
+  if (!input || typeof SCHEDULE_START_DATE === "undefined" || input.dataset.inited) return;
+  input.dataset.inited = "1";
+  input.min = SCHEDULE_START_DATE;
+  input.max = scheduleProjectEndDateStr();
+  input.value = scheduleClampToProjectRange(scheduleTodayStr());
+  input.addEventListener("change", () => {
+    if (!input.value) return;
+    input.value = scheduleClampToProjectRange(input.value);
+    renderScheduleSummary();
+    renderScheduleItemsTable();
+  });
+  if (todayBtn) {
+    todayBtn.addEventListener("click", () => {
+      input.value = scheduleClampToProjectRange(scheduleTodayStr());
+      renderScheduleSummary();
+      renderScheduleItemsTable();
+    });
+  }
+}
+
+function renderScheduleSummary() {
+  const el = document.getElementById("schedule-summary");
+  if (!el || typeof SCHEDULE_CUMUL === "undefined") return;
+  const dateStr = getScheduleSelectedDateStr();
+  const info = getScheduleDateInfo(dateStr);
+  const monthLabel = (info.monthInfo && info.monthInfo.month > 0)
+    ? `${Math.min(info.monthInfo.month, 36)}개월차`
+    : "착공 전";
+
+  let html = "";
+  html += `<div class="schedule-stat"><div class="schedule-stat-value">${monthLabel}</div><div class="schedule-stat-label">조회일 공정 시점</div></div>`;
+  html += `<div class="schedule-stat"><div class="schedule-stat-value plan">${info.planPct.toFixed(2)}%</div><div class="schedule-stat-label">계획 누계</div></div>`;
+  html += `<div class="schedule-stat"><div class="schedule-stat-value plan">${won(info.planAmt)}</div><div class="schedule-stat-label">계획 누계금액</div></div>`;
+
+  if (info.actualPct !== null) {
+    const diff = info.actualPct - info.planPct;
+    const diffClass = diff >= 0 ? "diff-pos" : "diff-neg";
+    html += `<div class="schedule-stat"><div class="schedule-stat-value actual">${info.actualPct.toFixed(2)}%</div><div class="schedule-stat-label">실적 누계 (${escapeHtml(info.actualSource || "")})</div></div>`;
+    html += `<div class="schedule-stat"><div class="schedule-stat-value actual">${won(info.actualAmt)}</div><div class="schedule-stat-label">실적 누계금액</div></div>`;
+    html += `<div class="schedule-stat"><div class="schedule-stat-value ${diffClass}">${diff >= 0 ? "+" : ""}${diff.toFixed(2)}%</div><div class="schedule-stat-label">계획 대비</div></div>`;
+  } else {
+    html += `<div class="schedule-stat"><div class="schedule-stat-value" style="color:var(--text-dim)">-</div><div class="schedule-stat-label">실적 (해당일 작업일보 없음)</div></div>`;
+  }
+  el.innerHTML = html;
+}
+
+function renderScheduleChart() {
+  const canvas = document.getElementById("scheduleChart");
+  if (!canvas || typeof SCHEDULE_CUMUL === "undefined" || typeof Chart === "undefined") return;
+
+  const months = Array.from({ length: 36 }, (_, i) => i + 1);
+  const planData = months.map(m => (SCHEDULE_CUMUL[m] || 0) * 100);
+
+  // 기록된 월별 실적(scheduleActuals.js)
+  const actualPoints = months.map(m => {
+    const v = (typeof SCHEDULE_ACTUALS !== "undefined") ? SCHEDULE_ACTUALS[String(m)] : undefined;
+    return (typeof v === "number") ? v : null;
+  });
+
+  // 아직 기록 안 된 이번 달은 작업일보의 실시간 실적으로 채워서 보여줌 (오늘 날짜 기준, 조회일 선택과는 무관)
+  const snap = getScheduleTodaySnapshot();
+  if (snap.actualPct !== null && snap.actualMonthInfo && snap.actualMonthInfo.month >= 1 && snap.actualMonthInfo.month <= 36) {
+    const idx = snap.actualMonthInfo.month;
+    if (actualPoints[idx - 1] === null) actualPoints[idx - 1] = snap.actualPct;
+  }
+
+  const id = "scheduleChart";
+  if (ChartInstances[id]) ChartInstances[id].destroy();
+  const ctx = canvas.getContext("2d");
+  ChartInstances[id] = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: months.map(m => m + "개월"),
+      datasets: [
+        {
+          label: "계획(누계%)",
+          data: planData,
+          borderColor: "#2979ff",
+          backgroundColor: "rgba(41,121,255,0.08)",
+          borderWidth: 2,
+          pointRadius: 0,
+          tension: 0.25,
+          fill: true
+        },
+        {
+          label: "실적(누계%)",
+          data: actualPoints,
+          borderColor: "#00c46a",
+          backgroundColor: "#00c46a",
+          borderWidth: 2,
+          pointRadius: 3,
+          spanGaps: true,
+          tension: 0.25
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      scales: {
+        x: { ticks: { color: "#8899bb", font: { size: 9 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 9 }, grid: { color: "#2a3347" } },
+        y: { ticks: { color: "#8899bb", font: { size: 9 }, callback: v => v + "%" }, grid: { color: "#2a3347" }, min: 0, max: 100 }
+      },
+      plugins: {
+        legend: { labels: { color: "#8899bb", font: { size: 9 }, boxWidth: 10 } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y === null || ctx.parsed.y === undefined ? "-" : ctx.parsed.y.toFixed(2) + "%"}`
+          }
+        }
+      }
+    }
+  });
+}
+
+function scheduleItemStatus(item, currentMonth) {
+  if (!item.m) return "future";
+  const monthsWithWork = Object.keys(item.m).map(Number).filter(m => item.m[m] > 0);
+  if (!monthsWithWork.length) return "future";
+  const start = Math.min(...monthsWithWork), end = Math.max(...monthsWithWork);
+  if (currentMonth < start) return "future";
+  if (currentMonth > end) return "done";
+  return "active";
+}
+
+function renderScheduleItemsTable() {
+  const tbody = document.getElementById("schedule-items-tbody");
+  if (!tbody || typeof SCHEDULE_MAJOR_ITEMS === "undefined") return;
+  const dateStr = getScheduleSelectedDateStr();
+  const monthInfo = scheduleMonthIndexFromDate(dateStr);
+  const currentMonth = monthInfo ? monthInfo.month : 0;
+  const badgeLabel = { active: "진행중", done: "완료", future: "예정" };
+  const sorted = [...SCHEDULE_MAJOR_ITEMS].sort((a, b) => b.ratio - a.ratio);
+
+  tbody.innerHTML = sorted.map(item => {
+    const status = scheduleItemStatus(item, currentMonth);
+    const fraction = scheduleItemCumulFractionAt(item, monthInfo);
+    const itemPlanAmt = fraction * item.amt;
+    return `<tr>
+      <td>${escapeHtml(item.name)}</td>
+      <td>${(item.ratio * 100).toFixed(2)}%</td>
+      <td style="text-align:right">${Math.round(item.amt).toLocaleString("ko-KR")}</td>
+      <td style="text-align:right">${Math.round(itemPlanAmt).toLocaleString("ko-KR")}</td>
+      <td><span class="schedule-badge ${status}">${badgeLabel[status]}</span></td>
+    </tr>`;
+  }).join("");
+}
+
+function renderSchedulePane() {
+  if (typeof SCHEDULE_CUMUL === "undefined") return; // scheduleData.js 미로딩 시 조용히 skip
+  initScheduleDatePicker();
+  renderScheduleSummary();
+  renderScheduleChart();
+  renderScheduleItemsTable();
+}
+
+const TEAM_KEYS = ["공무팀", "공사팀", "안전보건팀", "품질팀", "관리팀"];
+
+function renderTeamGenericPane(teamKey) {
+  const data = (typeof TEAM_DATA !== "undefined" && TEAM_DATA[teamKey]) || null;
+  const updatedEl = document.getElementById(`team-updated-${teamKey}`);
+  const bodyEl = document.getElementById(`team-body-${teamKey}`);
+  if (!bodyEl) return;
+
+  const hasRows = data && Array.isArray(data.rows) && data.rows.length > 0;
+  const hasImage = data && data.image;
+
+  if (!hasRows && !hasImage) {
+    if (updatedEl) updatedEl.textContent = "";
+    bodyEl.innerHTML = `<div class="team-empty">아직 등록된 자료가 없습니다.</div>`;
+    return;
+  }
+
+  if (updatedEl) updatedEl.textContent = data.updated ? `업데이트: ${escapeHtml(data.updated)}` : "";
+
+  let html = "";
+  if (hasImage) {
+    html += `<img class="team-pane-image" src="${escapeHtml(data.image)}" alt="${escapeHtml(teamKey)} 자료 이미지">`;
+  }
+  if (hasRows && Array.isArray(data.columns) && data.columns.length) {
+    html += `
+      <div class="team-table-scroll">
+        <table class="team-table">
+          <thead><tr>${data.columns.map(c => `<th>${escapeHtml(c)}</th>`).join("")}</tr></thead>
+          <tbody>
+            ${data.rows.map(row => `<tr>${row.map(cell => `<td>${escapeHtml(String(cell ?? ""))}</td>`).join("")}</tr>`).join("")}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+  bodyEl.innerHTML = html;
+}
+
+// ── 주요 일정 ──
+let eventsViewMode = "calendar"; // "list" | "calendar" — 기본은 월간뷰
+let eventsCalCursor = new Date(); // 월간뷰에서 현재 보고 있는 달의 기준일
+
+function eventsYmd(d) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+// startDate~endDate(둘 다 Date, 00:00 기준, inclusive) 범위의 일정을 반환
+// ※ 예전엔 "매주 반복" 규칙으로 자동 생성했지만, 실제로는 주간회의 요일/시간이 달마다 바뀌기도 해서
+//   지금은 매달 올려주는 일정표 이미지에 실제로 적힌 항목만 SCHEDULE_EVENTS_ONEOFF에 그대로 반영합니다.
+function getEventsInRange(startDate, endDate) {
+  const results = [];
+
+  if (typeof SCHEDULE_EVENTS_ONEOFF !== "undefined") {
+    SCHEDULE_EVENTS_ONEOFF.forEach(ev => {
+      const d = new Date(ev.date + "T00:00:00");
+      if (d >= startDate && d <= endDate) results.push(ev);
+    });
+  }
+
+  results.sort((a, b) => (a.date + " " + a.time).localeCompare(b.date + " " + b.time));
+  return results;
+}
+
+function renderEventsCard() {
+  if (eventsViewMode === "calendar") renderEventsCalendar();
+  else renderEventsList();
+}
+
+function renderEventsList() {
+  const el = document.getElementById("events-list");
+  const label = document.getElementById("events-cal-label");
+  if (!el) return;
+
+  const year = eventsCalCursor.getFullYear();
+  const month = eventsCalCursor.getMonth(); // 0-based
+  if (label) label.textContent = `${year}년 ${month + 1}월`;
+
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // 월 전체(1일~말일) 일정을 모두 가져옴 - 캘린더 뷰와 동일한 달의 일정을 빠짐없이 스크롤로 확인 가능
+  const events = getEventsInRange(firstDay, lastDay);
+  if (!events.length) {
+    el.innerHTML = `<div class="events-empty">등록된 일정이 없습니다.</div>`;
+    return;
+  }
+
+  const groups = {};
+  events.forEach(ev => {
+    (groups[ev.date] = groups[ev.date] || []).push(ev);
+  });
+
+  const todayKey = eventsYmd(today);
+  const weekdayNames = ["일", "월", "화", "수", "목", "금", "토"];
+  let html = "";
+  Object.keys(groups).sort().forEach(dateKey => {
+    const d = new Date(dateKey + "T00:00:00");
+    const isToday = dateKey === todayKey;
+    html += `<div class="events-day-group${isToday ? " is-today" : ""}">`;
+    html += `<div class="events-day-hdr">${d.getMonth() + 1}/${d.getDate()} (${weekdayNames[d.getDay()]})${isToday ? `<span class="events-today-badge">오늘</span>` : ""}</div>`;
+    groups[dateKey].forEach(ev => {
+      html += `<div class="events-item">
+        <span class="events-item-time">${escapeHtml(ev.time)}</span>
+        <span class="events-item-title">${escapeHtml(ev.title)}</span>
+        ${ev.note ? `<span class="events-item-note">${escapeHtml(ev.note)}</span>` : ""}
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderEventsCalendar() {
+  const grid = document.getElementById("events-cal-grid");
+  const label = document.getElementById("events-cal-label");
+  if (!grid || !label) return;
+
+  const year = eventsCalCursor.getFullYear();
+  const month = eventsCalCursor.getMonth(); // 0-based
+  label.textContent = `${year}년 ${month + 1}월`;
+
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const firstWeekday = firstDay.getDay();
+  const daysInMonth = lastDay.getDate();
+
+  const events = getEventsInRange(firstDay, lastDay);
+  const byDate = {};
+  events.forEach(ev => (byDate[ev.date] = byDate[ev.date] || []).push(ev));
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const todayKey = eventsYmd(today);
+
+  let html = "";
+  for (let i = 0; i < firstWeekday; i++) {
+    html += `<div class="events-cal-cell empty"></div>`;
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateObj = new Date(year, month, d);
+    const key = eventsYmd(dateObj);
+    const dayEvents = byDate[key] || [];
+    const cls = ["events-cal-cell"];
+    if (dateObj.getDay() === 0) cls.push("sunday");
+    if (key === todayKey) cls.push("today");
+    if (dayEvents.length) cls.push("has-events");
+    html += `<div class="${cls.join(" ")}"${dayEvents.length ? ` data-date="${key}"` : ""}>
+      <div class="events-cal-daynum">${d}</div>
+      ${dayEvents.map(ev => `<div class="events-cal-chip" title="${escapeHtml(ev.time + " " + ev.title + (ev.note ? " - " + ev.note : ""))}">${escapeHtml(ev.time)} ${escapeHtml(ev.title)}</div>`).join("")}
+    </div>`;
+  }
+  grid.innerHTML = html;
+
+  grid.querySelectorAll(".events-cal-cell.has-events").forEach(cell => {
+    cell.addEventListener("click", () => openEventsDayModal(cell.dataset.date));
+  });
+}
+
+function renderEventsDayModal(dateKey) {
+  const titleEl = document.getElementById("events-day-modal-title");
+  const bodyEl = document.getElementById("events-day-modal-body");
+  if (!titleEl || !bodyEl) return;
+
+  const d = new Date(dateKey + "T00:00:00");
+  const weekdayNames = ["일", "월", "화", "수", "목", "금", "토"];
+  titleEl.textContent = `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일 (${weekdayNames[d.getDay()]}) 일정`;
+
+  const events = getEventsInRange(d, d);
+  if (!events.length) {
+    bodyEl.innerHTML = `<div class="events-day-modal-empty">등록된 일정이 없습니다.</div>`;
+    return;
+  }
+
+  bodyEl.innerHTML = events.map(ev => `
+    <div class="events-day-modal-item">
+      <div class="events-day-modal-time">${escapeHtml(ev.time)}</div>
+      <div class="events-day-modal-text">
+        <div class="events-day-modal-item-title">${escapeHtml(ev.title)}</div>
+        ${ev.note ? `<div class="events-day-modal-item-note">${escapeHtml(ev.note)}</div>` : ""}
+      </div>
+    </div>
+  `).join("");
+}
+
+function openEventsDayModal(dateKey) {
+  const modal = document.getElementById("events-day-modal");
+  if (!modal || !dateKey) return;
+  renderEventsDayModal(dateKey);
+  modal.classList.add("show");
+}
+
+function closeEventsDayModal() {
+  const modal = document.getElementById("events-day-modal");
+  if (modal) modal.classList.remove("show");
+}
+
+function initEventsDayModal() {
+  const closeBtn = document.getElementById("events-day-modal-close-btn");
+  const overlay = document.getElementById("events-day-modal");
+  if (closeBtn) closeBtn.addEventListener("click", closeEventsDayModal);
+  if (overlay) {
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeEventsDayModal();
+    });
+  }
+}
+
+function initEventsCard() {
+  const tabBar = document.getElementById("events-view-tabs");
+  const listWrap = document.getElementById("events-list-wrap");
+  const calWrap = document.getElementById("events-cal-wrap");
+
+  if (tabBar) {
+    tabBar.querySelectorAll(".wtab").forEach(btn => {
+      btn.addEventListener("click", () => {
+        tabBar.querySelectorAll(".wtab").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        eventsViewMode = btn.dataset.view;
+        if (listWrap) listWrap.style.display = (eventsViewMode === "list") ? "" : "none";
+        if (calWrap) calWrap.style.display = (eventsViewMode === "calendar") ? "" : "none";
+        renderEventsCard();
+      });
+    });
+  }
+
+  const prevBtn = document.getElementById("events-cal-prev");
+  const nextBtn = document.getElementById("events-cal-next");
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      eventsCalCursor.setMonth(eventsCalCursor.getMonth() - 1);
+      renderEventsCard();
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      eventsCalCursor.setMonth(eventsCalCursor.getMonth() + 1);
+      renderEventsCard();
+    });
+  }
+
+  renderEventsCard();
+}
+
+function initTeamMainTabs() {
+  const tabBar = document.getElementById("team-main-tabs");
+  if (!tabBar) return;
+
+  tabBar.querySelectorAll(".wtab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const team = btn.dataset.team;
+      tabBar.querySelectorAll(".wtab").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      TEAM_KEYS.forEach(k => {
+        const pane = document.getElementById(`team-pane-${k}`);
+        if (pane) pane.style.display = (k === team) ? "" : "none";
+      });
+      // 공무팀 탭은 캔버스가 보이는 상태에서 그려야 크기가 제대로 잡히므로,
+      // 탭이 눈에 보이게 된 시점에 (다시) 렌더링합니다.
+      if (team === "공무팀") renderSchedulePane();
+    });
+  });
+
+  // 초기 렌더 - 품질팀 외 나머지 4팀은 TEAM_DATA(teamData.js)로 채웁니다
+  TEAM_KEYS.filter(k => k !== "품질팀").forEach(renderTeamGenericPane);
+}
+
 function init() {
   // 1) 실시간 시계 가동
   updateClock();
@@ -1856,6 +2426,13 @@ function init() {
   // 4-2) 품질관리 현황(함수비/평판재하시험) 초기 렌더링 및 상세 모달 초기화
   renderQuality(currentQualityType);
   initQualityModal();
+
+  // 4-3) 팀별 공유공간 탭 초기화 (공무/공사/안전보건/관리팀)
+  initTeamMainTabs();
+
+  // 4-4) 주요 일정 카드 초기화 (목록/월간 뷰 전환 포함)
+  initEventsCard();
+  initEventsDayModal();
 
   // 4-1) 작업일보 엑셀 "불러오기" 버튼 초기화 (서버 없이 로컬 파일 선택 → 즉시 갱신)
   initExcelLoader();

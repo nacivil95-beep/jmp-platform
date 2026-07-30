@@ -239,11 +239,11 @@
 
       </div><!-- /worker-equip-col -->
 
-      <!-- 위젯 5: 품질관리 현황 (공정율/작업일보 바로 옆) -->
-      <div class="card" id="quality-card">
+      <!-- 위젯 5: 팀별 공유공간 (공정율/작업일보 바로 옆) -->
+      <div class="card" id="team-card">
         <div class="card-hdr">
           <div class="card-title">
-            <i class="fa-solid fa-vial-circle-check" style="color:#38bdf8;"></i> 품질관리 현황
+            <i class="fa-solid fa-people-group" style="color:#38bdf8;"></i> 팀별 공유공간
           </div>
           <div class="card-actions">
             <i class="fa-solid fa-rotate"></i>
@@ -251,23 +251,78 @@
           </div>
         </div>
         <div class="card-body">
-          <!-- 함수비 시험 / 평판재하시험 전환 탭 -->
-          <div class="widget-tabs" id="quality-tabs">
-            <button class="wtab active" data-tab="quality" data-val="moisture">함수비 시험</button>
-            <button class="wtab" data-tab="quality" data-val="plate">평판재하시험</button>
+          <!-- 팀 선택 탭 -->
+          <div class="widget-tabs team-main-tabs" id="team-main-tabs">
+            <button class="wtab" data-team="공무팀">공무팀</button>
+            <button class="wtab" data-team="공사팀">공사팀</button>
+            <button class="wtab" data-team="안전보건팀">안전/보건팀</button>
+            <button class="wtab active" data-team="품질팀">품질팀</button>
+            <button class="wtab" data-team="관리팀">관리팀</button>
           </div>
 
-          <!-- 적합/부적합 요약 -->
-          <div class="quality-summary" id="quality-summary"></div>
+          <!-- 공무팀 -->
+          <div class="team-pane" id="team-pane-공무팀" style="display:none;">
+            <!-- 예정공정표: 계획 대비 실적 S-curve -->
+            <div class="schedule-block">
+              <div class="schedule-datebar">
+                <span class="schedule-date-label">📅 조회 날짜</span>
+                <input type="date" id="schedule-date-select" class="schedule-date-input">
+                <button type="button" id="schedule-date-today-btn" class="schedule-date-today-btn">오늘</button>
+              </div>
+              <div class="schedule-summary" id="schedule-summary"></div>
+              <div class="schedule-chart-wrap">
+                <canvas id="scheduleChart"></canvas>
+              </div>
+              <div class="schedule-table-title">공종별 금액 비중 · 조회일 기준 계획금액</div>
+              <div class="team-table-scroll schedule-items-scroll">
+                <table class="team-table" id="schedule-items-table">
+                  <thead><tr><th>공종명</th><th>전체비중</th><th style="text-align:right">계약금액(천원)</th><th style="text-align:right">조회일 계획금액(천원)</th><th>상태</th></tr></thead>
+                  <tbody id="schedule-items-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="team-updated" id="team-updated-공무팀"></div>
+            <div class="team-generic-body" id="team-body-공무팀"></div>
+          </div>
 
-          <!-- 최근 시험 목록 (행 클릭 시 상세 모달) -->
-          <div class="quality-table-scroll">
-            <table class="quality-table" id="quality-table">
-              <thead>
-                <tr><th>No</th><th>날짜</th><th>위치</th><th>판정</th></tr>
-              </thead>
-              <tbody id="quality-tbody"></tbody>
-            </table>
+          <!-- 공사팀 -->
+          <div class="team-pane" id="team-pane-공사팀" style="display:none;">
+            <div class="team-updated" id="team-updated-공사팀"></div>
+            <div class="team-generic-body" id="team-body-공사팀"></div>
+          </div>
+
+          <!-- 안전/보건팀 -->
+          <div class="team-pane" id="team-pane-안전보건팀" style="display:none;">
+            <div class="team-updated" id="team-updated-안전보건팀"></div>
+            <div class="team-generic-body" id="team-body-안전보건팀"></div>
+          </div>
+
+          <!-- 품질팀 (기존 품질관리 현황 위젯 그대로 유지) -->
+          <div class="team-pane" id="team-pane-품질팀">
+            <!-- 함수비 시험 / 평판재하시험 전환 탭 -->
+            <div class="widget-tabs" id="quality-tabs">
+              <button class="wtab active" data-tab="quality" data-val="moisture">함수비 시험</button>
+              <button class="wtab" data-tab="quality" data-val="plate">평판재하시험</button>
+            </div>
+
+            <!-- 적합/부적합 요약 -->
+            <div class="quality-summary" id="quality-summary"></div>
+
+            <!-- 최근 시험 목록 (행 클릭 시 상세 모달) -->
+            <div class="quality-table-scroll">
+              <table class="quality-table" id="quality-table">
+                <thead>
+                  <tr><th>No</th><th>날짜</th><th>위치</th><th>판정</th></tr>
+                </thead>
+                <tbody id="quality-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 관리팀 -->
+          <div class="team-pane" id="team-pane-관리팀" style="display:none;">
+            <div class="team-updated" id="team-updated-관리팀"></div>
+            <div class="team-generic-body" id="team-body-관리팀"></div>
           </div>
         </div>
       </div>
@@ -372,9 +427,41 @@
         </div>
       </div>
 
+      <!-- 주요 일정 (Site Map / 토공사현황 옆 3번째 칸) -->
+      <div class="card" id="events-card">
+        <div class="card-hdr">
+          <div class="card-title">
+            <i class="fa-solid fa-calendar-days" style="color:#ffc107;"></i> 주요 일정
+          </div>
+          <div class="card-actions">
+            <div class="widget-tabs" id="events-view-tabs" style="margin-bottom:0;">
+              <button class="wtab" data-view="list">목록</button>
+              <button class="wtab active" data-view="calendar">월간</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="events-cal-nav">
+            <button type="button" class="events-cal-nav-btn" id="events-cal-prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="events-cal-label" id="events-cal-label">-</div>
+            <button type="button" class="events-cal-nav-btn" id="events-cal-next"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+          <div id="events-list-wrap" style="display:none;">
+            <div class="events-list" id="events-list"></div>
+          </div>
+          <div id="events-cal-wrap">
+            <div class="events-cal-weekdays">
+              <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+            </div>
+            <div class="events-cal-grid" id="events-cal-grid"></div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /bottom-row -->
 
   </div><!-- /main -->
+
 
 </div><!-- /app -->
 
@@ -416,9 +503,26 @@
     </div>
   </div>
 
+  <!-- ──────────────────────── 주요 일정 상세 모달 (월간뷰에서 날짜 탭 시) ──────────────────────── -->
+  <div class="modal-overlay" id="events-day-modal">
+    <div class="modal-box">
+      <div class="modal-hdr">
+        <div class="modal-title"><i class="fa-solid fa-calendar-day"></i> <span id="events-day-modal-title">-</span></div>
+        <div class="modal-hdr-right">
+          <button class="modal-close" id="events-day-modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="modal-body events-day-modal-body" id="events-day-modal-body"></div>
+    </div>
+  </div>
+
 <script src="dailyData.js"></script>
 <script src="qualityData.js"></script>
 <script src="notices.js"></script>
+<script src="teamData.js"></script>
+<script src="scheduleData.js"></script>
+<script src="scheduleActuals.js"></script>
+<script src="scheduleEvents.js"></script>
 <script src="app.js"></script>
   <!-- ──────────────────────── 날짜 선택 캘린더 팝업 (공정율/인원/장비/토공사 카드 공통) ──────────────────────── -->
   <div class="date-calendar-popup" id="date-calendar-popup">
