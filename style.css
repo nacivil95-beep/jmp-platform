@@ -221,6 +221,8 @@ html, body {
   gap: 8px;
   overflow-y: auto;
   flex: 1;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 .events-day-group {
@@ -319,6 +321,8 @@ html, body {
   gap: 3px;
   overflow-y: auto;
   flex: 1;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 .events-cal-cell {
@@ -1253,7 +1257,7 @@ html, body {
   #team-card     { order: 5; height: 400px; }
   #map-card      { order: 6; min-height: 280px; }
   #earth-card    { order: 7; min-height: 380px; }
-  #events-card   { order: 8; min-height: 300px; max-height: none; }
+  #events-card   { order: 8; height: 400px; }
 
   /* 표가 많은 카드는 가로 스크롤로 무너짐 방지 */
   .equip-table-scroll,
