@@ -199,7 +199,7 @@ html, body {
 /* 하단 행 (Site Map / 토공사 현황 / 주요 일정) */
 #bottom-row {
   display: grid;
-  grid-template-columns: 0.65fr 0.67fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 6px;
   flex: 1 1 340px;
   min-height: 340px;
@@ -693,7 +693,9 @@ html, body {
 .worker-role-scroll {
   flex: 1;
   overflow-y: auto;
+  min-height: 0;
   margin-top: 6px;
+  -webkit-overflow-scrolling: touch;
 }
 .mini-role-table {
   width: 100%;
@@ -719,6 +721,9 @@ html, body {
 .equip-table-scroll {
   flex: 1;
   overflow-y: auto;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: auto;
 }
 .equip-table {
   width: 100%;
@@ -1239,12 +1244,13 @@ html, body {
   }
 
   /* 모바일에서 보고 싶은 순서: 기상 → 공정율/작업일보 → 인원 → 장비
-     → 품질관리 → Site Map → 토공사 */
+     → 팀별 공유공간(품질관리 등) → Site Map → 토공사 → 주요일정
+     (데스크톱 화면에 보이는 순서와 동일하게 맞춤) */
   #weather-card  { order: 1; }
   #progress-card { order: 2; }
   #worker-card   { order: 3; height: 300px; }
   #equip-card    { order: 4; height: 340px; }
-  #quality-card  { order: 5; height: 340px; }
+  #team-card     { order: 5; height: 400px; }
   #map-card      { order: 6; min-height: 280px; }
   #earth-card    { order: 7; min-height: 380px; }
   #events-card   { order: 8; min-height: 300px; max-height: none; }
@@ -1407,7 +1413,7 @@ html, body {
   margin-top: 2px;
 }
 
-.quality-table-scroll { flex: 1; overflow-y: auto; min-height: 0; }
+.quality-table-scroll { flex: 1; overflow-y: auto; min-height: 0; -webkit-overflow-scrolling: touch; }
 
 .quality-table { width: 100%; border-collapse: collapse; font-size: 10px; }
 
@@ -1722,6 +1728,17 @@ html, body {
    ======================================================================== */
 .team-main-tabs { margin-bottom: 8px; }
 
+/* 팀 탭 콘텐츠(.team-pane)가 flex 컨테이너가 아니어서 내부의 .quality-table-scroll,
+   .team-table-scroll 등이 flex:1/min-height:0을 적용받지 못해 목록이 스크롤 없이
+   한번에 전부 표시되던 문제 수정 - 부모를 flex-column으로 만들어 남은 카드 높이를
+   내부 스크롤 영역에 정확히 전달합니다. */
+.team-pane {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
 .team-updated {
   font-size: 9px;
   color: var(--text-dim);
@@ -1745,7 +1762,7 @@ html, body {
   margin-bottom: 8px;
 }
 
-.team-table-scroll { overflow-y: auto; max-height: 230px; }
+.team-table-scroll { overflow-y: auto; max-height: 230px; -webkit-overflow-scrolling: touch; }
 
 .team-table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
 .team-table th {
