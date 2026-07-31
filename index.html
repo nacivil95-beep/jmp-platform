@@ -287,10 +287,21 @@
             <div class="team-generic-body" id="team-body-공사팀"></div>
           </div>
 
-          <!-- 안전/보건팀 -->
+          <!-- 안전/보건팀 (유해위험작업 현황) - SAFETY_DATA(safetyData.js) 연동 -->
           <div class="team-pane" id="team-pane-안전보건팀" style="display:none;">
-            <div class="team-updated" id="team-updated-안전보건팀"></div>
-            <div class="team-generic-body" id="team-body-안전보건팀"></div>
+            <div class="safety-toolbar">
+              <span class="safety-toolbar-label"><i class="fa-solid fa-triangle-exclamation"></i> 유해위험작업 현황</span>
+              <button type="button" class="date-picker-btn" id="safety-date-select"></button>
+            </div>
+            <div class="safety-summary" id="safety-summary"></div>
+            <div class="team-table-scroll">
+              <table class="team-table" id="safety-table">
+                <thead>
+                  <tr><th>작업일자</th><th>업체명</th><th>등급</th><th>작업명</th><th>작업장소</th><th>상태</th></tr>
+                </thead>
+                <tbody id="safety-tbody"></tbody>
+              </table>
+            </div>
           </div>
 
           <!-- 품질팀 (기존 품질관리 현황 위젯 그대로 유지) -->
@@ -533,6 +544,7 @@
 <script src="scheduleData.js"></script>
 <script src="scheduleActuals.js"></script>
 <script src="scheduleEvents.js"></script>
+<script src="safetyData.js"></script>
 <script src="app.js"></script>
   <!-- ──────────────────────── 날짜 선택 캘린더 팝업 (공정율/인원/장비/토공사 카드 공통) ──────────────────────── -->
   <div class="date-calendar-popup" id="date-calendar-popup">
@@ -541,6 +553,20 @@
       <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
     </div>
     <div class="dcp-grid" id="dcp-grid"></div>
+  </div>
+
+  <!-- ──────────────────────── 안전/보건팀 유해위험작업 날짜 선택 캘린더 팝업 ──────────────────────── -->
+  <!-- safetyData.js는 날짜가 계속 쌓이며 여러 달에 걸치므로, 위 팝업과 달리 월 이동(◀ ▶) 기능을 둔 별도 팝업입니다. -->
+  <div class="date-calendar-popup" id="safety-date-calendar-popup">
+    <div class="dcp-nav">
+      <button type="button" class="events-cal-nav-btn" id="safety-dcp-prev"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="dcp-header" id="safety-dcp-month-label">-</div>
+      <button type="button" class="events-cal-nav-btn" id="safety-dcp-next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+    <div class="dcp-weekdays">
+      <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+    </div>
+    <div class="dcp-grid" id="safety-dcp-grid"></div>
   </div>
 
 </body>

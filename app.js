@@ -2170,6 +2170,236 @@ function renderSchedulePane() {
   renderScheduleItemsTable();
 }
 
+// =========================================================================
+// 10-2. 안전/보건팀 - 유해위험작업 현황 (SAFETY_DATA: safetyData.js) 연동
+// extract_safety.py가 '유해위험작업_YYYYMMDD.xlsx' 파일들을 읽어 날짜별로 쌓아둔 데이터를 표시합니다.
+// 매일 데이터가 추가되며 여러 달에 걸치므로, 인원/장비 카드와 달리 월 이동이 가능한
+// 전용 캘린더 팝업(#safety-date-calendar-popup)으로 날짜를 선택합니다.
+// =========================================================================
+let currentSafetyDate = null;         // 선택된 날짜 "YYYY-MM-DD"
+let safetyCalCursor = new Date();     // 캘린더 팝업에서 현재 보여주는 달의 기준일
+
+function getSafetyDateKeys() {
+  if (typeof SAFETY_DATA === "undefined") return [];
+  return Object.keys(SAFETY_DATA).sort(); // 오름차순
+}
+
+// "2026-07-31" -> "2026.07.31"
+function safetyDateLabel(key) {
+  return key ? key.replace(/-/g, ".") : "날짜 없음";
+}
+
+// 상태 문자열 중 "승인"을 포함하되 "미승인"은 제외한 경우만 승인으로 봅니다.
+function isSafetyApproved(status) {
+  const s = status || "";
+  return s.includes("승인") && !s.includes("미승인");
+}
+
+// 오늘 날짜 데이터가 있으면 오늘, 없으면 가장 최근 날짜를 기본 선택합니다.
+function pickDefaultSafetyDate() {
+  const keys = getSafetyDateKeys();
+  if (!keys.length) return null;
+  const now = new Date();
+  const todayKey = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
+  return keys.includes(todayKey) ? todayKey : keys[keys.length - 1];
+}
+
+function refreshSafetyDateButton() {
+  const btn = document.getElementById("safety-date-select");
+  if (btn) btn.textContent = safetyDateLabel(currentSafetyDate);
+}
+
+function setSafetyDate(key) {
+  if (typeof SAFETY_DATA === "undefined" || !SAFETY_DATA[key]) return;
+  currentSafetyDate = key;
+  refreshSafetyDateButton();
+  renderSafetyTable(currentSafetyDate);
+}
+
+// ── 안전/보건팀 날짜 선택 캘린더 팝업 (월 이동 가능) ──
+function toggleSafetyDatePicker(triggerEl) {
+  const popup = document.getElementById("safety-date-calendar-popup");
+  if (!popup) return;
+  if (popup.classList.contains("show")) {
+    closeSafetyDatePicker();
+    return;
+  }
+  openSafetyDatePicker(triggerEl);
+}
+
+function openSafetyDatePicker(triggerEl) {
+  const popup = document.getElementById("safety-date-calendar-popup");
+  if (!popup) return;
+
+  if (currentSafetyDate) {
+    const [y, m] = currentSafetyDate.split("-").map(Number);
+    safetyCalCursor = new Date(y, m - 1, 1);
+  }
+  renderSafetyDatePickerGrid();
+
+  triggerEl.classList.add("active");
+  const rect = triggerEl.getBoundingClientRect();
+  const popupWidth = popup.offsetWidth || 216;
+  let left = rect.right - popupWidth;
+  if (left < 8) left = Math.min(rect.left, window.innerWidth - popupWidth - 8);
+  popup.style.left = `${Math.max(8, left)}px`;
+  popup.style.top = `${rect.bottom + 6}px`;
+  popup.classList.add("show");
+
+  const popupRect = popup.getBoundingClientRect();
+  if (popupRect.bottom > window.innerHeight - 8) {
+    popup.style.top = `${rect.top - popupRect.height - 6}px`;
+  }
+}
+
+function closeSafetyDatePicker() {
+  const popup = document.getElementById("safety-date-calendar-popup");
+  if (popup) popup.classList.remove("show");
+  const btn = document.getElementById("safety-date-select");
+  if (btn) btn.classList.remove("active");
+}
+
+function renderSafetyDatePickerGrid() {
+  const labelEl = document.getElementById("safety-dcp-month-label");
+  const grid = document.getElementById("safety-dcp-grid");
+  if (!labelEl || !grid) return;
+
+  const year = safetyCalCursor.getFullYear();
+  const month = safetyCalCursor.getMonth(); // 0-based
+  labelEl.textContent = `${year}년 ${pad2(month + 1)}월`;
+
+  const firstWeekday = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const now = new Date();
+  const todayKey = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
+
+  grid.innerHTML = "";
+  for (let i = 0; i < firstWeekday; i++) {
+    grid.insertAdjacentHTML("beforeend", `<span class="dcp-day empty"></span>`);
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const key = `${year}-${pad2(month + 1)}-${pad2(d)}`;
+    const hasData = typeof SAFETY_DATA !== "undefined" && !!SAFETY_DATA[key];
+    const cls = ["dcp-day"];
+    if (hasData) cls.push("has-data");
+    if (key === currentSafetyDate) cls.push("selected");
+    if (key === todayKey) cls.push("today");
+    grid.insertAdjacentHTML("beforeend",
+      `<span class="${cls.join(" ")}"${hasData ? ` data-key="${key}"` : ""} title="${hasData ? safetyDateLabel(key) : ""}">${d}</span>`);
+  }
+
+  grid.querySelectorAll(".dcp-day.has-data").forEach(el => {
+    el.addEventListener("click", () => {
+      setSafetyDate(el.dataset.key);
+      closeSafetyDatePicker();
+    });
+  });
+}
+
+function initSafetyDatePicker() {
+  const btn = document.getElementById("safety-date-select");
+  const popup = document.getElementById("safety-date-calendar-popup");
+  const prevBtn = document.getElementById("safety-dcp-prev");
+  const nextBtn = document.getElementById("safety-dcp-next");
+  if (!btn || !popup) return;
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleSafetyDatePicker(btn);
+  });
+  if (prevBtn) {
+    prevBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      safetyCalCursor.setMonth(safetyCalCursor.getMonth() - 1);
+      renderSafetyDatePickerGrid();
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      safetyCalCursor.setMonth(safetyCalCursor.getMonth() + 1);
+      renderSafetyDatePickerGrid();
+    });
+  }
+
+  document.addEventListener("click", (e) => {
+    if (!popup.classList.contains("show")) return;
+    if (popup.contains(e.target) || btn.contains(e.target)) return;
+    closeSafetyDatePicker();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeSafetyDatePicker();
+  });
+  window.addEventListener("resize", closeSafetyDatePicker);
+}
+
+function renderSafetyTable(dateKey) {
+  const summaryEl = document.getElementById("safety-summary");
+  const tbody = document.getElementById("safety-tbody");
+  if (!tbody) return;
+
+  const list = (typeof SAFETY_DATA !== "undefined" && SAFETY_DATA[dateKey]) || [];
+  const total = list.length;
+  const approvedCount = list.filter(r => isSafetyApproved(r.status)).length;
+  const otherCount = total - approvedCount;
+
+  if (summaryEl) {
+    summaryEl.innerHTML = `
+      <div class="safety-stat">
+        <div class="safety-stat-value">${fmt(total)}</div>
+        <div class="safety-stat-label">전체 작업</div>
+      </div>
+      <div class="safety-stat">
+        <div class="safety-stat-value pass">${fmt(approvedCount)}</div>
+        <div class="safety-stat-label">작업승인</div>
+      </div>
+      <div class="safety-stat">
+        <div class="safety-stat-value fail">${fmt(otherCount)}</div>
+        <div class="safety-stat-label">그 외</div>
+      </div>
+    `;
+  }
+
+  if (!total) {
+    tbody.innerHTML = `<tr><td colspan="6" class="quality-table-empty">등록된 유해위험작업이 없습니다.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = list.map(rec => {
+    const badgeClass = isSafetyApproved(rec.status) ? "approved" : "pending";
+    return `
+      <tr>
+        <td>${escapeHtml(rec.date || "-")}</td>
+        <td>${escapeHtml(rec.company || "-")}</td>
+        <td>${escapeHtml(rec.grade || "-")}</td>
+        <td>${escapeHtml(rec.work_name || "-")}</td>
+        <td>${escapeHtml(rec.location || "-")}</td>
+        <td><span class="safety-status-badge ${badgeClass}">${escapeHtml(rec.status || "-")}</span></td>
+      </tr>
+    `;
+  }).join("");
+}
+
+function renderSafetyPane() {
+  const btn = document.getElementById("safety-date-select");
+  const summaryEl = document.getElementById("safety-summary");
+  const tbody = document.getElementById("safety-tbody");
+
+  if (typeof SAFETY_DATA === "undefined" || !Object.keys(SAFETY_DATA).length) {
+    if (btn) btn.textContent = "날짜 없음";
+    if (summaryEl) summaryEl.innerHTML = "";
+    if (tbody) tbody.innerHTML = `<tr><td colspan="6" class="quality-table-empty">등록된 안전 데이터가 없습니다.</td></tr>`;
+    return;
+  }
+
+  currentSafetyDate = pickDefaultSafetyDate();
+  const [y, m] = currentSafetyDate.split("-").map(Number);
+  safetyCalCursor = new Date(y, m - 1, 1);
+  refreshSafetyDateButton();
+  initSafetyDatePicker();
+  renderSafetyTable(currentSafetyDate);
+}
+
 const TEAM_KEYS = ["공무팀", "공사팀", "안전보건팀", "품질팀", "관리팀"];
 
 function renderTeamGenericPane(teamKey) {
@@ -2435,8 +2665,9 @@ function initTeamMainTabs() {
     });
   });
 
-  // 초기 렌더 - 품질팀 외 나머지 4팀은 TEAM_DATA(teamData.js)로 채웁니다
-  TEAM_KEYS.filter(k => k !== "품질팀").forEach(renderTeamGenericPane);
+  // 초기 렌더 - 품질팀(QUALITY_DATA)과 안전보건팀(SAFETY_DATA)은 전용 렌더러를 쓰고,
+  // 나머지 3팀은 TEAM_DATA(teamData.js)로 채웁니다
+  TEAM_KEYS.filter(k => k !== "품질팀" && k !== "안전보건팀").forEach(renderTeamGenericPane);
 }
 
 function init() {
@@ -2465,6 +2696,9 @@ function init() {
   renderQuality(currentQualityType);
   initQualityModal();
   initEquipModal();
+
+  // 4-2-1) 안전/보건팀 유해위험작업 현황(safetyData.js) 초기 렌더링 및 날짜 선택 캘린더 초기화
+  renderSafetyPane();
 
   // 4-3) 팀별 공유공간 탭 초기화 (공무/공사/안전보건/관리팀)
   initTeamMainTabs();

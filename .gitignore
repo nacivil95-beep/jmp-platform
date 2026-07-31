@@ -15,10 +15,14 @@
 # 로컬 자동화/변환 스크립트 - 이 컴퓨터에서만 실행되면 되는 것들
 extract.py
 extract_quality.py
+extract_safety.py
 update_data.bat
 auto_update.ps1
 run_auto_update.bat
 auto_update.log
+
+# extract_safety.py가 "이미 처리한 파일" 여부를 기록해두는 상태 파일 (컴퓨터별 로컬 정보)
+safety_state.json
 
 # 개인 메모/가이드 문서
 _GitHub_관리_가이드.txt
