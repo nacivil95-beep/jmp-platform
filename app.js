@@ -707,19 +707,29 @@ function renderEquip(key) {
     `);
     if (!isTotal) {
       const tr = tbody.lastElementChild;
-      tr.addEventListener("click", () => openEquipDetailPopup(item.name, key));
+      tr.addEventListener("click", () => openEquipDetailModal(item.name, key));
     }
   });
 }
 
-// ── 장비 세부 규격 팝업(새창) ──
-// 장비 현황 표에서 특정 장비(대분류)를 클릭하면, 해당 날짜 기준 규격별 보유/투입 대수를 새 창으로 띄웁니다.
-function openEquipDetailPopup(type, key) {
+// ── 장비 세부 규격 모달 ──
+// 장비 현황 표에서 특정 장비(대분류)를 클릭하면, 해당 날짜 기준 규격별 보유/투입 대수를
+// 다른 상세 카드들과 동일한 방식(페이지 내 모달)으로 크게 띄웁니다.
+function openEquipDetailModal(type, key) {
   const rep = DAILY_REPORTS[key];
   if (!rep) return;
 
+  const modal = document.getElementById("equip-detail-modal");
+  const titleEl = document.getElementById("equip-modal-title");
+  const dateEl = document.getElementById("equip-modal-date");
+  const bodyEl = document.getElementById("equip-modal-body");
+  if (!modal || !bodyEl) return;
+
   const details = (rep.equipment_detail || []).filter(d => d.type === type);
   const dateLabel = rep.date || key;
+
+  if (titleEl) titleEl.textContent = `${type} · 규격별 상세`;
+  if (dateEl) dateEl.textContent = `${dateLabel} 기준`;
 
   const rowsHtml = details.length
     ? details.map(d => {
@@ -734,112 +744,56 @@ function openEquipDetailPopup(type, key) {
           </tr>
         `;
       }).join("")
-    : `<tr><td colspan="4" class="equip-popup-empty">규격별 세부 데이터가 없습니다.</td></tr>`;
+    : "";
+
+  if (!details.length) {
+    bodyEl.innerHTML = `<div class="equip-modal-empty">규격별 세부 데이터가 없습니다.</div>`;
+    modal.classList.add("show");
+    return;
+  }
 
   const totalToday = details.reduce((sum, d) => sum + (d.today || 0), 0);
   const totalPrev = details.reduce((sum, d) => sum + (d.prev || 0), 0);
   const totalCum = details.reduce((sum, d) => sum + (d.cum || 0), 0);
 
-  const html = `
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title>${escapeHtml(type)} 규격별 상세 - ${escapeHtml(dateLabel)}</title>
-<style>
-  :root {
-    --bg-root: #0d111a;
-    --bg-card: #1a2133;
-    --bg-inner: #111827;
-    --border: #2a3347;
-    --text-white: #f0f4ff;
-    --text-muted: #8899bb;
-    --text-dim: #4a5a7a;
-    --orange-light: #fdba74;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    padding: 20px;
-    background: var(--bg-root);
-    color: var(--text-white);
-    font-family: "Pretendard", "Malgun Gothic", -apple-system, sans-serif;
-  }
-  .popup-hdr {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 10px;
-    margin-bottom: 14px;
-  }
-  .popup-title { font-size: 16px; font-weight: 700; }
-  .popup-date { font-size: 12px; color: var(--text-muted); }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  th, td {
-    padding: 8px 10px;
-    text-align: left;
-    font-size: 13px;
-  }
-  th {
-    background: var(--bg-inner);
-    color: var(--text-muted);
-    font-weight: 600;
-    font-size: 12px;
-    border-bottom: 1px solid var(--border);
-  }
-  td { border-bottom: 1px solid var(--border); color: var(--text-white); }
-  tr:last-child td { border-bottom: none; }
-  th:not(:first-child), td:not(:first-child) { text-align: right; }
-  .equip-qty-0 { color: var(--text-dim); }
-  .equip-qty-pos { color: var(--orange-light); font-weight: 600; }
-  .total-row td { background: var(--bg-inner); font-weight: 700; }
-  .equip-popup-empty { text-align: center; color: var(--text-dim); padding: 20px; }
-</style>
-</head>
-<body>
-  <div class="popup-hdr">
-    <div class="popup-title">${escapeHtml(type)} · 규격별 상세</div>
-    <div class="popup-date">${escapeHtml(dateLabel)} 기준</div>
-  </div>
-  <table>
-    <thead>
-      <tr>
-        <th>규격</th>
-        <th>전일누계</th>
-        <th>금일투입</th>
-        <th>누계</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${rowsHtml}
-      <tr class="total-row">
-        <td>합계</td>
-        <td>${fmt(totalPrev)}대</td>
-        <td>${fmt(totalToday)}대</td>
-        <td>${fmt(totalCum)}대</td>
-      </tr>
-    </tbody>
-  </table>
-</body>
-</html>
+  bodyEl.innerHTML = `
+    <table class="equip-modal-table">
+      <thead>
+        <tr>
+          <th>규격</th>
+          <th>전일누계</th>
+          <th>금일투입</th>
+          <th>누계</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rowsHtml}
+        <tr class="total-row">
+          <td>합계</td>
+          <td>${fmt(totalPrev)}대</td>
+          <td>${fmt(totalToday)}대</td>
+          <td>${fmt(totalCum)}대</td>
+        </tr>
+      </tbody>
+    </table>
   `;
+  modal.classList.add("show");
+}
 
-  const popup = window.open("", "_blank", "width=480,height=560,resizable=yes,scrollbars=yes");
-  if (!popup) {
-    alert("팝업이 차단되었습니다. 브라우저 팝업 차단을 해제해주세요.");
-    return;
+function closeEquipDetailModal() {
+  const modal = document.getElementById("equip-detail-modal");
+  if (modal) modal.classList.remove("show");
+}
+
+function initEquipModal() {
+  const closeBtn = document.getElementById("equip-modal-close-btn");
+  const overlay = document.getElementById("equip-detail-modal");
+  if (closeBtn) closeBtn.addEventListener("click", closeEquipDetailModal);
+  if (overlay) {
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeEquipDetailModal();
+    });
   }
-  popup.document.open();
-  popup.document.write(html);
-  popup.document.close();
 }
 
 // ── 작업현황 모달(금일 작업현황 / 명일 작업사항) ──
@@ -854,8 +808,13 @@ function renderWorkStatusModal(key) {
   if (dateLabel) dateLabel.textContent = rep.date || key;
   if (weatherLabel) weatherLabel.textContent = rep.weather ? `날씨: ${rep.weather}` : "";
   if (progressLabel) {
-    progressLabel.textContent =
-      `공정율(%)  계획 ${rep.progress.plan}%  ·  실시 ${rep.progress.actual}%  ·  대비 ${rep.progress.diff}%`;
+    const diff = rep.progress.diff;
+    const diffClass = Number(diff) < 0 ? "ps-diff-neg" : "ps-diff-pos";
+    progressLabel.innerHTML =
+      `공정율(%) &nbsp;` +
+      `<span class="ps-plan">계획 ${rep.progress.plan}%</span> · ` +
+      `<span class="ps-actual">실시 ${rep.progress.actual}%</span> · ` +
+      `<span class="${diffClass}">대비 ${diff}%</span>`;
   }
   if (todayEl) {
     todayEl.innerHTML = rep.work_today.length
@@ -892,7 +851,11 @@ function initWorkStatusModal() {
   const openBtn = document.getElementById("work-status-btn");
   const closeBtn = document.getElementById("modal-close-btn");
   const overlay = document.getElementById("work-status-modal");
+  const todayCol = document.getElementById("progress-report-col-today");
+  const tomorrowCol = document.getElementById("progress-report-col-tomorrow");
   if (openBtn) openBtn.addEventListener("click", openWorkStatusModal);
+  if (todayCol) todayCol.addEventListener("click", openWorkStatusModal);
+  if (tomorrowCol) tomorrowCol.addEventListener("click", openWorkStatusModal);
   if (closeBtn) closeBtn.addEventListener("click", closeWorkStatusModal);
   if (overlay) {
     overlay.addEventListener("click", (e) => {
@@ -1636,6 +1599,32 @@ function initMap() {
   mapBtns.normal.addEventListener("click", () => switchMapLayer("normal"));
   mapBtns.image.addEventListener("click", () => switchMapLayer("image"));
 
+  // 지도 확대 보기(전체화면) 토글 — 헤더의 확대 아이콘을 실제로 동작하게 연결
+  const mapCard = document.getElementById("map-card");
+  const expandBtn = document.getElementById("map-expand-btn");
+  function setMapFullscreen(on) {
+    if (!mapCard) return;
+    mapCard.classList.toggle("map-fullscreen", on);
+    if (expandBtn) {
+      expandBtn.classList.toggle("fa-expand", !on);
+      expandBtn.classList.toggle("fa-compress", on);
+      expandBtn.classList.toggle("active", on);
+      expandBtn.title = on ? "지도 원래 크기로 보기" : "지도 크게 보기";
+    }
+    // 크기가 바뀐 직후 타일이 밀리지 않도록 레이아웃 반영 후 재계산
+    setTimeout(() => map.invalidateSize(), 50);
+  }
+  if (expandBtn) {
+    expandBtn.addEventListener("click", () => {
+      setMapFullscreen(!mapCard.classList.contains("map-fullscreen"));
+    });
+  }
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mapCard && mapCard.classList.contains("map-fullscreen")) {
+      setMapFullscreen(false);
+    }
+  });
+
   // 반응형 레이아웃에서 화면 폭/방향이 바뀌면(모바일 회전 등) 지도 컨테이너 크기도
   // 다시 계산해줘야 타일이 밀리거나 빈 영역이 생기지 않습니다.
   let resizeTimer = null;
@@ -1665,6 +1654,55 @@ function initMap() {
 // =========================================================================
 // 12. 탭 이벤트 리스너 통합 등록
 // =========================================================================
+// ──────────────────────── 카드 공통 확대(전체화면) 보기 ────────────────────────
+// Site Map의 "지도 크게 보기" 버튼과 동일한 방식으로, 나머지 카드들(기상현황/공정율/
+// 인원현황/장비현황/팀별공유공간/토공사현황)의 헤더 확대 아이콘도 실제로 동작하게 만듭니다.
+const CARD_EXPAND_CONFIG = [
+  { cardId: "weather-card", btnId: "weather-expand-btn", label: "기상 현황" },
+  { cardId: "progress-card", btnId: "progress-expand-btn", label: "공정율 및 작업일보" },
+  { cardId: "worker-card", btnId: "worker-expand-btn", label: "인원 현황" },
+  { cardId: "equip-card", btnId: "equip-expand-btn", label: "장비 현황" },
+  { cardId: "team-card", btnId: "team-expand-btn", label: "팀별 공유공간" },
+  { cardId: "earth-card", btnId: "earth-expand-btn", label: "토공사 현황" },
+  { cardId: "events-card", btnId: "events-expand-btn", label: "주요 일정" },
+];
+
+function initCardExpandButtons() {
+  const controllers = [];
+
+  CARD_EXPAND_CONFIG.forEach(({ cardId, btnId, label }) => {
+    const card = document.getElementById(cardId);
+    const btn = document.getElementById(btnId);
+    if (!card || !btn) return;
+
+    function setFullscreen(on) {
+      card.classList.toggle("card-fullscreen", on);
+      btn.classList.toggle("fa-expand", !on);
+      btn.classList.toggle("fa-compress", on);
+      btn.classList.toggle("active", on);
+      btn.title = on ? `${label} 원래 크기로 보기` : `${label} 크게 보기`;
+      // 카드 크기가 바뀐 뒤 내부 차트(Chart.js)가 새 크기에 맞춰 다시 그려지도록
+      // 레이아웃 반영 후 resize 이벤트를 한 번 발생시켜 줍니다.
+      setTimeout(() => window.dispatchEvent(new Event("resize")), 50);
+    }
+
+    btn.title = `${label} 크게 보기`;
+    btn.addEventListener("click", () => {
+      setFullscreen(!card.classList.contains("card-fullscreen"));
+    });
+
+    controllers.push({ card, setFullscreen });
+  });
+
+  // ESC 키로 확대된 카드를 원래 크기로 되돌립니다.
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    controllers.forEach(({ card, setFullscreen }) => {
+      if (card.classList.contains("card-fullscreen")) setFullscreen(false);
+    });
+  });
+}
+
 function initTabs() {
   document.addEventListener("click", function(e) {
     const btn = e.target.closest(".wtab");
@@ -2145,7 +2183,7 @@ function renderTeamGenericPane(teamKey) {
 
   if (!hasRows && !hasImage) {
     if (updatedEl) updatedEl.textContent = "";
-    bodyEl.innerHTML = `<div class="team-empty">아직 등록된 자료가 없습니다.</div>`;
+    bodyEl.innerHTML = "";
     return;
   }
 
@@ -2426,6 +2464,7 @@ function init() {
   // 4-2) 품질관리 현황(함수비/평판재하시험) 초기 렌더링 및 상세 모달 초기화
   renderQuality(currentQualityType);
   initQualityModal();
+  initEquipModal();
 
   // 4-3) 팀별 공유공간 탭 초기화 (공무/공사/안전보건/관리팀)
   initTeamMainTabs();
@@ -2445,6 +2484,9 @@ function init() {
 
   // 11) 공지사항 팝업 (notices.js에 등록된 공지가 있을 때만 노출)
   initNoticePopup();
+
+  // 12) Site Map 외 나머지 카드들의 확대(전체화면) 아이콘 활성화
+  initCardExpandButtons();
 }
 
 document.addEventListener("DOMContentLoaded", function() {

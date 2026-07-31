@@ -96,8 +96,7 @@
           </div>
           <div class="card-actions">
             <button class="nw-inline-btn" id="naver-weather-btn"><i class="fa-solid fa-cloud-sun-rain"></i> 네이버날씨보기</button>
-            <i class="fa-solid fa-rotate"></i>
-            <i class="fa-solid fa-expand"></i>
+            <i class="fa-solid fa-expand" id="weather-expand-btn" title="크게 보기"></i>
           </div>
         </div>
         <div class="card-body">
@@ -158,17 +157,17 @@
           </div>
           <div class="card-actions">
             <button type="button" class="date-picker-btn" id="progress-date-select"></button>
-            <i class="fa-solid fa-expand"></i>
+            <i class="fa-solid fa-expand" id="progress-expand-btn" title="크게 보기"></i>
           </div>
         </div>
         <div class="card-body">
           <div class="progress-summary" id="progress-summary"></div>
           <div class="progress-report-cols">
-            <div class="progress-report-col">
+            <div class="progress-report-col" id="progress-report-col-today" title="클릭하면 크게 볼 수 있습니다">
               <div class="progress-report-title"><i class="fa-solid fa-list-check"></i> 금일 작업현황</div>
               <div class="progress-report-text" id="progress-work-today"></div>
             </div>
-            <div class="progress-report-col">
+            <div class="progress-report-col" id="progress-report-col-tomorrow" title="클릭하면 크게 볼 수 있습니다">
               <div class="progress-report-title"><i class="fa-solid fa-forward"></i> 명일 작업사항</div>
               <div class="progress-report-text" id="progress-work-tomorrow"></div>
             </div>
@@ -187,8 +186,7 @@
             </div>
             <div class="card-actions">
               <button type="button" class="date-picker-btn" id="worker-date-select"></button>
-              <i class="fa-solid fa-rotate"></i>
-              <i class="fa-solid fa-expand"></i>
+              <i class="fa-solid fa-expand" id="worker-expand-btn" title="크게 보기"></i>
             </div>
           </div>
           <div class="card-body">
@@ -224,8 +222,7 @@
             </div>
             <div class="card-actions">
               <button type="button" class="date-picker-btn" id="equip-date-select"></button>
-              <i class="fa-solid fa-rotate"></i>
-              <i class="fa-solid fa-expand"></i>
+              <i class="fa-solid fa-expand" id="equip-expand-btn" title="크게 보기"></i>
             </div>
           </div>
           <div class="card-body">
@@ -246,8 +243,7 @@
             <i class="fa-solid fa-people-group" style="color:#38bdf8;"></i> 팀별 공유공간
           </div>
           <div class="card-actions">
-            <i class="fa-solid fa-rotate"></i>
-            <i class="fa-solid fa-expand"></i>
+            <i class="fa-solid fa-expand" id="team-expand-btn" title="크게 보기"></i>
           </div>
         </div>
         <div class="card-body">
@@ -339,7 +335,7 @@
             <i class="fa-solid fa-map-location-dot" style="color:#38bdf8;"></i> Site Map
           </div>
           <div class="card-actions">
-            <i class="fa-solid fa-expand"></i>
+            <i class="fa-solid fa-expand" id="map-expand-btn" title="지도 크게 보기"></i>
           </div>
         </div>
         <!-- Leaflet 지도 컨테이너 -->
@@ -369,8 +365,7 @@
           </div>
           <div class="card-actions">
             <button type="button" class="date-picker-btn" id="earth-date-select"></button>
-            <i class="fa-solid fa-rotate"></i>
-            <i class="fa-solid fa-expand"></i>
+            <i class="fa-solid fa-expand" id="earth-expand-btn" title="크게 보기"></i>
           </div>
         </div>
         <div class="card-body">
@@ -438,6 +433,7 @@
               <button class="wtab" data-view="list">목록</button>
               <button class="wtab active" data-view="calendar">월간</button>
             </div>
+            <i class="fa-solid fa-expand" id="events-expand-btn" title="크게 보기"></i>
           </div>
         </div>
         <div class="card-body">
@@ -500,6 +496,20 @@
         </div>
       </div>
       <div class="quality-modal-body" id="quality-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ──────────────────────── 장비 세부 규격 모달 ──────────────────────── -->
+  <div class="modal-overlay" id="equip-detail-modal">
+    <div class="modal-box equip-modal-box">
+      <div class="modal-hdr">
+        <div class="modal-title"><i class="fa-solid fa-truck-pickup"></i> <span id="equip-modal-title">-</span></div>
+        <div class="modal-hdr-right">
+          <span class="modal-weather" id="equip-modal-date"></span>
+          <button class="modal-close" id="equip-modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="equip-modal-body" id="equip-modal-body"></div>
     </div>
   </div>
 
