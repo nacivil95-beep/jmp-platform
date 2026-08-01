@@ -549,7 +549,11 @@
 <script src="scheduleActuals.js"></script>
 <script src="scheduleEvents.js"></script>
 <script src="safetyData.js"></script>
-<script src="feelsLikeData.js"></script>
+<script>
+  // feelsLikeData.js는 5분마다 내용이 바뀌는 파일이라, 캐시된 오래된 버전을 보는 걸
+  // 방지하기 위해 매번 다른 URL(타임스탬프)로 강제 새로고침해서 불러옵니다.
+  document.write('<script src="feelsLikeData.js?v=' + Date.now() + '"><\/script>');
+</script>
 <script src="app.js"></script>
   <!-- ──────────────────────── 날짜 선택 캘린더 팝업 (공정율/인원/장비/토공사 카드 공통) ──────────────────────── -->
   <!-- dailyData.js는 매달 작업일보 엑셀이 갱신되며 여러 달에 걸쳐 데이터가 누적되므로, 월 이동(◀ ▶) 버튼을 둡니다. -->
