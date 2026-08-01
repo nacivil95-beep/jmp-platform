@@ -20,6 +20,8 @@ update_data.bat
 auto_update.ps1
 run_auto_update.bat
 auto_update.log
+sensolink_config.json
+fetch_feels_like.log
 
 # extract_safety.py가 "이미 처리한 파일" 여부를 기록해두는 상태 파일 (컴퓨터별 로컬 정보)
 safety_state.json

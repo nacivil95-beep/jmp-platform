@@ -564,6 +564,7 @@ html, body {
 .w-value.caution { color: var(--yellow); }
 .w-value.warning { color: var(--orange-light); }
 .w-value.danger  { color: var(--red); }
+.w-value.source  { font-size: 9px; font-weight: 500; color: var(--text-dim); }
 
 .risk-badge-row {
   display: flex;

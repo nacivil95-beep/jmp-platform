@@ -436,9 +436,45 @@ function getColdRiskLevel(feelsLike) {
 
 let lastRiskInfo = null; // worker-card 배너를 renderWorkers 재호출 후에도 유지하기 위한 캐시
 
+// ─── 현장 스마트 체감온도계(센소링크) 연동 ───────────────────────────────
+// fetch_feels_like.py 가 5분마다 로컬 PC에서 센소링크 값을 읽어와 feelsLikeData.js 로
+// 저장 → git push 한 결과를 여기서 읽습니다. index.html 에서 feelsLikeData.js 를
+// app.js 보다 먼저 불러오면 전역 변수 FEELS_LIKE_DATA 로 접근할 수 있습니다.
+// (아직 한 번도 실행 전이거나 파일이 없으면 FEELS_LIKE_DATA 자체가 정의되지 않으므로
+//  typeof 체크로 안전하게 처리합니다.)
+const SENSOR_FRESH_LIMIT_MS = 30 * 60 * 1000; // 30분 - 이보다 오래된 값이면 "실측"으로 인정하지 않음
+// (로컬 PC가 꺼져 있어 갱신이 멈춘 경우, 오래된 값을 현재값처럼 잘못 표시하지 않기 위한 안전장치)
+
+function getFreshSensorFeelsLike() {
+  if (typeof FEELS_LIKE_DATA === "undefined" || !FEELS_LIKE_DATA) return null;
+  const feelsLike = FEELS_LIKE_DATA.feelsLike;
+  const updatedAt = FEELS_LIKE_DATA.updatedAt;
+  if (typeof feelsLike !== "number" || !updatedAt) return null;
+  const updatedTime = new Date(String(updatedAt).replace(" ", "T")).getTime();
+  if (isNaN(updatedTime) || Date.now() - updatedTime > SENSOR_FRESH_LIMIT_MS) return null;
+  return feelsLike;
+}
+
 function updateWorkRiskUI(ta, rh, wsMs) {
   if (isNaN(ta) || isNaN(rh)) return;
-  const { value: feelsLike, season } = computeFeelsLike(ta, rh, wsMs);
+
+  // 스마트 체감온도계는 WBGT(폭염) 기반 값이라 여름철(5~9월)에만 사용합니다.
+  const month = new Date().getMonth() + 1;
+  const isSummerSeason = month >= 5 && month <= 9;
+  const sensorFeelsLike = isSummerSeason ? getFreshSensorFeelsLike() : null;
+
+  let feelsLike, season, sourceLabel;
+  if (sensorFeelsLike !== null) {
+    feelsLike = sensorFeelsLike;
+    season = "summer";
+    sourceLabel = "스마트 체감온도 기반";
+  } else {
+    const computed = computeFeelsLike(ta, rh, wsMs);
+    feelsLike = computed.value;
+    season = computed.season;
+    sourceLabel = "계산값(기상청 관측 기반)";
+  }
+
   const risk = season === "summer" ? getHeatRiskLevel(feelsLike) : getColdRiskLevel(feelsLike);
   lastRiskInfo = { feelsLike, season, risk };
 
@@ -447,6 +483,10 @@ function updateWorkRiskUI(ta, rh, wsMs) {
     feelsEl.textContent = `${feelsLike.toFixed(1)}℃`;
     feelsEl.className = "w-value " +
       (risk.level === "safe" ? "normal" : risk.level === "caution" ? "caution" : risk.level === "warning" ? "warning" : "danger");
+  }
+  const sourceEl = document.getElementById("w-feels-source");
+  if (sourceEl) {
+    sourceEl.textContent = sourceLabel;
   }
   const badgeEl = document.getElementById("w-risk-badge");
   if (badgeEl) {
