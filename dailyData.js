@@ -1,9 +1,11 @@
 /**
  * 작업일보 엑셀 자동 추출 결과 데이터
  * 생성 스크립트: extract.py
+ * 키는 일자(01~31)가 아니라 전체 날짜(YYYY-MM-DD)이며, daily_reports_archive.json에
+ * 누적 저장된 모든 달의 데이터를 포함합니다.
  */
 let DAILY_REPORTS = {
-  "01": {
+  "2026-07-01": {
     "date": "2026-07-01",
     "weather": "비/흐림",
     "progress": {
@@ -524,7 +526,7 @@ let DAILY_REPORTS = {
       "cum": 1478
     }
   },
-  "02": {
+  "2026-07-02": {
     "date": "2026-07-02",
     "weather": "흐림",
     "progress": {
@@ -1044,7 +1046,7 @@ let DAILY_REPORTS = {
       "cum": 1502
     }
   },
-  "03": {
+  "2026-07-03": {
     "date": "2026-07-03",
     "weather": "흐림",
     "progress": {
@@ -1548,7 +1550,7 @@ let DAILY_REPORTS = {
       "cum": 1527
     }
   },
-  "04": {
+  "2026-07-04": {
     "date": "2026-07-04",
     "weather": "흐림",
     "progress": {
@@ -2028,7 +2030,7 @@ let DAILY_REPORTS = {
       "cum": 1529
     }
   },
-  "05": {
+  "2026-07-05": {
     "date": "2026-07-05",
     "weather": "비",
     "progress": {
@@ -2520,7 +2522,7 @@ let DAILY_REPORTS = {
       "cum": 1529
     }
   },
-  "06": {
+  "2026-07-06": {
     "date": "2026-07-06",
     "weather": "흐림/비",
     "progress": {
@@ -3012,7 +3014,7 @@ let DAILY_REPORTS = {
       "cum": 1553
     }
   },
-  "07": {
+  "2026-07-07": {
     "date": "2026-07-07",
     "weather": "비/흐림",
     "progress": {
@@ -3492,7 +3494,7 @@ let DAILY_REPORTS = {
       "cum": 1553
     }
   },
-  "08": {
+  "2026-07-08": {
     "date": "2026-07-08",
     "weather": "비",
     "progress": {
@@ -3973,7 +3975,7 @@ let DAILY_REPORTS = {
       "cum": 1558
     }
   },
-  "09": {
+  "2026-07-09": {
     "date": "2026-07-09",
     "weather": "비",
     "progress": {
@@ -4468,7 +4470,7 @@ let DAILY_REPORTS = {
       "cum": 1564
     }
   },
-  "10": {
+  "2026-07-10": {
     "date": "2026-07-10",
     "weather": "흐림",
     "progress": {
@@ -4964,7 +4966,7 @@ let DAILY_REPORTS = {
       "cum": 1586
     }
   },
-  "11": {
+  "2026-07-11": {
     "date": "2026-07-11",
     "weather": "맑음",
     "progress": {
@@ -5439,7 +5441,7 @@ let DAILY_REPORTS = {
       "cum": 1589
     }
   },
-  "12": {
+  "2026-07-12": {
     "date": "2026-07-12",
     "weather": "맑음",
     "progress": {
@@ -5933,7 +5935,7 @@ let DAILY_REPORTS = {
       "cum": 1589
     }
   },
-  "13": {
+  "2026-07-13": {
     "date": "2026-07-13",
     "weather": "맑음",
     "progress": {
@@ -6450,7 +6452,7 @@ let DAILY_REPORTS = {
       "cum": 1611
     }
   },
-  "14": {
+  "2026-07-14": {
     "date": "2026-07-14",
     "weather": "흐림",
     "progress": {
@@ -6964,7 +6966,7 @@ let DAILY_REPORTS = {
       "cum": 1630
     }
   },
-  "15": {
+  "2026-07-15": {
     "date": "2026-07-15",
     "weather": "맑음",
     "progress": {
@@ -7475,7 +7477,7 @@ let DAILY_REPORTS = {
       "cum": 1649
     }
   },
-  "16": {
+  "2026-07-16": {
     "date": "2026-07-16",
     "weather": "맑음",
     "progress": {
@@ -7985,7 +7987,7 @@ let DAILY_REPORTS = {
       "cum": 1668
     }
   },
-  "17": {
+  "2026-07-17": {
     "date": "2026-07-17",
     "weather": "흐림/비",
     "progress": {
@@ -8477,7 +8479,7 @@ let DAILY_REPORTS = {
       "cum": 2740
     }
   },
-  "18": {
+  "2026-07-18": {
     "date": "2026-07-18",
     "weather": "비",
     "progress": {
@@ -8952,7 +8954,7 @@ let DAILY_REPORTS = {
       "cum": 2740
     }
   },
-  "19": {
+  "2026-07-19": {
     "date": "2026-07-19",
     "weather": "흐림",
     "progress": {
@@ -9445,7 +9447,7 @@ let DAILY_REPORTS = {
       "cum": 2740
     }
   },
-  "20": {
+  "2026-07-20": {
     "date": "2026-07-20",
     "weather": "비/흐림",
     "progress": {
@@ -9957,7 +9959,7 @@ let DAILY_REPORTS = {
       "cum": 2760
     }
   },
-  "21": {
+  "2026-07-21": {
     "date": "2026-07-21",
     "weather": "흐림",
     "progress": {
@@ -10460,7 +10462,7 @@ let DAILY_REPORTS = {
       "cum": 2781
     }
   },
-  "22": {
+  "2026-07-22": {
     "date": "2026-07-22",
     "weather": "비/흐림",
     "progress": {
@@ -10955,7 +10957,7 @@ let DAILY_REPORTS = {
       "cum": 2802
     }
   },
-  "23": {
+  "2026-07-23": {
     "date": "2026-07-23",
     "weather": "흐림",
     "progress": {
@@ -11443,7 +11445,7 @@ let DAILY_REPORTS = {
       "cum": 2807
     }
   },
-  "24": {
+  "2026-07-24": {
     "date": "2026-07-24",
     "weather": "맑음",
     "progress": {
@@ -11924,7 +11926,7 @@ let DAILY_REPORTS = {
       "cum": 2814
     }
   },
-  "25": {
+  "2026-07-25": {
     "date": "2026-07-25",
     "weather": "맑음",
     "progress": {
@@ -12398,7 +12400,7 @@ let DAILY_REPORTS = {
       "cum": 2814
     }
   },
-  "26": {
+  "2026-07-26": {
     "date": "2026-07-26",
     "weather": "맑음",
     "progress": {
@@ -12882,7 +12884,7 @@ let DAILY_REPORTS = {
       "cum": 2814
     }
   },
-  "27": {
+  "2026-07-27": {
     "date": "2026-07-27",
     "weather": "맑음",
     "progress": {
@@ -13380,7 +13382,7 @@ let DAILY_REPORTS = {
       "cum": 2825
     }
   },
-  "28": {
+  "2026-07-28": {
     "date": "2026-07-28",
     "weather": "맑음",
     "progress": {
@@ -13876,7 +13878,7 @@ let DAILY_REPORTS = {
       "cum": 2832
     }
   },
-  "29": {
+  "2026-07-29": {
     "date": "2026-07-29",
     "weather": "맑음",
     "progress": {
@@ -14378,7 +14380,7 @@ let DAILY_REPORTS = {
       "cum": 2838
     }
   },
-  "30": {
+  "2026-07-30": {
     "date": "2026-07-30",
     "weather": "맑음",
     "progress": {
@@ -14872,7 +14874,7 @@ let DAILY_REPORTS = {
       "cum": 2843
     }
   },
-  "31": {
+  "2026-07-31": {
     "date": "2026-07-31",
     "weather": "맑음",
     "progress": {
@@ -15353,6 +15355,15253 @@ let DAILY_REPORTS = {
       "prev": 2843,
       "today": 2,
       "cum": 2845
+    }
+  },
+  "2026-08-01": {
+    "date": "2026-08-01",
+    "weather": "맑음",
+    "progress": {
+      "plan": 3.7,
+      "actual": 5.99,
+      "diff": 161.8
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "work_tomorrow": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2931,
+        "today": 2,
+        "cum": 2933
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3534,
+      "today": 2,
+      "cum": 3536
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 139,
+        "today": 0,
+        "cum": 139
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 447,
+        "today": 0,
+        "cum": 447
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2845,
+      "today": 0,
+      "cum": 2845
+    }
+  },
+  "2026-08-02": {
+    "date": "2026-08-02",
+    "weather": "맑음",
+    "progress": {
+      "plan": 3.73,
+      "actual": 5.99,
+      "diff": 160.69
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 사면정리 및 소단 다이크 설치(BL.2)",
+      "   - B/H1.0-1",
+      "2. 작업로 설치",
+      "   - B/H0.6-1",
+      "◆기타",
+      " 1. 하천준설",
+      "   - B/H0.2-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2933,
+        "today": 2,
+        "cum": 2935
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3536,
+      "today": 2,
+      "cum": 3538
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 139,
+        "today": 0,
+        "cum": 139
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 447,
+        "today": 0,
+        "cum": 447
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2845,
+      "today": 0,
+      "cum": 2845
+    }
+  },
+  "2026-08-03": {
+    "date": "2026-08-03",
+    "weather": "맑음",
+    "progress": {
+      "plan": 3.75,
+      "actual": 5.99,
+      "diff": 159.6
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 사면정리 및 소단 다이크 설치(BL.2)",
+      "   - B/H1.0-1",
+      "2. 작업로 설치",
+      "   - B/H0.6-1",
+      "◆기타",
+      " 1. 하천준설",
+      "   - B/H0.2-1"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 사면정리 및 소단 다이크 설치(BL.2)",
+      "   - B/H1.0-1",
+      "2. 작업로 설치",
+      "   - B/H0.6-1",
+      "◆기타",
+      " 1. 하천준설",
+      "   - B/H0.2-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2935,
+        "today": 24,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3538,
+      "today": 24,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 46,
+        "today": 1,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 104,
+        "today": 1,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 139,
+        "today": 1,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 447,
+        "today": 3,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2845,
+      "today": 3,
+      "cum": 2848
+    }
+  },
+  "2026-08-04": {
+    "date": "2026-08-04",
+    "weather": "흐림",
+    "progress": {
+      "plan": 3.78,
+      "actual": 5.99,
+      "diff": 158.52
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆부대공",
+      " 1. 침사지  조성(BL.6)",
+      "   - B/H1.0-1, 보통인부-2",
+      " 2. 가배수로 조성(BL.6)",
+      "   - B/H0.2-1, 보통인부-2",
+      "◆기타",
+      " 1. 사면보호 천막 설치(은탄리 485)",
+      "   - 보통인부-4"
+    ],
+    "work_tomorrow": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-05": {
+    "date": "2026-08-05",
+    "weather": "비",
+    "progress": {
+      "plan": 3.8,
+      "actual": 5.99,
+      "diff": 157.46
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 13)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H380-1, B/H0.6-2",
+      " 2. 흙쌓기(BL.2, 5, 6, 13, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-4, D/T15-5 신호수-2",
+      "   - 관리자-2, 작업반장-1",
+      " 3. 발파암 소할(BL.2, 5)",
+      "   - B/H1.0-2",
+      " 4. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 5. 발파암 천공 및 작업면 평탄화(BL.2)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 6. 발파(BL.2)                [109공,  3회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타",
+      " 1. 침사지 안전난간 설치(BL.6)",
+      "   - B/H0.2-1, 보통인부-3"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-06": {
+    "date": "2026-08-06",
+    "weather": "흐림/비",
+    "progress": {
+      "plan": 3.83,
+      "actual": 5.99,
+      "diff": 156.41
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 13)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H380-1, B/H0.6-2",
+      " 2. 흙쌓기(BL.2, 5, 6, 13, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-4, D/T15-5 신호수-2",
+      "   - 관리자-2, 작업반장-1",
+      " 3. 발파암 소할(BL.2, 5)",
+      "   - B/H1.0-2",
+      " 4. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 5. 발파암 천공 및 작업면 평탄화(BL.2)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 6. 발파(BL.2)                [109공,  3회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타",
+      " 1. 침사지 안전난간 설치(BL.6)",
+      "   - B/H0.2-1, 보통인부-3"
+    ],
+    "work_tomorrow": [
+      "◆기타",
+      " 1. 기성검사"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-07": {
+    "date": "2026-08-07",
+    "weather": "비/흐림",
+    "progress": {
+      "plan": 3.86,
+      "actual": 5.99,
+      "diff": 155.38
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆기타",
+      " 1. 기성검사"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 발파암 천공 및 작업면 평탄화(BL.2)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 2. 발파(BL.2)                [109공,  3회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆기타",
+      " 1. 우천 현장대기",
+      "   - B/H1.0-1, B/H0.6-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-08": {
+    "date": "2026-08-08",
+    "weather": "비",
+    "progress": {
+      "plan": 3.88,
+      "actual": 5.99,
+      "diff": 154.36
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 발파암 천공 및 작업면 평탄화(BL.2)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 2. 발파(BL.2)                [109공,  3회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆기타",
+      " 1. 우천 현장대기(주/야간)",
+      "   - B/H1.0-1, B/H0.6-1"
+    ],
+    "work_tomorrow": [
+      "◆기타",
+      " 1. 우천 현장대기",
+      "   - B/H1.0-1, B/H0.6-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-09": {
+    "date": "2026-08-09",
+    "weather": "비",
+    "progress": {
+      "plan": 3.91,
+      "actual": 5.99,
+      "diff": 153.35
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆기타",
+      " 1. 우천 돌관작업(현장 복구)",
+      "   - B/H500-1, B/H1.0-1, B/H0.6-2, D/T15-2"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 13)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H380-1, B/H0.6-1",
+      " 2. 흙쌓기(BL.2, 5, 6, 13, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-2, D/T15-4, 신호수-2",
+      "   - 관리자-2",
+      " 3. 유실사면 및 진입로 복구(BL.1)",
+      "   - B/H1.0-1, B/H0.2-1",
+      " 4. 유실사면 및 진입로 복구(BL.6)",
+      "   - B/H0.6-1, D/T15-1",
+      " 5. 가도 및 작업로 개설(BL.3)",
+      "   - B/H0.6-1",
+      " 6. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 7. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 8. 발파(BL.5)                [130공,  7회]",
+      "   - 관리자-1, 화약주임-1, 장약공-2",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-10": {
+    "date": "2026-08-10",
+    "weather": "흐림",
+    "progress": {
+      "plan": 3.94,
+      "actual": 5.99,
+      "diff": 151.98
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 13)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H380-1, B/H0.6-1",
+      " 2. 흙쌓기(BL.2, 5, 6, 13, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-2, D/T15-4, 신호수-2",
+      "   - 관리자-2",
+      " 3. 유실사면 및 진입로 복구(BL.1)",
+      "   - B/H1.0-1, B/H0.2-1",
+      " 4. 유실사면 및 진입로 복구(BL.6)",
+      "   - B/H0.6-1, D/T15-1",
+      " 5. 가도 및 작업로 개설(BL.3)",
+      "   - B/H0.6-1",
+      " 6. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 7. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 8. 발파(BL.5)                [130공,  7회]",
+      "   - 관리자-1, 화약주임-1, 장약공-2",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타",
+      " 1. 우천 피해사항 및 보완사항 합동점검(자체 점검)"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 우천 피해 복구 작업(토사유실 사면, 작업로 정비)",
+      "   - B/H380-1, B/H1.0-1, B/H0.2-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-11": {
+    "date": "2026-08-11",
+    "weather": "맑음",
+    "progress": {
+      "plan": 3.98,
+      "actual": 5.99,
+      "diff": 150.62
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 우천 피해 복구 작업(토사유실 사면, 작업로 정비)",
+      "   - B/H380-1, B/H1.0-1, B/H0.2-1"
+    ],
+    "work_tomorrow": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-12": {
+    "date": "2026-08-12",
+    "weather": "맑음",
+    "progress": {
+      "plan": 4.01,
+      "actual": 5.99,
+      "diff": 149.3
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 6)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H380-1, B/H0.6-1",
+      " 2. 흙쌓기(BL.2, 5, 6, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-4, D/T15-4, 신호수-2",
+      "   - 관리자-2",
+      " 3. 발파암 소할 및 법면 정리",
+      "   - B/H1.0-1",
+      " 4. 가도 및 배수로 정비",
+      "   - B/H0.6-1",
+      " 5. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 6. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 7. 발파(BL.5)                [171공,  9회]",
+      "   - 관리자-1, 화약주임-1, 장약공-2",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타",
+      " 1. 임시침사지/가배수로 안전난간 설치",
+      "   - 보통인부-4"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-13": {
+    "date": "2026-08-13",
+    "weather": "맑음",
+    "progress": {
+      "plan": 4.05,
+      "actual": 5.99,
+      "diff": 147.99
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 6)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H380-1, B/H0.6-1",
+      " 2. 흙쌓기(BL.2, 5, 6, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-4, D/T15-5, 신호수-2",
+      "   - 관리자-2",
+      " 3. 발파암 소할 및 법면 정리",
+      "   - B/H1.0-1",
+      " 4. 가도 및 배수로 정비",
+      "   - B/H0.6-1",
+      " 5. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 6. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 7. 발파(BL.5)                [171공,  9회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타",
+      " 1. 임시침사지/가배수로 안전난간 설치",
+      "   - 보통인부-4"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 6)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H380-1, B/H0.6-1",
+      " 2. 흙쌓기(BL.2, 5, 6, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-1, D/T15-5, 신호수-2",
+      "   - 관리자-2",
+      " 3. 임목파쇄장 조성(은탄리 산 29)",
+      "   - B/H1.0-1",
+      " 4. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 5. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 6. 발파(BL.5)                [74공,  4회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆폐기물처리용역",
+      " 1. 폐기물 반출",
+      "   - 폐콘크리트 6대",
+      "◆기타",
+      " 1. 법면 정리 및 천막 설치(BL.3)",
+      "   - B/H0.6-1, 보통인부-3",
+      " 2. 이주자 철거 지원(은탄리 801)",
+      "   - 보통인부-2"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-14": {
+    "date": "2026-08-14",
+    "weather": "흐림",
+    "progress": {
+      "plan": 4.09,
+      "actual": 5.99,
+      "diff": 146.71
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 6)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H380-1, B/H0.6-1",
+      " 2. 흙쌓기(BL.2, 5, 6, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-1, D/T15-5, 신호수-2",
+      "   - 관리자-2",
+      " 3. 임목파쇄장 조성(은탄리 산 29)",
+      "   - B/H1.0-1",
+      " 4. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 5. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 6. 발파(BL.5)                [74공,  4회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆폐기물처리용역",
+      " 1. 폐기물 반출",
+      "   - 폐콘크리트 6대",
+      "◆기타",
+      " 1. 법면 정리 및 천막 설치(BL.3)",
+      "   - B/H0.6-1, 보통인부-3",
+      " 2. 이주자 철거 지원(은탄리 801)",
+      "   - 보통인부-2"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 6)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H0.6-1",
+      " 2. 흙쌓기(BL.2, 5, 6, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-1, D/T15-5, 신호수-2",
+      "   - 관리자-2",
+      " 3. 임목파쇄장 조성(은탄리 산 29)",
+      "   - B/H1.0-1",
+      " 4. 배수로 정비 및 침사지 준설(은탄리 802-31, 수해복구)",
+      "   - B/H380-1",
+      " 5. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 6. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 관리자-1, 천공기-2, B/H1.0-1, 화약주임-1, 장약공-1, 신호수-1",
+      " 7. 이주자 수목처리 및 운반(은탄리 798)",
+      "   - B/H0.6-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-15": {
+    "date": "2026-08-15",
+    "weather": "맑음",
+    "progress": {
+      "plan": 4.12,
+      "actual": 5.99,
+      "diff": 145.45
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 6)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H0.6-1",
+      " 2. 흙쌓기(BL.2, 5, 6, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-1, D/T15-5, 신호수-2",
+      "   - 관리자-2",
+      " 3. 임목파쇄장 조성(은탄리 산 29)",
+      "   - B/H1.0-1",
+      " 4. 배수로 정비 및 침사지 준설(은탄리 802-31, 수해복구)",
+      "   - B/H380-1",
+      " 5. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 6. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 관리자-1, 천공기-2, B/H1.0-1, 화약주임-1, 장약공-1, 신호수-1",
+      " 7. 이주자 수목처리 및 운반(은탄리 798)",
+      "   - B/H0.6-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 6)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H0.6-1",
+      " 2. 흙쌓기(BL.2, 5, 6, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-2, D/T15-4, 신호수-2",
+      "   - 관리자-2",
+      " 3. 침사지 준설(은탄리 802-31, 수해복구)",
+      "   - B/H380-1",
+      " 4. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 5. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 6. 발파(BL.5)                [125공,  7회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      " 7. 이주자 수목 이식(은탄리 798)",
+      "   - B/H0.6-1, 조경공-4",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타",
+      " 1. 방음벽 해체(은탄리 780), 침사지 안전난간대 설치(수해복구)",
+      "   - B/H1.0-1, 보통인부-5"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-16": {
+    "date": "2026-08-16",
+    "weather": "맑음",
+    "progress": {
+      "plan": 4.16,
+      "actual": 6.0,
+      "diff": 144.21
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 6)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H0.6-1",
+      " 2. 흙쌓기(BL.2, 5, 6, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-2, D/T15-4, 신호수-2",
+      "   - 관리자-2",
+      " 3. 침사지 준설(은탄리 802-31, 수해복구)",
+      "   - B/H380-1",
+      " 4. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 5. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 6. 발파(BL.5)                [125공,  7회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      " 7. 이주자 수목 이식(은탄리 798)",
+      "   - B/H0.6-1, 조경공-4",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타",
+      " 1. 방음벽 해체(은탄리 780), 침사지 안전난간대 설치(수해복구)",
+      "   - B/H1.0-1, 보통인부-5"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 6)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H0.6-2",
+      " 2. 흙쌓기(BL.2, 5, 6, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-2, D/T15-4, 신호수-2",
+      "   - 관리자-2",
+      " 3. 침사지 준설(은탄리 802-31, 수해복구)",
+      "   - B/H380-1",
+      " 4. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 5. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 관리자-1, 천공기-2, B/H1.0-1, 화약주임-1, 장약공-1, 신호수-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타",
+      " 1. 방음벽 해체(은탄리 780), 침사지 안전난간대 설치(수해복구)",
+      "   - B/H1.0-1, 보통인부-3"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 1668,
+        "today": 0,
+        "cum": 1668
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 2848,
+      "today": 0,
+      "cum": 2848
+    }
+  },
+  "2026-08-17": {
+    "date": "2026-08-17",
+    "weather": "흐림/비",
+    "progress": {
+      "plan": 4.19,
+      "actual": 6.0,
+      "diff": 142.99
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 흙깎기(BL.2, 5, 6)",
+      "   - D/ZD1-1, D/Z11T-1, B/H500-2, B/H0.6-2",
+      " 2. 흙쌓기(BL.2, 5, 6, 중로(집)3-12, 중로(집)3-14, 중로(집)3-16)",
+      "   - D/T25-2, D/T15-4, 신호수-2",
+      "   - 관리자-2",
+      " 3. 침사지 준설(은탄리 802-31, 수해복구)",
+      "   - B/H380-1",
+      " 4. 정지작업 및 노면정리",
+      "   - 진동롤러-1",
+      " 5. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 관리자-1, 천공기-2, B/H1.0-1, 화약주임-1, 장약공-1, 신호수-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타",
+      " 1. 방음벽 해체(은탄리 780), 침사지 안전난간대 설치(수해복구)",
+      "   - B/H1.0-1, 보통인부-3",
+      " 2. 우천 야간 대기"
+    ],
+    "work_tomorrow": [
+      "◆기타",
+      " 1. 설계도서 검토",
+      " 2. 우천 주/야간 대기"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-18": {
+    "date": "2026-08-18",
+    "weather": "비",
+    "progress": {
+      "plan": 4.23,
+      "actual": 6.0,
+      "diff": 141.8
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆기타",
+      " 1. 설계도서 검토",
+      " 2. 우천 주/야간 대기"
+    ],
+    "work_tomorrow": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-19": {
+    "date": "2026-08-19",
+    "weather": "흐림",
+    "progress": {
+      "plan": 4.26,
+      "actual": 6.0,
+      "diff": 140.62
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깍기 및 흙쌓기(BL.2)",
+      "   - B/H500-1, B/H380-1, D/T15-4, D/T25-1, 신호수-1",
+      " 2. 흙깍기 및 흙쌓기(BL.5)",
+      "   - 관리자-2, D/Z11T-1, B/H500-1, B/H0.6-1, D/T25-2, 신호수-1",
+      " 3. 도로 노체 성토(중로(집)3-16)",
+      "   - D/ZD1-1, 진동롤러-1",
+      " 4. 발파암 소할",
+      "   - B/H1.0-1",
+      " 5. 비다짐 성토 및 폐콘크리트 상차(BL.2)",
+      "   - B/H0.6-1",
+      " 6. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 7. 발파(BL.5)                [135공,  7회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆폐기물처리용역",
+      " 1. 폐기물 반출",
+      "   - 폐콘크리트 7대"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-20": {
+    "date": "2026-08-20",
+    "weather": "비/흐림",
+    "progress": {
+      "plan": 4.3,
+      "actual": 6.0,
+      "diff": 139.46
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 흙깍기 및 흙쌓기(BL.2)",
+      "   - B/H500-1, B/H380-1, D/T15-4, D/T25-1, 신호수-1",
+      " 2. 흙깍기 및 흙쌓기(BL.5)",
+      "   - 관리자-2, D/Z11T-1, B/H500-1, B/H0.6-1, D/T25-2, 신호수-1",
+      " 3. 도로 노체 성토(중로(집)3-16)",
+      "   - D/ZD1-1, 진동롤러-1",
+      " 4. 발파암 소할",
+      "   - B/H1.0-1",
+      " 5. 비다짐 성토 및 폐콘크리트 상차(BL.2)",
+      "   - B/H0.6-1",
+      " 6. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 7. 발파(BL.5)                [135공,  7회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆폐기물처리용역",
+      " 1. 폐기물 반출",
+      "   - 폐콘크리트 3대",
+      "◆기타",
+      " 1. 우천 작업 중단"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깍기 및 흙쌓기(BL.2)",
+      "   - B/H500-1, B/H380-1, B/H0.6-1, D/T15-5, D/T25-1, 신호수-1",
+      " 2. 흙깍기 및 흙쌓기(BL.5)",
+      "   - 관리자-2, D/Z11T-1, B/H500-1, B/H0.6-1, D/T25-2, 신호수-1",
+      " 3. 도로 노체 성토(중로(집)3-16)",
+      "   - D/ZD1-1, 진동롤러-1",
+      " 4. 발파암 소할",
+      "   - B/H1.0-1",
+      " 5. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 6. 발파(BL.5)                [109공,  6회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타",
+      " 1. 폐유저장소 정리",
+      "   - 보통인부-2"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-21": {
+    "date": "2026-08-21",
+    "weather": "흐림",
+    "progress": {
+      "plan": 4.34,
+      "actual": 6.0,
+      "diff": 138.33
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 흙깍기 및 흙쌓기(BL.2)",
+      "   - B/H500-1, B/H380-1, B/H0.6-1, D/T25-2, D/T15-3, 신호수-1",
+      " 2. 흙깍기 및 흙쌓기(BL.5)",
+      "   - 관리자-2, D/Z11T-1, B/H500-1, B/H0.6-1, D/T25-1, D/T15-2, 신호수-1",
+      " 3. 도로 노체 성토(중로(집)3-16)",
+      "   - D/ZD1-1, 진동롤러-1",
+      " 4. 발파암 소할",
+      "   - B/H1.0-1",
+      " 5. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 6. 발파(BL.5)                [109공,  6회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타",
+      " 1. 폐유저장소 정리",
+      "   - 보통인부-2"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깍기 및 흙쌓기(BL.2)",
+      "   - B/H500-1, B/H380-1, B/H0.6-1, D/T25-2, D/T15-3, 신호수-1",
+      " 2. 흙깍기 및 흙쌓기(BL.5)",
+      "   - 관리자-2, D/Z11T-1, B/H500-1, B/H0.6-1, D/T25-1, D/T15-2, 신호수-1",
+      " 3. 도로 노체 성토(중로(집)3-16)",
+      "   - D/ZD1-1, 진동롤러-1",
+      " 4. 발파암 소할",
+      "   - B/H1.0-1",
+      " 5. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 관리자-1, 천공기-2, B/H1.0-1, 화약주임-1, 장약공-1, 신호수-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-22": {
+    "date": "2026-08-22",
+    "weather": "비/흐림",
+    "progress": {
+      "plan": 4.37,
+      "actual": 6.0,
+      "diff": 137.21
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 흙깍기 및 흙쌓기(BL.2)",
+      "   - B/H500-1, B/H380-1, B/H0.6-1, D/T25-2, D/T15-3, 신호수-1",
+      " 2. 흙깍기 및 흙쌓기(BL.5)",
+      "   - 관리자-2, D/Z11T-1, B/H500-1, B/H0.6-1, D/T25-1, D/T15-2, 신호수-1",
+      " 3. 도로 노체 성토(중로(집)3-16)",
+      "   - D/ZD1-1, 진동롤러-1",
+      " 4. 발파암 소할",
+      "   - B/H1.0-1",
+      " 5. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 관리자-1, 천공기-2, B/H1.0-1, 화약주임-1, 장약공-1, 신호수-1",
+      "◆부대공",
+      " 1. 현장 살수",
+      "   - 살수차(8ton)-1",
+      "◆기타",
+      " 1. 주간공정회의"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깍기 및 흙쌓기(BL.2, 5, 6)",
+      "   - D/Z11T-1",
+      " 2. 발파암 소할",
+      "   - B/H1.0-1",
+      " 3. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 4. 발파(BL.5)                [162공,  8회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-23": {
+    "date": "2026-08-23",
+    "weather": "흐림",
+    "progress": {
+      "plan": 4.41,
+      "actual": 6.0,
+      "diff": 136.11
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 흙깍기 및 흙쌓기(BL.2, 5, 6)",
+      "   - D/Z11T-1",
+      " 2. 발파암 소할",
+      "   - B/H1.0-1",
+      " 3. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 4. 발파(BL.5)                [162공,  8회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 가도/작업로 개설",
+      "   - B/H1.0-1",
+      " 2. 둑 쌓기",
+      "   - B/H0.6-2",
+      " 3. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 4. 발파(BL.5)                [160공,  8회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-24": {
+    "date": "2026-08-24",
+    "weather": "맑음",
+    "progress": {
+      "plan": 4.44,
+      "actual": 6.0,
+      "diff": 135.02
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 가도/작업로 개설",
+      "   - B/H1.0-1",
+      " 2. 둑 쌓기",
+      "   - B/H0.6-2",
+      " 3. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 4. 발파(BL.5)                [160공,  8회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1"
+    ],
+    "work_tomorrow": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-25": {
+    "date": "2026-08-25",
+    "weather": "맑음",
+    "progress": {
+      "plan": 4.48,
+      "actual": 6.0,
+      "diff": 133.96
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "work_tomorrow": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-26": {
+    "date": "2026-08-26",
+    "weather": "맑음",
+    "progress": {
+      "plan": 4.51,
+      "actual": 6.0,
+      "diff": 132.91
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깍기 및 흙쌓기(BL.13)",
+      "   - B/H380-1, D/T15-3",
+      " 2. 정지작업 및 비다짐 성토(BL.13)",
+      "   - B/H0.6-2, 진동롤러-1",
+      " 3. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 4. 발파(BL.5)                [143공,  7회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 침사지 준설 및 설치",
+      "   - B/H1.0-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-27": {
+    "date": "2026-08-27",
+    "weather": "맑음",
+    "progress": {
+      "plan": 4.55,
+      "actual": 6.0,
+      "diff": 131.87
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 흙깍기 및 흙쌓기(BL.13)",
+      "   - B/H380-1, D/T15-3",
+      " 2. 정지작업 및 비다짐 성토(BL.13)",
+      "   - B/H0.6-1, 진동롤러-1",
+      " 3. 가도개설 및 사면 둑쌓기(BL.5)",
+      "   - B/H0.6-1",
+      " 4. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 5. 발파(BL.5)                [143공,  7회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 기존 침사지 준설 및 신규 침사지 설치(은탄리 802-36)",
+      "   - B/H1.0-1"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 정지작업 및 노면정리(BL.13)",
+      "   - 진동롤러-1",
+      " 2. 가도개설 및 사면 둑쌓기(은탄리 852)",
+      "   - B/H0.6-1",
+      " 3. 가도개설 및 사면 둑쌓기(BL.5)",
+      "   - B/H0.6-1",
+      " 4. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 5. 발파(BL.5)                [146공,  7회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 침사지 설치(은탄리 802-36)",
+      "   - B/H1.0-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-28": {
+    "date": "2026-08-28",
+    "weather": "맑음",
+    "progress": {
+      "plan": 4.59,
+      "actual": 6.0,
+      "diff": 130.86
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 정지작업 및 노면정리(BL.13)",
+      "   - 진동롤러-1",
+      " 2. 가도개설 및 사면 둑쌓기(은탄리 852)",
+      "   - B/H0.6-1",
+      " 3. 가도개설 및 사면 둑쌓기(BL.5)",
+      "   - B/H0.6-1",
+      " 4. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 5. 발파(BL.5)                [146공,  7회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 침사지 설치(은탄리 802-36)",
+      "   - B/H1.0-1"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 가도개설 및 사면 둑쌓기(은탄리 852)",
+      "   - B/H0.6-1",
+      " 2. 가도개설 및 사면 둑쌓기(BL.5)",
+      "   - B/H0.6-1",
+      " 3. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 4. 발파(BL.5)                [160공,  8회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 침사지 설치(은탄리 802-36)",
+      "   - B/H1.0-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-29": {
+    "date": "2026-08-29",
+    "weather": "맑음",
+    "progress": {
+      "plan": 4.62,
+      "actual": 6.0,
+      "diff": 129.86
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 가도개설 및 사면 둑쌓기(은탄리 852)",
+      "   - B/H0.6-1",
+      " 2. 가도개설 및 사면 둑쌓기(BL.5)",
+      "   - B/H0.6-1",
+      " 3. 발파암 천공 및 작업면 평탄화(BL.5)",
+      "   - 천공기-2, B/H1.0-1, 신호수-1",
+      " 4. 발파(BL.5)                [160공,  8회]",
+      "   - 관리자-1, 화약주임-1, 장약공-1",
+      "◆부대공",
+      " 1. 침사지 설치(은탄리 802-36)",
+      "   - B/H1.0-1",
+      "◆폐기물처리용역",
+      " 1. 폐기물 반출",
+      "   - 폐콘크리트 4대",
+      "◆기타",
+      " 1. 주간공정회의",
+      " 2. 벌개제근 및 집목 작업(벌목공사)",
+      "   - B/H0.6-1, B/H0.2-1"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 가도개설 및 사면 둑쌓기(은탄리 852)",
+      "   - B/H0.6-1",
+      " 2. 가도개설 및 사면 둑쌓기(BL.5)",
+      "   - B/H0.6-1",
+      " 3. 발파암 소할(BL.5)",
+      "   - 관리자-2, B/H1.0-1",
+      "◆부대공",
+      " 1. 침사지 설치(은탄리 802-36)",
+      "   - B/H1.0-1, B/H0.2-1, 보통인부-4",
+      "◆기타",
+      " 1. 벌개제근 및 집목 작업(벌목공사)",
+      "   - B/H0.6-1, B/H0.2-1, D/T15-2"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-30": {
+    "date": "2026-08-30",
+    "weather": "맑음",
+    "progress": {
+      "plan": 4.66,
+      "actual": 6.0,
+      "diff": 128.87
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 가도개설 및 사면 둑쌓기(은탄리 852)",
+      "   - B/H0.6-1",
+      " 2. 가도개설 및 사면 둑쌓기(BL.5)",
+      "   - B/H0.6-1",
+      " 3. 발파암 소할(BL.5)",
+      "   - 관리자-2, B/H1.0-1",
+      "◆부대공",
+      " 1. 침사지 설치(은탄리 802-36)",
+      "   - B/H1.0-1, B/H0.2-1, 보통인부-4",
+      "◆기타",
+      " 1. 벌개제근 및 집목 작업(벌목공사)",
+      "   - B/H0.6-1, B/H0.2-1, D/T15-2"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 발파암 소할(BL.5)",
+      "   - 관리자-2, B/H1.0-1",
+      " 2. 사면 소단 다이크 설치(BL.2)",
+      "   - B/H1.0-1",
+      "◆부대공",
+      " 1. 침사지 설치(은탄리 802-36)",
+      "   - B/H0.2-1, 보통인부-4",
+      "◆기타",
+      " 1. 벌개제근 및 집목 작업(벌목공사)",
+      "   - B/H0.6-1, B/H0.2-1"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
+    }
+  },
+  "2026-08-31": {
+    "date": "2026-08-31",
+    "weather": "맑음",
+    "progress": {
+      "plan": 4.69,
+      "actual": 6.01,
+      "diff": 128.11
+    },
+    "earth": {
+      "토사": {
+        "design": 1507585,
+        "prev": 1661,
+        "today": 0,
+        "cum": 1661,
+        "start": "2025-02-01"
+      },
+      "리핑암": {
+        "design": 1122283,
+        "prev": 492,
+        "today": 0,
+        "cum": 492,
+        "start": "2025-03-10"
+      },
+      "발파암깎기": {
+        "design": 3794908,
+        "prev": 428288,
+        "today": 0,
+        "cum": 428288,
+        "start": "2025-04-05"
+      },
+      "흙쌓기(성토)": {
+        "design": 7742307,
+        "prev": 550381.1399999998,
+        "today": 0,
+        "cum": 550381.1399999998,
+        "start": "2025-02-01"
+      }
+    },
+    "work_today": [
+      "◆토공",
+      " 1. 발파암 소할(BL.5)",
+      "   - 관리자-2, B/H1.0-1",
+      " 2. 사면 소단 다이크 설치(BL.2)",
+      "   - B/H1.0-1",
+      "◆부대공",
+      " 1. 침사지 설치(은탄리 802-36)",
+      "   - B/H0.2-1, 보통인부-4",
+      "◆기타",
+      " 1. 벌개제근 및 원목반출(벌목공사)",
+      "   - B/H0.6-1, B/H0.2-1"
+    ],
+    "work_tomorrow": [
+      "◆기타",
+      " 1. 설계도서 검토"
+    ],
+    "personnel": [
+      {
+        "role": "직    원",
+        "prev": 2959,
+        "today": 0,
+        "cum": 2959
+      },
+      {
+        "role": "하도급직원",
+        "prev": 93,
+        "today": 0,
+        "cum": 93
+      },
+      {
+        "role": "작업반장",
+        "prev": 127,
+        "today": 0,
+        "cum": 127
+      },
+      {
+        "role": "보통인부",
+        "prev": 132,
+        "today": 0,
+        "cum": 132
+      },
+      {
+        "role": "형틀목공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 근 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "비 계 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "CON'C 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "포 장 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "신 호 수",
+        "prev": 152,
+        "today": 0,
+        "cum": 152
+      },
+      {
+        "role": "조 적 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "법면보호공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "상수도공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "면보수공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "관 로 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "용 접 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "조 경 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "전 기 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "설 비 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "보 링 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "기 능 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "철 골 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "벌 목 공",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "role": "화약주임",
+        "prev": 46,
+        "today": 0,
+        "cum": 46
+      },
+      {
+        "role": "장약공",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      }
+    ],
+    "personnel_total": {
+      "prev": 3562,
+      "today": 0,
+      "cum": 3562
+    },
+    "equipment_detail": [
+      {
+        "type": "D/Z",
+        "spec": "3K",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "5K",
+        "prev": 17,
+        "today": 0,
+        "cum": 17
+      },
+      {
+        "type": "D/Z",
+        "spec": "10N",
+        "prev": 9,
+        "today": 0,
+        "cum": 9
+      },
+      {
+        "type": "D/Z",
+        "spec": "11R",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "D/Z",
+        "spec": "11T",
+        "prev": 53,
+        "today": 0,
+        "cum": 53
+      },
+      {
+        "type": "D/Z",
+        "spec": "D1",
+        "prev": 42,
+        "today": 0,
+        "cum": 42
+      },
+      {
+        "type": "B/H",
+        "spec": "mini",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.2",
+        "prev": 47,
+        "today": 0,
+        "cum": 47
+      },
+      {
+        "type": "B/H",
+        "spec": "0.3",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "0.6",
+        "prev": 105,
+        "today": 0,
+        "cum": 105
+      },
+      {
+        "type": "B/H",
+        "spec": "0.8",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "1",
+        "prev": 140,
+        "today": 0,
+        "cum": 140
+      },
+      {
+        "type": "B/H",
+        "spec": "380(1.8)",
+        "prev": 43,
+        "today": 0,
+        "cum": 43
+      },
+      {
+        "type": "B/H",
+        "spec": "400(1.8)",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "B/H",
+        "spec": "480(2.4)",
+        "prev": 21,
+        "today": 0,
+        "cum": 21
+      },
+      {
+        "type": "B/H",
+        "spec": "500(2.4)",
+        "prev": 94,
+        "today": 0,
+        "cum": 94
+      },
+      {
+        "type": "D/T",
+        "spec": "15t",
+        "prev": 215,
+        "today": 0,
+        "cum": 215
+      },
+      {
+        "type": "D/T",
+        "spec": "25t",
+        "prev": 188,
+        "today": 0,
+        "cum": 188
+      },
+      {
+        "type": "크로라드릴",
+        "spec": "1식",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "spec": "1식",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "spec": "5T",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "spec": "1식",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "spec": "1식",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "spec": "1식",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment": [
+      {
+        "type": "D/Z",
+        "prev": 121,
+        "today": 0,
+        "cum": 121
+      },
+      {
+        "type": "B/H",
+        "prev": 450,
+        "today": 0,
+        "cum": 450
+      },
+      {
+        "type": "D/T",
+        "prev": 403,
+        "today": 0,
+        "cum": 403
+      },
+      {
+        "type": "크로라드릴",
+        "prev": 104,
+        "today": 0,
+        "cum": 104
+      },
+      {
+        "type": "살수차",
+        "prev": 58,
+        "today": 0,
+        "cum": 58
+      },
+      {
+        "type": "오거",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "화물차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "지게차",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "스카이",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "임목파쇄기",
+        "prev": 2848,
+        "today": 0,
+        "cum": 2848
+      },
+      {
+        "type": "그레이더",
+        "prev": 0,
+        "today": 0,
+        "cum": 0
+      },
+      {
+        "type": "진동로라",
+        "prev": 44,
+        "today": 0,
+        "cum": 44
+      }
+    ],
+    "equipment_total": {
+      "prev": 4028,
+      "today": 0,
+      "cum": 4028
     }
   }
 };

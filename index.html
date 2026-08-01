@@ -547,8 +547,13 @@
 <script src="safetyData.js"></script>
 <script src="app.js"></script>
   <!-- ──────────────────────── 날짜 선택 캘린더 팝업 (공정율/인원/장비/토공사 카드 공통) ──────────────────────── -->
+  <!-- dailyData.js는 매달 작업일보 엑셀이 갱신되며 여러 달에 걸쳐 데이터가 누적되므로, 월 이동(◀ ▶) 버튼을 둡니다. -->
   <div class="date-calendar-popup" id="date-calendar-popup">
-    <div class="dcp-header" id="dcp-month-label">-</div>
+    <div class="dcp-nav">
+      <button type="button" class="events-cal-nav-btn" id="dcp-prev"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="dcp-header" id="dcp-month-label">-</div>
+      <button type="button" class="events-cal-nav-btn" id="dcp-next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
     <div class="dcp-weekdays">
       <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
     </div>

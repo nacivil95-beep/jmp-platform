@@ -479,14 +479,26 @@ function updateWorkerHeatBanner() {
 // =========================================================================
 // 5. 인원/장비 현황 – 작업일보(dailyData.js: DAILY_REPORTS) 실데이터 바인딩
 // =========================================================================
-// 시트(01~31) 중 실제로 수치가 채워진(=그날 작업이 진행된) 날짜만 선택 가능하도록 필터링합니다.
-// (미래 날짜 시트는 다음날 작업 예정 텍스트만 미리 채워져 있고 투입 인원/장비는 0으로 비어있음)
+// dailyData.js는 매달 새 작업일보 엑셀이 처리될 때마다 데이터가 계속 누적되며 여러 달에
+// 걸치므로(예: 2026-07-01, 2026-08-01, ...), 키는 "일자(01~31)"가 아니라 전체 날짜 문자열
+// ("YYYY-MM-DD")입니다. 실제로 수치가 채워진(=그날 작업이 진행된) 날짜만 선택 가능하도록
+// 필터링합니다. (미래 날짜 시트는 다음날 작업 예정 텍스트만 미리 채워져 있고 투입 인원/장비는
+// 0으로 비어있음)
+// ※ 추가 제약: 오늘 이후(미래) 날짜는 설령 수치가 채워져 있어도(작업자가 미리 입력해둔 예정
+//   내용일 뿐 실제 실적이 아니므로) 대시보드에서 선택할 수 없도록 막습니다.
 function reportHasData(rep) {
   if (!rep) return false;
   const p = rep.personnel_total ? rep.personnel_total.today : 0;
   const e = rep.equipment_total ? rep.equipment_total.today : 0;
   const t = rep.work_today ? rep.work_today.length : 0;
-  return p > 0 || e > 0 || t > 0;
+  if (!(p > 0 || e > 0 || t > 0)) return false;
+
+  if (rep.date) {
+    const now = new Date();
+    const todayKey = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
+    if (rep.date > todayKey) return false; // 미래 날짜(예정 내용)는 제외
+  }
+  return true;
 }
 
 let REPORT_DATE_KEYS = [];
@@ -498,17 +510,20 @@ function rebuildReportDateKeys() {
 rebuildReportDateKeys();
 
 let currentReportDate = pickDefaultReportDate();
+let reportCalCursor = new Date(); // 캘린더 팝업에서 현재 보여주는 달의 기준일 (월 이동 가능)
 
 function pickDefaultReportDate() {
+  if (!REPORT_DATE_KEYS.length) return null;
   const now = new Date();
-  const todayKey = String(now.getDate()).padStart(2, "0");
+  const todayKey = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
   if (REPORT_DATE_KEYS.includes(todayKey)) return todayKey;
-  // 오늘 날짜 시트가 없으면(예: 이번 달이 아니거나 아직 미작성) 가장 최근 실데이터 시트를 사용합니다.
-  return REPORT_DATE_KEYS.length ? REPORT_DATE_KEYS[REPORT_DATE_KEYS.length - 1] : null;
+  // 오늘 날짜 데이터가 없으면(예: 이번 달이 아니거나 아직 미작성) 가장 최근 실데이터를 사용합니다.
+  return REPORT_DATE_KEYS[REPORT_DATE_KEYS.length - 1];
 }
 
 function dateOptionLabel(key) {
   const rep = DAILY_REPORTS[key];
+  if (!rep) return key || "날짜 없음";
   const md = rep.date ? rep.date.slice(5).replace("-", "/") : key;
   return `${md} (${rep.weather || "-"})`;
 }
@@ -533,7 +548,7 @@ function initReportDateSelects() {
 function refreshDatePickerButtons() {
   DATE_PICKER_BTN_IDS.forEach(id => {
     const btn = document.getElementById(id);
-    if (btn && currentReportDate) btn.textContent = dateOptionLabel(currentReportDate);
+    if (btn) btn.textContent = currentReportDate ? dateOptionLabel(currentReportDate) : "날짜 없음";
   });
 }
 
@@ -549,7 +564,7 @@ function setReportDate(key) {
   if (isSchedulePaneVisible()) renderSchedulePane();
 }
 
-// ── 날짜 선택 캘린더 팝업 ──
+// ── 날짜 선택 캘린더 팝업 (월 이동 가능) ──
 let datePickerOpenTrigger = null;
 
 function toggleDatePicker(triggerEl) {
@@ -566,6 +581,11 @@ function openDatePicker(triggerEl) {
   const popup = document.getElementById("date-calendar-popup");
   if (!popup) return;
 
+  // 팝업을 열 때마다 현재 선택된 날짜가 속한 달을 기준으로 캘린더를 보여줍니다.
+  if (currentReportDate) {
+    const [y, m] = currentReportDate.split("-").map(Number);
+    if (y && m) reportCalCursor = new Date(y, m - 1, 1);
+  }
   renderDatePickerGrid();
 
   datePickerOpenTrigger = triggerEl;
@@ -598,6 +618,24 @@ function closeDatePicker() {
 function initDatePickerGlobalHandlers() {
   const popup = document.getElementById("date-calendar-popup");
   if (!popup) return;
+
+  const prevBtn = document.getElementById("dcp-prev");
+  const nextBtn = document.getElementById("dcp-next");
+  if (prevBtn) {
+    prevBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      reportCalCursor.setMonth(reportCalCursor.getMonth() - 1);
+      renderDatePickerGrid();
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      reportCalCursor.setMonth(reportCalCursor.getMonth() + 1);
+      renderDatePickerGrid();
+    });
+  }
+
   document.addEventListener("click", (e) => {
     if (!popup.classList.contains("show")) return;
     if (popup.contains(e.target)) return;
@@ -611,30 +649,26 @@ function initDatePickerGlobalHandlers() {
 }
 
 function renderDatePickerGrid() {
-  if (!REPORT_DATE_KEYS.length || !currentReportDate) return;
-  const sample = DAILY_REPORTS[REPORT_DATE_KEYS[0]];
-  const [year, month] = (sample.date || "").split("-").map(Number);
-  if (!year || !month) return;
-
   const labelEl = document.getElementById("dcp-month-label");
-  if (labelEl) labelEl.textContent = `${year}년 ${String(month).padStart(2, "0")}월`;
-
-  const firstWeekday = new Date(year, month - 1, 1).getDay(); // 0=일
-  const daysInMonth = new Date(year, month, 0).getDate();
-  const now = new Date();
-  const todayKey = (now.getFullYear() === year && now.getMonth() + 1 === month)
-    ? String(now.getDate()).padStart(2, "0") : null;
-
   const grid = document.getElementById("dcp-grid");
-  if (!grid) return;
-  grid.innerHTML = "";
+  if (!labelEl || !grid) return;
 
+  const year = reportCalCursor.getFullYear();
+  const month = reportCalCursor.getMonth(); // 0-based
+  labelEl.textContent = `${year}년 ${pad2(month + 1)}월`;
+
+  const firstWeekday = new Date(year, month, 1).getDay(); // 0=일
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const now = new Date();
+  const todayKey = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
+
+  grid.innerHTML = "";
   for (let i = 0; i < firstWeekday; i++) {
     grid.insertAdjacentHTML("beforeend", `<span class="dcp-day empty"></span>`);
   }
   for (let d = 1; d <= daysInMonth; d++) {
-    const key = String(d).padStart(2, "0");
-    const hasData = !!DAILY_REPORTS[key] && REPORT_DATE_KEYS.includes(key);
+    const key = `${year}-${pad2(month + 1)}-${pad2(d)}`;
+    const hasData = REPORT_DATE_KEYS.includes(key);
     const cls = ["dcp-day"];
     if (hasData) cls.push("has-data");
     if (key === currentReportDate) cls.push("selected");
@@ -986,12 +1020,17 @@ function xlsxCollectEarth(ws) {
 }
 
 // 워크북(01~31 시트)을 DAILY_REPORTS와 동일한 구조의 객체로 변환합니다.
+// 키는 시트명(01~31)이 아니라 시트에 적힌 실제 날짜(M5셀, "YYYY-MM-DD")를 사용합니다.
+// 이렇게 해야 다른 달의 엑셀을 불러와도 같은 "일자"끼리 서로 덮어쓰지 않습니다.
 function parseWorkbookToReports(workbook) {
   const result = {};
   for (let i = 1; i <= 31; i++) {
-    const name = String(i).padStart(2, "0");
-    const ws = workbook.Sheets[name];
+    const sheetName = String(i).padStart(2, "0");
+    const ws = workbook.Sheets[sheetName];
     if (!ws) continue;
+
+    const dateKey = xlsxDateStr(ws, "M5");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) continue; // 날짜가 비어있거나 형식이 이상하면 건너뜀
 
     const plan = xlsxCellNum(ws, "N4");
     const actual = xlsxCellNum(ws, "O4");
@@ -999,8 +1038,8 @@ function parseWorkbookToReports(workbook) {
     const personnel = xlsxCollectPersonnel(ws);
     const equipment = xlsxCollectEquipment(ws);
 
-    result[name] = {
-      date: xlsxDateStr(ws, "M5"),
+    result[dateKey] = {
+      date: dateKey,
       weather: xlsxCellStr(ws, "Q5"),
       progress: {
         plan: Math.round(plan * 10000) / 100,
@@ -1043,7 +1082,10 @@ function applyWorkbookArrayBuffer(arrayBuffer, labelForStatus) {
     throw new Error("일자별 시트(01~31 형식)를 찾지 못했습니다.");
   }
 
-  DAILY_REPORTS = parsed;
+  // 전체를 교체하지 않고 병합합니다. 그래야 이전에 불러온(또는 dailyData.js에 있던) 다른 달
+  // 데이터가 이번에 불러온 파일 때문에 사라지지 않습니다. 같은 날짜만 최신 내용으로 갱신됩니다.
+  if (typeof DAILY_REPORTS === "undefined" || DAILY_REPORTS === null) DAILY_REPORTS = {};
+  Object.assign(DAILY_REPORTS, parsed);
   rebuildReportDateKeys();
   currentReportDate = pickDefaultReportDate();
   initReportDateSelects();
