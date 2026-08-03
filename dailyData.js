@@ -15875,13 +15875,13 @@ let DAILY_REPORTS = {
     ],
     "work_tomorrow": [
       "◆토공",
-      " 1. 사면정리 및 소단 다이크 설치(BL.2)",
+      " 1. 법면정리 및 소단 다이크 설치(중로(집)3-14)",
       "   - B/H1.0-1",
-      "2. 작업로 설치",
+      "2. 작업로 설치 및 기존구조물 깨기",
       "   - B/H0.6-1",
       "◆기타",
-      " 1. 하천준설",
-      "   - B/H0.2-1"
+      "1. 벌개제근, 임목적재 및 운반",
+      "   - B/H0.6-1, B/H0.2-1, D/T15-1"
     ],
     "personnel": [
       {
@@ -16351,30 +16351,30 @@ let DAILY_REPORTS = {
     },
     "work_today": [
       "◆토공",
-      " 1. 사면정리 및 소단 다이크 설치(BL.2)",
+      " 1. 법면정리 및 소단 다이크 설치(중로(집)3-14)",
       "   - B/H1.0-1",
-      "2. 작업로 설치",
+      "2. 작업로 설치 및 기존구조물 깨기",
       "   - B/H0.6-1",
       "◆기타",
-      " 1. 하천준설",
-      "   - B/H0.2-1"
+      "1. 벌개제근, 임목적재 및 운반(벌목공사)",
+      "   - B/H0.6-1, B/H0.2-1, D/T15-1"
     ],
     "work_tomorrow": [
       "◆토공",
-      " 1. 사면정리 및 소단 다이크 설치(BL.2)",
+      " 1. 법면정리 및 소단 다이크 설치(중로(집)3-14)",
       "   - B/H1.0-1",
-      "2. 작업로 설치",
+      "2. 작업로 설치 및 기존구조물 깨기",
       "   - B/H0.6-1",
       "◆기타",
-      " 1. 하천준설",
-      "   - B/H0.2-1"
+      "1. 벌개제근, 임목적재 및 운반(벌목공사)",
+      "   - B/H0.6-1, B/H0.2-1, D/T15-1"
     ],
     "personnel": [
       {
         "role": "직    원",
         "prev": 2935,
-        "today": 24,
-        "cum": 2959
+        "today": 22,
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -16523,8 +16523,8 @@ let DAILY_REPORTS = {
     ],
     "personnel_total": {
       "prev": 3538,
-      "today": 24,
-      "cum": 3562
+      "today": 22,
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -16580,8 +16580,8 @@ let DAILY_REPORTS = {
         "type": "B/H",
         "spec": "0.2",
         "prev": 46,
-        "today": 1,
-        "cum": 47
+        "today": 0,
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -16727,8 +16727,8 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "prev": 447,
-        "today": 3,
-        "cum": 450
+        "today": 2,
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -16793,8 +16793,8 @@ let DAILY_REPORTS = {
     ],
     "equipment_total": {
       "prev": 2845,
-      "today": 3,
-      "cum": 2848
+      "today": 2,
+      "cum": 2847
     }
   },
   "2026-08-04": {
@@ -16852,9 +16852,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -17002,9 +17002,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -17059,9 +17059,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -17206,9 +17206,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -17272,9 +17272,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-05": {
@@ -17344,9 +17344,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -17494,9 +17494,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -17551,9 +17551,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -17698,9 +17698,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -17764,9 +17764,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-06": {
@@ -17836,9 +17836,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -17986,9 +17986,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -18043,9 +18043,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -18190,9 +18190,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -18256,9 +18256,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-07": {
@@ -18316,9 +18316,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -18466,9 +18466,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -18523,9 +18523,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -18670,9 +18670,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -18736,9 +18736,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-08": {
@@ -18797,9 +18797,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -18947,9 +18947,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -19004,9 +19004,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -19151,9 +19151,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -19217,9 +19217,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-09": {
@@ -19292,9 +19292,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -19442,9 +19442,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -19499,9 +19499,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -19646,9 +19646,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -19712,9 +19712,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-10": {
@@ -19788,9 +19788,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -19938,9 +19938,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -19995,9 +19995,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -20142,9 +20142,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -20208,9 +20208,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-11": {
@@ -20263,9 +20263,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -20413,9 +20413,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -20470,9 +20470,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -20617,9 +20617,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -20683,9 +20683,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-12": {
@@ -20757,9 +20757,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -20907,9 +20907,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -20964,9 +20964,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -21111,9 +21111,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -21177,9 +21177,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-13": {
@@ -21274,9 +21274,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -21424,9 +21424,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -21481,9 +21481,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -21628,9 +21628,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -21694,9 +21694,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-14": {
@@ -21788,9 +21788,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -21938,9 +21938,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -21995,9 +21995,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -22142,9 +22142,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -22208,9 +22208,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-15": {
@@ -22299,9 +22299,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -22449,9 +22449,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -22506,9 +22506,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -22653,9 +22653,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -22719,9 +22719,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-16": {
@@ -22809,9 +22809,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -22959,9 +22959,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -23016,9 +23016,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -23163,9 +23163,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -23229,9 +23229,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 2848,
+      "prev": 2847,
       "today": 0,
-      "cum": 2848
+      "cum": 2847
     }
   },
   "2026-08-17": {
@@ -23301,9 +23301,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -23451,9 +23451,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -23508,9 +23508,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -23627,9 +23627,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -23655,9 +23655,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -23703,9 +23703,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -23721,9 +23721,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-18": {
@@ -23776,9 +23776,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -23926,9 +23926,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -23983,9 +23983,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -24102,9 +24102,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -24130,9 +24130,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -24178,9 +24178,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -24196,9 +24196,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-19": {
@@ -24269,9 +24269,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -24419,9 +24419,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -24476,9 +24476,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -24595,9 +24595,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -24623,9 +24623,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -24671,9 +24671,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -24689,9 +24689,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-20": {
@@ -24781,9 +24781,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -24931,9 +24931,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -24988,9 +24988,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -25107,9 +25107,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -25135,9 +25135,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -25183,9 +25183,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -25201,9 +25201,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-21": {
@@ -25284,9 +25284,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -25434,9 +25434,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -25491,9 +25491,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -25610,9 +25610,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -25638,9 +25638,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -25686,9 +25686,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -25704,9 +25704,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-22": {
@@ -25779,9 +25779,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -25929,9 +25929,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -25986,9 +25986,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -26105,9 +26105,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -26133,9 +26133,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -26181,9 +26181,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -26199,9 +26199,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-23": {
@@ -26267,9 +26267,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -26417,9 +26417,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -26474,9 +26474,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -26593,9 +26593,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -26621,9 +26621,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -26669,9 +26669,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -26687,9 +26687,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-24": {
@@ -26748,9 +26748,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -26898,9 +26898,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -26955,9 +26955,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -27074,9 +27074,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -27102,9 +27102,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -27150,9 +27150,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -27168,9 +27168,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-25": {
@@ -27222,9 +27222,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -27372,9 +27372,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -27429,9 +27429,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -27548,9 +27548,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -27576,9 +27576,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -27624,9 +27624,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -27642,9 +27642,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-26": {
@@ -27706,9 +27706,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -27856,9 +27856,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -27913,9 +27913,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -28032,9 +28032,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -28060,9 +28060,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -28108,9 +28108,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -28126,9 +28126,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-27": {
@@ -28204,9 +28204,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -28354,9 +28354,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -28411,9 +28411,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -28530,9 +28530,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -28558,9 +28558,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -28606,9 +28606,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -28624,9 +28624,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-28": {
@@ -28700,9 +28700,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -28850,9 +28850,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -28907,9 +28907,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -29026,9 +29026,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -29054,9 +29054,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -29102,9 +29102,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -29120,9 +29120,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-29": {
@@ -29202,9 +29202,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -29352,9 +29352,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -29409,9 +29409,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -29528,9 +29528,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -29556,9 +29556,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -29604,9 +29604,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -29622,9 +29622,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-30": {
@@ -29696,9 +29696,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -29846,9 +29846,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -29903,9 +29903,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -30022,9 +30022,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -30050,9 +30050,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -30098,9 +30098,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -30116,9 +30116,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   },
   "2026-08-31": {
@@ -30179,9 +30179,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 2959,
+        "prev": 2957,
         "today": 0,
-        "cum": 2959
+        "cum": 2957
       },
       {
         "role": "하도급직원",
@@ -30329,9 +30329,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3562,
+      "prev": 3560,
       "today": 0,
-      "cum": 3562
+      "cum": 3560
     },
     "equipment_detail": [
       {
@@ -30386,9 +30386,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 47,
+        "prev": 46,
         "today": 0,
-        "cum": 47
+        "cum": 46
       },
       {
         "type": "B/H",
@@ -30505,9 +30505,9 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -30533,9 +30533,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 450,
+        "prev": 449,
         "today": 0,
-        "cum": 450
+        "cum": 449
       },
       {
         "type": "D/T",
@@ -30581,9 +30581,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 2848,
+        "prev": 2847,
         "today": 0,
-        "cum": 2848
+        "cum": 2847
       },
       {
         "type": "그레이더",
@@ -30599,9 +30599,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4028,
+      "prev": 4026,
       "today": 0,
-      "cum": 4028
+      "cum": 4026
     }
   }
 };
