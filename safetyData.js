@@ -48,5 +48,15 @@ let SAFETY_DATA = {
       "status": "작업승인",
       "work_name": "발파암 소할작업"
     }
+  ],
+  "2026-08-03": [
+    {
+      "company": "토우산업(주)",
+      "date": "2026-08-04",
+      "grade": "일상",
+      "location": "BL.2,5,중로(집)3-14",
+      "status": "작업승인",
+      "work_name": "법면정리, 소할"
+    }
   ]
 };
