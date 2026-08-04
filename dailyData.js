@@ -14879,8 +14879,8 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 3.68,
-      "actual": 6.0,
-      "diff": 163.19
+      "actual": 5.99,
+      "diff": 162.92
     },
     "earth": {
       "토사": {
