@@ -1,27 +1,25 @@
 /**
  * 사이트 접속 시 뜨는 공지사항 팝업 데이터
  * ------------------------------------------------------------------------
- * 이 배열에 공지를 추가/수정/삭제하면 팝업 내용이 바뀝니다. 팀마다 아래 형식대로
- * 항목만 하나씩 추가해서 쓰면 되고, 서로 다른 팀 공지가 같이 나열되어도 문제없습니다.
+ * 이 파일은 공지사항.xlsx 에서 extract_notices.py 스크립트로 자동 생성됩니다.
+ * 직접 이 파일을 수정하지 말고, 엑셀에서 수정한 뒤 auto_update 를 실행하세요.
  *
- * 각 항목의 필드 설명:
- *   id         : 고유 값 (다른 공지와 안 겹치면 아무 문자열이나 숫자 OK)
- *   team       : 작성 팀/구분 이름 (예: "안전관리팀", "품질관리팀", "현장사무소") - 카드에 태그로 표시됨
- *   level      : 공지 성격에 따른 색상 -  "info"(파랑, 일반안내) | "warning"(주황, 주의) | "danger"(빨강, 긴급/중요)
+ *   id         : 고유 값
+ *   team       : 작성 팀/구분 이름 - 카드에 태그로 표시됨
+ *   level      : "info"(파랑) | "warning"(주황) | "danger"(빨강)
  *   title      : 공지 제목
- *   body       : 공지 내용. 줄바꿈은 \n 으로, 굵게 강조하고 싶으면 <b>이렇게</b> 감싸면 됩니다.
- *   image      : (선택) 공지에 넣을 이미지 경로. 예: "assets/notice/heat_index.png"
- *                이미지 파일을 assets 폴더 같은 곳에 넣어두고, 그 경로를 적어주면 제목 아래에 표시됩니다.
- *   startDate  : "YYYY-MM-DD" (선택) - 이 날짜부터 노출. 생략하면 등록 즉시부터 노출
- *   endDate    : "YYYY-MM-DD" (선택) - 이 날짜까지 노출(포함). 생략하면 계속 노출
- *   pinned     : true로 하면 다른 공지보다 항상 위쪽에 표시
+ *   body       : 공지 내용 (줄바꿈 \n, 굵게 <b>...</b>)
+ *   image      : (선택) 이미지 경로
+ *   startDate  : (선택) "YYYY-MM-DD"
+ *   endDate    : (선택) "YYYY-MM-DD"
+ *   pinned     : true 면 항상 상단 고정
  *
- * 예시 공지는 아래 하나 넣어뒀습니다. 실제로 쓰실 땐 이 예시를 지우거나 날짜를 맞춰서 쓰세요.
- * (배열이 비어있으면[ ] 팝업 자체가 뜨지 않습니다)
+ * 원본: C:\Users\jinhong\Desktop\jmp-platform\데이터관리\알림창\공지사항.xlsx
+ * 생성 시각: 2026-08-06 14:47:03
  */
 let SITE_NOTICES = [
    {
-    id: "notice-003",
+    id: "1",
     team: "관리자",
     level: "info",
     title: "자료업데이트관련",
@@ -31,24 +29,14 @@ let SITE_NOTICES = [
     pinned: true
    },
    {
-    id: "sample-001",
-    team: "관리자",
-    level: "info",
-    title: "주요일정 카드추가",
-    body: "주요일정을 캘린더형태에서 확인할 수 있습니다.",
-    startDate: "",
-    endDate: "",
-    pinned: false
-   },
-   {
-    id: "notice-002",
+    id: "2",
     team: "관리팀",
     level: "info",
     title: "Family Day 알림",
     image: "assets/notice/family_day.png",
-    body: "자세한 내용은 위 이미지를 참고해주세요.",
+    body: "자세한 내용은 이미지를 참고해주세요.",
     startDate: "",
     endDate: "2026-09-30",
     pinned: false
-  }
+   }
 ];
