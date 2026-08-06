@@ -16,6 +16,7 @@
 extract.py
 extract_quality.py
 extract_safety.py
+extract_notices.py
 update_data.bat
 auto_update.ps1
 run_auto_update.bat
