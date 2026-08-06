@@ -15,13 +15,13 @@
  *   pinned     : true 면 항상 상단 고정
  *
  * 원본: C:\Users\jinhong\Desktop\jmp-platform\데이터관리\알림창\공지사항.xlsx
- * 생성 시각: 2026-08-06 14:56:20
+ * 생성 시각: 2026-08-06 15:04:31
  */
 let SITE_NOTICES = [
    {
     id: "1",
     team: "관리자",
-    level: "info",
+    level: "danger",
     title: "자료업데이트관련",
     body: "매일 10시에 자료가 업데이트 됩니다.",
     startDate: "",
