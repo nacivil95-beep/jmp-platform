@@ -3,7 +3,7 @@
  * 생성 스크립트: fetch_feels_like.py (5분마다 자동 갱신)
  */
 let FEELS_LIKE_DATA = {
-  "feelsLike": 35.6,
-  "updatedAt": "2026-08-11 17:35:02",
+  "feelsLike": 23.1,
+  "updatedAt": "2026-08-12 08:20:03",
   "source": "sensolink (스마트 체감온도계)"
 };
