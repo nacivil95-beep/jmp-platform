@@ -58,5 +58,15 @@ let SAFETY_DATA = {
       "status": "작업승인",
       "work_name": "법면정리, 소할"
     }
+  ],
+  "2026-08-11": [
+    {
+      "company": "토우산업(주)",
+      "date": "2026-08-12",
+      "grade": "일상",
+      "location": "BL.2,5,중로(집)3-14",
+      "status": "작업승인",
+      "work_name": "법면정리, 소할"
+    }
   ]
 };
