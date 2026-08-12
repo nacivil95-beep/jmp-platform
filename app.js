@@ -344,6 +344,9 @@ async function fetchWeatherData() {
 
     // 작업 위험도(체감온도 기반 온열/한랭질환 안내) 갱신 — 최신 관측시각의 기온/습도/풍속 사용
     const curReh = parseFloat(latest.REH);
+    lastKmaTa = curTemp;
+    lastKmaReh = curReh;
+    lastKmaWsd = curWind;
     updateWorkRiskUI(curTemp, curReh, curWind);
 
     const failedCount = hours.length - succeeded.length;
@@ -436,6 +439,12 @@ function getColdRiskLevel(feelsLike) {
 
 let lastRiskInfo = null; // worker-card 배너를 renderWorkers 재호출 후에도 유지하기 위한 캐시
 
+// 스마트 체감온도계 자동 재조회 시, 기상청 기온/습도/풍속을 다시 받아오지 않고도
+// updateWorkRiskUI()를 재실행할 수 있도록 가장 최근 관측값을 기억해둡니다.
+let lastKmaTa = null;
+let lastKmaReh = null;
+let lastKmaWsd = null;
+
 // ─── 현장 스마트 체감온도계(센소링크) 연동 ───────────────────────────────
 // fetch_feels_like.py 가 5분마다 로컬 PC에서 센소링크 값을 읽어와 feelsLikeData.js 로
 // 저장 → git push 한 결과를 여기서 읽습니다. index.html 에서 feelsLikeData.js 를
@@ -453,6 +462,41 @@ function getFreshSensorFeelsLike() {
   const updatedTime = new Date(String(updatedAt).replace(" ", "T")).getTime();
   if (isNaN(updatedTime) || Date.now() - updatedTime > SENSOR_FRESH_LIMIT_MS) return null;
   return feelsLike;
+}
+
+// ─── 스마트 체감온도계(feelsLikeData.js) 자동 재조회 ───────────────────────
+// index.html에서는 최초 로드 시 한 번만 <script>로 feelsLikeData.js를 불러오기 때문에,
+// 그 이후 GitHub에 새 값이 올라와도(5분마다) 새로고침 전에는 화면에 반영되지 않았습니다.
+// 아래는 그 파일을 주기적으로 fetch()로 다시 받아와 FEELS_LIKE_DATA를 갱신하고,
+// 화면(체감온도/위험도 배지)을 다시 그리는 로직입니다.
+const FEELS_LIKE_REFRESH_MS = 5 * 60 * 1000; // 5분 - GitHub 갱신 주기와 동일
+
+async function fetchFeelsLikeSensorData() {
+  try {
+    // 캐시된 오래된 버전을 받아오지 않도록 매번 다른 쿼리스트링을 붙입니다.
+    const res = await fetch(`feelsLikeData.js?v=${Date.now()}`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const text = await res.text();
+
+    // feelsLikeData.js는 `let FEELS_LIKE_DATA = { ... };` 형태의 일반 스크립트 파일이라,
+    // 실행하지 않고도 안전하게 값만 뽑아내기 위해 중괄호 안 JSON 부분만 정규식으로 추출합니다.
+    const match = text.match(/\{[\s\S]*\}/);
+    if (!match) throw new Error("FEELS_LIKE_DATA 객체를 찾지 못했습니다.");
+    const parsed = JSON.parse(match[0]);
+
+    FEELS_LIKE_DATA = parsed; // 전역 변수 갱신 (getFreshSensorFeelsLike()가 참조)
+
+    // 기상청 기온/습도/풍속은 이미 받아둔 최신 값을 그대로 사용해 위험도 UI만 다시 계산합니다.
+    if (lastKmaTa !== null && lastKmaReh !== null) {
+      updateWorkRiskUI(lastKmaTa, lastKmaReh, lastKmaWsd);
+    }
+  } catch (e) {
+    console.warn("[스마트 체감온도계] 자동 재조회 실패:", e);
+  }
+}
+
+function initFeelsLikeAutoRefresh() {
+  setInterval(fetchFeelsLikeSensorData, FEELS_LIKE_REFRESH_MS);
 }
 
 function updateWorkRiskUI(ta, rh, wsMs) {
@@ -2759,6 +2803,9 @@ function init() {
 
   // 2) 기상 시뮬레이션 시작
   initWeatherLive();
+
+  // 2-1) 스마트 체감온도계(feelsLikeData.js) 자동 재조회 시작 (5분마다 GitHub 최신값 반영)
+  initFeelsLikeAutoRefresh();
 
   // 3) 탭 이벤트 등록 (이벤트 위임 방식 – 메모리 효율적)
   initTabs();
