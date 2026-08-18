@@ -983,393 +983,6 @@ function initWorkStatusModal() {
 }
 
 // =========================================================================
-// 5-1. 작업일보 엑셀 "직접 불러오기" (SheetJS) – 서버 없이 로컬 파일 선택만으로 갱신
-// =========================================================================
-// 매일 현장에서 작업일보 엑셀에 그날 시트를 채워 저장하면, 이 버튼으로 그 파일을 선택해
-// 브라우저에서 바로 파싱합니다(별도 변환 작업/재배포 불필요). dailyData.js는 최초 진입 시
-// 보여줄 기본값(폴백)일 뿐이며, 여기서 불러온 내용이 우선합니다.
-
-function xlsxCellStr(ws, addr) {
-  const c = ws[addr];
-  if (!c || c.v === undefined || c.v === null) return null;
-  return String(c.v);
-}
-function xlsxCellNum(ws, addr) {
-  const c = ws[addr];
-  if (!c || c.v === undefined || c.v === null) return 0;
-  const n = Number(c.v);
-  return isNaN(n) ? 0 : n;
-}
-function xlsxDateStr(ws, addr) {
-  const c = ws[addr];
-  if (!c || c.v === undefined || c.v === null) return "";
-  // ⚠️ 파싱오류 수정 (18일 시트 → 17일로 표시되던 문제):
-  // 예전에는 워크북을 cellDates:true로 읽어 c.v가 JS Date 객체로 들어왔고,
-  // 여기서 getFullYear()/getMonth()/getDate() 같은 "로컬 타임존" 기준 메서드로
-  // 날짜를 뽑아냈습니다. 그런데 SheetJS가 이 Date 객체를 만드는 과정 자체가
-  // 로컬 타임존을 태우기 때문에(+ 엑셀 시리얼 값의 부동소수점 오차까지 겹치면),
-  // 대시보드를 여는 PC/브라우저의 타임존에 따라 자정 대신 "전날 23:59:xx"에
-  // 가까운 시각이 만들어져 날짜가 하루 밀리는 문제가 있었습니다.
-  // → 해결: Date 객체를 거치지 않고, 엑셀 원본 시리얼 숫자를 SheetJS의 순수
-  //   계산 유틸(XLSX.SSF.parse_date_code)로 직접 캘린더 날짜로 변환합니다.
-  //   타임존 개념이 전혀 없는 계산이라 어떤 환경에서 열어도 항상 정확합니다.
-  //   (워크북을 읽을 때도 cellDates 옵션을 빼서 항상 원본 숫자로 받습니다.)
-  if (typeof XLSX !== "undefined" && XLSX.SSF && (c.t === "n" || typeof c.v === "number")) {
-    const info = XLSX.SSF.parse_date_code(c.v);
-    if (info) {
-      return `${info.y}-${String(info.m).padStart(2, "0")}-${String(info.d).padStart(2, "0")}`;
-    }
-  }
-  // 만약을 대비한 폴백 (숫자/시리얼이 아닌 경우)
-  if (c.v instanceof Date) {
-    const d = c.v;
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-  }
-  return String(c.v);
-}
-
-function xlsxCollectText(ws, col, rStart, rEnd) {
-  const lines = [];
-  for (let r = rStart; r <= rEnd; r++) {
-    const v = xlsxCellStr(ws, col + r);
-    if (v !== null && v.trim() !== "") lines.push(v.replace(/\s+$/, ""));
-  }
-  return lines;
-}
-
-function xlsxCollectPersonnel(ws) {
-  const rows = [];
-  for (let r = 202; r <= 228; r++) {
-    const role = xlsxCellStr(ws, "H" + r);
-    if (role === null || role.trim() === "") continue;
-    rows.push({
-      role: role.trim(),
-      prev: xlsxCellNum(ws, "J" + r),
-      today: xlsxCellNum(ws, "K" + r),
-      cum: xlsxCellNum(ws, "L" + r)
-    });
-  }
-  const total = { prev: xlsxCellNum(ws, "J229"), today: xlsxCellNum(ws, "K229"), cum: xlsxCellNum(ws, "L229") };
-  return { rows, total };
-}
-
-function xlsxCollectEquipment(ws) {
-  const rows = [];
-  let curType = null;
-  for (let r = 202; r <= 228; r++) {
-    const typ = xlsxCellStr(ws, "M" + r);
-    const spec = xlsxCellStr(ws, "N" + r);
-    if (typ !== null && typ.trim() !== "") curType = typ.trim();
-    if (spec === null && typ === null) continue;
-    if (curType === null) continue;
-    rows.push({
-      type: curType,
-      spec: spec !== null ? spec.trim() : "",
-      prev: xlsxCellNum(ws, "O" + r),
-      today: xlsxCellNum(ws, "P" + r),
-      cum: xlsxCellNum(ws, "Q" + r)
-    });
-  }
-  const total = { prev: xlsxCellNum(ws, "O229"), today: xlsxCellNum(ws, "P229"), cum: xlsxCellNum(ws, "Q229") };
-
-  const aggMap = {};
-  const order = [];
-  rows.forEach(row => {
-    if (!aggMap[row.type]) {
-      aggMap[row.type] = { type: row.type, prev: 0, today: 0, cum: 0 };
-      order.push(row.type);
-    }
-    aggMap[row.type].prev += row.prev;
-    aggMap[row.type].today += row.today;
-    aggMap[row.type].cum += row.cum;
-  });
-  const agg = order.map(t => aggMap[t]);
-  return { rows, agg, total };
-}
-
-function xlsxCollectEarth(ws) {
-  const earth = {};
-  Object.keys(EARTH_ROWS).forEach(rowStr => {
-    const row = Number(rowStr);
-    const { label, start } = EARTH_ROWS[row];
-    earth[label] = {
-      design: xlsxCellNum(ws, "E" + row),
-      prev: xlsxCellNum(ws, "F" + row),
-      today: xlsxCellNum(ws, "G" + row),
-      cum: xlsxCellNum(ws, "H" + row),
-      start
-    };
-  });
-  return earth;
-}
-
-// 워크북(01~31 시트)을 DAILY_REPORTS와 동일한 구조의 객체로 변환합니다.
-// 키는 시트명(01~31)이 아니라 시트에 적힌 실제 날짜(M5셀, "YYYY-MM-DD")를 사용합니다.
-// 이렇게 해야 다른 달의 엑셀을 불러와도 같은 "일자"끼리 서로 덮어쓰지 않습니다.
-function parseWorkbookToReports(workbook) {
-  const result = {};
-  for (let i = 1; i <= 31; i++) {
-    const sheetName = String(i).padStart(2, "0");
-    const ws = workbook.Sheets[sheetName];
-    if (!ws) continue;
-
-    const dateKey = xlsxDateStr(ws, "M5");
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) continue; // 날짜가 비어있거나 형식이 이상하면 건너뜀
-
-    const plan = xlsxCellNum(ws, "N4");
-    const actual = xlsxCellNum(ws, "O4");
-    const diff = xlsxCellNum(ws, "P4");
-    const personnel = xlsxCollectPersonnel(ws);
-    const equipment = xlsxCollectEquipment(ws);
-
-    result[dateKey] = {
-      date: dateKey,
-      weather: xlsxCellStr(ws, "Q5"),
-      progress: {
-        plan: Math.round(plan * 10000) / 100,
-        actual: Math.round(actual * 10000) / 100,
-        diff: Math.round(diff * 10000) / 100
-      },
-      earth: xlsxCollectEarth(ws),
-      work_today: xlsxCollectText(ws, "B", 7, 49),
-      work_tomorrow: xlsxCollectText(ws, "J", 7, 49),
-      personnel: personnel.rows,
-      personnel_total: personnel.total,
-      equipment_detail: equipment.rows,
-      equipment: equipment.agg,
-      equipment_total: equipment.total
-    };
-  }
-  return result;
-}
-
-function setExcelLoadStatus(text, isError) {
-  const el = document.getElementById("excel-load-status");
-  if (!el) return;
-  el.textContent = text;
-  el.classList.toggle("error", !!isError);
-}
-
-// 엑셀 원본(ArrayBuffer)을 파싱해 대시보드에 실제로 반영하는 공통 로직.
-// - 수동 파일 선택(<input type=file>)
-// - 자동 재읽기(File System Access API로 저장해둔 파일 핸들)
-// 두 경로 모두 이 함수를 거치도록 통일했습니다.
-function applyWorkbookArrayBuffer(arrayBuffer, labelForStatus) {
-  const data = new Uint8Array(arrayBuffer);
-  // cellDates 옵션을 사용하지 않습니다: 날짜 셀을 JS Date로 자동 변환하면
-  // SheetJS 내부적으로 로컬 타임존을 거치면서 날짜가 하루 밀리는 파싱오류가
-  // 발생할 수 있습니다(xlsxDateStr 함수 주석 참고). 원본 시리얼 숫자를 그대로
-  // 받아 타임존 영향이 없는 XLSX.SSF.parse_date_code로 직접 변환합니다.
-  const workbook = XLSX.read(data, { type: "array" });
-  const parsed = parseWorkbookToReports(workbook);
-  if (Object.keys(parsed).length === 0) {
-    throw new Error("일자별 시트(01~31 형식)를 찾지 못했습니다.");
-  }
-
-  // 전체를 교체하지 않고 병합합니다. 그래야 이전에 불러온(또는 dailyData.js에 있던) 다른 달
-  // 데이터가 이번에 불러온 파일 때문에 사라지지 않습니다. 같은 날짜만 최신 내용으로 갱신됩니다.
-  if (typeof DAILY_REPORTS === "undefined" || DAILY_REPORTS === null) DAILY_REPORTS = {};
-  Object.assign(DAILY_REPORTS, parsed);
-  rebuildReportDateKeys();
-  currentReportDate = pickDefaultReportDate();
-  initReportDateSelects();
-  if (currentReportDate) {
-    renderWorkers(currentReportDate);
-    renderEquip(currentReportDate);
-    renderWorkStatusModal(currentReportDate);
-    renderProgressCard(currentReportDate);
-    renderEarth(currentReportDate);
-  }
-  if (isSchedulePaneVisible()) renderSchedulePane();
-  const now = new Date().toLocaleTimeString("ko-KR", { hour12: false });
-  setExcelLoadStatus(`불러오기 완료: ${labelForStatus} (${now})`, false);
-}
-
-// =========================================================================
-// 5-1a. 저장된 파일 핸들 보관 (IndexedDB) – File System Access API용
-// =========================================================================
-// FileSystemFileHandle은 구조화 복제(structured clone)가 가능해 IndexedDB에
-// 그대로 저장할 수 있습니다. 여기 저장해두면, 다음에 앱을 열었을 때 사용자가
-// 파일을 다시 선택하지 않아도 같은 파일을 다시 찾아 읽을 수 있습니다.
-const EXCEL_HANDLE_DB = "xitecore-excel-handle-db";
-const EXCEL_HANDLE_STORE = "handles";
-const EXCEL_HANDLE_KEY = "workReportFile";
-
-function openHandleDB() {
-  return new Promise((resolve, reject) => {
-    const req = indexedDB.open(EXCEL_HANDLE_DB, 1);
-    req.onupgradeneeded = () => {
-      req.result.createObjectStore(EXCEL_HANDLE_STORE);
-    };
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
-  });
-}
-
-async function saveExcelHandle(handle) {
-  const db = await openHandleDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(EXCEL_HANDLE_STORE, "readwrite");
-    tx.objectStore(EXCEL_HANDLE_STORE).put(handle, EXCEL_HANDLE_KEY);
-    tx.oncomplete = () => resolve();
-    tx.onerror = () => reject(tx.error);
-  });
-}
-
-async function loadExcelHandle() {
-  const db = await openHandleDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(EXCEL_HANDLE_STORE, "readonly");
-    const req = tx.objectStore(EXCEL_HANDLE_STORE).get(EXCEL_HANDLE_KEY);
-    req.onsuccess = () => resolve(req.result || null);
-    req.onerror = () => reject(req.error);
-  });
-}
-
-// =========================================================================
-// 5-1b. 작업일보 엑셀 "자동" 불러오기 – File System Access API (Chrome/Edge)
-// =========================================================================
-// 최초 1회 파일을 선택해두면, 그 이후로는 index.html을 열 때마다 사용자 클릭 없이
-// 자동으로 같은 파일의 "현재" 내용을 다시 읽어옵니다. 현장에서는 매일 같은 파일에
-// 그날 시트만 채워 덮어써주면, 앱을 열 때마다 항상 최신 상태가 반영됩니다.
-// ※ Firefox/Safari는 File System Access API를 지원하지 않아 이 기능이 자동으로
-//   빠지고, 기존처럼 매번 수동으로 파일을 선택하는 방식으로 동작합니다.
-const FS_ACCESS_SUPPORTED = typeof window.showOpenFilePicker === "function";
-
-// 권한 재확인이 필요한 상태(이미 파일은 알고 있지만 이번 세션에서 아직 재허용 안 됨)일 때,
-// 버튼을 눌렀을 때 "파일 선택창을 다시 띄우지 않고" 곧바로 권한만 재요청할 수 있도록
-// 해당 핸들을 기억해둡니다.
-let pendingReconfirmHandle = null;
-
-async function trySilentAutoLoad() {
-  if (!FS_ACCESS_SUPPORTED) return false;
-  let handle;
-  try {
-    handle = await loadExcelHandle();
-  } catch (e) {
-    console.warn("[자동 불러오기] 저장된 파일 핸들 조회 실패", e);
-    return false;
-  }
-  if (!handle) return false; // 아직 한 번도 자동 불러오기를 설정한 적 없음
-
-  try {
-    // queryPermission은 사용자 클릭(gesture) 없이도 호출 가능합니다.
-    // 이미 "허용"된 상태라면 아무 팝업 없이 바로 파일을 읽습니다.
-    const perm = await handle.queryPermission({ mode: "read" });
-    if (perm !== "granted") {
-      // Chrome은 브라우저를 새로 켤 때마다 이 권한을 "prompt" 상태로 되돌립니다
-      // (파일을 계속 기억해뒀다가 몰래 읽는 걸 막기 위한 보안 정책). 파일을 다시
-      // 고를 필요는 없고, 버튼을 한 번만 눌러 권한만 재확인하면 됩니다.
-      pendingReconfirmHandle = handle;
-      const fname = handle.name ? ` (${handle.name})` : "";
-      setExcelLoadStatus(`자동 불러오기 권한 재확인 필요${fname} - 버튼을 눌러주세요`, true);
-      return false;
-    }
-    const file = await handle.getFile();
-    const buf = await file.arrayBuffer();
-    applyWorkbookArrayBuffer(buf, `${file.name} (자동)`);
-    return true;
-  } catch (e) {
-    console.error("[자동 불러오기 실패]", e);
-    setExcelLoadStatus("자동 불러오기 실패 - 버튼을 눌러 파일을 다시 선택해주세요", true);
-    return false;
-  }
-}
-
-// 이미 저장된 핸들의 권한만 재요청(파일 선택창 없이, 클릭 한 번으로 즉시 처리).
-async function reconfirmPendingHandle() {
-  const handle = pendingReconfirmHandle;
-  if (!handle) return false;
-  try {
-    const perm = await handle.requestPermission({ mode: "read" }); // 클릭 직후 호출이라 사용자 제스처 인정됨
-    if (perm !== "granted") {
-      setExcelLoadStatus("파일 접근 권한이 거부되었습니다", true);
-      return false;
-    }
-    pendingReconfirmHandle = null;
-    const file = await handle.getFile();
-    const buf = await file.arrayBuffer();
-    applyWorkbookArrayBuffer(buf, `${file.name} (자동)`);
-    return true;
-  } catch (e) {
-    console.error("[권한 재확인 실패]", e);
-    setExcelLoadStatus("권한 재확인 실패 - 파일을 다시 선택해주세요", true);
-    return false;
-  }
-}
-
-// 사용자가 버튼을 눌렀을 때: File System Access API 지원 브라우저면 파일 선택 +
-// 앞으로 자동 불러오기용으로 핸들을 저장. 미지원 브라우저면 기존 방식(input click)으로 폴백.
-async function pickExcelWithFsAccess() {
-  try {
-    const [handle] = await window.showOpenFilePicker({
-      types: [{ description: "작업일보 엑셀", accept: { "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"] } }],
-      excludeAcceptAllOption: false,
-      multiple: false
-    });
-    const perm = await handle.requestPermission({ mode: "read" }); // 최초 1회는 사용자 클릭이 있어야 허용됨
-    if (perm !== "granted") {
-      setExcelLoadStatus("파일 접근 권한이 거부되었습니다", true);
-      return;
-    }
-    await saveExcelHandle(handle);
-    pendingReconfirmHandle = null;
-    const file = await handle.getFile();
-    const buf = await file.arrayBuffer();
-    applyWorkbookArrayBuffer(buf, `${file.name} (자동 불러오기 설정 완료)`);
-  } catch (e) {
-    if (e && e.name === "AbortError") return; // 사용자가 선택 취소
-    console.error("[작업일보 불러오기 실패]", e);
-    setExcelLoadStatus("불러오기 실패 - 파일 형식을 확인하세요", true);
-  }
-}
-
-function initExcelLoader() {
-  const btn = document.getElementById("excel-load-btn");
-  const input = document.getElementById("excel-file-input");
-  if (!btn || !input || typeof XLSX === "undefined") return;
-
-  if (FS_ACCESS_SUPPORTED) {
-    // 자동 불러오기 지원 브라우저: 버튼을 누르면 "다음부터 자동으로 불러올 파일"을 (재)설정
-    btn.title = "엑셀 파일을 한 번 선택해두면, 다음부터는 앱을 열 때 자동으로 최신 내용을 불러옵니다";
-    btn.addEventListener("click", async () => {
-      // 이미 알고 있는 파일인데 이번 세션에서 권한만 재확인하면 되는 경우,
-      // 파일 선택창을 다시 띄우지 않고 권한 재요청만으로 끝냅니다.
-      if (pendingReconfirmHandle) {
-        const ok = await reconfirmPendingHandle();
-        if (ok) return;
-        // 재확인도 실패했으면(예: 사용자가 거부) 완전히 새로 선택하도록 이어서 진행
-      }
-      pickExcelWithFsAccess();
-    });
-    // 앱을 여는 즉시(클릭 없이) 이전에 설정해둔 파일을 자동으로 다시 읽어봅니다.
-    trySilentAutoLoad();
-  } else {
-    // 미지원 브라우저(Firefox/Safari 등): 기존 수동 방식 그대로 유지
-    setExcelLoadStatus("이 브라우저는 자동 불러오기를 지원하지 않아 매번 수동으로 선택해야 합니다", false);
-    btn.addEventListener("click", () => input.click());
-    input.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      setExcelLoadStatus("불러오는 중...", false);
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        try {
-          applyWorkbookArrayBuffer(ev.target.result, file.name);
-        } catch (err) {
-          console.error("[작업일보 불러오기 실패]", err);
-          setExcelLoadStatus("불러오기 실패 - 파일 형식을 확인하세요", true);
-        } finally {
-          input.value = "";
-        }
-      };
-      reader.onerror = () => setExcelLoadStatus("파일 읽기 오류", true);
-      reader.readAsArrayBuffer(file);
-    });
-  }
-}
-
-// =========================================================================
 // 7. 공정율 및 작업일보 카드 렌더링
 // =========================================================================
 const WEEKDAY_KR = ["일", "월", "화", "수", "목", "금", "토"];
@@ -1759,6 +1372,25 @@ function initMap() {
     resizeTimer = setTimeout(() => map.invalidateSize(), 200);
   });
 
+  // ── 초기 로딩 시 지도 우측이 회색으로 잘려 보이는 문제 해결 ──────────────────
+  // 원인: L.map()이 생성되는 시점에 Leaflet이 컨테이너 크기를 한 번 측정해서 캐시하는데,
+  //       그 시점엔 폰트 로딩/그리드 레이아웃이 아직 완전히 자리잡기 전이라 실제보다
+  //       좁은 크기로 측정되는 경우가 있습니다. 이후 레이아웃이 최종 크기로 확정돼도
+  //       Leaflet은 그 사실을 모르기 때문에, 처음 측정한 좁은 영역만큼만 타일을 채우고
+  //       나머지는 빈 회색 영역으로 남습니다.
+  // 해결: 지도 컨테이너 크기를 계속 감시하다가 변하면(폰트 로딩 완료, 레이아웃 재계산 등)
+  //       자동으로 map.invalidateSize()를 호출해 다시 계산하게 합니다.
+  const mapContainerEl = document.getElementById("leaflet-map");
+  if (mapContainerEl && window.ResizeObserver) {
+    const mapResizeObserver = new ResizeObserver(() => map.invalidateSize());
+    mapResizeObserver.observe(mapContainerEl);
+  } else {
+    // 구형 브라우저 등 ResizeObserver 미지원 환경 대비: 페이지 로드 완료 직후 한 번 더 재계산
+    window.addEventListener("load", () => map.invalidateSize());
+  }
+  // 그 사이에도 곧바로 한 번 재계산해 첫 화면부터 최대한 정확한 크기로 그려지게 합니다.
+  setTimeout(() => map.invalidateSize(), 0);
+
   // 핀 마커 배치 – 마커 타입별 색상 적용
   const colorMap = { orange: "#ff6d00", blue: "#2979ff", green: "#00c46a" };
   DATA.markers.forEach(m => {
@@ -1995,6 +1627,91 @@ function initNoticePopup() {
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) closeNoticePopup();
   });
+}
+
+// -------------------------------------------------------------------------
+// 12-4. 게시판 배너 (무재해 배지 옆, 남은 폭을 채워 우→좌로 흐름)
+//   - 데이터관리/알림게시판/board.xlsx → extract_board.py → board.js 의 BOARD_ITEMS를 표시
+//   - 텍스트를 두 번 이어붙여 0% → -50% 로 이동시키면 우→좌로 끊김 없이 순환
+//   - 텍스트 길이에 비례해 애니메이션 속도(지속시간)를 자동 조정
+// -------------------------------------------------------------------------
+const BOARD_TICKER_PX_PER_SEC = 60; // 흐르는 속도 (초당 픽셀). 값을 키우면 더 빨리 흐름
+
+// startDate/endDate가 지정된 항목만 오늘 날짜 기준으로 필터링하고, pinned 항목을 앞으로 정렬합니다.
+// (알림창의 getActiveNotices()와 동일한 규칙을 board.js의 BOARD_ITEMS에 적용)
+function getActiveBoardItems() {
+  if (typeof BOARD_ITEMS === "undefined" || !Array.isArray(BOARD_ITEMS)) return [];
+  const today = getTodayDateStr();
+  return BOARD_ITEMS
+    .filter(n => {
+      if (n.startDate && today < n.startDate) return false;
+      if (n.endDate && today > n.endDate) return false;
+      return true;
+    })
+    .sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
+}
+
+// 오늘 날짜(주요 일정 카드와 동일한 SCHEDULE_EVENTS_ONEOFF)에 해당하는 일정만 뽑아
+// 게시판 배너에 "주요일정" 태그로 함께 흘려보내기 위한 헬퍼입니다.
+// 오늘 일정이 없으면 빈 배열을 반환하고, 그 경우 배너에는 기존 게시글만 표시됩니다.
+function getTodayScheduleEventsForBoard() {
+  if (typeof SCHEDULE_EVENTS_ONEOFF === "undefined" || !Array.isArray(SCHEDULE_EVENTS_ONEOFF)) return [];
+  const today = getTodayDateStr();
+  return SCHEDULE_EVENTS_ONEOFF
+    .filter(ev => ev.date === today)
+    .sort((a, b) => (a.time || "").localeCompare(b.time || ""));
+}
+
+// 게시글(BOARD_ITEMS)과 오늘의 주요일정(SCHEDULE_EVENTS_ONEOFF)을 하나의 목록으로 합쳐
+// 배너에 표시할 태그(중요/주요일정)+텍스트 형태로 변환합니다.
+function buildBoardTickerItems() {
+  // tagType: "schedule"(오늘의 주요일정, 파란색) / "notice"(게시판 중요, 노란색)
+  const todayEvents = getTodayScheduleEventsForBoard().map(ev => ({
+    tag: "오늘의 주요일정",
+    tagType: "schedule",
+    text: `${ev.time ? ev.time + " " : ""}${ev.title || ""}${ev.note ? " - " + ev.note : ""}`
+  }));
+  const boardItems = getActiveBoardItems().map(n => ({
+    tag: n.pinned ? "중요 알림" : "알림",
+    tagType: "notice",
+    text: n.text || ""
+  }));
+  // 오늘 일정이 있으면 게시글보다 항상 먼저(더 눈에 띄게) 보여줍니다.
+  return [...todayEvents, ...boardItems];
+}
+
+function buildBoardTickerHtml(items) {
+  return items
+    .map(it => `${it.tag ? `<b class="tag-${it.tagType}">${escapeHtml(it.tag)}</b>` : ""}${escapeHtml(it.text)}`)
+    .join("&nbsp;&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;&nbsp;");
+}
+
+function initBoardTicker() {
+  const banner = document.getElementById("board-banner");
+  const content = document.getElementById("board-banner-content");
+  if (!banner || !content) return;
+
+  const items = buildBoardTickerItems();
+
+  if (!items.length) {
+    // 흐를 게시글/일정이 없으면 애니메이션 없이 안내 문구만 정적으로 표시
+    content.style.animation = "none";
+    content.innerHTML = `<span class="board-banner-item board-banner-empty">등록된 게시글이 없습니다.</span>`;
+  } else {
+    const text = buildBoardTickerHtml(items);
+    // 동일 텍스트 2벌을 이어붙여 0%→-50% 루프 시 이음매가 보이지 않도록 함
+    content.innerHTML = `
+      <span class="board-banner-item">${text}</span>
+      <span class="board-banner-item" aria-hidden="true">${text}</span>
+    `;
+
+    // 실제 렌더링된 한 벌 너비를 측정해 속도를 일정하게 유지 (텍스트가 길어도 짧아도 초당 픽셀 동일)
+    requestAnimationFrame(() => {
+      const oneSetWidth = content.scrollWidth / 2;
+      const duration = Math.max(10, oneSetWidth / BOARD_TICKER_PX_PER_SEC);
+      content.style.animationDuration = `${duration}s`;
+    });
+  }
 }
 
 // =========================================================================
@@ -2836,9 +2553,6 @@ function init() {
   initEventsCard();
   initEventsDayModal();
 
-  // 4-1) 작업일보 엑셀 "불러오기" 버튼 초기화 (서버 없이 로컬 파일 선택 → 즉시 갱신)
-  initExcelLoader();
-
   // 9) Leaflet 위성 지도 초기화 (지도는 DOM이 완전히 그려진 후 마운트해야 레이아웃 깨지지 않음)
   initMap();
 
@@ -2847,6 +2561,9 @@ function init() {
 
   // 11) 공지사항 팝업 (notices.js에 등록된 공지가 있을 때만 노출)
   initNoticePopup();
+
+  // 11-1) 헤더 게시판 흐르는 텍스트 티커 (무재해 배지 옆, 좌→우로 순환, board.js 기반)
+  initBoardTicker();
 
   // 12) Site Map 외 나머지 카드들의 확대(전체화면) 아이콘 활성화
   initCardExpandButtons();

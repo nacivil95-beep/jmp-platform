@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -70,15 +69,25 @@
         <i class="fa-solid fa-helmet-safety"></i>
         <span id="no-accident-day-count">무재해 -일 달성</span>
       </div>
-    </div>
-    <div class="header-right">
+
+      <!-- 실시간 날짜/시간 (원래 헤더 우측에 있었으나, 무재해 배지와 게시판 사이로 이동) -->
       <div id="live-clock">--:--:--</div>
-      <div class="hdr-divider"></div>
-      <input type="file" id="excel-file-input" accept=".xlsx" style="display:none">
-      <span class="hdr-excel-status" id="excel-load-status"></span>
-      <button class="hdr-btn" id="excel-load-btn" title="엑셀 파일을 한 번 선택해두면, 다음부터는 앱을 열 때 자동으로 최신 내용을 불러옵니다(Chrome/Edge)"><i class="fa-solid fa-file-excel"></i> 작업일보 불러오기</button>
-      <button class="hdr-btn"><i class="fa-solid fa-gear"></i> 화면설정</button>
-      <button class="hdr-btn"><i class="fa-solid fa-user-shield"></i> 관리자페이지</button>
+
+      <!-- ──────────────────────── 게시판 배너 (무재해 배지 옆, 우→좌 흐름) ──────────────────────── -->
+      <!-- app.js initBoardTicker()가 board.js의 BOARD_ITEMS를 읽어 표시합니다. -->
+      <div id="board-banner" class="board-banner">
+        <div class="board-banner-icon"><i class="fa-solid fa-bullhorn"></i></div>
+        <div class="board-banner-track">
+          <div class="board-banner-content" id="board-banner-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 헤더 우측 메뉴 (요청에 따라 작업일보 불러오기 / 화면설정 버튼은 제거하고 관리자페이지만 유지) -->
+    <div class="header-right">
+      <button type="button" class="hdr-btn" id="admin-page-btn" title="관리자 페이지">
+        <i class="fa-solid fa-user-shield"></i> 관리자페이지
+      </button>
     </div>
   </header>
 
@@ -544,6 +553,7 @@
 <script src="dailyData.js"></script>
 <script src="qualityData.js"></script>
 <script src="notices.js"></script>
+<script src="board.js"></script>
 <script src="teamData.js"></script>
 <script src="scheduleData.js"></script>
 <script src="scheduleActuals.js"></script>

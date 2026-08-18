@@ -66,14 +66,25 @@ html, body {
   justify-content: space-between;
   padding: 0 14px;
   z-index: 100;
+  /* Grid item의 기본값(min-width:auto)은 내용물의 max-content 크기만큼 트랙을
+     밀어낼 수 있어, 헤더 안 요소(로고/현장명/무재해 배지/시계 등 flex-shrink:0
+     항목)가 많아지면 #app 그리드 전체가 뷰포트보다 넓어지고, html/body의
+     overflow:hidden에 의해 오른쪽 카드들이 화면 밖으로 잘려버립니다.
+     min-width:0으로 grid 트랙 폭을 존중하게 하면 게시판 배너가 자신의
+     min-width(90px)까지 알아서 줄어들며 이 문제를 해결합니다. */
+  min-width: 0;
 }
 
 .header-left {
   display: flex; align-items: center; gap: 10px;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .logo-badge {
   display: flex; align-items: center; gap: 6px;
+  flex-shrink: 0;
 }
 
 .logo-icon {
@@ -96,6 +107,7 @@ html, body {
   border-left: 1px solid var(--border);
   padding-left: 10px;
   display: flex; align-items: center; gap: 5px;
+  flex-shrink: 0;
 }
 
 .logo-sub span { color: var(--orange); font-weight: 600; }
@@ -107,7 +119,11 @@ html, body {
   padding: 4px 12px;
   font-size: 11px;
   color: var(--text-muted);
-  max-width: 500px;
+  max-width: 460px;
+  min-width: 70px;
+  /* 공사명은 잘리면 안 되는 중요 정보이므로, 공간이 부족할 때는 게시판(.board-banner) 쪽이
+     먼저 줄어들도록 하고 공사명 자체는 원래 크기를 유지합니다(0 = 줄어들지 않음). */
+  flex-shrink: 0;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
@@ -131,13 +147,118 @@ html, body {
   font-size: 12px;
 }
 
+.safety-day-badge {
+  flex-shrink: 0;
+}
+
 @keyframes safetyPulse {
   0%, 100% { box-shadow: 0 0 8px rgba(255, 212, 0, 0.45), inset 0 0 0 1px rgba(255,255,255,0.25); }
   50%      { box-shadow: 0 0 16px rgba(255, 212, 0, 0.9), inset 0 0 0 1px rgba(255,255,255,0.4); }
 }
 
+/* ─── 게시판 배너 (헤더 내 무재해 배지 옆, 우측 시계 앞까지 남은 폭을 채움) ─── */
+.board-banner {
+  flex: 1 1 auto;
+  min-width: 90px;
+  /* 공사명(.header-project-title)이 flex-shrink:0으로 별도 보호되고 있으므로,
+     게시판은 최대폭 제한 없이 남는 공간을 그대로 채워도 공사명이나 우측 시계를
+     밀어낼 위험이 없습니다. 폭을 제한하지 않아야 배너 뒤에 빈 공간이 생기지 않습니다. */
+  display: flex; align-items: center; gap: 10px;
+  background: linear-gradient(90deg, #2a1200 0%, #1c1400 60%, #2a1200 100%);
+  border: 1px solid rgba(255,193,7,0.25);
+  border-radius: var(--radius);
+  padding: 0 12px;
+  height: 28px;
+  overflow: hidden;
+  z-index: 90;
+}
+
+.board-banner-icon {
+  flex-shrink: 0;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: #1a1400;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px;
+  box-shadow: 0 0 0 0 rgba(255,193,7,0.55);
+  animation: boardIconPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes boardIconPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,193,7,0.55); }
+  50%      { box-shadow: 0 0 0 6px rgba(255,193,7,0); }
+}
+
+.board-banner-track {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.board-banner-content {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+  animation: boardFlowRTL linear infinite;
+  animation-duration: 26s; /* app.js가 텍스트 길이에 맞춰 동적으로 재조정 */
+}
+
+.board-banner-item {
+  display: inline-block;
+  white-space: nowrap;
+  padding-right: 64px; /* 반복 구간 사이 여백 */
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff6e0; /* 고대비: 어두운 배경 위 밝은 아이보리 텍스트 */
+  letter-spacing: 0.2px;
+}
+
+.board-banner-item b {
+  color: #1a1400;
+  background: var(--yellow);
+  font-weight: 800;
+  padding: 1px 7px;
+  border-radius: 20px;
+  margin-right: 6px;
+  font-size: 10px;
+}
+
+/* 오늘의 주요일정(파란색)과 게시판 중요 공지(노란색)를 한눈에 구분하기 위한 태그 색상 */
+.board-banner-item b.tag-schedule {
+  color: #fff;
+  background: var(--blue);
+}
+.board-banner-item b.tag-notice {
+  color: #1a1400;
+  background: var(--yellow);
+}
+
+/* 우 → 좌로 흐르도록: 0%(첫 사본 원위치)에서 -50%(두 번째 사본 시작)로 이동 */
+@keyframes boardFlowRTL {
+  from { transform: translateX(0%); }
+  to   { transform: translateX(-50%); }
+}
+
+/* 마우스 올리면 잠깐 정지 (읽기 편하도록) */
+.board-banner:hover .board-banner-content {
+  animation-play-state: paused;
+}
+
+.board-banner-empty {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+/* ─── 게시판 전체보기 모달 관련 CSS 삭제됨 (기능 제거) ─── */
+
 .header-right {
   display: flex; align-items: center; gap: 12px;
+  flex-shrink: 0;
 }
 
 .hdr-btn {
@@ -151,27 +272,14 @@ html, body {
 }
 .hdr-btn:hover { color: var(--text-white); }
 
-.hdr-excel-status {
-  font-size: 10px;
-  color: var(--text-dim);
-  max-width: 160px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.hdr-excel-status.error { color: var(--red); }
-
-.hdr-divider {
-  width: 1px; height: 16px;
-  background: var(--border);
-}
-
 #live-clock {
   font-family: 'Roboto Mono', monospace;
   font-size: 11px; color: var(--text-muted);
   background: rgba(255,255,255,0.03);
   padding: 3px 8px; border-radius: var(--radius-sm);
   border: 1px solid var(--border);
+  white-space: nowrap;
+  flex-shrink: 0; /* 무재해 배지와 게시판 사이에서 절대 줄어들지 않도록 */
 }
 
 /* 메인 콘텐츠 영역 */
@@ -1285,6 +1393,15 @@ html, body {
     font-size: 10px;
     padding: 3px 8px;
   }
+  .board-banner {
+    flex: 1 1 100%;
+    height: 30px;
+    padding: 0 8px;
+    gap: 8px;
+  }
+  .board-banner-item {
+    font-size: 12px;
+  }
   .header-right {
     width: 100%;
     justify-content: flex-end;
@@ -1294,9 +1411,6 @@ html, body {
   .hdr-btn span,
   .hdr-btn {
     font-size: 10px;
-  }
-  .hdr-excel-status {
-    max-width: 90px;
   }
 
   #main {
