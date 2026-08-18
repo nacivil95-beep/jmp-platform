@@ -112,5 +112,39 @@ let SAFETY_DATA = {
       "status": "작업승인",
       "work_name": "임목 폐기물 파쇄"
     }
+  ],
+  "2026-08-19": [
+    {
+      "company": "토우산업(주)",
+      "date": "2026-08-19",
+      "grade": "일상A",
+      "location": "BL.2,5,13,22,중로(집)3-14",
+      "status": "작업승인",
+      "work_name": "법면정리, 소할, 작업로 정지(성토)"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-08-19",
+      "grade": "일상",
+      "location": "BL03,05",
+      "status": "작업승인",
+      "work_name": "나무 집목 및 임목폐기물 운반"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-08-19",
+      "grade": "일상A",
+      "location": "BL.22 / BL.24",
+      "status": "작업승인",
+      "work_name": "임목 폐기물 파쇄"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-08-19",
+      "grade": "일상",
+      "location": "현장 내 전구역",
+      "status": "작업승인",
+      "work_name": "살수차 작업"
+    }
   ]
 };
