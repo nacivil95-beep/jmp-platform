@@ -591,6 +591,11 @@ html, body {
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  /* flex 아이템의 기본 min-height는 auto라서, 내용이 부모(.card)의 고정 높이보다
+     길어지면 .card-body가 억지로 늘어나 버리고, .card의 overflow:hidden에 의해
+     스크롤 없이 그냥 잘려버립니다(모바일 장비현황/팀별 공유공간에서 스크롤 안 되던 원인).
+     min-height:0으로 부모 높이 안에서만 채워지도록 강제해야 overflow-y:auto가 정상 작동합니다. */
+  min-height: 0;
 }
 
 /* ─── 탭 컴포넌트 ─── */
