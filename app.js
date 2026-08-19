@@ -1299,8 +1299,10 @@ function initMap() {
   //                  (구글맵/카카오맵 등에서 이미지 촬영 범위의 좌상단·우하단 좌표를 확인해 입력)
   const IMAGE_URL = "assets/site-aerial.jpg";
   const IMAGE_BOUNDS = [
-    [36.7633826, 127.4420], // 남서(SW) 모서리 (좌표 보정: 기존 위치에서 남쪽으로 124m 이동)
-    [36.7873826, 127.4695]  // 북동(NE) 모서리 (좌표 보정: 기존 위치에서 남쪽으로 124m 이동)
+    [36.766849, 127.4462583], // 남서(SW) 모서리 (재보정: site-aerial.jpg 내 "현장사무실"(파란 지붕) 픽셀
+                               //   위치를 실제 마커 좌표(36.7808505, 127.4693263)에 맞춰 이미지 전체를
+                               //   북쪽으로 약 386m, 동쪽으로 약 380m 이동해 재계산한 값)
+    [36.790849, 127.4737583]  // 북동(NE) 모서리 (동일 보정치 적용 - 가로/세로 폭은 유지)
   ];
   const imageLayer = L.imageOverlay(IMAGE_URL, IMAGE_BOUNDS, {
     attribution: "현장 항공사진"
@@ -1326,12 +1328,10 @@ function initMap() {
       mapBtns[key].classList.toggle("active", key === target);
     });
     mapLayers[target].addTo(map);
-    // 항공사진 모드일 때는 이미지 범위에 맞춰 지도 시야를 맞춘 뒤,
-    // 스크롤 2단계 정도 더 확대된 비율로 보여줌
-    if (target === "image") {
-      map.fitBounds(IMAGE_BOUNDS);
-      map.setZoom(map.getZoom() + 2);
-    }
+    // ※ 예전에는 항공사진 모드로 전환할 때 map.fitBounds(IMAGE_BOUNDS) + 줌 강제 조정을 했는데,
+    //   이렇게 하면 지도/위성 전환과 달리 화면 중심·배율이 갑자기 바뀌면서 마커 위치가 어긋나
+    //   보이는 문제가 있었습니다. 지도/위성과 동일하게 "지금 보던 화면 그대로" 레이어만
+    //   바뀌도록 통일해, 세 버튼 모두 같은 방식으로 동작하게 했습니다.
   }
 
   mapBtns.satellite.addEventListener("click", () => switchMapLayer("satellite"));
