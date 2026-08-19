@@ -2567,6 +2567,61 @@ function init() {
 
   // 12) Site Map 외 나머지 카드들의 확대(전체화면) 아이콘 활성화
   initCardExpandButtons();
+
+  // 13) 모바일 - 카드 내부 스크롤(장비현황/팀별 공유공간 등)이 끝에 닿았을 때
+  //      페이지 전체 스크롤로 자연스럽게 이어지지 않는 문제 보정 (스크롤 체이닝 수동 처리)
+  initNestedScrollHandoff();
+}
+
+// 13) 모바일 - 카드 내부 스크롤(장비현황/팀별 공유공간 등)이 끝에 닿았을 때 페이지 전체
+//     스크롤로 자연스럽게 이어지지 않는 문제 보정.
+//     일부 모바일 브라우저는 안쪽 overflow-y:auto 목록이 스크롤 끝(상/하단)에 도달해도
+//     남은 스크롤량을 바깥(body) 스크롤로 자동으로 넘겨주지 않아 그 자리에서 멈춰버림.
+//     여기서는 안쪽 목록이 경계에 닿은 채로 계속 같은 방향으로 스와이프하면,
+//     남은 이동량만큼 body.scrollTop을 직접 움직여서 페이지가 계속 내려가게(또는 올라가게) 함.
+function initNestedScrollHandoff() {
+  const SCROLL_SELECTOR = [
+    ".card-body",
+    ".equip-table-scroll",
+    ".quality-table-scroll",
+    ".team-table-scroll",
+    ".worker-role-scroll",
+    ".earth-table-scroll",
+    ".schedule-items-scroll"
+  ].join(",");
+
+  let activeEl = null;
+  let startY = 0;
+
+  document.addEventListener("touchstart", function(e) {
+    const target = e.target.closest(SCROLL_SELECTOR);
+    activeEl = target || null;
+    if (activeEl && e.touches && e.touches[0]) {
+      startY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  document.addEventListener("touchmove", function(e) {
+    if (!activeEl || !e.touches || !e.touches[0]) return;
+
+    const currentY = e.touches[0].clientY;
+    const deltaY = startY - currentY; // 양수: 위로 스와이프(페이지를 아래로 내리려는 의도)
+    const maxScroll = activeEl.scrollHeight - activeEl.clientHeight;
+    const atBottom = activeEl.scrollTop >= maxScroll - 1;
+    const atTop = activeEl.scrollTop <= 0;
+
+    // 안쪽 목록이 스와이프 방향 쪽 경계에 이미 도달해 있으면, 남은 이동량을 페이지 스크롤로 대신 적용
+    if ((deltaY > 0 && atBottom) || (deltaY < 0 && atTop)) {
+      e.preventDefault();
+      document.body.scrollTop += deltaY;
+      document.documentElement.scrollTop += deltaY;
+      startY = currentY;
+    }
+  }, { passive: false });
+
+  document.addEventListener("touchend", function() {
+    activeEl = null;
+  }, { passive: true });
 }
 
 document.addEventListener("DOMContentLoaded", function() {
