@@ -43,7 +43,7 @@ const DATA = {
   // ※ 예전에 있던 CCTV/경사계/침하계 마커는 실제 좌표가 아닌 예시값이라 제거했습니다.
   //   나중에 실제 좌표가 확인되면 같은 형식으로 다시 추가하면 됩니다.
   markers: [
-    { lat: 36.784689,  lng: 127.4706202, color: "blue",   name: "현장사무실" },
+    { lat: 36.7808505, lng: 127.4693263, color: "blue",   name: "현장사무실" },
     { lat: 36.779237,  lng: 127.4589004, color: "orange", name: "1공구" },
     { lat: 36.782668,  lng: 127.4649375, color: "orange", name: "2공구" },
     { lat: 36.774854,  lng: 127.4597659, color: "orange", name: "3공구" }
