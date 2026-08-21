@@ -180,5 +180,47 @@ let SAFETY_DATA = {
       "status": "작업승인",
       "work_name": "살수차 작업"
     }
+  ],
+  "2026-08-21": [
+    {
+      "company": "토우산업(주)",
+      "date": "2026-08-21",
+      "grade": "일상",
+      "location": "BL.2,중로(집)3-14,중로(집)3-14",
+      "status": "작업승인",
+      "work_name": "법면정리, 소할"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-08-21",
+      "grade": "일상",
+      "location": "BL03,05",
+      "status": "작업승인",
+      "work_name": "나무 집목 및 임목폐기물 운반"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-08-21",
+      "grade": "일상A",
+      "location": "BL.22 / BL.24",
+      "status": "작업승인",
+      "work_name": "임목 폐기물 파쇄"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-08-21",
+      "grade": "일상",
+      "location": "현장 내 전구역",
+      "status": "작업승인",
+      "work_name": "살수차 작업"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-08-21",
+      "grade": "일상A",
+      "location": "BL.12",
+      "status": "작업승인",
+      "work_name": "임시 침사지 안전난간대 설치"
+    }
   ]
 };

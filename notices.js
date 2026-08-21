@@ -15,7 +15,7 @@
  *   pinned     : true 면 항상 상단 고정
  *
  * 원본: C:\Users\jinhong\Desktop\jmp-platform\데이터관리\알림창\공지사항.xlsx
- * 생성 시각: 2026-08-20 10:43:07
+ * 생성 시각: 2026-08-21 09:11:43
  */
 let SITE_NOTICES = [
    {
@@ -27,6 +27,16 @@ let SITE_NOTICES = [
     startDate: "",
     endDate: "",
     pinned: true
+   },
+   {
+    id: "2",
+    team: "관리자",
+    level: "info",
+    title: "주요일정 관련 업데이트",
+    body: "각 팀별 주요일정이 있으시면 미리 말씀해주세요~",
+    startDate: "",
+    endDate: "",
+    pinned: false
    },
    {
     id: "2",
