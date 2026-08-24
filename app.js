@@ -1389,11 +1389,21 @@ function initMap() {
     attribution: "지적도: 브이월드(국토교통부)"
   });
   const cadastralBtn = document.getElementById("map-cadastral-btn");
+  // 필지 클릭 시 그 필지 경계선만 파란색으로 강조 표시하는 레이어
+  // (지적도 버튼 클릭 핸들러와 아래쪽 필지클릭 핸들러 양쪽에서 같이 씀)
+  let parcelHighlightLayer = null;
+  function clearParcelHighlight() {
+    if (parcelHighlightLayer) {
+      map.removeLayer(parcelHighlightLayer);
+      parcelHighlightLayer = null;
+    }
+  }
   if (cadastralBtn) {
     cadastralBtn.addEventListener("click", () => {
       const isOn = map.hasLayer(cadastralLayer);
       if (isOn) {
         map.removeLayer(cadastralLayer);
+        clearParcelHighlight();
       } else {
         cadastralLayer.addTo(map);
       }
@@ -1828,7 +1838,27 @@ function initMap() {
       const parts = String(jibunRaw).trim().split(/\s+/);
       return { number: parts[0] || "", jimok: parts.slice(1).join(" ") || "" };
     }
-    function renderParcelPopup(props) {
+    // WFS 응답에는 면적 필드가 따로 없어서, 응답에 같이 오는 필지 경계선(geometry)으로
+    // 직접 면적을 계산함 (그리기 도구의 폴리곤 면적 계산과 동일한 방식: L.GeometryUtil.geodesicArea)
+    function computeParcelAreaM2(geometry) {
+      if (!geometry || !L.GeometryUtil) return null;
+      let rings = [];
+      if (geometry.type === "Polygon") {
+        rings = [geometry.coordinates[0]];
+      } else if (geometry.type === "MultiPolygon") {
+        rings = geometry.coordinates.map((poly) => poly[0]);
+      } else {
+        return null;
+      }
+      let total = 0;
+      rings.forEach((ring) => {
+        const latlngs = ring.map(([lng, lat]) => L.latLng(lat, lng));
+        total += L.GeometryUtil.geodesicArea(latlngs);
+      });
+      return total;
+    }
+    function renderParcelPopup(feature) {
+      const props = feature.properties || {};
       const wrap = document.createElement("div");
       wrap.className = "map-draw-popup";
       const title = document.createElement("div");
@@ -1841,6 +1871,14 @@ function initMap() {
       if (props.addr) lines.push("주소: " + props.addr);
       if (number) lines.push("지번: " + number);
       if (jimok) lines.push("지목: " + jimok);
+
+      const areaM2 = computeParcelAreaM2(feature.geometry);
+      if (areaM2) {
+        const pyeong = areaM2 / 3.305785; // 1평 = 3.305785 m²
+        lines.push("대략 면적: " + Math.round(areaM2).toLocaleString("ko-KR") + " m² (약 "
+          + Math.round(pyeong).toLocaleString("ko-KR") + "평)");
+      }
+
       if (props.jiga && !isNaN(Number(props.jiga))) {
         lines.push("공시지가: " + Number(props.jiga).toLocaleString("ko-KR") + " 원/㎡");
       }
@@ -1853,12 +1891,21 @@ function initMap() {
       body.style.whiteSpace = "pre-line";
       body.textContent = lines.length > 0 ? lines.join("\n") : "표시할 속성 정보가 없습니다.";
       wrap.appendChild(body);
+
+      if (areaM2) {
+        const note = document.createElement("div");
+        note.style.cssText = "font-size:10px;color:#9ca3af;margin-top:4px;";
+        note.textContent = "※ 면적은 지적공부(토지대장)상 공식 면적이 아니라, 지도 경계선으로 계산한 참고용 수치입니다.";
+        wrap.appendChild(note);
+      }
       return wrap;
     }
     map.on("click", (e) => {
       // 그리기/도형수정/부분삭제 중이거나, 지적도가 꺼져 있으면 동작하지 않음
       if (activeDrawTool || deleteMode || editMode) return;
       if (!map.hasLayer(cadastralLayer)) return;
+
+      clearParcelHighlight(); // 새로 클릭했으니 이전 강조표시부터 지움
 
       const loadingPopup = L.popup({ closeButton: false, minWidth: 160 })
         .setLatLng(e.latlng)
@@ -1878,7 +1925,14 @@ function initMap() {
             );
             return;
           }
-          loadingPopup.setContent(renderParcelPopup(features[0].properties || {}));
+          const feature = features[0];
+          loadingPopup.setContent(renderParcelPopup(feature));
+          // 조회된 필지의 실제 경계선을 파란색으로 강조 표시
+          if (feature.geometry) {
+            parcelHighlightLayer = L.geoJSON(feature, {
+              style: { color: "#2563eb", weight: 3, fillColor: "#3b82f6", fillOpacity: 0.15 }
+            }).addTo(map);
+          }
         })
         .catch((err) => {
           // 브라우저 보안정책(CORS) 등으로 자동 조회가 막힌 경우, 원본 요청을
