@@ -134,32 +134,62 @@ function isTransientHttpError(message) {
   return /HTTP (502|503|504)/.test(message);
 }
 
-async function kmaTryFetchOnce(url, label) {
+// 본인 소유의 전용 CORS 프록시(Cloudflare Worker) 주소.
+// vworld-proxy-worker.js를 Cloudflare Workers에 배포한 뒤, 여기에 그 주소를 넣으면
+// (예: "https://vworld-proxy.본인계정.workers.dev") 공개 프록시들보다 먼저 이 프록시를
+// 시도합니다. 아직 배포 전이라 비워두면 자동으로 건너뛰고 기존 공개 프록시들만 시도합니다.
+const OWN_PROXY_BASE = "https://vworld-proxy-henna.vercel.app/api/proxy";
+
+async function kmaTryFetchOnce(url, label, unwrap) {
   const res = await fetch(url);
   const text = await res.text(); // 상태코드와 무관하게 우선 원문을 읽어 원인 파악에 사용합니다.
   if (!res.ok) {
     throw new Error(`[${label}] HTTP ${res.status} - ${text.slice(0, 150)}`);
   }
+  let payload = text;
+  if (unwrap) {
+    // 일부 프록시(allorigins의 /get 방식 등)는 원본 응답을 그대로 주지 않고
+    // {"contents": "원본내용", ...} 형태로 한 번 더 감싸서 돌려줍니다. 그 경우 먼저 감싼 JSON을
+    // 풀어서 진짜 원본 내용(contents)을 꺼낸 뒤, 그걸 다시 아래에서 JSON으로 파싱합니다.
+    try {
+      const wrapped = JSON.parse(text);
+      payload = unwrap(wrapped);
+    } catch (e) {
+      throw new Error(`[${label}] 프록시 래핑 해제 실패 - 응답 앞부분: ${text.slice(0, 150)}`);
+    }
+  }
   try {
-    return JSON.parse(text);
+    return typeof payload === "string" ? JSON.parse(payload) : payload;
   } catch (e) {
     // 공공데이터포털은 키 오류/트래픽 초과 등일 때 JSON이 아닌 XML/HTML 에러 문서를 내려주는 경우가 많습니다.
-    throw new Error(`[${label}] JSON 아님 - 응답 앞부분: ${text.slice(0, 150)}`);
+    throw new Error(`[${label}] JSON 아님 - 응답 앞부분: ${String(payload).slice(0, 150)}`);
   }
 }
 
 async function kmaFetchJson(url) {
   const attempts = [
-    { label: "직접호출", url },
-    { label: "프록시1(allorigins)", url: `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}` },
-    { label: "프록시2(codetabs)", url: `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}` },
-    { label: "프록시3(corsproxy)", url: `https://corsproxy.io/?url=${encodeURIComponent(url)}` }
+    { label: "직접호출", url }
   ];
+  if (OWN_PROXY_BASE) {
+    attempts.push({
+      label: "전용프록시(Cloudflare Worker)",
+      url: `${OWN_PROXY_BASE}?url=${encodeURIComponent(url)}`
+    });
+  }
+  attempts.push(
+    { label: "프록시1(allorigins-raw)", url: `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}` },
+    // allorigins의 /raw는 종종 봇 차단 페이지(HTML)를 대신 돌려주는 경우가 있어, 응답을
+    // {"contents": "..."} 형태로 감싸주는 /get 방식도 별도 경로로 함께 시도합니다.
+    { label: "프록시1b(allorigins-get)", url: `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`, unwrap: (w) => w.contents },
+    { label: "프록시2(codetabs)", url: `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}` },
+    { label: "프록시3(thingproxy)", url: `https://thingproxy.freeboard.io/fetch/${url}` },
+    { label: "프록시4(corsproxy)", url: `https://corsproxy.io/?url=${encodeURIComponent(url)}` }
+  );
 
   const errors = [];
   for (const attempt of attempts) {
     try {
-      const data = await kmaTryFetchOnce(attempt.url, attempt.label);
+      const data = await kmaTryFetchOnce(attempt.url, attempt.label, attempt.unwrap);
       if (errors.length) console.warn("[기상 현황] 이전 시도 실패 후 성공:", errors);
       return data;
     } catch (e) {
@@ -167,7 +197,7 @@ async function kmaFetchJson(url) {
       if (isTransientHttpError(e.message)) {
         try {
           await sleep(800);
-          const retryData = await kmaTryFetchOnce(attempt.url, attempt.label + " 재시도");
+          const retryData = await kmaTryFetchOnce(attempt.url, attempt.label + " 재시도", attempt.unwrap);
           if (errors.length) console.warn("[기상 현황] 이전 시도 실패 후 재시도로 성공:", errors);
           return retryData;
         } catch (e2) {
@@ -1833,11 +1863,10 @@ function initMap() {
         .openOn(map);
 
       const wfsUrl = buildParcelWfsUrl(e.latlng);
-      fetch(wfsUrl)
-        .then((res) => {
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          return res.json();
-        })
+      // 브이월드 WFS는 CORS 허용 헤더를 내려주지 않아 fetch() 직접 호출이 브라우저에서 막힘.
+      // (주소창에 직접 열면 되는데 fetch()만 실패하는 것도 이 때문) → 기상청 API와 동일하게
+      // kmaFetchJson()의 "직접호출 실패 시 CORS 프록시 순서대로 재시도" 로직을 그대로 재사용.
+      kmaFetchJson(wfsUrl)
         .then((data) => {
           const features = data && data.features;
           if (!features || features.length === 0) {
