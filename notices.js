@@ -15,7 +15,7 @@
  *   pinned     : true 면 항상 상단 고정
  *
  * 원본: C:\Users\jinhong\Desktop\jmp-platform\데이터관리\알림창\공지사항.xlsx
- * 생성 시각: 2026-08-24 10:01:53
+ * 생성 시각: 2026-08-24 16:00:16
  */
 let SITE_NOTICES = [
    {
@@ -31,22 +31,32 @@ let SITE_NOTICES = [
    {
     id: "2",
     team: "관리자",
-    level: "info",
-    title: "주요일정 관련 업데이트",
-    body: "각 팀별 주요일정이 있으시면 미리 말씀해주세요~",
+    level: "warning",
+    title: "현장 지도 기능 업데이트",
+    body: "지도 내 면적·길이 측정 및 지적도, 지번 검색 기능이 새롭게 업데이트되었습니다. 현장 업무에 활용해 보세요!",
     startDate: "",
-    endDate: "",
+    endDate: "2026-08-31",
     pinned: false
    },
    {
-    id: "2",
+    id: "3",
+    team: "관리자",
+    level: "info",
+    title: "주요일정 관련 업데이트",
+    body: "각 팀별 9월 주요일정이 있으시면 미리 말씀해주세요~",
+    startDate: "",
+    endDate: "2026-08-31",
+    pinned: false
+   },
+   {
+    id: "4",
     team: "관리팀",
     level: "info",
     title: "Family Day 알림",
     image: "assets/notice/family_day.png",
     body: "자세한 내용은 이미지를 참고해주세요.",
     startDate: "",
-    endDate: "2026-09-30",
+    endDate: "2026-08-31",
     pinned: false
    }
 ];
