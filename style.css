@@ -1015,10 +1015,34 @@ html, body {
   color: #fff; font-weight: 600;
 }
 
+/* 주소/지번 검색창 (브이월드 지오코더) */
+.map-geocoder {
+  position: absolute; top: 8px; left: 8px;
+  z-index: 500;
+  display: flex; gap: 4px;
+}
+.map-geocoder-input {
+  width: 140px;
+  font-family: 'Noto Sans KR'; font-size: 11px;
+  background: rgba(17,24,39,0.92);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: #fff; padding: 4px 8px;
+}
+.map-geocoder-input::placeholder { color: var(--text-muted); }
+.map-geocoder-btn {
+  width: 26px;
+  background: rgba(17,24,39,0.92);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text-muted); cursor: pointer;
+  transition: var(--transition);
+}
+.map-geocoder-btn:hover {
+  color: var(--orange); border-color: var(--orange);
+}
+
 .map-sidebar-tools {
   position: absolute; top: 44px; left: 8px;
-  z-index: 500;
-  background: rgba(17,24,39,0.92);
+  z-index: 500;  background: rgba(17,24,39,0.92);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   display: flex; flex-direction: column;
@@ -1035,6 +1059,86 @@ html, body {
 }
 .map-tool-btn:hover, .map-tool-btn.active {
   background: var(--orange-dim); color: var(--orange);
+}
+
+/* 부분 삭제 모드일 때 지도 위 커서를 "삭제 가능" 형태로 표시 */
+#leaflet-map.draw-delete-mode {
+  cursor: crosshair;
+}
+
+/* 그리기 도구 사이드바 내 그룹 구분선 */
+.map-tool-divider {
+  height: 1px;
+  margin: 3px 2px;
+  background: var(--border);
+}
+
+/* 색상 선택 팔레트 팝오버 */
+.map-color-picker {
+  position: absolute;
+  z-index: 600;
+  background: rgba(17,24,39,0.95);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+  display: none;
+  grid-template-columns: repeat(4, 20px);
+  gap: 6px;
+}
+.map-color-picker.open {
+  display: grid;
+}
+.map-color-swatch {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.25);
+  cursor: pointer;
+  padding: 0;
+}
+.map-color-swatch:hover {
+  border-color: #fff;
+}
+.map-color-swatch.active {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px var(--orange);
+}
+
+/* ─── Site Map 그리기 도구 팝업(메모 입력/표시) ─── */
+.map-draw-popup {
+  font-family: 'Noto Sans KR';
+  min-width: 150px;
+}
+.map-draw-popup-info {
+  font-size: 11px; font-weight: 600;
+  color: var(--orange); margin-bottom: 4px;
+}
+.map-draw-popup-text {
+  font-size: 12px; color: #1f2937;
+  white-space: pre-wrap; word-break: break-word;
+  margin-bottom: 6px;
+}
+.map-draw-popup-input {
+  width: 100%; box-sizing: border-box;
+  font-family: 'Noto Sans KR'; font-size: 12px;
+  background: #fff;
+  border: 1px solid #cbd5e1; border-radius: 4px;
+  color: #111827; padding: 4px 6px; resize: vertical;
+  margin-bottom: 6px;
+}
+.map-draw-popup-actions {
+  display: flex; gap: 6px; justify-content: flex-end;
+}
+.map-draw-popup-actions button {
+  font-family: 'Noto Sans KR'; font-size: 11px;
+  padding: 3px 8px; border-radius: 4px; cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--orange); color: #fff; font-weight: 600;
+}
+.map-draw-popup-actions button.map-draw-popup-del {
+  background: none; color: #6b7280;
+}
+.map-draw-popup-actions button.map-draw-popup-del:hover {
+  color: var(--red, #ef4444);
 }
 
 /* 지도 마커 스타일 */

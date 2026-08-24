@@ -1279,16 +1279,21 @@ function initMap() {
     zoomControl: false
   });
 
-  // 위성 타일 레이어 (ESRI World Imagery)
+  // 브이월드(V-World, 국토교통부) 오픈API 인증키
+  // ※ 이 키는 발급 시 등록한 도메인(nacivil95-beep.github.io)에서만 동작함
+  // ※ 유효기간 만료 전 www.vworld.kr 마이페이지에서 연장 신청 필요
+  const VWORLD_KEY = "3F0AB938-450C-3B12-8A3C-5F4CA604FD99";
+
+  // 위성 타일 레이어 (브이월드 위성영상)
   const satLayer = L.tileLayer(
-    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-    { attribution: "Esri" }
+    `https://api.vworld.kr/req/wmts/1.0.0/${VWORLD_KEY}/Satellite/{z}/{y}/{x}.jpeg`,
+    { attribution: "브이월드(국토교통부, 공간정보산업진흥원)", maxZoom: 19 }
   );
 
-  // 일반 지도 타일 레이어 (OpenStreetMap)
+  // 일반 지도 타일 레이어 (브이월드 배경지도)
   const normLayer = L.tileLayer(
-    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    { attribution: "© OpenStreetMap contributors" }
+    `https://api.vworld.kr/req/wmts/1.0.0/${VWORLD_KEY}/Base/{z}/{y}/{x}.png`,
+    { attribution: "브이월드(국토교통부, 공간정보산업진흥원)", maxZoom: 19 }
   );
 
   // ── 항공사진(이미지) 오버레이 레이어 ─────────────────────────────────
@@ -1338,6 +1343,532 @@ function initMap() {
   mapBtns.satellite.addEventListener("click", () => switchMapLayer("satellite"));
   mapBtns.normal.addEventListener("click", () => switchMapLayer("normal"));
   mapBtns.image.addEventListener("click", () => switchMapLayer("image"));
+
+  // ── 지적도(연속지적도) 오버레이 — 브이월드 WMS ──────────────────────
+  // 위성/일반 지도 위에 지적경계선(본번/부번)만 투명 배경으로 겹쳐 보여줌.
+  // 다른 지도 버튼들과 달리 배타적이지 않은 켜고/끄는 토글 방식.
+  // ※ 브이월드 정책상 지도를 어느 정도 확대(줌 18 이상)해야 경계선이 보임.
+  const cadastralLayer = L.tileLayer.wms("https://api.vworld.kr/req/wms", {
+    layers: "lp_pa_cbnd_bonbun,lp_pa_cbnd_bubun",
+    styles: "lp_pa_cbnd_bonbun_line,lp_pa_cbnd_bubun_line",
+    format: "image/png",
+    transparent: true,
+    version: "1.3.0",
+    key: VWORLD_KEY,
+    domain: "nacivil95-beep.github.io", // 인증키 발급 시 등록한 도메인과 정확히 일치해야 함
+    attribution: "지적도: 브이월드(국토교통부)"
+  });
+  const cadastralBtn = document.getElementById("map-cadastral-btn");
+  if (cadastralBtn) {
+    cadastralBtn.addEventListener("click", () => {
+      const isOn = map.hasLayer(cadastralLayer);
+      if (isOn) {
+        map.removeLayer(cadastralLayer);
+      } else {
+        cadastralLayer.addTo(map);
+      }
+      cadastralBtn.classList.toggle("active", !isOn);
+    });
+  }
+
+  // ── 주소/지번 검색 (브이월드 지오코더) ────────────────────────────
+  // 도로명주소(road)로 먼저 시도하고, 실패하면 지번주소(parcel)로 재시도함
+  async function vworldGeocode(address, type) {
+    const url = "https://api.vworld.kr/req/address?" + new URLSearchParams({
+      service: "address", request: "getcoord", version: "2.0",
+      crs: "epsg:4326", address, refine: "true", simple: "false",
+      format: "json", type, key: VWORLD_KEY, domain: "nacivil95-beep.github.io"
+    });
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return res.json();
+  }
+  async function searchAddressCoord(query) {
+    for (const type of ["road", "parcel"]) {
+      try {
+        const data = await vworldGeocode(query, type);
+        if (data && data.response && data.response.status === "OK") {
+          return data.response;
+        }
+      } catch (err) {
+        console.warn(`[Site Map] 지오코더(${type}) 요청 실패:`, err);
+      }
+    }
+    return null;
+  }
+
+  const geoInput = document.getElementById("map-geocoder-input");
+  const geoBtn = document.getElementById("map-geocoder-btn");
+  let geocodeMarker = null;
+
+  async function runGeocodeSearch() {
+    if (!geoInput || !geoBtn) return;
+    const query = geoInput.value.trim();
+    if (!query) return;
+
+    geoBtn.disabled = true;
+    const originalIcon = geoBtn.innerHTML;
+    geoBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+
+    const result = await searchAddressCoord(query);
+
+    geoBtn.disabled = false;
+    geoBtn.innerHTML = originalIcon;
+
+    if (!result || !result.result || !result.result.point) {
+      alert(`"${query}" 검색 결과를 찾을 수 없습니다.\n(주소/지번 표기가 정확한지 확인해주세요)`);
+      return;
+    }
+
+    const lat = parseFloat(result.result.point.y);
+    const lng = parseFloat(result.result.point.x);
+    const matchedText = (result.refined && result.refined.text) || query;
+
+    map.setView([lat, lng], 18);
+    if (geocodeMarker) map.removeLayer(geocodeMarker);
+    geocodeMarker = L.marker([lat, lng]).addTo(map).bindPopup(matchedText).openPopup();
+  }
+
+  if (geoBtn) geoBtn.addEventListener("click", runGeocodeSearch);
+  if (geoInput) {
+    geoInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") runGeocodeSearch();
+    });
+  }
+
+  // ── Site Map 그리기 도구 (구역/원/지점메모/선+거리측정) + 색상선택 + 도형수정 + 되돌리기 + 삭제 ─────
+  // 예전에 있던 CCTV/장비/센서 버튼은 다른 현장 대시보드를 참고해 만들어진 것으로
+  // 실제 데이터가 연결되어 있지 않았음(클릭해도 아무 동작 안 함). 우리 현장 요청에
+  // 따라 자유롭게 그릴 수 있는 도구로 교체함.
+  // ※ 그린 내용은 저장하지 않음(새로고침하면 사라짐, 세션 한정).
+  if (typeof L.Draw !== "undefined") {
+    const drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
+
+    // ── 색상 선택 (버튼 하나로 순환) ────────────────────────────────────
+    // ── 색상 선택 (버튼 클릭 시 팔레트 팝업에서 선택) ────────────────────
+    const DRAW_COLORS = [
+      { name: "빨강", value: "#ef4444" },
+      { name: "주황", value: "#ff6d00" },
+      { name: "노랑", value: "#eab308" },
+      { name: "초록", value: "#22c55e" },
+      { name: "파랑", value: "#3b82f6" },
+      { name: "남색", value: "#4338ca" },
+      { name: "보라", value: "#a855f7" }
+    ];
+    let currentDrawColor = DRAW_COLORS[1].value; // 기본값: 주황(기존 테마 강조색)
+
+    function buildColoredMarkerIcon(color) {
+      return L.divIcon({
+        html: `<div class="site-marker" style="background:${color};"></div>`,
+        className: "map-marker-wrapper",
+        iconSize: [14, 14]
+      });
+    }
+
+    const drawHandlers = {
+      polygon: new L.Draw.Polygon(map, {
+        shapeOptions: { color: currentDrawColor, weight: 2, fillOpacity: 0.15 }
+      }),
+      circle: new L.Draw.Circle(map, {
+        shapeOptions: { color: currentDrawColor, weight: 2, fillOpacity: 0.15 }
+      }),
+      marker: new L.Draw.Marker(map, {
+        icon: buildColoredMarkerIcon(currentDrawColor)
+      }),
+      polyline: new L.Draw.Polyline(map, {
+        shapeOptions: { color: currentDrawColor, weight: 3 }
+      })
+    };
+
+    // 도형 수정(꼭짓점/위치 이동) 도구 — drawnItems에 담긴 모든 도형을 대상으로 함
+    const editHandler = new L.EditToolbar.Edit(map, { featureGroup: drawnItems });
+
+    function applyCurrentColor() {
+      drawHandlers.polygon.options.shapeOptions.color = currentDrawColor;
+      drawHandlers.circle.options.shapeOptions.color = currentDrawColor;
+      drawHandlers.polyline.options.shapeOptions.color = currentDrawColor;
+      drawHandlers.marker.options.icon = buildColoredMarkerIcon(currentDrawColor);
+    }
+
+    const drawBtns = {
+      polygon: document.getElementById("map-draw-polygon-btn"),
+      circle: document.getElementById("map-draw-circle-btn"),
+      marker: document.getElementById("map-draw-marker-btn"),
+      polyline: document.getElementById("map-draw-line-btn"),
+      color: document.getElementById("map-draw-color-btn"),
+      edit: document.getElementById("map-draw-edit-btn"),
+      undo: document.getElementById("map-draw-undo-btn"),
+      delete: document.getElementById("map-draw-delete-btn"),
+      clearAll: document.getElementById("map-draw-clearall-btn")
+    };
+
+    let activeDrawTool = null;
+    let deleteMode = false;
+    let editMode = false;
+    const drawHistory = []; // "되돌리기"용 — 완성된 도형을 생성 순서대로 기록
+
+    function setDeleteMode(on) {
+      deleteMode = on;
+      if (drawBtns.delete) drawBtns.delete.classList.toggle("active", on);
+      const mapEl = document.getElementById("leaflet-map");
+      if (mapEl) mapEl.classList.toggle("draw-delete-mode", on);
+    }
+    function setEditMode(on) {
+      editMode = on;
+      if (on) {
+        editHandler.enable();
+      } else {
+        // disable() 전에 save()를 명시적으로 호출해야 변경된 도형들에 대해
+        // L.Draw.Event.EDITED 이벤트가 발생함 (이게 빠지면 면적/거리 값이 갱신 안 됨)
+        editHandler.save();
+        editHandler.disable();
+      }
+      if (drawBtns.edit) drawBtns.edit.classList.toggle("active", on);
+    }
+    function stopDrawing() {
+      Object.values(drawHandlers).forEach(h => h.disable());
+      if (activeDrawTool && drawBtns[activeDrawTool]) {
+        drawBtns[activeDrawTool].classList.remove("active");
+      }
+      activeDrawTool = null;
+    }
+    function exitOtherModes() {
+      if (deleteMode) setDeleteMode(false);
+      if (editMode) setEditMode(false);
+      closeColorPicker();
+    }
+    function toggleDrawTool(type) {
+      exitOtherModes();
+      if (activeDrawTool === type) { stopDrawing(); return; }
+      stopDrawing();
+      applyCurrentColor();
+      activeDrawTool = type;
+      drawBtns[type].classList.add("active");
+      drawHandlers[type].enable();
+    }
+    if (drawBtns.polygon) drawBtns.polygon.addEventListener("click", () => toggleDrawTool("polygon"));
+    if (drawBtns.circle) drawBtns.circle.addEventListener("click", () => toggleDrawTool("circle"));
+    if (drawBtns.marker) drawBtns.marker.addEventListener("click", () => toggleDrawTool("marker"));
+    if (drawBtns.polyline) drawBtns.polyline.addEventListener("click", () => toggleDrawTool("polyline"));
+
+    // 색상 버튼: 클릭하면 팔레트 팝업이 열리고, 스와치를 클릭해 색을 선택
+    const colorPickerEl = document.getElementById("map-color-picker");
+    function updateColorBtnUI() {
+      if (!drawBtns.color) return;
+      const icon = drawBtns.color.querySelector("i");
+      if (icon) icon.style.color = currentDrawColor;
+      const current = DRAW_COLORS.find(c => c.value === currentDrawColor);
+      drawBtns.color.title = "그리기 색상: " + (current ? current.name : "") + " (클릭하여 선택)";
+    }
+    function renderColorSwatches() {
+      if (!colorPickerEl) return;
+      colorPickerEl.innerHTML = "";
+      DRAW_COLORS.forEach((c) => {
+        const swatch = document.createElement("button");
+        swatch.type = "button";
+        swatch.className = "map-color-swatch" + (c.value === currentDrawColor ? " active" : "");
+        swatch.style.background = c.value;
+        swatch.title = c.name;
+        swatch.addEventListener("click", (ev) => {
+          ev.stopPropagation();
+          currentDrawColor = c.value;
+          applyCurrentColor();
+          updateColorBtnUI();
+          renderColorSwatches();
+          closeColorPicker();
+        });
+        colorPickerEl.appendChild(swatch);
+      });
+    }
+    function openColorPicker() {
+      const mapCard = document.getElementById("map-card");
+      if (!colorPickerEl || !drawBtns.color || !mapCard) return;
+      const btnRect = drawBtns.color.getBoundingClientRect();
+      const cardRect = mapCard.getBoundingClientRect();
+      colorPickerEl.style.top = (btnRect.top - cardRect.top) + "px";
+      colorPickerEl.style.left = (btnRect.right - cardRect.left + 6) + "px";
+      colorPickerEl.classList.add("open");
+    }
+    function closeColorPicker() {
+      if (colorPickerEl) colorPickerEl.classList.remove("open");
+    }
+    if (drawBtns.color) {
+      drawBtns.color.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        if (colorPickerEl && colorPickerEl.classList.contains("open")) {
+          closeColorPicker();
+        } else {
+          renderColorSwatches();
+          openColorPicker();
+        }
+      });
+      updateColorBtnUI();
+    }
+    // 팔레트 바깥을 클릭하면 자동으로 닫힘
+    document.addEventListener("click", (ev) => {
+      if (colorPickerEl && colorPickerEl.classList.contains("open") && !colorPickerEl.contains(ev.target)) {
+        closeColorPicker();
+      }
+    });
+
+    // 도형 수정 모드 토글
+    if (drawBtns.edit) {
+      drawBtns.edit.addEventListener("click", () => {
+        stopDrawing();
+        if (deleteMode) setDeleteMode(false);
+        setEditMode(!editMode);
+      });
+    }
+
+    // 되돌리기: 그리는 중이면 마지막 클릭점만 취소, 아니면 방금 완성한 도형 하나를 취소
+    function undoLast() {
+      if (activeDrawTool && typeof drawHandlers[activeDrawTool]._deleteLastVertex === "function") {
+        drawHandlers[activeDrawTool]._deleteLastVertex();
+        return;
+      }
+      if (drawHistory.length > 0) {
+        const layer = drawHistory.pop();
+        drawnItems.removeLayer(layer);
+      }
+    }
+    if (drawBtns.undo) drawBtns.undo.addEventListener("click", undoLast);
+
+    // 부분 삭제 모드
+    if (drawBtns.delete) {
+      drawBtns.delete.addEventListener("click", () => {
+        stopDrawing();
+        if (editMode) setEditMode(false);
+        setDeleteMode(!deleteMode);
+      });
+    }
+    // 부분 삭제 모드: 켜져 있는 동안 지도 위에서 클릭한 도형만 개별 삭제
+    // (그린 도형은 L.FeatureGroup에 담겨 있어 클릭 이벤트가 그룹으로 전달됨)
+    drawnItems.on("click", (e) => {
+      if (!deleteMode) return;
+      // FeatureGroup으로 이벤트가 전달되면 e.target이 그룹 자체로 바뀌므로,
+      // 실제로 클릭된 도형은 e.sourceTarget으로 가져와야 함
+      const clickedLayer = e.sourceTarget || e.layer;
+      if (!clickedLayer) return;
+      L.DomEvent.stop(e);
+      clickedLayer.closePopup();
+      drawnItems.removeLayer(clickedLayer);
+      const idx = drawHistory.indexOf(clickedLayer);
+      if (idx !== -1) drawHistory.splice(idx, 1);
+    });
+
+    // 면적/거리 계산 (도형 종류별) — 처음 그릴 때 + 도형 수정 후 재계산에 공용으로 사용
+    function computeExtraInfo(layer, shapeType) {
+      if (!L.GeometryUtil) return "";
+      if (shapeType === "polygon") {
+        const area = L.GeometryUtil.geodesicArea(layer.getLatLngs()[0]);
+        const pyeong = area / 3.305785; // 1평 = 3.305785 m²
+        return "면적 약 " + Math.round(area).toLocaleString("ko-KR") + " m² (약 "
+          + Math.round(pyeong).toLocaleString("ko-KR") + "평)";
+      }
+      if (shapeType === "circle") {
+        const r = layer.getRadius();
+        const area = Math.PI * r * r;
+        const pyeong = area / 3.305785;
+        return "반경 약 " + Math.round(r).toLocaleString("ko-KR") + "m / 면적 약 "
+          + Math.round(area).toLocaleString("ko-KR") + " m² (약 " + Math.round(pyeong).toLocaleString("ko-KR") + "평)";
+      }
+      if (shapeType === "polyline") {
+        const latlngs = layer.getLatLngs();
+        let dist = 0;
+        for (let i = 1; i < latlngs.length; i++) dist += latlngs[i - 1].distanceTo(latlngs[i]);
+        return "거리 약 " + L.GeometryUtil.readableDistance(dist, true);
+      }
+      return "";
+    }
+
+    // 도형을 그린 직후 메모를 붙일 수 있는 편집 가능한 팝업
+    function renderViewPopup(layer) {
+      const wrap = document.createElement("div");
+      wrap.className = "map-draw-popup";
+      if (layer._extraInfo) {
+        const info = document.createElement("div");
+        info.className = "map-draw-popup-info";
+        info.textContent = layer._extraInfo;
+        wrap.appendChild(info);
+      }
+      if (layer._memoText) {
+        const body = document.createElement("div");
+        body.className = "map-draw-popup-text";
+        body.textContent = layer._memoText;
+        wrap.appendChild(body);
+      }
+      const btnRow = document.createElement("div");
+      btnRow.className = "map-draw-popup-actions";
+      const editBtn = document.createElement("button");
+      editBtn.type = "button"; editBtn.textContent = "수정";
+      const delBtn = document.createElement("button");
+      delBtn.type = "button"; delBtn.textContent = "삭제";
+      delBtn.className = "map-draw-popup-del";
+      editBtn.addEventListener("click", () => bindEditPopup(layer));
+      delBtn.addEventListener("click", () => drawnItems.removeLayer(layer));
+      btnRow.appendChild(editBtn);
+      btnRow.appendChild(delBtn);
+      wrap.appendChild(btnRow);
+      return wrap;
+    }
+    function bindEditPopup(layer) {
+      const wrap = document.createElement("div");
+      wrap.className = "map-draw-popup";
+      if (layer._extraInfo) {
+        const info = document.createElement("div");
+        info.className = "map-draw-popup-info";
+        info.textContent = layer._extraInfo;
+        wrap.appendChild(info);
+      }
+      const textarea = document.createElement("textarea");
+      textarea.className = "map-draw-popup-input";
+      textarea.placeholder = "메모 입력…";
+      textarea.rows = 2;
+      textarea.value = layer._memoText || "";
+      const btnRow = document.createElement("div");
+      btnRow.className = "map-draw-popup-actions";
+      const saveBtn = document.createElement("button");
+      saveBtn.type = "button"; saveBtn.textContent = "저장";
+      saveBtn.addEventListener("click", () => {
+        layer._memoText = textarea.value.trim();
+        layer.unbindPopup();
+        layer.bindPopup(renderViewPopup(layer)).openPopup();
+      });
+      const delBtn = document.createElement("button");
+      delBtn.type = "button"; delBtn.textContent = "삭제";
+      delBtn.className = "map-draw-popup-del";
+      delBtn.addEventListener("click", () => drawnItems.removeLayer(layer));
+      btnRow.appendChild(saveBtn);
+      btnRow.appendChild(delBtn);
+      wrap.appendChild(textarea);
+      wrap.appendChild(btnRow);
+      layer.unbindPopup();
+      layer.bindPopup(wrap, { minWidth: 160 }).openPopup();
+      setTimeout(() => textarea.focus(), 0);
+    }
+
+    map.on(L.Draw.Event.CREATED, (e) => {
+      const layer = e.layer;
+      layer._shapeType = e.layerType;
+      drawnItems.addLayer(layer);
+      drawHistory.push(layer);
+      layer._extraInfo = computeExtraInfo(layer, e.layerType);
+      layer._memoText = "";
+      bindEditPopup(layer);
+      stopDrawing();
+    });
+
+    // 도형 수정(꼭짓점/위치 이동) 후 면적·거리 정보 재계산 + 팝업 갱신
+    map.on(L.Draw.Event.EDITED, (e) => {
+      e.layers.eachLayer((layer) => {
+        layer._extraInfo = computeExtraInfo(layer, layer._shapeType);
+        layer.unbindPopup();
+        layer.bindPopup(renderViewPopup(layer));
+      });
+    });
+
+    if (drawBtns.clearAll) {
+      drawBtns.clearAll.addEventListener("click", () => {
+        if (drawnItems.getLayers().length === 0) return;
+        if (confirm("지도에 그린 내용을 모두 지우시겠습니까? (저장되지 않은 내용입니다)")) {
+          drawnItems.clearLayers();
+          drawHistory.length = 0;
+        }
+      });
+    }
+
+    // ── 필지 클릭 시 지적정보 팝업 (지적도 켜져 있을 때만) ──────────────
+    // 브이월드 WFS(GetFeature)로 클릭 지점 주변의 필지 속성(지번/주소/PNU/공시지가 등)을 조회함
+    // ※ 반환되는 속성 항목은 필지마다 조금씩 다를 수 있어, 알려진 항목만 한글 라벨로 보여주고
+    //   그 외 항목은 원본 그대로 표시함
+    const PARCEL_FIELD_LABELS = {
+      jibun: "지번", addr: "주소", pnu: "필지코드(PNU)",
+      jiga: "공시지가(원/㎡)", bonbun: "본번", bubun: "부번"
+    };
+    function buildParcelWfsUrl(latlng) {
+      const d = 0.00004; // 클릭 지점 기준 아주 작은 검색 범위(bbox)
+      const bbox = [latlng.lng - d, latlng.lat - d, latlng.lng + d, latlng.lat + d].join(",");
+      return "https://api.vworld.kr/req/wfs?" + new URLSearchParams({
+        SERVICE: "WFS", REQUEST: "GetFeature", TYPENAME: "lp_pa_cbnd_bubun",
+        BBOX: bbox, SRSNAME: "EPSG:4326", VERSION: "1.1.0", MAXFEATURES: "1",
+        OUTPUT: "application/json", KEY: VWORLD_KEY, DOMAIN: "nacivil95-beep.github.io"
+      });
+    }
+    function renderParcelPopup(props) {
+      const wrap = document.createElement("div");
+      wrap.className = "map-draw-popup";
+      const title = document.createElement("div");
+      title.className = "map-draw-popup-info";
+      title.textContent = "필지 정보";
+      wrap.appendChild(title);
+      const body = document.createElement("div");
+      body.className = "map-draw-popup-text";
+      const lines = [];
+      Object.keys(props).forEach((key) => {
+        const val = props[key];
+        if (val === null || val === undefined || val === "") return;
+        if (key === "gosi_year" || key === "gosi_month") return; // 아래서 합쳐서 표시
+        const label = PARCEL_FIELD_LABELS[key] || key;
+        const displayVal = (key === "jiga" && !isNaN(Number(val)))
+          ? Number(val).toLocaleString("ko-KR") : val;
+        lines.push(label + ": " + displayVal);
+      });
+      if (props.gosi_year || props.gosi_month) {
+        lines.push("공시연월: " + (props.gosi_year || "") + "년 " + (props.gosi_month || "") + "월");
+      }
+      body.textContent = lines.length > 0 ? lines.join("\n") : "표시할 속성 정보가 없습니다.";
+      body.style.whiteSpace = "pre-line";
+      wrap.appendChild(body);
+      return wrap;
+    }
+    map.on("click", (e) => {
+      // 그리기/도형수정/부분삭제 중이거나, 지적도가 꺼져 있으면 동작하지 않음
+      if (activeDrawTool || deleteMode || editMode) return;
+      if (!map.hasLayer(cadastralLayer)) return;
+
+      const loadingPopup = L.popup({ closeButton: false, minWidth: 160 })
+        .setLatLng(e.latlng)
+        .setContent('<div class="map-draw-popup"><div class="map-draw-popup-text">필지 정보 조회 중…</div></div>')
+        .openOn(map);
+
+      const wfsUrl = buildParcelWfsUrl(e.latlng);
+      fetch(wfsUrl)
+        .then((res) => {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return res.json();
+        })
+        .then((data) => {
+          const features = data && data.features;
+          if (!features || features.length === 0) {
+            loadingPopup.setContent(
+              '<div class="map-draw-popup"><div class="map-draw-popup-text">이 위치에서 필지 정보를 찾지 못했습니다.<br>(지적도가 없는 구간이거나 축척 제한일 수 있습니다)</div></div>'
+            );
+            return;
+          }
+          loadingPopup.setContent(renderParcelPopup(features[0].properties || {}));
+        })
+        .catch((err) => {
+          // 브라우저 보안정책(CORS) 등으로 자동 조회가 막힌 경우, 원본 요청을
+          // 새 창에서 직접 열어볼 수 있는 링크로 대체함
+          console.warn("[Site Map] 필지 정보 조회 실패:", err);
+          const wrap = document.createElement("div");
+          wrap.className = "map-draw-popup";
+          const msg = document.createElement("div");
+          msg.className = "map-draw-popup-text";
+          msg.textContent = "필지 정보를 자동으로 불러오지 못했습니다.";
+          wrap.appendChild(msg);
+          const link = document.createElement("a");
+          link.href = wfsUrl; link.target = "_blank"; link.rel = "noopener";
+          link.textContent = "새 창에서 직접 확인";
+          link.style.cssText = "display:inline-block;margin-top:4px;color:#2563eb;font-size:12px;";
+          wrap.appendChild(link);
+          loadingPopup.setContent(wrap);
+        });
+    });
+  } else {
+    console.warn("[Site Map] leaflet-draw 라이브러리를 불러오지 못해 그리기 도구가 비활성화되었습니다.");
+  }
 
   // 지도 확대 보기(전체화면) 토글 — 헤더의 확대 아이콘을 실제로 동작하게 연결
   const mapCard = document.getElementById("map-card");

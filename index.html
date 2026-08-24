@@ -7,7 +7,10 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Site Map "그리기" 도구(구역/메모/선+거리측정)용 -->
+  <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -365,12 +368,28 @@
         <!-- Leaflet 지도 컨테이너 -->
         <div id="leaflet-map"></div>
 
-        <!-- 지도 사이드 도구 -->
+        <!-- 지도 사이드 도구: 그리기(구역/원/메모/선+거리측정) + 색상선택 + 도형수정 + 되돌리기 + 부분삭제 + 전체지우기 -->
+        <!-- 그린 내용은 저장되지 않고 새로고침하면 사라짐(세션 한정) -->
         <div class="map-sidebar-tools">
-          <button class="map-tool-btn active" title="전체"><i class="fa-solid fa-compress"></i></button>
-          <button class="map-tool-btn" title="CCTV"><i class="fa-solid fa-video"></i></button>
-          <button class="map-tool-btn" title="장비"><i class="fa-solid fa-truck"></i></button>
-          <button class="map-tool-btn" title="센서"><i class="fa-solid fa-gauge"></i></button>
+          <button class="map-tool-btn" id="map-draw-polygon-btn" title="구역 표시"><i class="fa-solid fa-draw-polygon"></i></button>
+          <button class="map-tool-btn" id="map-draw-circle-btn" title="원(반경) 표시"><i class="fa-solid fa-circle"></i></button>
+          <button class="map-tool-btn" id="map-draw-marker-btn" title="지점 메모"><i class="fa-solid fa-location-dot"></i></button>
+          <button class="map-tool-btn" id="map-draw-line-btn" title="선 그리기 / 거리측정"><i class="fa-solid fa-ruler"></i></button>
+          <div class="map-tool-divider"></div>
+          <button class="map-tool-btn" id="map-draw-color-btn" title="그리기 색상 (클릭하여 선택)"><i class="fa-solid fa-palette"></i></button>
+          <button class="map-tool-btn" id="map-draw-edit-btn" title="도형 수정 (꼭짓점/위치 이동)"><i class="fa-solid fa-pen"></i></button>
+          <button class="map-tool-btn" id="map-draw-undo-btn" title="되돌리기"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+          <div class="map-tool-divider"></div>
+          <button class="map-tool-btn" id="map-draw-delete-btn" title="부분 삭제 (지울 항목을 지도에서 클릭)"><i class="fa-solid fa-eraser"></i></button>
+          <button class="map-tool-btn" id="map-draw-clearall-btn" title="전체 지우기"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+        <!-- 색상 선택 팔레트 (색상 버튼 클릭 시 표시) -->
+        <div class="map-color-picker" id="map-color-picker"></div>
+
+        <!-- 주소/지번 검색 (브이월드 지오코더) -->
+        <div class="map-geocoder">
+          <input type="text" id="map-geocoder-input" class="map-geocoder-input" placeholder="주소/지번 검색">
+          <button type="button" class="map-geocoder-btn" id="map-geocoder-btn" title="검색"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
 
         <!-- 지도/위성 전환 -->
@@ -378,6 +397,11 @@
           <button class="map-type-btn" id="map-normal-btn">지도</button>
           <button class="map-type-btn active" id="map-satellite-btn">위성</button>
           <button class="map-type-btn" id="map-image-btn">항공사진</button>
+        </div>
+        <!-- 지적도(연속지적도 경계선) 오버레이 켜고 끄기 — 다른 버튼과 달리 배타적이지 않고 위성/일반지도 위에 겹쳐서 표시됨 -->
+        <!-- 브이월드 정책상 확대(줌 18 이상)해야 지적경계선이 표시됨 -->
+        <div class="map-type-btns" style="position:absolute;top:66px;right:8px;z-index:500;">
+          <button class="map-type-btn" id="map-cadastral-btn" title="지적경계선 표시 (확대해야 보임)">지적도</button>
         </div>
       </div>
 
