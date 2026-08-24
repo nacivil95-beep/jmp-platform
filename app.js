@@ -1409,9 +1409,9 @@ function initMap() {
       crs: "epsg:4326", address, refine: "true", simple: "false",
       format: "json", type, key: VWORLD_KEY, domain: "nacivil95-beep.github.io"
     });
-    const res = await fetch(url);
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    return res.json();
+    // 필지 조회(WFS)와 동일하게 api.vworld.kr는 CORS 허용 헤더를 내려주지 않아
+    // fetch() 직접 호출이 브라우저에서 막힘 → kmaFetchJson()의 프록시 재시도 로직 재사용
+    return kmaFetchJson(url);
   }
   async function searchAddressCoord(query) {
     for (const type of ["road", "parcel"]) {
@@ -1809,13 +1809,10 @@ function initMap() {
     }
 
     // ── 필지 클릭 시 지적정보 팝업 (지적도 켜져 있을 때만) ──────────────
-    // 브이월드 WFS(GetFeature)로 클릭 지점 주변의 필지 속성(지번/주소/PNU/공시지가 등)을 조회함
-    // ※ 반환되는 속성 항목은 필지마다 조금씩 다를 수 있어, 알려진 항목만 한글 라벨로 보여주고
-    //   그 외 항목은 원본 그대로 표시함
-    const PARCEL_FIELD_LABELS = {
-      jibun: "지번", addr: "주소", pnu: "필지코드(PNU)",
-      jiga: "공시지가(원/㎡)", bonbun: "본번", bubun: "부번"
-    };
+    // 브이월드 WFS(GetFeature)로 클릭 지점 주변의 필지 속성을 조회함.
+    // 실제 응답 확인 결과, jibun 필드에 "485 전"처럼 번지+지목이 공백으로
+    // 붙어서 오므로 분리해서 표시함. bchk/std_sggcd/시군구명 등 내부 코드성
+    // 필드는 addr(전체주소)로 갈음되므로 표시하지 않음.
     function buildParcelWfsUrl(latlng) {
       const d = 0.00004; // 클릭 지점 기준 아주 작은 검색 범위(bbox)
       const bbox = [latlng.lng - d, latlng.lat - d, latlng.lng + d, latlng.lat + d].join(",");
@@ -1825,6 +1822,12 @@ function initMap() {
         OUTPUT: "application/json", KEY: VWORLD_KEY, DOMAIN: "nacivil95-beep.github.io"
       });
     }
+    function parseJibun(jibunRaw) {
+      // "485 전" → 번지 "485" + 지목 "전"으로 분리
+      if (!jibunRaw) return { number: "", jimok: "" };
+      const parts = String(jibunRaw).trim().split(/\s+/);
+      return { number: parts[0] || "", jimok: parts.slice(1).join(" ") || "" };
+    }
     function renderParcelPopup(props) {
       const wrap = document.createElement("div");
       wrap.className = "map-draw-popup";
@@ -1832,23 +1835,23 @@ function initMap() {
       title.className = "map-draw-popup-info";
       title.textContent = "필지 정보";
       wrap.appendChild(title);
-      const body = document.createElement("div");
-      body.className = "map-draw-popup-text";
+
+      const { number, jimok } = parseJibun(props.jibun);
       const lines = [];
-      Object.keys(props).forEach((key) => {
-        const val = props[key];
-        if (val === null || val === undefined || val === "") return;
-        if (key === "gosi_year" || key === "gosi_month") return; // 아래서 합쳐서 표시
-        const label = PARCEL_FIELD_LABELS[key] || key;
-        const displayVal = (key === "jiga" && !isNaN(Number(val)))
-          ? Number(val).toLocaleString("ko-KR") : val;
-        lines.push(label + ": " + displayVal);
-      });
+      if (props.addr) lines.push("주소: " + props.addr);
+      if (number) lines.push("지번: " + number);
+      if (jimok) lines.push("지목: " + jimok);
+      if (props.jiga && !isNaN(Number(props.jiga))) {
+        lines.push("공시지가: " + Number(props.jiga).toLocaleString("ko-KR") + " 원/㎡");
+      }
       if (props.gosi_year || props.gosi_month) {
         lines.push("공시연월: " + (props.gosi_year || "") + "년 " + (props.gosi_month || "") + "월");
       }
-      body.textContent = lines.length > 0 ? lines.join("\n") : "표시할 속성 정보가 없습니다.";
+
+      const body = document.createElement("div");
+      body.className = "map-draw-popup-text";
       body.style.whiteSpace = "pre-line";
+      body.textContent = lines.length > 0 ? lines.join("\n") : "표시할 속성 정보가 없습니다.";
       wrap.appendChild(body);
       return wrap;
     }
