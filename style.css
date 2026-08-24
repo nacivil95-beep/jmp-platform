@@ -1140,6 +1140,26 @@ html, body {
 .map-draw-popup-actions button.map-draw-popup-del:hover {
   color: var(--red, #ef4444);
 }
+.map-draw-popup-parcel-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; margin-bottom: 4px;
+}
+.map-draw-popup-parcel-close {
+  border: none; background: none; cursor: pointer;
+  font-size: 13px; line-height: 1; color: #9ca3af;
+  padding: 0 2px; flex-shrink: 0;
+}
+.map-draw-popup-parcel-close:hover {
+  color: var(--red, #ef4444);
+}
+/* 필지 정보 팝업: 배경 반투명 처리(아래 필지 경계선이 비쳐 보이도록) */
+.map-parcel-popup .leaflet-popup-content-wrapper {
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(2px);
+}
+.map-parcel-popup .leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.86);
+}
 
 /* 지도 마커 스타일 */
 .site-marker {

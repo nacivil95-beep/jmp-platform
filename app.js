@@ -1411,6 +1411,10 @@ function initMap() {
     });
   }
 
+  // 아래쪽 "Site Map 그리기 도구" 블록에서 쓰는 부분삭제모드 상태를 여기서도 같이 써야 해서
+  // (지번검색 마커/필지 강조표시도 그 삭제모드로 지울 수 있게 하려고) 바깥 스코프로 뺌.
+  let deleteMode = false;
+
   // ── 주소/지번 검색 (브이월드 지오코더) ────────────────────────────
   // 도로명주소(road)로 먼저 시도하고, 실패하면 지번주소(parcel)로 재시도함
   async function vworldGeocode(address, type) {
@@ -1441,6 +1445,28 @@ function initMap() {
   const geoBtn = document.getElementById("map-geocoder-btn");
   let geocodeMarker = null;
 
+  // 지번검색 마커 풍선의 내용: 주소 텍스트 + 우측상단 ✕(누르면 마커까지 완전히 삭제)
+  function buildGeocodePopupContent(text, onDelete) {
+    const wrap = document.createElement("div");
+    wrap.className = "map-draw-popup";
+    const header = document.createElement("div");
+    header.className = "map-draw-popup-parcel-header";
+    const label = document.createElement("div");
+    label.className = "map-draw-popup-text";
+    label.style.marginBottom = "0";
+    label.textContent = text;
+    header.appendChild(label);
+    const closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "map-draw-popup-parcel-close";
+    closeBtn.textContent = "✕";
+    closeBtn.title = "검색 마커 삭제";
+    closeBtn.addEventListener("click", () => { if (onDelete) onDelete(); });
+    header.appendChild(closeBtn);
+    wrap.appendChild(header);
+    return wrap;
+  }
+
   async function runGeocodeSearch() {
     if (!geoInput || !geoBtn) return;
     const query = geoInput.value.trim();
@@ -1466,8 +1492,23 @@ function initMap() {
 
     map.setView([lat, lng], 18);
     if (geocodeMarker) map.removeLayer(geocodeMarker);
-    geocodeMarker = L.marker([lat, lng]).addTo(map).bindPopup(matchedText).openPopup();
+    geocodeMarker = L.marker([lat, lng]).addTo(map);
+    geocodeMarker.bindPopup(
+      buildGeocodePopupContent(matchedText, () => {
+        map.removeLayer(geocodeMarker);
+        geocodeMarker = null;
+      }),
+      { closeButton: false }
+    ).openPopup();
+    // 그리기 도구의 "부분삭제 모드"가 켜져 있는 동안 이 마커를 클릭하면 지워지도록 함
+    // (검색 마커도 다른 그린 도형들과 동일한 방식으로 삭제 가능하게)
+    geocodeMarker.on("click", () => {
+      if (!deleteMode) return;
+      map.removeLayer(geocodeMarker);
+      geocodeMarker = null;
+    });
   }
+
 
   if (geoBtn) geoBtn.addEventListener("click", runGeocodeSearch);
   if (geoInput) {
@@ -1544,7 +1585,6 @@ function initMap() {
     };
 
     let activeDrawTool = null;
-    let deleteMode = false;
     let editMode = false;
     const drawHistory = []; // "되돌리기"용 — 완성된 도형을 생성 순서대로 기록
 
@@ -1857,14 +1897,27 @@ function initMap() {
       });
       return total;
     }
-    function renderParcelPopup(feature) {
+    function renderParcelPopup(feature, onDelete) {
       const props = feature.properties || {};
       const wrap = document.createElement("div");
       wrap.className = "map-draw-popup";
+
+      // 제목 + 우측상단 삭제(✕) 버튼
+      const header = document.createElement("div");
+      header.className = "map-draw-popup-parcel-header";
       const title = document.createElement("div");
       title.className = "map-draw-popup-info";
+      title.style.marginBottom = "0";
       title.textContent = "필지 정보";
-      wrap.appendChild(title);
+      header.appendChild(title);
+      const closeBtn = document.createElement("button");
+      closeBtn.type = "button";
+      closeBtn.className = "map-draw-popup-parcel-close";
+      closeBtn.textContent = "✕";
+      closeBtn.title = "필지 정보 삭제";
+      closeBtn.addEventListener("click", () => { if (onDelete) onDelete(); });
+      header.appendChild(closeBtn);
+      wrap.appendChild(header);
 
       const { number, jimok } = parseJibun(props.jibun);
       const lines = [];
@@ -1907,7 +1960,11 @@ function initMap() {
 
       clearParcelHighlight(); // 새로 클릭했으니 이전 강조표시부터 지움
 
-      const loadingPopup = L.popup({ closeButton: false, minWidth: 160 })
+      const loadingPopup = L.popup({
+        closeButton: false, minWidth: 160,
+        className: "map-parcel-popup", // 반투명 배경(아래 필지선이 비쳐 보이도록)
+        offset: [0, -40] // 클릭 지점 위로 더 띄워서 팝업이 필지선을 덜 가리게 함
+      })
         .setLatLng(e.latlng)
         .setContent('<div class="map-draw-popup"><div class="map-draw-popup-text">필지 정보 조회 중…</div></div>')
         .openOn(map);
@@ -1926,12 +1983,21 @@ function initMap() {
             return;
           }
           const feature = features[0];
-          loadingPopup.setContent(renderParcelPopup(feature));
+          loadingPopup.setContent(renderParcelPopup(feature, () => {
+            clearParcelHighlight();
+            map.closePopup();
+          }));
           // 조회된 필지의 실제 경계선을 파란색으로 강조 표시
           if (feature.geometry) {
             parcelHighlightLayer = L.geoJSON(feature, {
               style: { color: "#2563eb", weight: 3, fillColor: "#3b82f6", fillOpacity: 0.15 }
             }).addTo(map);
+            // "부분삭제 모드"가 켜져 있는 동안 강조표시(파란 경계선)를 클릭하면 지워지도록 함
+            parcelHighlightLayer.on("click", () => {
+              if (!deleteMode) return;
+              clearParcelHighlight();
+              map.closePopup();
+            });
           }
         })
         .catch((err) => {
