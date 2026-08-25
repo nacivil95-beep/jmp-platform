@@ -203,6 +203,29 @@ html, body {
   display: inline-flex;
   white-space: nowrap;
   will-change: transform;
+  /* 기본 상태: 트랙 너비만큼 오른쪽 바깥으로 밀어둡니다 → 처음엔 완전히 빈 칸으로 보임.
+     app.js가 --board-intro-offset 값(트랙 실제 너비)을 채운 뒤 .is-intro를 붙이면,
+     그 위치에서 왼쪽(0%)으로 슬라이드해 들어오면서 텍스트가 채워지는 것처럼 보입니다. */
+  transform: translateX(var(--board-intro-offset, 100%));
+}
+
+/* 1단계: 빈 칸 → 왼쪽으로 슬라이드해 들어오며 채워짐 (한 번만 재생)
+   속도(px/초)는 2단계(무한 순환)와 동일하게 app.js가 맞춰줍니다 — 그래야 1단계에서
+   2단계로 넘어가는 순간 속도 차이가 느껴지지 않습니다. linear로 고정: ease-out을 쓰면
+   슬라이드가 끝나갈 때(텍스트가 다 들어올 때) 부자연스럽게 느려집니다. */
+.board-banner-content.is-intro {
+  animation-name: boardFlowIntro;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes boardFlowIntro {
+  from { transform: translateX(var(--board-intro-offset, 100%)); }
+  to   { transform: translateX(0%); }
+}
+
+/* 2단계: 다 채워진 뒤 이어서 계속 우→좌로 흐름 (무한 반복) */
+.board-banner-content.is-animating {
   animation: boardFlowRTL linear infinite;
   animation-duration: 26s; /* app.js가 텍스트 길이에 맞춰 동적으로 재조정 */
 }

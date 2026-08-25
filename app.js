@@ -2372,30 +2372,58 @@ function buildBoardTickerHtml(items) {
 
 function initBoardTicker() {
   const banner = document.getElementById("board-banner");
+  const track = document.getElementById("board-banner-track") || banner;
   const content = document.getElementById("board-banner-content");
   if (!banner || !content) return;
+
+  // 혹시 이전에 재생 중이던 애니메이션이 있다면 완전히 떼어내고 처음(빈 칸)부터 새로 시작합니다.
+  content.classList.remove("is-animating", "is-intro");
+  content.style.animationDuration = "";
 
   const items = buildBoardTickerItems();
 
   if (!items.length) {
     // 흐를 게시글/일정이 없으면 애니메이션 없이 안내 문구만 정적으로 표시
-    content.style.animation = "none";
+    content.style.removeProperty("--board-intro-offset");
     content.innerHTML = `<span class="board-banner-item board-banner-empty">등록된 게시글이 없습니다.</span>`;
-  } else {
-    const text = buildBoardTickerHtml(items);
-    // 동일 텍스트 2벌을 이어붙여 0%→-50% 루프 시 이음매가 보이지 않도록 함
-    content.innerHTML = `
-      <span class="board-banner-item">${text}</span>
-      <span class="board-banner-item" aria-hidden="true">${text}</span>
-    `;
-
-    // 실제 렌더링된 한 벌 너비를 측정해 속도를 일정하게 유지 (텍스트가 길어도 짧아도 초당 픽셀 동일)
-    requestAnimationFrame(() => {
-      const oneSetWidth = content.scrollWidth / 2;
-      const duration = Math.max(10, oneSetWidth / BOARD_TICKER_PX_PER_SEC);
-      content.style.animationDuration = `${duration}s`;
-    });
+    return;
   }
+
+  const text = buildBoardTickerHtml(items);
+  // 동일 텍스트 2벌을 이어붙여 0%→-50% 루프 시 이음매가 보이지 않도록 함
+  content.innerHTML = `
+    <span class="board-banner-item">${text}</span>
+    <span class="board-banner-item" aria-hidden="true">${text}</span>
+  `;
+
+  // 1단계 준비: 지금 보이는 트랙(전광판 창)의 실제 너비만큼 콘텐츠를 오른쪽 바깥으로
+  // 밀어둡니다 → 화면엔 완전히 빈 칸으로 시작합니다.
+  const trackWidth = track.clientWidth || banner.clientWidth || 0;
+  content.style.setProperty("--board-intro-offset", `${trackWidth}px`);
+
+  requestAnimationFrame(() => {
+    // 실제 렌더링된 한 벌 너비를 측정해 순환 속도를 일정하게 유지
+    // (텍스트가 길어도 짧아도 초당 픽셀 동일)
+    const oneSetWidth = content.scrollWidth / 2;
+    const loopDuration = Math.max(10, oneSetWidth / BOARD_TICKER_PX_PER_SEC);
+
+    // 1단계(슬라이드 인) 지속시간은 "슬라이드해야 할 실제 거리(트랙 너비)"를
+    // 2단계와 똑같은 속도(px/초)로 나눠서 따로 계산합니다.
+    // (예전엔 이 값 없이 2단계의 긴 지속시간을 그대로 썼는데, ease-out과 겹쳐서
+    //  초반엔 훅 들어오고 후반엔 질질 끄는 것처럼 느려 보이는 문제가 있었습니다)
+    const introDuration = Math.max(0.3, trackWidth / BOARD_TICKER_PX_PER_SEC);
+    content.style.animationDuration = `${introDuration}s`;
+    content.classList.add("is-intro");
+
+    // 1단계(슬라이드 인)가 끝나는 순간, 정확히 0% 위치에서 2단계(무한 순환)로 이어받습니다.
+    content.addEventListener("animationend", function onIntroEnd(e) {
+      if (e.animationName !== "boardFlowIntro") return;
+      content.removeEventListener("animationend", onIntroEnd);
+      content.classList.remove("is-intro");
+      content.style.animationDuration = `${loopDuration}s`;
+      content.classList.add("is-animating");
+    });
+  });
 }
 
 // =========================================================================
@@ -3195,6 +3223,18 @@ function initTeamMainTabs() {
   // 초기 렌더 - 품질팀(QUALITY_DATA)과 안전보건팀(SAFETY_DATA)은 전용 렌더러를 쓰고,
   // 나머지 3팀은 TEAM_DATA(teamData.js)로 채웁니다
   TEAM_KEYS.filter(k => k !== "품질팀" && k !== "안전보건팀").forEach(renderTeamGenericPane);
+
+  // 초기 활성 탭: 안전/보건팀 (페이지 진입 시 가장 먼저 보이도록)
+  const initialTeam = "안전보건팀";
+  const initialBtn = tabBar.querySelector(`.wtab[data-team="${initialTeam}"]`);
+  if (initialBtn) {
+    tabBar.querySelectorAll(".wtab").forEach(b => b.classList.remove("active"));
+    initialBtn.classList.add("active");
+    TEAM_KEYS.forEach(k => {
+      const pane = document.getElementById(`team-pane-${k}`);
+      if (pane) pane.style.display = (k === initialTeam) ? "" : "none";
+    });
+  }
 }
 
 function init() {
