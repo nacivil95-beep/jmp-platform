@@ -1391,17 +1391,66 @@ function initMap() {
     attribution: "지적도: 브이월드(국토교통부)"
   });
   const cadastralBtn = document.getElementById("map-cadastral-btn");
+  // 필지 클릭 시 그 필지 경계선만 파란색으로 강조 표시하는 레이어
+  // (지적도 버튼 클릭 핸들러와 아래쪽 필지클릭 핸들러 양쪽에서 같이 씀)
+  let parcelHighlightLayer = null;
+  function clearParcelHighlight() {
+    if (parcelHighlightLayer) {
+      map.removeLayer(parcelHighlightLayer);
+      parcelHighlightLayer = null;
+    }
+  }
+  // 필지 경계 WFS 조회 URL 생성 — 필지 클릭 조회와 지번검색 결과 강조표시 양쪽에서 공용으로 사용
+  function buildParcelWfsUrl(latlng) {
+    const d = 0.00004; // 클릭 지점 기준 아주 작은 검색 범위(bbox)
+    const bbox = [latlng.lng - d, latlng.lat - d, latlng.lng + d, latlng.lat + d].join(",");
+    return "https://api.vworld.kr/req/wfs?" + new URLSearchParams({
+      SERVICE: "WFS", REQUEST: "GetFeature", TYPENAME: "lp_pa_cbnd_bubun",
+      BBOX: bbox, SRSNAME: "EPSG:4326", VERSION: "1.1.0", MAXFEATURES: "1",
+      OUTPUT: "application/json", KEY: VWORLD_KEY, DOMAIN: "nacivil95-beep.github.io"
+    });
+  }
+  // 주어진 GeoJSON feature의 경계선을 파란색으로 강조 표시 (기존 강조표시는 먼저 지움)
+  function applyParcelHighlight(feature) {
+    clearParcelHighlight();
+    if (!feature || !feature.geometry) return;
+    parcelHighlightLayer = L.geoJSON(feature, {
+      style: { color: "#2563eb", weight: 3, fillColor: "#3b82f6", fillOpacity: 0.15 }
+    }).addTo(map);
+    // "부분삭제 모드"가 켜져 있는 동안 강조표시(파란 경계선)를 클릭하면 지워지도록 함
+    parcelHighlightLayer.on("click", () => {
+      if (!deleteMode) return;
+      clearParcelHighlight();
+      map.closePopup();
+    });
+  }
+  // 좌표 기준으로 필지를 조회해 경계선만 강조 표시 (지번검색 결과에 사용, 실패해도 조용히 무시)
+  function highlightParcelAtLatLng(latlng) {
+    kmaFetchJson(buildParcelWfsUrl(latlng))
+      .then((data) => {
+        const features = data && data.features;
+        if (features && features.length > 0) applyParcelHighlight(features[0]);
+      })
+      .catch((err) => {
+        console.warn("[Site Map] 지번검색 결과 필지 강조표시 조회 실패:", err);
+      });
+  }
   if (cadastralBtn) {
     cadastralBtn.addEventListener("click", () => {
       const isOn = map.hasLayer(cadastralLayer);
       if (isOn) {
         map.removeLayer(cadastralLayer);
+        clearParcelHighlight();
       } else {
         cadastralLayer.addTo(map);
       }
       cadastralBtn.classList.toggle("active", !isOn);
     });
   }
+
+  // 아래쪽 "Site Map 그리기 도구" 블록에서 쓰는 부분삭제모드 상태를 여기서도 같이 써야 해서
+  // (지번검색 마커/필지 강조표시도 그 삭제모드로 지울 수 있게 하려고) 바깥 스코프로 뺌.
+  let deleteMode = false;
 
   // ── 주소/지번 검색 (브이월드 지오코더) ────────────────────────────
   // 도로명주소(road)로 먼저 시도하고, 실패하면 지번주소(parcel)로 재시도함
@@ -1411,9 +1460,9 @@ function initMap() {
       crs: "epsg:4326", address, refine: "true", simple: "false",
       format: "json", type, key: VWORLD_KEY, domain: "nacivil95-beep.github.io"
     });
-    const res = await fetch(url);
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    return res.json();
+    // 필지 조회(WFS)와 동일하게 api.vworld.kr는 CORS 허용 헤더를 내려주지 않아
+    // fetch() 직접 호출이 브라우저에서 막힘 → kmaFetchJson()의 프록시 재시도 로직 재사용
+    return kmaFetchJson(url);
   }
   async function searchAddressCoord(query) {
     for (const type of ["road", "parcel"]) {
@@ -1432,6 +1481,28 @@ function initMap() {
   const geoInput = document.getElementById("map-geocoder-input");
   const geoBtn = document.getElementById("map-geocoder-btn");
   let geocodeMarker = null;
+
+  // 지번검색 마커 풍선의 내용: 주소 텍스트 + 우측상단 ✕(누르면 마커까지 완전히 삭제)
+  function buildGeocodePopupContent(text, onDelete) {
+    const wrap = document.createElement("div");
+    wrap.className = "map-draw-popup";
+    const header = document.createElement("div");
+    header.className = "map-draw-popup-parcel-header";
+    const label = document.createElement("div");
+    label.className = "map-draw-popup-text";
+    label.style.marginBottom = "0";
+    label.textContent = text;
+    header.appendChild(label);
+    const closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "map-draw-popup-parcel-close";
+    closeBtn.textContent = "✕";
+    closeBtn.title = "검색 마커 삭제";
+    closeBtn.addEventListener("click", () => { if (onDelete) onDelete(); });
+    header.appendChild(closeBtn);
+    wrap.appendChild(header);
+    return wrap;
+  }
 
   async function runGeocodeSearch() {
     if (!geoInput || !geoBtn) return;
@@ -1458,7 +1529,25 @@ function initMap() {
 
     map.setView([lat, lng], 18);
     if (geocodeMarker) map.removeLayer(geocodeMarker);
-    geocodeMarker = L.marker([lat, lng]).addTo(map).bindPopup(matchedText).openPopup();
+    geocodeMarker = L.marker([lat, lng]).addTo(map);
+    geocodeMarker.bindPopup(
+      buildGeocodePopupContent(matchedText, () => {
+        map.removeLayer(geocodeMarker);
+        geocodeMarker = null;
+        clearParcelHighlight();
+      }),
+      { closeButton: false }
+    ).openPopup();
+    // 검색된 지점의 필지 경계선도 함께 강조 표시 (지적도 on/off와 무관하게 항상 표시,
+    // 조회에 실패해도 조용히 무시되어 검색 자체는 정상 동작함)
+    highlightParcelAtLatLng(L.latLng(lat, lng));
+    // 그리기 도구의 "부분삭제 모드"가 켜져 있는 동안 이 마커를 클릭하면 지워지도록 함
+    // (검색 마커도 다른 그린 도형들과 동일한 방식으로 삭제 가능하게)
+    geocodeMarker.on("click", () => {
+      if (!deleteMode) return;
+      map.removeLayer(geocodeMarker);
+      geocodeMarker = null;
+    });
   }
 
   if (geoBtn) geoBtn.addEventListener("click", runGeocodeSearch);
@@ -1536,7 +1625,6 @@ function initMap() {
     };
 
     let activeDrawTool = null;
-    let deleteMode = false;
     let editMode = false;
     const drawHistory = []; // "되돌리기"용 — 완성된 도형을 생성 순서대로 기록
 
@@ -1811,47 +1899,90 @@ function initMap() {
     }
 
     // ── 필지 클릭 시 지적정보 팝업 (지적도 켜져 있을 때만) ──────────────
-    // 브이월드 WFS(GetFeature)로 클릭 지점 주변의 필지 속성(지번/주소/PNU/공시지가 등)을 조회함
-    // ※ 반환되는 속성 항목은 필지마다 조금씩 다를 수 있어, 알려진 항목만 한글 라벨로 보여주고
-    //   그 외 항목은 원본 그대로 표시함
-    const PARCEL_FIELD_LABELS = {
-      jibun: "지번", addr: "주소", pnu: "필지코드(PNU)",
-      jiga: "공시지가(원/㎡)", bonbun: "본번", bubun: "부번"
-    };
-    function buildParcelWfsUrl(latlng) {
-      const d = 0.00004; // 클릭 지점 기준 아주 작은 검색 범위(bbox)
-      const bbox = [latlng.lng - d, latlng.lat - d, latlng.lng + d, latlng.lat + d].join(",");
-      return "https://api.vworld.kr/req/wfs?" + new URLSearchParams({
-        SERVICE: "WFS", REQUEST: "GetFeature", TYPENAME: "lp_pa_cbnd_bubun",
-        BBOX: bbox, SRSNAME: "EPSG:4326", VERSION: "1.1.0", MAXFEATURES: "1",
-        OUTPUT: "application/json", KEY: VWORLD_KEY, DOMAIN: "nacivil95-beep.github.io"
-      });
+    // 브이월드 WFS(GetFeature)로 클릭 지점 주변의 필지 속성을 조회함.
+    // 실제 응답 확인 결과, jibun 필드에 "485 전"처럼 번지+지목이 공백으로
+    // 붙어서 오므로 분리해서 표시함. bchk/std_sggcd/시군구명 등 내부 코드성
+    // 필드는 addr(전체주소)로 갈음되므로 표시하지 않음.
+    // (buildParcelWfsUrl은 지번검색 강조표시와 공용으로 쓰기 위해 위쪽 바깥 스코프로 옮겼습니다)
+    function parseJibun(jibunRaw) {
+      // "485 전" → 번지 "485" + 지목 "전"으로 분리
+      if (!jibunRaw) return { number: "", jimok: "" };
+      const parts = String(jibunRaw).trim().split(/\s+/);
+      return { number: parts[0] || "", jimok: parts.slice(1).join(" ") || "" };
     }
-    function renderParcelPopup(props) {
+    // WFS 응답에는 면적 필드가 따로 없어서, 응답에 같이 오는 필지 경계선(geometry)으로
+    // 직접 면적을 계산함 (그리기 도구의 폴리곤 면적 계산과 동일한 방식: L.GeometryUtil.geodesicArea)
+    function computeParcelAreaM2(geometry) {
+      if (!geometry || !L.GeometryUtil) return null;
+      let rings = [];
+      if (geometry.type === "Polygon") {
+        rings = [geometry.coordinates[0]];
+      } else if (geometry.type === "MultiPolygon") {
+        rings = geometry.coordinates.map((poly) => poly[0]);
+      } else {
+        return null;
+      }
+      let total = 0;
+      rings.forEach((ring) => {
+        const latlngs = ring.map(([lng, lat]) => L.latLng(lat, lng));
+        total += L.GeometryUtil.geodesicArea(latlngs);
+      });
+      return total;
+    }
+    function renderParcelPopup(feature, onDelete) {
+      const props = feature.properties || {};
       const wrap = document.createElement("div");
       wrap.className = "map-draw-popup";
+
+      // 제목 + 우측상단 삭제(✕) 버튼
+      const header = document.createElement("div");
+      header.className = "map-draw-popup-parcel-header";
       const title = document.createElement("div");
       title.className = "map-draw-popup-info";
+      title.style.marginBottom = "0";
       title.textContent = "필지 정보";
-      wrap.appendChild(title);
-      const body = document.createElement("div");
-      body.className = "map-draw-popup-text";
+      header.appendChild(title);
+      const closeBtn = document.createElement("button");
+      closeBtn.type = "button";
+      closeBtn.className = "map-draw-popup-parcel-close";
+      closeBtn.textContent = "✕";
+      closeBtn.title = "필지 정보 삭제";
+      closeBtn.addEventListener("click", () => { if (onDelete) onDelete(); });
+      header.appendChild(closeBtn);
+      wrap.appendChild(header);
+
+      const { number, jimok } = parseJibun(props.jibun);
       const lines = [];
-      Object.keys(props).forEach((key) => {
-        const val = props[key];
-        if (val === null || val === undefined || val === "") return;
-        if (key === "gosi_year" || key === "gosi_month") return; // 아래서 합쳐서 표시
-        const label = PARCEL_FIELD_LABELS[key] || key;
-        const displayVal = (key === "jiga" && !isNaN(Number(val)))
-          ? Number(val).toLocaleString("ko-KR") : val;
-        lines.push(label + ": " + displayVal);
-      });
+      if (props.addr) lines.push("주소: " + props.addr);
+      if (number) lines.push("지번: " + number);
+      if (jimok) lines.push("지목: " + jimok);
+
+      const areaM2 = computeParcelAreaM2(feature.geometry);
+      if (areaM2) {
+        const pyeong = areaM2 / 3.305785; // 1평 = 3.305785 m²
+        lines.push("대략 면적: " + Math.round(areaM2).toLocaleString("ko-KR") + " m² (약 "
+          + Math.round(pyeong).toLocaleString("ko-KR") + "평)");
+      }
+
+      if (props.jiga && !isNaN(Number(props.jiga))) {
+        lines.push("공시지가: " + Number(props.jiga).toLocaleString("ko-KR") + " 원/㎡");
+      }
       if (props.gosi_year || props.gosi_month) {
         lines.push("공시연월: " + (props.gosi_year || "") + "년 " + (props.gosi_month || "") + "월");
       }
-      body.textContent = lines.length > 0 ? lines.join("\n") : "표시할 속성 정보가 없습니다.";
+
+      const body = document.createElement("div");
+      body.className = "map-draw-popup-text";
       body.style.whiteSpace = "pre-line";
+      body.textContent = lines.length > 0 ? lines.join("\n") : "표시할 속성 정보가 없습니다.";
       wrap.appendChild(body);
+
+      if (areaM2) {
+        const note = document.createElement("div");
+        note.style.cssText = "font-size:10px;color:#9ca3af;margin-top:4px;";
+        note.textContent = "※ 면적은 지적공부(토지대장)상 공식 면적이 아니라, 지도 경계선으로 계산한 참고용 수치입니다.";
+        wrap.appendChild(note);
+      }
       return wrap;
     }
     map.on("click", (e) => {
@@ -1859,7 +1990,13 @@ function initMap() {
       if (activeDrawTool || deleteMode || editMode) return;
       if (!map.hasLayer(cadastralLayer)) return;
 
-      const loadingPopup = L.popup({ closeButton: false, minWidth: 160 })
+      clearParcelHighlight(); // 새로 클릭했으니 이전 강조표시부터 지움
+
+      const loadingPopup = L.popup({
+        closeButton: false, minWidth: 160,
+        className: "map-parcel-popup", // 반투명 배경(아래 필지선이 비쳐 보이도록)
+        offset: [0, -40] // 클릭 지점 위로 더 띄워서 팝업이 필지선을 덜 가리게 함
+      })
         .setLatLng(e.latlng)
         .setContent('<div class="map-draw-popup"><div class="map-draw-popup-text">필지 정보 조회 중…</div></div>')
         .openOn(map);
@@ -1877,7 +2014,13 @@ function initMap() {
             );
             return;
           }
-          loadingPopup.setContent(renderParcelPopup(features[0].properties || {}));
+          const feature = features[0];
+          loadingPopup.setContent(renderParcelPopup(feature, () => {
+            clearParcelHighlight();
+            map.closePopup();
+          }));
+          // 조회된 필지의 실제 경계선을 파란색으로 강조 표시
+          applyParcelHighlight(feature);
         })
         .catch((err) => {
           // 브라우저 보안정책(CORS) 등으로 자동 조회가 막힌 경우, 원본 요청을
