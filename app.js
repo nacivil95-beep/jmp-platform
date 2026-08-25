@@ -3314,38 +3314,37 @@ function initNestedScrollHandoff() {
     ".schedule-items-scroll"
   ].join(",");
 
-  let activeEl = null;
-  let startY = 0;
+  // 예전엔 이 리스너를 document 전체에 걸어서, 카드 스크롤과 무관한 일반 페이지
+  // 스크롤에서도 손가락이 움직일 때마다 JS를 거치게 됐습니다. { passive:false }
+  // 리스너는 브라우저가 "막힐 수도 있다"고 가정해 프레임마다 JS 실행 결과를 기다리기
+  // 때문에, iOS의 하드웨어 가속 스크롤을 방해해서 페이지 전체가 뚝뚝 끊기는 느낌을
+  // 만들었습니다. → 실제로 필요한 안쪽 스크롤 요소들에만 리스너를 걸어, 나머지
+  // 페이지는 원래의 부드러운 네이티브 스크롤을 그대로 쓰도록 범위를 좁혔습니다.
+  document.querySelectorAll(SCROLL_SELECTOR).forEach(function(activeEl) {
+    let startY = 0;
 
-  document.addEventListener("touchstart", function(e) {
-    const target = e.target.closest(SCROLL_SELECTOR);
-    activeEl = target || null;
-    if (activeEl && e.touches && e.touches[0]) {
-      startY = e.touches[0].clientY;
-    }
-  }, { passive: true });
+    activeEl.addEventListener("touchstart", function(e) {
+      if (e.touches && e.touches[0]) startY = e.touches[0].clientY;
+    }, { passive: true });
 
-  document.addEventListener("touchmove", function(e) {
-    if (!activeEl || !e.touches || !e.touches[0]) return;
+    activeEl.addEventListener("touchmove", function(e) {
+      if (!e.touches || !e.touches[0]) return;
 
-    const currentY = e.touches[0].clientY;
-    const deltaY = startY - currentY; // 양수: 위로 스와이프(페이지를 아래로 내리려는 의도)
-    const maxScroll = activeEl.scrollHeight - activeEl.clientHeight;
-    const atBottom = activeEl.scrollTop >= maxScroll - 1;
-    const atTop = activeEl.scrollTop <= 0;
+      const currentY = e.touches[0].clientY;
+      const deltaY = startY - currentY; // 양수: 위로 스와이프(페이지를 아래로 내리려는 의도)
+      const maxScroll = activeEl.scrollHeight - activeEl.clientHeight;
+      const atBottom = activeEl.scrollTop >= maxScroll - 1;
+      const atTop = activeEl.scrollTop <= 0;
 
-    // 안쪽 목록이 스와이프 방향 쪽 경계에 이미 도달해 있으면, 남은 이동량을 페이지 스크롤로 대신 적용
-    if ((deltaY > 0 && atBottom) || (deltaY < 0 && atTop)) {
-      e.preventDefault();
-      document.body.scrollTop += deltaY;
-      document.documentElement.scrollTop += deltaY;
-      startY = currentY;
-    }
-  }, { passive: false });
-
-  document.addEventListener("touchend", function() {
-    activeEl = null;
-  }, { passive: true });
+      // 안쪽 목록이 스와이프 방향 쪽 경계에 이미 도달해 있으면, 남은 이동량을 페이지 스크롤로 대신 적용
+      if ((deltaY > 0 && atBottom) || (deltaY < 0 && atTop)) {
+        e.preventDefault();
+        document.body.scrollTop += deltaY;
+        document.documentElement.scrollTop += deltaY;
+        startY = currentY;
+      }
+    }, { passive: false });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function() {
