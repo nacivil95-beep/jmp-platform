@@ -28389,11 +28389,11 @@ let DAILY_REPORTS = {
   },
   "2026-08-28": {
     "date": "2026-08-28",
-    "weather": "맑음",
+    "weather": "흐림/비",
     "progress": {
       "plan": 4.59,
-      "actual": 6.03,
-      "diff": 131.57
+      "actual": 6.04,
+      "diff": 131.8
     },
     "earth": {
       "토사": {
@@ -28436,7 +28436,10 @@ let DAILY_REPORTS = {
       "   - 살수차-1",
       "◆기타",
       " 1. 토사유실 방지 사면 천막 보수 작업",
-      "   - 작업반장-1, 보통인부-3"
+      "   - 작업반장-1, 보통인부-3",
+      " 2. 진천군 재해영향평가 점검",
+      " 3. 우천피해복구 및 토사유실방지 작업",
+      "   - B/H0.2-1"
     ],
     "work_tomorrow": [
       "◆기타",
@@ -28653,8 +28656,8 @@ let DAILY_REPORTS = {
         "type": "B/H",
         "spec": "0.2",
         "prev": 53,
-        "today": 0,
-        "cum": 53
+        "today": 1,
+        "cum": 54
       },
       {
         "type": "B/H",
@@ -28800,8 +28803,8 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "prev": 484,
-        "today": 3,
-        "cum": 487
+        "today": 4,
+        "cum": 488
       },
       {
         "type": "D/T",
@@ -28866,17 +28869,17 @@ let DAILY_REPORTS = {
     ],
     "equipment_total": {
       "prev": 1230,
-      "today": 5,
-      "cum": 1235
+      "today": 6,
+      "cum": 1236
     }
   },
   "2026-08-29": {
     "date": "2026-08-29",
-    "weather": "맑음",
+    "weather": "흐림/비",
     "progress": {
       "plan": 4.62,
-      "actual": 6.03,
-      "diff": 130.57
+      "actual": 6.04,
+      "diff": 130.79
     },
     "earth": {
       "토사": {
@@ -28909,7 +28912,6 @@ let DAILY_REPORTS = {
       }
     },
     "work_today": [
-      "◆토공",
       "◆기타",
       " 1. 설계도서 검토"
     ],
@@ -28921,8 +28923,8 @@ let DAILY_REPORTS = {
       {
         "role": "직    원",
         "prev": 3359,
-        "today": 0,
-        "cum": 3359
+        "today": 2,
+        "cum": 3361
       },
       {
         "role": "하도급직원",
@@ -29071,8 +29073,8 @@ let DAILY_REPORTS = {
     ],
     "personnel_total": {
       "prev": 3986,
-      "today": 0,
-      "cum": 3986
+      "today": 2,
+      "cum": 3988
     },
     "equipment_detail": [
       {
@@ -29127,9 +29129,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 53,
+        "prev": 54,
         "today": 0,
-        "cum": 53
+        "cum": 54
       },
       {
         "type": "B/H",
@@ -29274,9 +29276,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 487,
+        "prev": 488,
         "today": 0,
-        "cum": 487
+        "cum": 488
       },
       {
         "type": "D/T",
@@ -29340,18 +29342,18 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1235,
+      "prev": 1236,
       "today": 0,
-      "cum": 1235
+      "cum": 1236
     }
   },
   "2026-08-30": {
     "date": "2026-08-30",
-    "weather": "맑음",
+    "weather": "흐림",
     "progress": {
       "plan": 4.66,
-      "actual": 6.03,
-      "diff": 129.58
+      "actual": 6.04,
+      "diff": 129.8
     },
     "earth": {
       "토사": {
@@ -29388,24 +29390,15 @@ let DAILY_REPORTS = {
       " 1. 설계도서 검토"
     ],
     "work_tomorrow": [
-      "◆토공",
-      " 1. 임목폐기물 파쇄 및 적재(BL.2)",
-      "   - B/H0.6-1, B/H0.8-1, 임목파쇄기-1",
-      " 2. 법면정리 및 표토제거(중로(집)3-16, BL.2)",
-      "   - B/H1.0-1",
-      "◆부대공",
-      " 1. 현장살수(임목파쇄장)",
-      "   - 살수차-1",
       "◆기타",
-      " 1. 토사유실 방지 사면 천막 보수 작업",
-      "   - 작업반장-1, 보통인부-3"
+      " 1. 우천으로 인한 작업 없음"
     ],
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3359,
-        "today": 0,
-        "cum": 3359
+        "prev": 3361,
+        "today": 2,
+        "cum": 3363
       },
       {
         "role": "하도급직원",
@@ -29553,9 +29546,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3986,
-      "today": 0,
-      "cum": 3986
+      "prev": 3988,
+      "today": 2,
+      "cum": 3990
     },
     "equipment_detail": [
       {
@@ -29610,9 +29603,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 53,
+        "prev": 54,
         "today": 0,
-        "cum": 53
+        "cum": 54
       },
       {
         "type": "B/H",
@@ -29757,9 +29750,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 487,
+        "prev": 488,
         "today": 0,
-        "cum": 487
+        "cum": 488
       },
       {
         "type": "D/T",
@@ -29823,18 +29816,18 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1235,
+      "prev": 1236,
       "today": 0,
-      "cum": 1235
+      "cum": 1236
     }
   },
   "2026-08-31": {
     "date": "2026-08-31",
-    "weather": "맑음",
+    "weather": "비",
     "progress": {
       "plan": 4.69,
-      "actual": 6.04,
-      "diff": 128.81
+      "actual": 6.06,
+      "diff": 129.04
     },
     "earth": {
       "토사": {
@@ -29867,28 +29860,25 @@ let DAILY_REPORTS = {
       }
     },
     "work_today": [
-      "◆토공",
-      " 1. 발파암 소할(BL.5)",
-      "   - 관리자-2, B/H1.0-1",
-      " 2. 사면 소단 다이크 설치(BL.2)",
-      "   - B/H1.0-1",
-      "◆부대공",
-      " 1. 침사지 설치(은탄리 802-36)",
-      "   - B/H0.2-1, 보통인부-4",
       "◆기타",
-      " 1. 벌개제근 및 원목반출(벌목공사)",
-      "   - B/H0.6-1, B/H0.2-1"
+      " 1. 우천으로 인한 작업 없음"
     ],
     "work_tomorrow": [
-      "◆기타",
-      " 1. 설계도서 검토"
+      "◆토공",
+      " 1. 임목폐기물 파쇄 및 적재(BL.2)",
+      "   - B/H0.8-1, 임목파쇄기-1",
+      " 2. 법면정리 및 표토제거(중로(집)3-16, BL.2)",
+      "   - B/H1.0-1",
+      "◆부대공",
+      " 1. 현장살수(임목파쇄장)",
+      "   - 살수차-1"
     ],
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3359,
-        "today": 0,
-        "cum": 3359
+        "prev": 3363,
+        "today": 23,
+        "cum": 3386
       },
       {
         "role": "하도급직원",
@@ -30036,9 +30026,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 3986,
-      "today": 0,
-      "cum": 3986
+      "prev": 3990,
+      "today": 23,
+      "cum": 4013
     },
     "equipment_detail": [
       {
@@ -30093,9 +30083,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 53,
+        "prev": 54,
         "today": 0,
-        "cum": 53
+        "cum": 54
       },
       {
         "type": "B/H",
@@ -30240,9 +30230,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 487,
+        "prev": 488,
         "today": 0,
-        "cum": 487
+        "cum": 488
       },
       {
         "type": "D/T",
@@ -30306,9 +30296,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1235,
+      "prev": 1236,
       "today": 0,
-      "cum": 1235
+      "cum": 1236
     }
   }
 };
