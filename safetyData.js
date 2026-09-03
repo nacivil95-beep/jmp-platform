@@ -494,5 +494,39 @@ let SAFETY_DATA = {
       "status": "작업승인",
       "work_name": "하천 준설 및 가배수로 작업"
     }
+  ],
+  "2026-09-03": [
+    {
+      "company": "토우산업(주)",
+      "date": "2026-09-03",
+      "grade": "일상",
+      "location": "중로(집)3-16,BL.2,5,6,13",
+      "status": "작업승인",
+      "work_name": "법면정리, 표토제거, 가도정지"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-09-03",
+      "grade": "일상",
+      "location": "현장 내 전구역",
+      "status": "작업승인",
+      "work_name": "살수차 작업"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-09-03",
+      "grade": "일상A",
+      "location": "BL.22 / BL.24",
+      "status": "작업승인",
+      "work_name": "임목 폐기물 파쇄"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-09-03",
+      "grade": "일상",
+      "location": "BL.01",
+      "status": "작업승인",
+      "work_name": "현장 환경 청소 및 자재정리"
+    }
   ]
 };
