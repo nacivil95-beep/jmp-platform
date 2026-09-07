@@ -562,5 +562,39 @@ let SAFETY_DATA = {
       "status": "작업승인",
       "work_name": "기존가옥 정리정돈 작업"
     }
+  ],
+  "2026-09-07": [
+    {
+      "company": "토우산업(주)",
+      "date": "2026-09-07",
+      "grade": "일상A",
+      "location": "중로(집)3-16,BL.6,10,22,23",
+      "status": "작업승인",
+      "work_name": "법면정리, 흙깍기 및 흙쌓기, 운반, 벌개제근, 가도정지"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-09-07",
+      "grade": "일상",
+      "location": "현장 내 전구역",
+      "status": "작업승인",
+      "work_name": "살수차 작업"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-09-07",
+      "grade": "일상A",
+      "location": "BL.22 / BL.24",
+      "status": "작업승인",
+      "work_name": "임목 폐기물 파쇄"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-09-07",
+      "grade": "일상",
+      "location": "BL01",
+      "status": "작업승인",
+      "work_name": "기존가옥 정리정돈 작업"
+    }
   ]
 };
