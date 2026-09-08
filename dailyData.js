@@ -32435,8 +32435,8 @@ let DAILY_REPORTS = {
       {
         "role": "벌 목 공",
         "prev": 0,
-        "today": 4,
-        "cum": 4
+        "today": 0,
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -32453,8 +32453,8 @@ let DAILY_REPORTS = {
     ],
     "personnel_total": {
       "prev": 4111,
-      "today": 10,
-      "cum": 4121
+      "today": 6,
+      "cum": 4117
     },
     "equipment_detail": [
       {
@@ -32772,7 +32772,7 @@ let DAILY_REPORTS = {
     "work_tomorrow": [
       "◆토공",
       " 1. 임목폐기물 파쇄 및 제근뿌리 뿌레카작업(BL.6)",
-      "   - B/H0.6-1, B/H0.8-1, B/H0.2-1, 임목파쇄기-1",
+      "   - B/H0.6-1, B/H0.8-1, B/H0.2-2, 임목파쇄기-1",
       " 2. 법면정리 및 표토제거(BL.10)",
       "   - B/H380-1",
       " 3. 가도계설 및 표토제거(BL.6)",
@@ -32781,8 +32781,6 @@ let DAILY_REPORTS = {
       "  - B/H0.2-1",
       " 5. 흙깍기 및 흙쌓기 운반(BL.22,23)",
       "   - D/T15-3 , B/H1.0-1 , 신호수-1",
-      " 6. 벌목작업(BL.5,6)",
-      "   - 벌목공-4 , B/H0.2-1",
       "◆부대공",
       " 1. 현장살수(임목파쇄장)",
       "   - 살수차-1",
@@ -32925,9 +32923,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 4,
+        "prev": 0,
         "today": 0,
-        "cum": 4
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -32943,9 +32941,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4121,
+      "prev": 4117,
       "today": 2,
-      "cum": 4123
+      "cum": 4119
     },
     "equipment_detail": [
       {
@@ -33224,14 +33222,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 4.94,
       "actual": 6.06,
-      "diff": 122.58
+      "diff": 122.69
     },
     "earth": {
       "토사": {
         "design": 1507585,
         "prev": 1661,
-        "today": 0,
-        "cum": 1661,
+        "today": 1943,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -33251,24 +33249,25 @@ let DAILY_REPORTS = {
       "흙쌓기(성토)": {
         "design": 7742307,
         "prev": 550381.1399999998,
-        "today": 0,
-        "cum": 550381.1399999998,
+        "today": 2137.3,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
     "work_today": [
       "◆토공",
       " 1. 임목폐기물 파쇄 및 제근뿌리 뿌레카작업(BL.6)",
-      "   - B/H0.6-1, B/H0.8-1, 임목파쇄기-1",
+      "   - B/H0.6-1, B/H0.8-1, B/H0.2-2, 임목파쇄기-1",
       " 2. 법면정리 및 표토제거(BL.10)",
       "   - B/H380-1",
-      " 3. 현장 진입로 및 가도 정지",
-      "   - B/H0.6W-1",
-      "4. 흙깍기 및 흙쌓기 운반",
-      "   - D/T15-3 , B/H1.0 - 1",
-      "5. 벌목작업(BL.5,6)",
+      " 3. 가도계설 및 표토제거(BL.6)",
+      "   - B/H0.6-1 , B/H0.2-1",
+      " 4. 표토제거 및 성토정지(BL.22,23)",
+      "  - B/H0.2-1",
+      " 5. 흙깍기 및 흙쌓기 운반(BL.22,23)",
+      "   - D/T15-3 , B/H1.0-1 , 신호수-1",
       "◆부대공",
-      " 1. 현장살수(임목파쇄장)",
+      " 1. 현장살수(임목파쇄장, BL.22,23)",
       "   - 살수차-1",
       "◆기타",
       " 1. 기존가옥 정리정돈 작업",
@@ -33277,16 +33276,19 @@ let DAILY_REPORTS = {
     "work_tomorrow": [
       "◆토공",
       " 1. 임목폐기물 파쇄 및 제근뿌리 뿌레카작업(BL.6)",
-      "   - B/H0.6-1, B/H0.8-1, 임목파쇄기-1",
+      "   - B/H0.6-1, B/H0.8-1, B/H0.2-2, 임목파쇄기-1",
       " 2. 법면정리 및 표토제거(BL.10)",
       "   - B/H380-1",
-      " 3. 현장 진입로 및 가도 정지",
-      "   - B/H0.6W-1",
-      "4. 흙깍기 및 흙쌓기 운반",
-      "   - D/T15-3 , B/H1.0 - 1",
-      "5. 벌목작업(BL.5,6)",
+      " 3. 가도계설 및 표토제거(BL.6)",
+      "   - B/H0.6-1",
+      " 4. 표토제거 및 성토정지(BL.22,23)",
+      "  - B/H0.2-1",
+      " 5. 흙깍기 및 흙쌓기 운반(BL.22,23)",
+      "   - D/T15-3 , B/H1.0-1 , 신호수-1",
+      " 6. 기존구조물 측구깨기(BL.22,23)",
+      "   - B/H0.2-1",
       "◆부대공",
-      " 1. 현장살수(임목파쇄장)",
+      " 1. 현장살수(임목파쇄장, BL.22,23)",
       "   - 살수차-1",
       "◆기타",
       " 1. 기존가옥 정리정돈 작업",
@@ -33296,8 +33298,8 @@ let DAILY_REPORTS = {
       {
         "role": "직    원",
         "prev": 3488,
-        "today": 23,
-        "cum": 3511
+        "today": 22,
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -33427,9 +33429,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 4,
-        "today": 4,
-        "cum": 8
+        "prev": 0,
+        "today": 0,
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -33445,9 +33447,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4123,
-      "today": 30,
-      "cum": 4153
+      "prev": 4119,
+      "today": 25,
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -33503,8 +33505,8 @@ let DAILY_REPORTS = {
         "type": "B/H",
         "spec": "0.2",
         "prev": 55,
-        "today": 0,
-        "cum": 55
+        "today": 3,
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -33650,8 +33652,8 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "prev": 498,
-        "today": 5,
-        "cum": 503
+        "today": 8,
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -33716,8 +33718,8 @@ let DAILY_REPORTS = {
     ],
     "equipment_total": {
       "prev": 1252,
-      "today": 10,
-      "cum": 1262
+      "today": 13,
+      "cum": 1265
     }
   },
   "2026-09-08": {
@@ -33726,14 +33728,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 4.98,
       "actual": 6.05,
-      "diff": 121.51
+      "diff": 121.62
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -33752,9 +33754,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -33769,9 +33771,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -33901,9 +33903,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -33919,9 +33921,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -33976,9 +33978,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -34123,9 +34125,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -34189,9 +34191,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-09": {
@@ -34200,14 +34202,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 5.02,
       "actual": 6.05,
-      "diff": 120.45
+      "diff": 120.56
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -34226,9 +34228,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -34244,9 +34246,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -34376,9 +34378,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -34394,9 +34396,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -34451,9 +34453,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -34598,9 +34600,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -34664,9 +34666,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-10": {
@@ -34674,15 +34676,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 5.07,
-      "actual": 6.05,
-      "diff": 119.41
+      "actual": 6.06,
+      "diff": 119.52
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -34701,9 +34703,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -34723,9 +34725,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -34855,9 +34857,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -34873,9 +34875,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -34930,9 +34932,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -35077,9 +35079,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -35143,9 +35145,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-11": {
@@ -35153,15 +35155,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 5.11,
-      "actual": 6.05,
-      "diff": 118.39
+      "actual": 6.06,
+      "diff": 118.5
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -35180,9 +35182,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -35201,9 +35203,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -35333,9 +35335,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -35351,9 +35353,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -35408,9 +35410,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -35555,9 +35557,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -35621,9 +35623,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-12": {
@@ -35631,15 +35633,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 5.15,
-      "actual": 6.05,
-      "diff": 117.39
+      "actual": 6.06,
+      "diff": 117.5
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -35658,9 +35660,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -35681,9 +35683,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -35813,9 +35815,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -35831,9 +35833,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -35888,9 +35890,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -36035,9 +36037,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -36101,9 +36103,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-13": {
@@ -36111,15 +36113,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 5.2,
-      "actual": 6.05,
-      "diff": 116.4
+      "actual": 6.06,
+      "diff": 116.51
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -36138,9 +36140,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -36157,9 +36159,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -36289,9 +36291,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -36307,9 +36309,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -36364,9 +36366,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -36511,9 +36513,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -36577,9 +36579,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-14": {
@@ -36587,15 +36589,15 @@ let DAILY_REPORTS = {
     "weather": "흐림",
     "progress": {
       "plan": 5.24,
-      "actual": 6.05,
-      "diff": 115.43
+      "actual": 6.06,
+      "diff": 115.54
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -36614,9 +36616,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -36632,9 +36634,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -36764,9 +36766,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -36782,9 +36784,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -36839,9 +36841,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -36986,9 +36988,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -37052,9 +37054,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-15": {
@@ -37062,15 +37064,15 @@ let DAILY_REPORTS = {
     "weather": "흐림",
     "progress": {
       "plan": 5.29,
-      "actual": 6.05,
-      "diff": 114.48
+      "actual": 6.06,
+      "diff": 114.58
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -37089,9 +37091,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -37106,9 +37108,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -37238,9 +37240,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -37256,9 +37258,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -37313,9 +37315,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -37460,9 +37462,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -37526,9 +37528,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-16": {
@@ -37536,15 +37538,15 @@ let DAILY_REPORTS = {
     "weather": "비",
     "progress": {
       "plan": 5.33,
-      "actual": 6.05,
-      "diff": 113.54
+      "actual": 6.06,
+      "diff": 113.65
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -37563,9 +37565,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -37580,9 +37582,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -37712,9 +37714,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -37730,9 +37732,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -37787,9 +37789,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -37934,9 +37936,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -38000,9 +38002,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-17": {
@@ -38010,15 +38012,15 @@ let DAILY_REPORTS = {
     "weather": "흐림",
     "progress": {
       "plan": 5.37,
-      "actual": 6.05,
-      "diff": 112.62
+      "actual": 6.06,
+      "diff": 112.72
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -38037,9 +38039,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -38062,9 +38064,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -38194,9 +38196,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -38212,9 +38214,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -38269,9 +38271,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -38416,9 +38418,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -38482,9 +38484,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-18": {
@@ -38492,15 +38494,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 5.42,
-      "actual": 6.05,
-      "diff": 111.71
+      "actual": 6.06,
+      "diff": 111.82
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -38519,9 +38521,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -38556,9 +38558,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -38688,9 +38690,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -38706,9 +38708,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -38763,9 +38765,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -38910,9 +38912,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -38976,9 +38978,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-19": {
@@ -38986,15 +38988,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 5.46,
-      "actual": 6.05,
-      "diff": 110.82
+      "actual": 6.06,
+      "diff": 110.92
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -39013,9 +39015,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -39054,9 +39056,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -39186,9 +39188,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -39204,9 +39206,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -39261,9 +39263,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -39408,9 +39410,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -39474,9 +39476,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-20": {
@@ -39484,15 +39486,15 @@ let DAILY_REPORTS = {
     "weather": "흐림",
     "progress": {
       "plan": 5.51,
-      "actual": 6.05,
-      "diff": 109.94
+      "actual": 6.06,
+      "diff": 110.04
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -39511,9 +39513,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -39549,9 +39551,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -39681,9 +39683,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -39699,9 +39701,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -39756,9 +39758,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -39903,9 +39905,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -39969,9 +39971,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-21": {
@@ -39979,15 +39981,15 @@ let DAILY_REPORTS = {
     "weather": "비",
     "progress": {
       "plan": 5.55,
-      "actual": 6.05,
-      "diff": 109.08
+      "actual": 6.06,
+      "diff": 109.18
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -40006,9 +40008,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -40023,9 +40025,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -40155,9 +40157,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -40173,9 +40175,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -40230,9 +40232,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -40377,9 +40379,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -40443,9 +40445,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-22": {
@@ -40454,14 +40456,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 5.59,
       "actual": 6.06,
-      "diff": 108.23
+      "diff": 108.33
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -40480,9 +40482,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -40497,9 +40499,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -40629,9 +40631,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -40647,9 +40649,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -40704,9 +40706,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -40851,9 +40853,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -40917,9 +40919,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-23": {
@@ -40928,14 +40930,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 5.64,
       "actual": 6.06,
-      "diff": 107.39
+      "diff": 107.49
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -40954,9 +40956,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -40980,9 +40982,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -41112,9 +41114,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -41130,9 +41132,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -41187,9 +41189,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -41334,9 +41336,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -41400,9 +41402,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-24": {
@@ -41411,14 +41413,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 5.68,
       "actual": 6.06,
-      "diff": 106.57
+      "diff": 106.66
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -41437,9 +41439,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -41474,9 +41476,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -41606,9 +41608,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -41624,9 +41626,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -41681,9 +41683,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -41828,9 +41830,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -41894,9 +41896,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-25": {
@@ -41905,14 +41907,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 5.73,
       "actual": 6.06,
-      "diff": 105.76
+      "diff": 105.85
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -41931,9 +41933,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -41972,9 +41974,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -42104,9 +42106,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -42122,9 +42124,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -42179,9 +42181,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -42326,9 +42328,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -42392,9 +42394,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-26": {
@@ -42403,14 +42405,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 5.77,
       "actual": 6.06,
-      "diff": 104.96
+      "diff": 105.05
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -42429,9 +42431,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -42467,9 +42469,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -42599,9 +42601,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -42617,9 +42619,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -42674,9 +42676,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -42821,9 +42823,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -42887,9 +42889,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-27": {
@@ -42898,14 +42900,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 5.81,
       "actual": 6.06,
-      "diff": 104.17
+      "diff": 104.26
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -42924,9 +42926,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -42959,9 +42961,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -43091,9 +43093,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -43109,9 +43111,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -43166,9 +43168,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -43313,9 +43315,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -43379,9 +43381,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-28": {
@@ -43390,14 +43392,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 5.86,
       "actual": 6.06,
-      "diff": 103.39
+      "diff": 103.49
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -43416,9 +43418,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -43445,9 +43447,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -43577,9 +43579,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -43595,9 +43597,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -43652,9 +43654,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -43799,9 +43801,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -43865,9 +43867,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-29": {
@@ -43876,14 +43878,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 5.9,
       "actual": 6.06,
-      "diff": 102.63
+      "diff": 102.72
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -43902,9 +43904,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -43919,9 +43921,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -44051,9 +44053,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -44069,9 +44071,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -44126,9 +44128,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -44273,9 +44275,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -44339,9 +44341,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-09-30": {
@@ -44350,14 +44352,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 5.95,
       "actual": 6.06,
-      "diff": 101.88
+      "diff": 101.97
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -44376,9 +44378,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -44393,9 +44395,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -44525,9 +44527,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -44543,9 +44545,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -44600,9 +44602,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -44747,9 +44749,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -44813,9 +44815,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   },
   "2026-10-01": {
@@ -44824,14 +44826,14 @@ let DAILY_REPORTS = {
     "progress": {
       "plan": 5.99,
       "actual": 6.06,
-      "diff": 101.13
+      "diff": 101.23
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 1661,
+        "prev": 3604,
         "today": 0,
-        "cum": 1661,
+        "cum": 3604,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -44850,9 +44852,9 @@ let DAILY_REPORTS = {
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 550381.1399999998,
+        "prev": 552518.4399999998,
         "today": 0,
-        "cum": 550381.1399999998,
+        "cum": 552518.4399999998,
         "start": "2025-02-01"
       }
     },
@@ -44873,9 +44875,9 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 3511,
+        "prev": 3510,
         "today": 0,
-        "cum": 3511
+        "cum": 3510
       },
       {
         "role": "하도급직원",
@@ -45005,9 +45007,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "벌 목 공",
-        "prev": 8,
+        "prev": 0,
         "today": 0,
-        "cum": 8
+        "cum": 0
       },
       {
         "role": "화약주임",
@@ -45023,9 +45025,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 4153,
+      "prev": 4144,
       "today": 0,
-      "cum": 4153
+      "cum": 4144
     },
     "equipment_detail": [
       {
@@ -45080,9 +45082,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 55,
+        "prev": 58,
         "today": 0,
-        "cum": 55
+        "cum": 58
       },
       {
         "type": "B/H",
@@ -45227,9 +45229,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 503,
+        "prev": 506,
         "today": 0,
-        "cum": 503
+        "cum": 506
       },
       {
         "type": "D/T",
@@ -45293,9 +45295,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1262,
+      "prev": 1265,
       "today": 0,
-      "cum": 1262
+      "cum": 1265
     }
   }
 };
