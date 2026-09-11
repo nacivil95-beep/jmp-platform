@@ -730,5 +730,63 @@ let SAFETY_DATA = {
       "status": "작업대기",
       "work_name": "이동식 크레인 작업"
     }
+  ],
+  "2026-09-11": [
+    {
+      "company": "토우산업(주)",
+      "date": "2026-09-11",
+      "grade": "일상A",
+      "location": "중로(보)1-10,BL.2,5,6,10,22,23",
+      "status": "작업승인",
+      "work_name": "법면정리, 흙깍기 및 흙쌓기, 운반, 벌개제근, 표토제거,가도개설, 기존구조물철거(무근콘크리트깨기)"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-09-11",
+      "grade": "중점",
+      "location": "전구간",
+      "status": "작업대기",
+      "work_name": "이동식 크레인 작업"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-09-11",
+      "grade": "일상",
+      "location": "현장 내 전구역",
+      "status": "작업승인",
+      "work_name": "살수차 작업"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-09-11",
+      "grade": "일상A",
+      "location": "BL.6",
+      "status": "작업승인",
+      "work_name": "임목 폐기물 파쇄"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-09-11",
+      "grade": "일상",
+      "location": "전구간",
+      "status": "작업승인",
+      "work_name": "관정 폐공  작업"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-09-11",
+      "grade": "일상",
+      "location": "BL.1",
+      "status": "작업승인",
+      "work_name": "기존가옥 정리정돈 작업"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-09-11",
+      "grade": "일상",
+      "location": "기존하천",
+      "status": "작업승인",
+      "work_name": "하천 준설 및 가배수로 작업"
+    }
   ]
 };
