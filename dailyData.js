@@ -38275,15 +38275,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 5.37,
-      "actual": 6.34,
-      "diff": 117.98
+      "actual": 6.42,
+      "diff": 119.37
     },
     "earth": {
       "토사": {
         "design": 1507585,
         "prev": 20609,
-        "today": 0,
-        "cum": 20609,
+        "today": 1395,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -38296,15 +38296,15 @@ let DAILY_REPORTS = {
       "발파암깎기": {
         "design": 3794908,
         "prev": 445422,
-        "today": 0,
-        "cum": 445422,
+        "today": 5161,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
         "prev": 593155.4599999997,
-        "today": 0,
-        "cum": 593155.4599999997,
+        "today": 8140.58,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -38323,7 +38323,7 @@ let DAILY_REPORTS = {
       " 6. 표토제거 (BL.12, 17, 25, 폐수처리장)",
       "   - B/H0.2-1",
       " 7. 임목폐기물 파쇄 및 벌개제근 (BL.6)",
-      "   - B/H0.8-1, B/H0.6-1, B/H0.2-1, D/T15-3, 임목파쇄기-1",
+      "   - B/H0.8-1, B/H0.6-1, B/H0.2-2, D/T15-3, 임목파쇄기-1",
       "◆부대공",
       " 1. 현장살수",
       "   - 살수차-1",
@@ -38566,8 +38566,8 @@ let DAILY_REPORTS = {
         "type": "B/H",
         "spec": "0.2",
         "prev": 86,
-        "today": 2,
-        "cum": 88
+        "today": 3,
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -38713,8 +38713,8 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "prev": 583,
-        "today": 11,
-        "cum": 594
+        "today": 12,
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -38779,8 +38779,8 @@ let DAILY_REPORTS = {
     ],
     "equipment_total": {
       "prev": 1423,
-      "today": 29,
-      "cum": 1452
+      "today": 30,
+      "cum": 1453
     }
   },
   "2026-09-18": {
@@ -38788,15 +38788,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 5.42,
-      "actual": 6.34,
-      "diff": 117.03
+      "actual": 6.42,
+      "diff": 118.4
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -38808,16 +38808,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -39059,9 +39059,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -39206,9 +39206,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -39272,9 +39272,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-09-19": {
@@ -39282,15 +39282,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 5.46,
-      "actual": 6.34,
-      "diff": 116.1
+      "actual": 6.42,
+      "diff": 117.46
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -39302,16 +39302,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -39557,9 +39557,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -39704,9 +39704,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -39770,9 +39770,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-09-20": {
@@ -39780,15 +39780,15 @@ let DAILY_REPORTS = {
     "weather": "흐림",
     "progress": {
       "plan": 5.51,
-      "actual": 6.34,
-      "diff": 115.18
+      "actual": 6.42,
+      "diff": 116.53
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -39800,16 +39800,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -40052,9 +40052,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -40199,9 +40199,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -40265,9 +40265,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-09-21": {
@@ -40275,15 +40275,15 @@ let DAILY_REPORTS = {
     "weather": "비",
     "progress": {
       "plan": 5.55,
-      "actual": 6.34,
-      "diff": 114.27
+      "actual": 6.42,
+      "diff": 115.61
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -40295,16 +40295,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -40526,9 +40526,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -40673,9 +40673,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -40739,9 +40739,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-09-22": {
@@ -40749,15 +40749,15 @@ let DAILY_REPORTS = {
     "weather": "흐림",
     "progress": {
       "plan": 5.59,
-      "actual": 6.34,
-      "diff": 113.38
+      "actual": 6.42,
+      "diff": 114.71
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -40769,16 +40769,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -41000,9 +41000,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -41147,9 +41147,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -41213,9 +41213,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-09-23": {
@@ -41223,15 +41223,15 @@ let DAILY_REPORTS = {
     "weather": "흐림",
     "progress": {
       "plan": 5.64,
-      "actual": 6.34,
-      "diff": 112.5
+      "actual": 6.42,
+      "diff": 113.82
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -41243,16 +41243,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -41483,9 +41483,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -41630,9 +41630,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -41696,9 +41696,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-09-24": {
@@ -41706,15 +41706,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 5.68,
-      "actual": 6.34,
-      "diff": 111.64
+      "actual": 6.42,
+      "diff": 112.95
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -41726,16 +41726,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -41977,9 +41977,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -42124,9 +42124,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -42190,9 +42190,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-09-25": {
@@ -42200,15 +42200,15 @@ let DAILY_REPORTS = {
     "weather": "흐림",
     "progress": {
       "plan": 5.73,
-      "actual": 6.34,
-      "diff": 110.79
+      "actual": 6.42,
+      "diff": 112.08
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -42220,16 +42220,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -42475,9 +42475,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -42622,9 +42622,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -42688,9 +42688,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-09-26": {
@@ -42698,15 +42698,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 5.77,
-      "actual": 6.35,
-      "diff": 109.95
+      "actual": 6.42,
+      "diff": 111.24
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -42718,16 +42718,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -42970,9 +42970,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -43117,9 +43117,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -43183,9 +43183,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-09-27": {
@@ -43193,15 +43193,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 5.81,
-      "actual": 6.35,
-      "diff": 109.12
+      "actual": 6.42,
+      "diff": 110.4
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -43213,16 +43213,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -43462,9 +43462,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -43609,9 +43609,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -43675,9 +43675,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-09-28": {
@@ -43685,15 +43685,15 @@ let DAILY_REPORTS = {
     "weather": "흐림/비",
     "progress": {
       "plan": 5.86,
-      "actual": 6.35,
-      "diff": 108.31
+      "actual": 6.42,
+      "diff": 109.58
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -43705,16 +43705,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -43948,9 +43948,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -44095,9 +44095,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -44161,9 +44161,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-09-29": {
@@ -44171,15 +44171,15 @@ let DAILY_REPORTS = {
     "weather": "흐림/비",
     "progress": {
       "plan": 5.9,
-      "actual": 6.35,
-      "diff": 107.51
+      "actual": 6.42,
+      "diff": 108.77
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -44191,16 +44191,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -44422,9 +44422,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -44569,9 +44569,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -44635,9 +44635,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-09-30": {
@@ -44645,15 +44645,15 @@ let DAILY_REPORTS = {
     "weather": "흐림",
     "progress": {
       "plan": 5.95,
-      "actual": 6.35,
-      "diff": 106.72
+      "actual": 6.42,
+      "diff": 107.97
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -44665,16 +44665,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -44896,9 +44896,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -45043,9 +45043,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -45109,9 +45109,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   },
   "2026-10-01": {
@@ -45119,15 +45119,15 @@ let DAILY_REPORTS = {
     "weather": "비",
     "progress": {
       "plan": 5.99,
-      "actual": 6.35,
-      "diff": 105.94
+      "actual": 6.42,
+      "diff": 107.19
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 20609,
+        "prev": 22004,
         "today": 0,
-        "cum": 20609,
+        "cum": 22004,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -45139,16 +45139,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 445422,
+        "prev": 450583,
         "today": 0,
-        "cum": 445422,
+        "cum": 450583,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 593155.4599999997,
+        "prev": 601296.0399999997,
         "today": 0,
-        "cum": 593155.4599999997,
+        "cum": 601296.0399999997,
         "start": "2025-02-01"
       }
     },
@@ -45376,9 +45376,9 @@ let DAILY_REPORTS = {
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 88,
+        "prev": 89,
         "today": 0,
-        "cum": 88
+        "cum": 89
       },
       {
         "type": "B/H",
@@ -45523,9 +45523,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "B/H",
-        "prev": 594,
+        "prev": 595,
         "today": 0,
-        "cum": 594
+        "cum": 595
       },
       {
         "type": "D/T",
@@ -45589,9 +45589,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 1452,
+      "prev": 1453,
       "today": 0,
-      "cum": 1452
+      "cum": 1453
     }
   }
 };
