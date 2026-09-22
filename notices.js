@@ -15,7 +15,7 @@
  *   pinned     : true 면 항상 상단 고정
  *
  * 원본: C:\Users\jinhong\Desktop\jmp-platform\데이터관리\알림창\공지사항.xlsx
- * 생성 시각: 2026-09-21 10:03:24
+ * 생성 시각: 2026-09-22 10:03:26
  */
 let SITE_NOTICES = [
    {
