@@ -267,8 +267,8 @@
           <div class="widget-tabs team-main-tabs" id="team-main-tabs">
             <button class="wtab" data-team="공무팀">공무팀</button>
             <button class="wtab" data-team="공사팀">공사팀</button>
-            <button class="wtab" data-team="안전보건팀">안전/보건팀</button>
-            <button class="wtab active" data-team="품질팀">품질팀</button>
+            <button class="wtab active" data-team="안전보건팀">안전/보건팀</button>
+            <button class="wtab" data-team="품질팀">품질팀</button>
             <button class="wtab" data-team="관리팀">관리팀</button>
           </div>
 
@@ -304,7 +304,7 @@
           </div>
 
           <!-- 안전/보건팀 (유해위험작업 현황) - SAFETY_DATA(safetyData.js) 연동 -->
-          <div class="team-pane" id="team-pane-안전보건팀" style="display:none;">
+          <div class="team-pane" id="team-pane-안전보건팀">
             <div class="safety-toolbar">
               <span class="safety-toolbar-label"><i class="fa-solid fa-triangle-exclamation"></i> 유해위험작업 현황</span>
               <button type="button" class="date-picker-btn" id="safety-date-select"></button>
@@ -321,7 +321,7 @@
           </div>
 
           <!-- 품질팀 (기존 품질관리 현황 위젯 그대로 유지) -->
-          <div class="team-pane" id="team-pane-품질팀">
+          <div class="team-pane" id="team-pane-품질팀" style="display:none;">
             <!-- 함수비 시험 / 평판재하시험 전환 탭 -->
             <div class="widget-tabs" id="quality-tabs">
               <button class="wtab active" data-tab="quality" data-val="moisture">함수비 시험</button>
