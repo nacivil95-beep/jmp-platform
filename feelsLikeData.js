@@ -4,6 +4,6 @@
  */
 let FEELS_LIKE_DATA = {
   "feelsLike": 28.3,
-  "updatedAt": "2026-09-30 17:10:02",
+  "updatedAt": "2026-09-30 17:20:03",
   "source": "sensolink (스마트 체감온도계)"
 };
