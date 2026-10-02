@@ -15,7 +15,7 @@
  *   pinned     : true 면 항상 상단 고정
  *
  * 원본: C:\Users\jinhong\Desktop\jmp-platform\데이터관리\알림창\공지사항.xlsx
- * 생성 시각: 2026-10-01 16:56:56
+ * 생성 시각: 2026-10-02 09:50:13
  */
 let SITE_NOTICES = [
    {
@@ -31,25 +31,35 @@ let SITE_NOTICES = [
    {
     id: "2",
     team: "관리자",
-    level: "warning",
+    level: "danger",
     title: "현장 지도 기능 업데이트",
     body: "지도 내 면적·길이 측정 및 지적도, 지번 검색 기능이 새롭게 업데이트되었습니다. 현장 업무에 활용해 보세요!",
     startDate: "",
-    endDate: "2026-08-31",
+    endDate: "2026-10-31",
     pinned: false
    },
    {
     id: "3",
     team: "관리자",
-    level: "info",
-    title: "주요일정 관련 업데이트",
-    body: "각 팀별 9월 주요일정이 있으시면 미리 말씀해주세요~",
+    level: "danger",
+    title: "현장 지도 기능 업데이트",
+    body: "위성지도나 항공사진 지도에서 계획선을 확인하실수 있습니다.",
     startDate: "",
-    endDate: "2026-08-31",
+    endDate: "2026-10-31",
     pinned: false
    },
    {
     id: "4",
+    team: "관리자",
+    level: "warning",
+    title: "주요일정 관련 업데이트",
+    body: "각 팀별 주요일정이 있으시면 미리 말씀해주세요~",
+    startDate: "",
+    endDate: "",
+    pinned: false
+   },
+   {
+    id: "5",
     team: "관리팀",
     level: "info",
     title: "Family Day 알림",
@@ -60,7 +70,7 @@ let SITE_NOTICES = [
     pinned: false
    },
    {
-    id: "5",
+    id: "6",
     team: "관리팀",
     level: "info",
     title: "Family Day 알림",
@@ -71,7 +81,7 @@ let SITE_NOTICES = [
     pinned: false
    },
    {
-    id: "6",
+    id: "7",
     team: "관리팀",
     level: "info",
     title: "Family Day 알림",
@@ -79,6 +89,16 @@ let SITE_NOTICES = [
     body: "자세한 내용은 이미지를 참고해주세요.",
     startDate: "2026-10-01",
     endDate: "2026-10-31",
+    pinned: false
+   },
+   {
+    id: "*   team       : 작성 팀/구분 이름 (예: \"안전관리팀\", \"품질관리팀\", \"현장사무소\") - 카드에 태그로 표시됨",
+    team: "",
+    level: "info",
+    title: "",
+    body: "지도 내 면적·길이 측정 및 지적도, 지번 검색 기능이 새롭게 업데이트되었습니다. 현장 업무에 활용해 보세요!",
+    startDate: "",
+    endDate: "",
     pinned: false
    }
 ];
