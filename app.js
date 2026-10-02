@@ -1448,6 +1448,218 @@ function initMap() {
     });
   }
 
+  // ── 계획선(CAD 도면 → GeoJSON) 오버레이 ───────────────────────────────
+  // 원본: 데이터관리\계획참조\계획선_YYYY-MM.dxf  →  convert_plan.py 로 변환한 GeoJSON(WGS84, EPSG:5174 기준)
+  //   - 선  : assets/plan-lines_5174.geojson
+  //   - 글자: assets/plan-labels_5174.geojson (블록명/도로명/측점/구조물 설명)
+  //   - 빗금: assets/plan-ticks_5174.geojson  (법면 빗금·측점 눈금 약 2.7만 개 → 크게 확대했을 때만 불러와 표시)
+  const PLAN_LINES_URL = "assets/plan-lines_5174.geojson";
+  const PLAN_LABELS_URL = "assets/plan-labels_5174.geojson";
+  const PLAN_TICKS_URL = "assets/plan-ticks_5174.geojson";
+  const PLAN_TICK_MIN_ZOOM = 17; // 이 확대 단계 이상일 때만 빗금·눈금 표시
+  // 레이어(도면 레이어명)별 선 스타일 — 위성/항공사진 위에서 잘 보이도록 밝은 색 사용
+  const PLAN_STYLES = {
+    "지구계선":   { color: "#ff2d55", weight: 3 },
+    "블록경계선": { color: "#ffb300", weight: 2 },
+    "블록중심선": { color: "#ffb300", weight: 1.5, dashArray: "6 4" },
+    "도로중심선": { color: "#fff176", weight: 1.5 },
+    "선형중심선": { color: "#ffffff", weight: 1.5, dashArray: "8 4" },
+    "진입도로":   { color: "#69f0ae", weight: 3 },
+    "갈탄천":     { color: "#40c4ff", weight: 2 },
+    "개거":       { color: "#00e5ff", weight: 2 },
+    "배수관":     { color: "#26c6da", weight: 2 },
+    "0-배수계획": { color: "#00e5ff", weight: 1.5, dashArray: "6 4" },
+    "도수로":     { color: "#448aff", weight: 2 },
+    "횡단구조물": { color: "#e040fb", weight: 2 },
+    "PC암거":     { color: "#d500f9", weight: 2 },
+    "기존암거":   { color: "#b388ff", weight: 2 },
+    "보강토":     { color: "#ff9100", weight: 2 },
+    "gabion":     { color: "#ff9100", weight: 2 },
+    "사면":       { color: "#a1887f", weight: 1.5 },
+    "SLOPE":      { color: "#8d6e63", weight: 1.5 },
+    "사면우수":   { color: "#80cbc4", weight: 1.5 },
+    "면벽":       { color: "#bdbdbd", weight: 2 },
+    "plan":       { color: "#ff1744", weight: 2.5 },                     // 빨간 계획선(도로·블록 경계)
+    "l_가분할선": { color: "#e0e0e0", weight: 1.2, dashArray: "5 4" },   // 가분할선
+    "집수정":     { color: "#00b0ff", weight: 2 },
+    "SLOPELINE":  { color: "#cddc39", weight: 1.5 }                      // 법면(사면) 외곽선
+  };
+  // 선 위에 마우스를 올렸을 때 보여줄 이름 (없으면 도면 레이어명 그대로 표시)
+  const PLAN_NAMES = {
+    "plan": "계획선(도로·블록 경계)", "l_가분할선": "가분할선", "SLOPELINE": "법면(사면선)",
+    "집수정": "집수정", "SLOPE": "사면"
+  };
+  // 빗금·눈금 스타일 (가는 선)
+  const PLAN_TICK_STYLES = {
+    "SLOPELINE": { color: "#afb42b", weight: 1 },   // 법면 빗금
+    "RODCHAIN":  { color: "#d7a3a3", weight: 1.5 }  // 측점 눈금
+  };
+  // 글자 종류별 "이 확대 단계 이상일 때만 표시" 기준 (너무 빽빽해지는 것 방지)
+  //   major: 큰 도로명 / name: 블록명·도로명 / note: 옹벽 등 구조물 설명 / chain: 측점(No.1, No.2 …)
+  const PLAN_LABEL_RULES = {
+    major: { minZoom: 15, cls: "pl-major" },
+    name:  { minZoom: 16, cls: "pl-name" },
+    note:  { minZoom: 17, cls: "pl-note" },
+    chain: { minZoom: 18, cls: "pl-chain" }
+  };
+  // 글자 모양(CSS)은 이 파일에서 직접 추가 (별도 css 파일 수정 불필요)
+  if (!document.getElementById("plan-label-style")) {
+    const st = document.createElement("style");
+    st.id = "plan-label-style";
+    st.textContent =
+      ".plan-label-wrap{background:none;border:none;}" +
+      ".plan-label{position:absolute;left:0;top:0;white-space:nowrap;pointer-events:none;line-height:1;" +
+      "transform-origin:center center;font-weight:700;" +
+      "text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;}" +
+      ".pl-major{font-size:15px;color:#ff8a80;}" +
+      ".pl-name{font-size:13px;color:#ffffff;}" +
+      ".pl-note{font-size:11px;color:#ffcc80;}" +
+      ".pl-chain{font-size:10px;color:#80deea;font-weight:600;}";
+    document.head.appendChild(st);
+  }
+  // 항공사진(이미지 오버레이)보다 위에 그려지도록 별도 pane 사용 (이미지 400 < 선 420 < 글자 430 < 마커 600)
+  map.createPane("planPane");
+  map.getPane("planPane").style.zIndex = 420;
+  map.createPane("planTickPane");
+  map.getPane("planTickPane").style.zIndex = 415; // 빗금은 계획선(420)보다 아래
+  map.createPane("planLabelPane");
+  map.getPane("planLabelPane").style.zIndex = 430;
+  let planLayer = null;
+  let planLabelData = null;
+  const planLabelLayer = L.layerGroup();
+  let planLoading = false;
+  function buildPlanLayer(geojson) {
+    return L.geoJSON(geojson, {
+      pane: "planPane",
+      style: (feature) => {
+        const s = PLAN_STYLES[feature.properties.layer] || { color: "#ffffff", weight: 1.5 };
+        return Object.assign({ opacity: 0.95 }, s);
+      },
+      onEachFeature: (feature, layer) => {
+        // 선 위에 마우스를 올리면 도면 레이어명을 보여줌
+        layer.bindTooltip(PLAN_NAMES[feature.properties.layer] || feature.properties.layer, { sticky: true });
+      }
+    });
+  }
+  // 빗금·눈금: 계획선이 켜져 있고 충분히 확대됐을 때만 (처음 한 번) 불러와서 표시, 축소하면 숨김
+  let planOn = false;
+  let planTickLayer = null;
+  let planTickLoading = false;
+  let planTickFailed = false;
+  async function syncPlanTicks() {
+    const show = planOn && map.getZoom() >= PLAN_TICK_MIN_ZOOM;
+    if (!show) {
+      if (planTickLayer && map.hasLayer(planTickLayer)) map.removeLayer(planTickLayer);
+      return;
+    }
+    if (!planTickLayer) {
+      if (planTickLoading || planTickFailed) return;
+      planTickLoading = true;
+      try {
+        const res = await fetch(PLAN_TICKS_URL, { cache: "no-cache" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        planTickLayer = L.geoJSON(await res.json(), {
+          pane: "planTickPane",
+          interactive: false,
+          style: (f) => Object.assign({ opacity: 0.9 }, PLAN_TICK_STYLES[f.properties.layer] || { color: "#cddc39", weight: 1 })
+        });
+      } catch (err) {
+        planTickFailed = true;
+        console.warn("[Site Map] 법면 빗금 파일을 불러오지 못했습니다:", PLAN_TICKS_URL, err);
+        return;
+      } finally {
+        planTickLoading = false;
+      }
+      // 불러오는 사이에 끄거나 축소했을 수 있으니 다시 확인
+      if (!(planOn && map.getZoom() >= PLAN_TICK_MIN_ZOOM)) return;
+    }
+    if (!map.hasLayer(planTickLayer)) planTickLayer.addTo(map);
+  }
+  map.on("zoomend", syncPlanTicks);
+  function escapePlanText(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  // 지금 화면(확대 단계 + 보이는 범위)에 해당하는 글자만 새로 그림 — 2천여 개를 한꺼번에 그리지 않으려는 목적
+  function refreshPlanLabels() {
+    planLabelLayer.clearLayers();
+    if (!planLabelData || !map.hasLayer(planLabelLayer)) return;
+    const z = map.getZoom();
+    const bounds = map.getBounds().pad(0.2);
+    planLabelData.features.forEach((f) => {
+      const p = f.properties;
+      const rule = PLAN_LABEL_RULES[p.k];
+      if (!rule || z < rule.minZoom) return;
+      const lng = f.geometry.coordinates[0];
+      const lat = f.geometry.coordinates[1];
+      if (!bounds.contains([lat, lng])) return;
+      const icon = L.divIcon({
+        className: "plan-label-wrap",
+        iconSize: [0, 0],
+        html: '<span class="plan-label ' + rule.cls + '" style="transform:translate(-50%,-50%) rotate(' +
+              p.r + 'deg)">' + escapePlanText(p.t) + "</span>"
+      });
+      L.marker([lat, lng], { icon, pane: "planLabelPane", interactive: false, keyboard: false })
+        .addTo(planLabelLayer);
+    });
+  }
+  map.on("zoomend moveend", refreshPlanLabels);
+  if (cadastralBtn) {
+    // 지적도 버튼을 복제해서 바로 옆에 "계획선" 토글 버튼을 만듦 (기존 버튼 모양 그대로)
+    const planBtn = cadastralBtn.cloneNode(true);
+    planBtn.id = "map-plan-btn";
+    planBtn.classList.remove("active");
+    planBtn.title = "CAD 계획선 표시/숨김 (확대하면 블록명·도로명·측점·법면 빗금도 표시)";
+    let labelSet = false;
+    const walker = document.createTreeWalker(planBtn, NodeFilter.SHOW_TEXT);
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      if (n.nodeValue.trim()) { n.nodeValue = "계획선"; labelSet = true; break; }
+    }
+    if (!labelSet) planBtn.appendChild(document.createTextNode("계획선"));
+    cadastralBtn.insertAdjacentElement("afterend", planBtn);
+
+    planBtn.addEventListener("click", async () => {
+      // 켜져 있으면 끄기 (선 + 글자 모두)
+      if (planBtn.classList.contains("active")) {
+        if (planLayer) map.removeLayer(planLayer);
+        map.removeLayer(planLabelLayer);
+        planBtn.classList.remove("active");
+        planOn = false;
+        syncPlanTicks();
+        return;
+      }
+      if (planLoading) return;
+      planLoading = true;
+      try {
+        if (!planLayer) {
+          const res = await fetch(PLAN_LINES_URL, { cache: "no-cache" });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          planLayer = buildPlanLayer(await res.json());
+        }
+        planLayer.addTo(map);
+        planBtn.classList.add("active");
+        // 글자 파일은 없어도 선은 보이게 함 (실패하면 콘솔에만 안내)
+        if (!planLabelData) {
+          try {
+            const r2 = await fetch(PLAN_LABELS_URL, { cache: "no-cache" });
+            if (!r2.ok) throw new Error("HTTP " + r2.status);
+            planLabelData = await r2.json();
+          } catch (e2) {
+            console.warn("[Site Map] 계획선 글자 파일을 불러오지 못했습니다:", PLAN_LABELS_URL, e2);
+          }
+        }
+        planLabelLayer.addTo(map);
+        refreshPlanLabels();
+        planOn = true;
+        syncPlanTicks(); // 충분히 확대된 상태면 빗금도 함께 표시
+      } catch (err) {
+        console.warn("[Site Map] 계획선 파일을 불러오지 못했습니다:", PLAN_LINES_URL, err);
+        planBtn.title = "계획선 파일을 불러오지 못했습니다 (assets 폴더 확인)";
+      } finally {
+        planLoading = false;
+      }
+    });
+  }
+
   // 아래쪽 "Site Map 그리기 도구" 블록에서 쓰는 부분삭제모드 상태를 여기서도 같이 써야 해서
   // (지번검색 마커/필지 강조표시도 그 삭제모드로 지울 수 있게 하려고) 바깥 스코프로 뺌.
   let deleteMode = false;
