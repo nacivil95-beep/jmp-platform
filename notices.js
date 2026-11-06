@@ -15,7 +15,7 @@
  *   pinned     : true 면 항상 상단 고정
  *
  * 원본: C:\Users\jinhong\Desktop\jmp-platform\데이터관리\알림창\공지사항.xlsx
- * 생성 시각: 2026-11-06 10:06:31
+ * 생성 시각: 2026-11-06 14:48:33
  */
 let SITE_NOTICES = [
    {
@@ -89,6 +89,17 @@ let SITE_NOTICES = [
     body: "자세한 내용은 이미지를 참고해주세요.",
     startDate: "2026-10-01",
     endDate: "2026-10-31",
+    pinned: false
+   },
+   {
+    id: "8",
+    team: "관리팀",
+    level: "info",
+    title: "Family Day 알림",
+    image: "assets/notice/family_day_202611.png",
+    body: "자세한 내용은 이미지를 참고해주세요.",
+    startDate: "2026-11-01",
+    endDate: "2026-11-30",
     pinned: false
    },
    {
