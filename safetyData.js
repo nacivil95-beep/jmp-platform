@@ -3814,5 +3814,95 @@ let SAFETY_DATA = {
       "status": "작업승인",
       "work_name": "장비수리작업"
     }
+  ],
+  "2026-11-12": [
+    {
+      "company": "토우산업(주)",
+      "date": "2026-11-12",
+      "grade": "일상A",
+      "location": "중로(보)1-02, 중로(집)3-12,중로(집)3-16,BL.1,2,5,6,9,10,12,13,23,폐기물매립장,BL.주택",
+      "status": "작업승인",
+      "work_name": "노체성토, 암노출, 법면정리,흙깎기,암깎기 및 흙쌓기, 운반,표토제거,가도개설,기존구조물철거(무근콘크리트깨기),소할"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-11-12",
+      "grade": "일상A",
+      "location": "현장 내 전구역",
+      "status": "작업승인",
+      "work_name": "살수차 작업"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-11-12",
+      "grade": "일상A",
+      "location": "BL.5",
+      "status": "작업승인",
+      "work_name": "임목 폐기물 파쇄"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-11-12",
+      "grade": "일상",
+      "location": "BL.6",
+      "status": "작업승인",
+      "work_name": "벌개제근 및 임목 집적, 적재/임목운반"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-11-12",
+      "grade": "일상",
+      "location": "BL.9,13,중로(집)2-05",
+      "status": "작업승인",
+      "work_name": "발파암 노출 청소 작업"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-11-12",
+      "grade": "일상",
+      "location": "현장 내",
+      "status": "작업승인",
+      "work_name": "장비수리작업"
+    },
+    {
+      "company": "토우건설㈜",
+      "date": "2026-11-12",
+      "grade": "일상",
+      "location": "BL.10,11,매립장",
+      "status": "작업승인",
+      "work_name": "비옥토 보양 작업"
+    },
+    {
+      "company": "(주)승원건설 발파 채석",
+      "date": "2026-11-12",
+      "grade": "일상A",
+      "location": "13BL  천공 및 발파",
+      "status": "작업승인",
+      "work_name": "발파및 천공"
+    },
+    {
+      "company": "(주)승원건설 발파 채석",
+      "date": "2026-11-12",
+      "grade": "일상",
+      "location": "5.6 BL",
+      "status": "작업승인",
+      "work_name": "작업면 평탄화"
+    },
+    {
+      "company": "(주)승원건설 발파 채석",
+      "date": "2026-11-12",
+      "grade": "일상",
+      "location": "2BL 락볼트 천공",
+      "status": "작업승인",
+      "work_name": "락볼트"
+    },
+    {
+      "company": "(주)티에치건설",
+      "date": "2026-11-12",
+      "grade": "일상A",
+      "location": "9BL, 13BL",
+      "status": "작업승인",
+      "work_name": "절성토 작업 및 운반"
+    }
   ]
 };
