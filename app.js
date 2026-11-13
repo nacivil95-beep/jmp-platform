@@ -2673,17 +2673,20 @@ function initBoardTicker() {
 // 위 두 파일이 로딩되지 않은 환경(옛 배포본 등)에서도 에러 없이 조용히 건너뜁니다.
 // =========================================================================
 
-// 날짜(YYYY-MM-DD) → 착공일 기준 몇 개월차/그 달 며칠째인지 (1개월=30일 기준, 원본 공정표 앱과 동일 방식)
+// 날짜(YYYY-MM-DD) → 달력 월 기준 몇 개월차/그 달 며칠째인지
+// (변경 예정공정표 Rev.1: 2026-01 = 1개월차 ... 2028-12 = 36개월차, 각 월 값은 그 달의 "실제 일수"로 일할 계산)
 function scheduleMonthIndexFromDate(dateStr) {
   if (!dateStr || typeof SCHEDULE_START_DATE === "undefined" || !SCHEDULE_START_DATE) return null;
-  const start = new Date(SCHEDULE_START_DATE); start.setHours(0, 0, 0, 0);
-  const target = new Date(dateStr); target.setHours(0, 0, 0, 0);
-  if (isNaN(start.getTime()) || isNaN(target.getTime())) return null;
-  const diffDays = Math.round((target - start) / 86400000);
-  if (diffDays < 0) return { month: 0, dayInMonth: 0, diffDays };
-  const month = Math.floor(diffDays / 30) + 1;
-  const dayInMonth = (diffDays % 30) + 1;
-  return { month, dayInMonth, diffDays };
+  const sm = /^(\d{4})-(\d{2})-(\d{2})/.exec(SCHEDULE_START_DATE);
+  const tm = /^(\d{4})-(\d{2})-(\d{2})/.exec(dateStr);
+  if (!sm || !tm) return null;
+  const sy = +sm[1], smo = +sm[2], sd = +sm[3];
+  const ty = +tm[1], tmo = +tm[2], td = +tm[3];
+  const diffDays = Math.round((Date.UTC(ty, tmo - 1, td) - Date.UTC(sy, smo - 1, sd)) / 86400000);
+  if (diffDays < 0) return { month: 0, dayInMonth: 0, daysInMonth: 30, diffDays };
+  const month = (ty - sy) * 12 + (tmo - smo) + 1;
+  const daysInMonth = new Date(ty, tmo, 0).getDate(); // 그 달의 실제 일수 (28/29/30/31)
+  return { month, dayInMonth: td, daysInMonth, diffDays };
 }
 
 // 월차 정보(월차 + 그 달 며칠째)로 계획 누적 진행률(0~1) 일할 계산
@@ -2693,7 +2696,7 @@ function scheduleCumulAt(monthInfo) {
   if (m > 36) return 1;
   const prevCumul = m > 1 ? (SCHEDULE_CUMUL[m - 1] || 0) : 0;
   const monthlyR = SCHEDULE_MONTHLY[m] || 0;
-  const frac = Math.min(1, monthInfo.dayInMonth / 30);
+  const frac = Math.min(1, monthInfo.dayInMonth / (monthInfo.daysInMonth || 30));
   return prevCumul + monthlyR * frac;
 }
 
@@ -2721,11 +2724,12 @@ function isSchedulePaneVisible() {
   return !!pane && pane.style.display !== "none";
 }
 
-// 프로젝트 전체 기간(착공일 ~ 착공일+36개월, 1개월=30일)의 마지막 날짜(YYYY-MM-DD)
+// 프로젝트 전체 기간(시작월 1일 ~ 36개월차 말일)의 마지막 날짜(YYYY-MM-DD)
 function scheduleProjectEndDateStr() {
   if (typeof SCHEDULE_START_DATE === "undefined" || !SCHEDULE_START_DATE) return "";
-  const start = new Date(SCHEDULE_START_DATE); start.setHours(0, 0, 0, 0);
-  const end = new Date(start.getTime() + (36 * 30 - 1) * 86400000);
+  const sm = /^(\d{4})-(\d{2})/.exec(SCHEDULE_START_DATE);
+  if (!sm) return "";
+  const end = new Date(+sm[1], +sm[2] - 1 + 36, 0); // 36개월 뒤 달의 0일 = 36개월차 말일
   return end.getFullYear() + "-" + String(end.getMonth() + 1).padStart(2, "0") + "-" + String(end.getDate()).padStart(2, "0");
 }
 
@@ -2754,7 +2758,7 @@ function scheduleItemCumulFractionAt(item, monthInfo) {
   let sum = 0;
   for (let mm = 1; mm < m; mm++) sum += (item.m[mm] || 0);
   if (monthInfo.month <= 36) {
-    const frac = Math.min(1, monthInfo.dayInMonth / 30);
+    const frac = Math.min(1, monthInfo.dayInMonth / (monthInfo.daysInMonth || 30));
     sum += (item.m[m] || 0) * frac;
   } else {
     sum = totalM; // 프로젝트 기간을 넘어선 날짜는 100%로 처리
@@ -2930,6 +2934,19 @@ function scheduleItemStatus(item, currentMonth) {
   return "active";
 }
 
+// 조회일 이전(포함) 가장 최근 작업일보의 공종별 실적(item_actuals: extract.py가 내역서 시트에서 계산)을 찾습니다.
+function scheduleItemActualsAt(dateStr) {
+  if (typeof DAILY_REPORTS === "undefined") return null;
+  let best = null;
+  Object.keys(DAILY_REPORTS).forEach(k => {
+    const rep = DAILY_REPORTS[k];
+    if (!rep || !rep.item_actuals || !rep.date || rep.date > dateStr) return;
+    if (typeof reportHasData === "function" && !reportHasData(rep)) return;
+    if (!best || rep.date > best.date) best = rep;
+  });
+  return best ? best.item_actuals : null;
+}
+
 function renderScheduleItemsTable() {
   const tbody = document.getElementById("schedule-items-tbody");
   if (!tbody || typeof SCHEDULE_MAJOR_ITEMS === "undefined") return;
@@ -2939,16 +2956,33 @@ function renderScheduleItemsTable() {
   const badgeLabel = { active: "진행중", done: "완료", future: "예정" };
   const sorted = [...SCHEDULE_MAJOR_ITEMS].sort((a, b) => b.ratio - a.ratio);
 
+  // 표 머리글에 "진행율(계획/실적)" 열이 없으면 한 번만 추가 (index.html은 건드리지 않음)
+  const headRow = tbody.closest("table") && tbody.closest("table").querySelector("thead tr");
+  if (headRow && !headRow.querySelector(".schedule-progress-th")) {
+    const th = document.createElement("th");
+    th.className = "schedule-progress-th";
+    th.textContent = "진행율(계획/실적)";
+    headRow.appendChild(th);
+  }
+
+  const autoActuals = scheduleItemActualsAt(dateStr);
+  const manualActuals = (typeof SCHEDULE_ITEM_ACTUALS !== "undefined" && SCHEDULE_ITEM_ACTUALS) ? SCHEDULE_ITEM_ACTUALS : {};
+
   tbody.innerHTML = sorted.map(item => {
     const status = scheduleItemStatus(item, currentMonth);
     const fraction = scheduleItemCumulFractionAt(item, monthInfo);
     const itemPlanAmt = fraction * item.amt;
+    // 실적: 1순위 작업일보 자동(공종명 공백 제거 후 매칭), 2순위 scheduleActuals.js의 SCHEDULE_ITEM_ACTUALS 수동값
+    const auto = autoActuals && autoActuals[item.name.replace(/\s+/g, "")];
+    const actualVal = (auto && typeof auto.pct === "number") ? auto.pct : manualActuals[item.name];
+    const actualTxt = (typeof actualVal === "number") ? actualVal.toFixed(1) + "%" : "-";
     return `<tr>
       <td>${escapeHtml(item.name)}</td>
       <td>${(item.ratio * 100).toFixed(2)}%</td>
       <td style="text-align:right">${Math.round(item.amt).toLocaleString("ko-KR")}</td>
       <td style="text-align:right">${Math.round(itemPlanAmt).toLocaleString("ko-KR")}</td>
       <td><span class="schedule-badge ${status}">${badgeLabel[status]}</span></td>
+      <td style="white-space:nowrap">${(fraction * 100).toFixed(1)}% / ${actualTxt}</td>
     </tr>`;
   }).join("");
 }
