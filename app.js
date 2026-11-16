@@ -2799,6 +2799,11 @@ function won(n) {
   return Math.round(n).toLocaleString("ko-KR") + "천원";
 }
 
+// 요약 카드용: 숫자는 작은 글자(한 줄 고정), 단위 "천원"은 그 아래 더 작게 - 큰 금액이 잘리거나 줄바꿈되지 않도록
+function wonCardHtml(n) {
+  return `<span style="font-size:13px;white-space:nowrap">${Math.round(n).toLocaleString("ko-KR")}</span><br><span style="font-size:10px;font-weight:500">천원</span>`;
+}
+
 function getScheduleSelectedDateStr() {
   const input = document.getElementById("schedule-date-select");
   if (input && input.value) return input.value;
@@ -2840,13 +2845,13 @@ function renderScheduleSummary() {
   let html = "";
   html += `<div class="schedule-stat"><div class="schedule-stat-value">${monthLabel}</div><div class="schedule-stat-label">조회일 공정 시점</div></div>`;
   html += `<div class="schedule-stat"><div class="schedule-stat-value plan">${info.planPct.toFixed(2)}%</div><div class="schedule-stat-label">계획 누계</div></div>`;
-  html += `<div class="schedule-stat"><div class="schedule-stat-value plan">${won(info.planAmt)}</div><div class="schedule-stat-label">계획 누계금액</div></div>`;
+  html += `<div class="schedule-stat"><div class="schedule-stat-value plan">${wonCardHtml(info.planAmt)}</div><div class="schedule-stat-label">계획 누계금액</div></div>`;
 
   if (info.actualPct !== null) {
     const diff = info.actualPct - info.planPct;
     const diffClass = diff >= 0 ? "diff-pos" : "diff-neg";
     html += `<div class="schedule-stat"><div class="schedule-stat-value actual">${info.actualPct.toFixed(2)}%</div><div class="schedule-stat-label">실적 누계 (${escapeHtml(info.actualSource || "")})</div></div>`;
-    html += `<div class="schedule-stat"><div class="schedule-stat-value actual">${won(info.actualAmt)}</div><div class="schedule-stat-label">실적 누계금액</div></div>`;
+    html += `<div class="schedule-stat"><div class="schedule-stat-value actual">${wonCardHtml(info.actualAmt)}</div><div class="schedule-stat-label">실적 누계금액</div></div>`;
     html += `<div class="schedule-stat"><div class="schedule-stat-value ${diffClass}">${diff >= 0 ? "+" : ""}${diff.toFixed(2)}%</div><div class="schedule-stat-label">계획 대비</div></div>`;
   } else {
     html += `<div class="schedule-stat"><div class="schedule-stat-value" style="color:var(--text-dim)">-</div><div class="schedule-stat-label">실적 (해당일 작업일보 없음)</div></div>`;
