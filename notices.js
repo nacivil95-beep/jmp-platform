@@ -15,7 +15,7 @@
  *   pinned     : true 면 항상 상단 고정
  *
  * 원본: C:\Users\jinhong\Desktop\jmp-platform\데이터관리\알림창\공지사항.xlsx
- * 생성 시각: 2026-11-16 10:07:25
+ * 생성 시각: 2026-11-17 10:06:57
  */
 let SITE_NOTICES = [
    {
@@ -35,7 +35,7 @@ let SITE_NOTICES = [
     title: "현장 지도 기능 업데이트",
     body: "지도 내 면적·길이 측정 및 지적도, 지번 검색 기능이 새롭게 업데이트되었습니다. 현장 업무에 활용해 보세요!",
     startDate: "",
-    endDate: "2026-10-31",
+    endDate: "2026-12-31",
     pinned: false
    },
    {
@@ -45,7 +45,7 @@ let SITE_NOTICES = [
     title: "현장 지도 기능 업데이트",
     body: "위성지도나 항공사진 지도에서 계획선을 확인하실수 있습니다.",
     startDate: "",
-    endDate: "2026-10-31",
+    endDate: "2026-12-31",
     pinned: false
    },
    {
