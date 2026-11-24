@@ -62,6 +62,8 @@
   var $ = function (i) { return document.getElementById(i); };
   var MIN_INTERVAL = 5000;           // 서버 전송 최소 간격(ms)
   var type = 'person', running = false, watchId = null, wake = null, lastSent = 0, ref = null, db = null;
+  var lastPos = null, hb = null;
+  var HEARTBEAT = 20000;             // 가만히 있어도 이 간격(ms)마다 마지막 위치를 다시 전송(살아있음 신호)
 
   var uid = localStorage.getItem('live_uid');
   if (!uid) { uid = 'u' + Math.random().toString(36).slice(2, 10); localStorage.setItem('live_uid', uid); }
@@ -106,10 +108,14 @@
     try { if ('wakeLock' in navigator) { wake = await navigator.wakeLock.request('screen'); } } catch (e) {}
   }
   document.addEventListener('visibilitychange', function () {
-    if (running && document.visibilityState === 'visible') requestWake();
+    if (running && document.visibilityState === 'visible') {
+      requestWake();
+      if (lastPos) send(lastPos);    // 화면으로 돌아오면 즉시 한 번 더 전송
+    }
   });
 
   function send(pos) {
+    lastPos = pos;                   // 마지막으로 받은 위치를 기억(살아있음 신호용)
     var t = Date.now();
     if (t - lastSent < MIN_INTERVAL) return;
     lastSent = t;
@@ -148,12 +154,18 @@
       var m = { 1: '위치 권한이 거부되었습니다. 브라우저 설정에서 허용해 주세요.', 2: '위치를 가져올 수 없습니다.', 3: '위치 확인 시간이 초과되었습니다.' }[err.code] || err.message;
       msg(m, 'er');
     }, { enableHighAccuracy: true, maximumAge: 5000, timeout: 20000 });
+    // 폰은 위치가 "바뀔 때만" 알려주므로, 가만히 서 있으면 전송이 끊긴 것처럼 보임 → 주기적으로 마지막 위치를 다시 보냄
+    hb = setInterval(function () {
+      if (running && lastPos && Date.now() - lastSent >= HEARTBEAT) send(lastPos);
+    }, 5000);
   }
 
   function stop() {
     running = false;
     if (watchId != null) navigator.geolocation.clearWatch(watchId);
     watchId = null;
+    if (hb) { clearInterval(hb); hb = null; }
+    lastPos = null;
     if (wake) { try { wake.release(); } catch (e) {} wake = null; }
     if (ref) ref.remove();
     $('go').textContent = '위치 전송 시작'; $('go').classList.remove('stop');

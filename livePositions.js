@@ -201,7 +201,8 @@
         if (age > HIDE) return;
         var s = age > STALE ? 'stale' : 'live';
         var e2 = { id: id, e: e, age: age, s: s, z: zoneOf(e) };
-        if (s === 'stale') cnt.stale++; else cnt[e.type === 'equip' ? 'equip' : 'person']++;
+        cnt[e.type === 'equip' ? 'equip' : 'person']++;   // 신호없음도 인원·장비 합계에 포함
+        if (s === 'stale') cnt.stale++;
         var isEq = e.type === 'equip';
         if (f.type === 'person' && isEq) return;
         if (f.type === 'equip' && !isEq) return;
