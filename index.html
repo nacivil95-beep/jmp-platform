@@ -588,6 +588,9 @@
   // 방지하기 위해 매번 다른 URL(타임스탬프)로 강제 새로고침해서 불러옵니다.
   document.write('<script src="feelsLikeData.js?v=' + Date.now() + '"><\/script>');
 </script>
+<!-- 실시간 인력·장비 위치 (app.js의 initMap()이 지도를 만들기 전에 로드되어야 함) -->
+<script src="liveConfig.js"></script>
+<script src="livePositions.js"></script>
 <script src="app.js"></script>
 <script src="voiceSummary.js"></script>
   <!-- ──────────────────────── 날짜 선택 캘린더 팝업 (공정율/인원/장비/토공사 카드 공통) ──────────────────────── -->
