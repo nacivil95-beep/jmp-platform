@@ -80487,18 +80487,18 @@ let DAILY_REPORTS = {
   },
   "2026-11-24": {
     "date": "2026-11-24",
-    "weather": "흐림",
+    "weather": "맑음",
     "progress": {
       "plan": 8.61,
-      "actual": 11.89,
-      "diff": 138.16
+      "actual": 12.11,
+      "diff": 140.67
     },
     "earth": {
       "토사": {
         "design": 1507585,
         "prev": 368013,
-        "today": 0,
-        "cum": 368013,
+        "today": 3648,
+        "cum": 371661,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -80511,15 +80511,15 @@ let DAILY_REPORTS = {
       "발파암깎기": {
         "design": 3794908,
         "prev": 771465,
-        "today": 0,
-        "cum": 771465,
+        "today": 15055,
+        "cum": 786520,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
         "prev": 1406093.399999999,
-        "today": 0,
-        "cum": 1406093.399999999,
+        "today": 23283.2,
+        "cum": 1429376.599999999,
         "start": "2025-02-01"
       }
     },
@@ -80545,7 +80545,7 @@ let DAILY_REPORTS = {
       "   - 천공기-1, B/H1.0-1, 신호수-1",
       " 10. 발파 (BL.5, 6)          [204공 11회]",
       "   - 관리자-1, 화약주임-1, 장약공-2",
-      " 11. 락볼트 그라우팅 (BL.2)  [210공 中 그라우팅 138공/천공 210공 완료]",
+      " 11. 락볼트 그라우팅 (BL.2)  [210공 中 그라우팅 210공/천공 210공 완료]",
       "   - 그라우팅공-2, 보통인부-1",
       " 12. 발파암 노출 (BL.5, 6, 9, 12, 13, 소로(집)2-08)",
       "   - B/H1.0-1, B/H0.2-1, 보통인부-2",
@@ -80555,12 +80555,13 @@ let DAILY_REPORTS = {
       "◆기타",
       " 1. 기존 구조물 정리 (은탄리801)",
       "   - 보통인부-2",
-      " 2. 기술지원기술인 현장점검"
+      " 2. 기술지원기술인 현장점검",
+      " 3. 재해영향평가 현장점검 (충북도청)"
     ],
     "work_tomorrow": [
       "◆토공",
       " 1. 흙깍기 및 흙쌓기(토사, 발파암) (BL.5, 6)",
-      "   - D/Z11N-1, D/Z11R-1, D/Z6H-1, B/H500-2, B/H480-2, B/H400-1, D/T25-11, D/T15-5, 신호수-2",
+      "   - D/Z11N-1, D/Z11R-1, D/Z6H-1, B/H500-2, B/H480-2, B/H400-1, D/T25-11, D/T15-5, 신호수-3",
       " 2. 흙깍기 및 흙쌓기(토사) (BL.10, 11)",
       "   - D/Z3K-1, B/H500-1, D/T25-2, 신호수-1",
       " 3. 흙깍기 및 흙쌓기(발파암) (BL.13)",
@@ -80575,20 +80576,22 @@ let DAILY_REPORTS = {
       "   - B/H0.6w-1",
       " 8. 정지작업 및 노면정리 (현장 전구간)",
       "   - 그레이더-1, 진동롤러-1",
-      " 9. 발파암 천공 및 작업면 평탄화 (BL.5, 6)",
-      "   - 천공기-1, B/H1.0-1, 신호수-1",
-      " 10. 발파 (BL.5, 6)          [204공 11회]",
+      " 9. 발파암 천공 및 작업면 평탄화 (BL.5, 6, 13)",
+      "   - 천공기-3, B/H1.0-1, 신호수-1",
+      " 10. 발파 (BL.5, 6)          [169공 2회]",
       "   - 관리자-1, 화약주임-1, 장약공-2",
-      " 11. 락볼트 그라우팅 (BL.2)  [210공 中 그라우팅 138공/천공 210공 완료]",
-      "   - 그라우팅공-3",
+      " 11. 비탈면보호(녹생토) [철망조립] (BL.2)",
+      "   - 관리자-1, 법면보호공-3",
       " 12. 발파암 노출 (BL.5, 6, 9, 12, 13, 소로(집)2-08)",
       "   - B/H1.0-1, B/H0.2-1, 보통인부-2",
+      " 13. 벌개제근, 임목폐기물 파쇄 및 운반 (BL.6)",
+      "   - B/H0.8-1, B/H0.6-1, 임목파쇄기-1",
       "◆부대공",
       " 1. 현장살수 (임목파쇄장 및 현장 전구간)",
       "   - 살수차-2",
       "◆기타",
       " 1. 기존 구조물 정리 (은탄리801)",
-      "   - 보통인부-2",
+      "   - 보통인부-1",
       " 2. 주간공정회의"
     ],
     "personnel": [
@@ -81014,9 +81017,9 @@ let DAILY_REPORTS = {
     },
     "item_actuals": {
       "토공": {
-        "cum": 17737955506,
+        "cum": 18065799717,
         "total": 104325080885,
-        "pct": 17.0
+        "pct": 17.32
       },
       "우수공": {
         "cum": 0,
@@ -81064,9 +81067,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 266971229,
+        "cum": 267673229,
         "total": 3806661020,
-        "pct": 7.01
+        "pct": 7.03
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -81080,15 +81083,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 8.65,
-      "actual": 11.89,
-      "diff": 137.45
+      "actual": 12.11,
+      "diff": 139.95
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 368013,
+        "prev": 371661,
         "today": 0,
-        "cum": 368013,
+        "cum": 371661,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -81100,83 +81103,114 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 771465,
+        "prev": 786520,
         "today": 0,
-        "cum": 771465,
+        "cum": 786520,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1406093.399999999,
+        "prev": 1429376.599999999,
         "today": 0,
-        "cum": 1406093.399999999,
+        "cum": 1429376.599999999,
         "start": "2025-02-01"
       }
     },
     "work_today": [
-      "◆기타",
-      " 1. 설계도서 검토"
-    ],
-    "work_tomorrow": [
       "◆토공",
-      " 1. 흙깍기 및 흙쌓기(토사) (BL.1)",
-      "   - D/Z6H-1, B/H480-1, D/T15-3, 신호수-1",
-      " 2. 흙깍기 및 흙쌓기(토사, 발파암) (BL.5, 6)",
-      "   - D/Z10N-1, D/Z5K-1, B/H500-2, B/H480-1, B/H400-1, D/T25-6, D/T15-2, 신호수-2",
-      " 3. 흙깍기 및 흙쌓기(토사) (BL.10, BL.매립장(가이식장))",
-      "   - D/Z11R-1, D/ZD1-1, B/H500-1, D/T25-3, D/T15-3, 신호수-1",
-      " 4. 흙깍기 및 흙쌓기(발파암) (BL.13)",
-      "   - D/Z11T-1, D/Z3K-1, B/H480-1, B/H380-1, D/T25-4, 신호수-1",
-      " 5. 법면정리 (BL.5, 6, 소로(집)2-08)",
+      " 1. 흙깍기 및 흙쌓기(토사, 발파암) (BL.5, 6)",
+      "   - D/Z11N-1, D/Z11R-1, D/Z6H-1, B/H500-2, B/H480-2, B/H400-1, D/T25-11, D/T15-5, 신호수-3",
+      " 2. 흙깍기 및 흙쌓기(토사) (BL.10, 11)",
+      "   - D/Z3K-1, B/H500-1, D/T25-2, 신호수-1",
+      " 3. 흙깍기 및 흙쌓기(발파암) (BL.13)",
+      "   - D/Z11T-1, D/ZD1-1, B/H480-1, B/H380-1, D/T25-3, D/T15-2, 신호수-2",
+      " 4. 흙깍기 및 흙쌓기(발파암) (중로(보)1-02)",
+      "   - D/Z5K-1, B/H480-1, D/T15-2, 신호수-1",
+      " 5. 기존 구조물 깨기 및 발파암 소할",
       "   - B/H1.0-2",
       " 6. 정지작업 (중로(집)3-12, 중로(집)3-16)",
       "   - D/Z5K-1",
-      " 7. 기존구조물 깨기",
+      " 7. 정지작업 (BL.5, 6)",
       "   - B/H0.6w-1",
       " 8. 정지작업 및 노면정리 (현장 전구간)",
       "   - 그레이더-1, 진동롤러-1",
-      " 9. 벌개제근 및 임목 운반 (BL.6)",
-      "   - B/H0.6-1, B/H0.2-1, 암롤-2",
-      " 10. 발파암 천공 및 작업면 평탄화 (BL.2)",
-      "   - 천공기-2, B/H1.0-1, 신호수-1",
-      " 11. 발파 (BL.2)          [200공, 10회]",
-      "   - 관리자-1, 화약주임-1, 장약공-1",
-      " 12. 발파암 노출 (BL.5, 6, 9, 13, 중로(집)2-05, 중로(집)3-13)",
-      "   - B/H1.0-1, B/H0.2-2, 보통인부-2",
+      " 9. 발파암 천공 및 작업면 평탄화 (BL.5, 6, 13)",
+      "   - 천공기-3, B/H1.0-1, 신호수-1",
+      " 10. 발파 (BL.5, 6)          [169공 2회]",
+      "   - 관리자-1, 화약주임-1, 장약공-2",
+      " 11. 비탈면보호(녹생토) [철망조립] (BL.2)",
+      "   - 관리자-1, 작업반장-1, 법면보호공-2",
+      " 12. 발파암 노출 (BL.5, 6, 9, 12, 13, 소로(집)2-08)",
+      "   - B/H1.0-1, B/H0.2-1, 보통인부-2",
+      " 13. 벌개제근, 임목폐기물 파쇄 및 운반 (BL.6)",
+      "   - B/H0.8-1, B/H0.6-1, 임목파쇄기-1",
       "◆부대공",
       " 1. 현장살수 (임목파쇄장 및 현장 전구간)",
-      "   - 살수차-1",
-      "◆폐기물처리용역",
-      " 1. 폐기물 반출",
-      "   - 폐콘크리트 14대",
+      "   - 살수차-2",
       "◆기타",
-      " 1. 현장 정리정돈",
+      " 1. 기존 구조물 정리 (은탄리801)",
+      "   - 보통인부-1",
+      " 2. 주간공정회의"
+    ],
+    "work_tomorrow": [
+      "◆토공",
+      " 1. 흙깍기 및 흙쌓기(토사, 발파암) (BL.5, 6)",
+      "   - D/Z11N-1, D/Z11R-1, D/Z6H-1, B/H500-2, B/H480-2, B/H400-1, D/T25-11, D/T15-5, 신호수-3",
+      " 2. 흙깍기 및 흙쌓기(토사) (BL.10, 11)",
+      "   - D/Z3K-1, B/H500-1, D/T25-2, 신호수-1",
+      " 3. 흙깍기 및 흙쌓기(발파암) (BL.13)",
+      "   - D/Z11T-1, D/ZD1-1, B/H480-1, B/H380-1, D/T25-3, D/T15-2, 신호수-2",
+      " 4. 흙깍기 및 흙쌓기(발파암) (중로(보)1-02)",
+      "   - D/Z5K-1, B/H480-1, D/T15-2, 신호수-1",
+      " 5. 기존 구조물 깨기 및 발파암 소할",
+      "   - B/H1.0-2",
+      " 6. 정지작업 (중로(집)3-12, 중로(집)3-16)",
+      "   - D/Z5K-1",
+      " 7. 정지작업 (BL.5, 6)",
+      "   - B/H0.6w-1",
+      " 8. 정지작업 및 노면정리 (현장 전구간)",
+      "   - 그레이더-1, 진동롤러-1",
+      " 9. 발파암 천공 및 작업면 평탄화 (BL.5, 6, 13)",
+      "   - 천공기-3, B/H1.0-1, 신호수-1",
+      " 10. 발파 (BL.5, 6)",
+      "   - 관리자-1, 화약주임-1, 장약공-2",
+      " 11. 비탈면보호(녹생토) [철망조립] (BL.2)",
+      "   - 관리자-1, 작업반장-1, 법면보호공-2",
+      " 12. 발파암 노출 (BL.5, 6, 9, 12, 13, 소로(집)2-08)",
+      "   - B/H1.0-1, B/H0.2-1, 보통인부-2",
+      " 13. 벌개제근, 임목폐기물 파쇄 및 운반 (BL.6)",
+      "   - B/H0.8-1, B/H0.6-1, 임목파쇄기-1",
+      "◆부대공",
+      " 1. 현장살수 (임목파쇄장 및 현장 전구간)",
+      "   - 살수차-2",
+      "◆기타",
+      " 1. 기존 구조물 정리 (은탄리801)",
       "   - 보통인부-1"
     ],
     "personnel": [
       {
         "role": "직    원",
         "prev": 4898,
-        "today": 0,
-        "cum": 4898
+        "today": 23,
+        "cum": 4921
       },
       {
         "role": "하도급직원",
         "prev": 169,
-        "today": 0,
-        "cum": 169
+        "today": 3,
+        "cum": 172
       },
       {
         "role": "작업반장",
         "prev": 213,
-        "today": 0,
-        "cum": 213
+        "today": 3,
+        "cum": 216
       },
       {
         "role": "보통인부",
         "prev": 327,
-        "today": 0,
-        "cum": 327
+        "today": 5,
+        "cum": 332
       },
       {
         "role": "형틀목공",
@@ -81211,8 +81245,8 @@ let DAILY_REPORTS = {
       {
         "role": "신 호 수",
         "prev": 493,
-        "today": 0,
-        "cum": 493
+        "today": 8,
+        "cum": 501
       },
       {
         "role": "조 적 공",
@@ -81295,49 +81329,49 @@ let DAILY_REPORTS = {
       {
         "role": "화약주임",
         "prev": 71,
-        "today": 0,
-        "cum": 71
+        "today": 1,
+        "cum": 72
       },
       {
         "role": "장약공",
         "prev": 90,
-        "today": 0,
-        "cum": 90
+        "today": 2,
+        "cum": 92
       }
     ],
     "personnel_total": {
       "prev": 6261,
-      "today": 0,
-      "cum": 6261
+      "today": 45,
+      "cum": 6306
     },
     "equipment_detail": [
       {
         "type": "D/Z",
         "spec": "D1",
         "prev": 100,
-        "today": 0,
-        "cum": 100
+        "today": 1,
+        "cum": 101
       },
       {
         "type": "D/Z",
         "spec": "3K",
         "prev": 36,
-        "today": 0,
-        "cum": 36
+        "today": 1,
+        "cum": 37
       },
       {
         "type": "D/Z",
         "spec": "5K",
         "prev": 107,
-        "today": 0,
-        "cum": 107
+        "today": 2,
+        "cum": 109
       },
       {
         "type": "D/Z",
         "spec": "6H",
         "prev": 51,
-        "today": 0,
-        "cum": 51
+        "today": 1,
+        "cum": 52
       },
       {
         "type": "D/Z",
@@ -81350,85 +81384,85 @@ let DAILY_REPORTS = {
         "type": "D/Z",
         "spec": "11N",
         "prev": 17,
-        "today": 0,
-        "cum": 17
+        "today": 1,
+        "cum": 18
       },
       {
         "type": "D/Z",
         "spec": "11R",
         "prev": 44,
-        "today": 0,
-        "cum": 44
+        "today": 1,
+        "cum": 45
       },
       {
         "type": "D/Z",
         "spec": "11T",
         "prev": 111,
-        "today": 0,
-        "cum": 111
+        "today": 1,
+        "cum": 112
       },
       {
         "type": "B/H",
         "spec": "0.2",
         "prev": 266,
-        "today": 0,
-        "cum": 266
+        "today": 1,
+        "cum": 267
       },
       {
         "type": "B/H",
         "spec": "0.6",
         "prev": 253,
-        "today": 0,
-        "cum": 253
+        "today": 2,
+        "cum": 255
       },
       {
         "type": "B/H",
         "spec": "0.8",
         "prev": 70,
-        "today": 0,
-        "cum": 70
+        "today": 1,
+        "cum": 71
       },
       {
         "type": "B/H",
         "spec": "1",
         "prev": 343,
-        "today": 0,
-        "cum": 343
+        "today": 4,
+        "cum": 347
       },
       {
         "type": "B/H",
         "spec": "380(1.8)",
         "prev": 104,
-        "today": 0,
-        "cum": 104
+        "today": 1,
+        "cum": 105
       },
       {
         "type": "B/H",
         "spec": "400(1.8)",
         "prev": 37,
-        "today": 0,
-        "cum": 37
+        "today": 1,
+        "cum": 38
       },
       {
         "type": "B/H",
         "spec": "480(2.4)",
         "prev": 154,
-        "today": 0,
-        "cum": 154
+        "today": 4,
+        "cum": 158
       },
       {
         "type": "B/H",
         "spec": "500(2.4)",
         "prev": 258,
-        "today": 0,
-        "cum": 258
+        "today": 3,
+        "cum": 261
       },
       {
         "type": "D/T",
         "spec": "15t",
         "prev": 661,
-        "today": 0,
-        "cum": 661
+        "today": 9,
+        "cum": 670
       },
       {
         "type": "D/T",
@@ -81441,22 +81475,22 @@ let DAILY_REPORTS = {
         "type": "D/T",
         "spec": "25t",
         "prev": 785,
-        "today": 0,
-        "cum": 785
+        "today": 16,
+        "cum": 801
       },
       {
         "type": "크로라드릴",
         "spec": "1식",
         "prev": 171,
-        "today": 0,
-        "cum": 171
+        "today": 3,
+        "cum": 174
       },
       {
         "type": "살수차",
         "spec": "1식",
         "prev": 176,
-        "today": 0,
-        "cum": 176
+        "today": 2,
+        "cum": 178
       },
       {
         "type": "오거",
@@ -81483,54 +81517,54 @@ let DAILY_REPORTS = {
         "type": "임목파쇄기",
         "spec": "1식",
         "prev": 58,
-        "today": 0,
-        "cum": 58
+        "today": 1,
+        "cum": 59
       },
       {
         "type": "그레이더",
         "spec": "1식",
         "prev": 44,
-        "today": 0,
-        "cum": 44
+        "today": 1,
+        "cum": 45
       },
       {
         "type": "진동로라",
         "spec": "1식",
         "prev": 92,
-        "today": 0,
-        "cum": 92
+        "today": 1,
+        "cum": 93
       }
     ],
     "equipment": [
       {
         "type": "D/Z",
         "prev": 505,
-        "today": 0,
-        "cum": 505
+        "today": 8,
+        "cum": 513
       },
       {
         "type": "B/H",
         "prev": 1485,
-        "today": 0,
-        "cum": 1485
+        "today": 17,
+        "cum": 1502
       },
       {
         "type": "D/T",
         "prev": 1508,
-        "today": 0,
-        "cum": 1508
+        "today": 25,
+        "cum": 1533
       },
       {
         "type": "크로라드릴",
         "prev": 171,
-        "today": 0,
-        "cum": 171
+        "today": 3,
+        "cum": 174
       },
       {
         "type": "살수차",
         "prev": 176,
-        "today": 0,
-        "cum": 176
+        "today": 2,
+        "cum": 178
       },
       {
         "type": "오거",
@@ -81553,32 +81587,32 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "prev": 58,
-        "today": 0,
-        "cum": 58
+        "today": 1,
+        "cum": 59
       },
       {
         "type": "그레이더",
         "prev": 44,
-        "today": 0,
-        "cum": 44
+        "today": 1,
+        "cum": 45
       },
       {
         "type": "진동로라",
         "prev": 92,
-        "today": 0,
-        "cum": 92
+        "today": 1,
+        "cum": 93
       }
     ],
     "equipment_total": {
       "prev": 4045,
-      "today": 0,
-      "cum": 4045
+      "today": 58,
+      "cum": 4103
     },
     "item_actuals": {
       "토공": {
-        "cum": 17737955506,
+        "cum": 18065799717,
         "total": 104325080885,
-        "pct": 17.0
+        "pct": 17.32
       },
       "우수공": {
         "cum": 0,
@@ -81626,9 +81660,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 267430444,
+        "cum": 268132444,
         "total": 3806661020,
-        "pct": 7.03
+        "pct": 7.04
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -81642,15 +81676,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 8.69,
-      "actual": 11.89,
-      "diff": 136.75
+      "actual": 12.11,
+      "diff": 139.24
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 368013,
+        "prev": 371661,
         "today": 0,
-        "cum": 368013,
+        "cum": 371661,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -81662,16 +81696,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 771465,
+        "prev": 786520,
         "today": 0,
-        "cum": 771465,
+        "cum": 786520,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1406093.399999999,
+        "prev": 1429376.599999999,
         "today": 0,
-        "cum": 1406093.399999999,
+        "cum": 1429376.599999999,
         "start": "2025-02-01"
       }
     },
@@ -81752,27 +81786,27 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 4898,
+        "prev": 4921,
         "today": 0,
-        "cum": 4898
+        "cum": 4921
       },
       {
         "role": "하도급직원",
-        "prev": 169,
+        "prev": 172,
         "today": 0,
-        "cum": 169
+        "cum": 172
       },
       {
         "role": "작업반장",
-        "prev": 213,
+        "prev": 216,
         "today": 0,
-        "cum": 213
+        "cum": 216
       },
       {
         "role": "보통인부",
-        "prev": 327,
+        "prev": 332,
         "today": 0,
-        "cum": 327
+        "cum": 332
       },
       {
         "role": "형틀목공",
@@ -81806,9 +81840,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "신 호 수",
-        "prev": 493,
+        "prev": 501,
         "today": 0,
-        "cum": 493
+        "cum": 501
       },
       {
         "role": "조 적 공",
@@ -81890,50 +81924,50 @@ let DAILY_REPORTS = {
       },
       {
         "role": "화약주임",
-        "prev": 71,
+        "prev": 72,
         "today": 0,
-        "cum": 71
+        "cum": 72
       },
       {
         "role": "장약공",
-        "prev": 90,
+        "prev": 92,
         "today": 0,
-        "cum": 90
+        "cum": 92
       }
     ],
     "personnel_total": {
-      "prev": 6261,
+      "prev": 6306,
       "today": 0,
-      "cum": 6261
+      "cum": 6306
     },
     "equipment_detail": [
       {
         "type": "D/Z",
         "spec": "D1",
-        "prev": 100,
+        "prev": 101,
         "today": 0,
-        "cum": 100
+        "cum": 101
       },
       {
         "type": "D/Z",
         "spec": "3K",
-        "prev": 36,
+        "prev": 37,
         "today": 0,
-        "cum": 36
+        "cum": 37
       },
       {
         "type": "D/Z",
         "spec": "5K",
-        "prev": 107,
+        "prev": 109,
         "today": 0,
-        "cum": 107
+        "cum": 109
       },
       {
         "type": "D/Z",
         "spec": "6H",
-        "prev": 51,
+        "prev": 52,
         "today": 0,
-        "cum": 51
+        "cum": 52
       },
       {
         "type": "D/Z",
@@ -81945,86 +81979,86 @@ let DAILY_REPORTS = {
       {
         "type": "D/Z",
         "spec": "11N",
-        "prev": 17,
+        "prev": 18,
         "today": 0,
-        "cum": 17
+        "cum": 18
       },
       {
         "type": "D/Z",
         "spec": "11R",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "D/Z",
         "spec": "11T",
-        "prev": 111,
+        "prev": 112,
         "today": 0,
-        "cum": 111
+        "cum": 112
       },
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 266,
+        "prev": 267,
         "today": 0,
-        "cum": 266
+        "cum": 267
       },
       {
         "type": "B/H",
         "spec": "0.6",
-        "prev": 253,
+        "prev": 255,
         "today": 0,
-        "cum": 253
+        "cum": 255
       },
       {
         "type": "B/H",
         "spec": "0.8",
-        "prev": 70,
+        "prev": 71,
         "today": 0,
-        "cum": 70
+        "cum": 71
       },
       {
         "type": "B/H",
         "spec": "1",
-        "prev": 343,
+        "prev": 347,
         "today": 0,
-        "cum": 343
+        "cum": 347
       },
       {
         "type": "B/H",
         "spec": "380(1.8)",
-        "prev": 104,
+        "prev": 105,
         "today": 0,
-        "cum": 104
+        "cum": 105
       },
       {
         "type": "B/H",
         "spec": "400(1.8)",
-        "prev": 37,
+        "prev": 38,
         "today": 0,
-        "cum": 37
+        "cum": 38
       },
       {
         "type": "B/H",
         "spec": "480(2.4)",
-        "prev": 154,
+        "prev": 158,
         "today": 0,
-        "cum": 154
+        "cum": 158
       },
       {
         "type": "B/H",
         "spec": "500(2.4)",
-        "prev": 258,
+        "prev": 261,
         "today": 0,
-        "cum": 258
+        "cum": 261
       },
       {
         "type": "D/T",
         "spec": "15t",
-        "prev": 661,
+        "prev": 670,
         "today": 0,
-        "cum": 661
+        "cum": 670
       },
       {
         "type": "D/T",
@@ -82036,23 +82070,23 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "spec": "25t",
-        "prev": 785,
+        "prev": 801,
         "today": 0,
-        "cum": 785
+        "cum": 801
       },
       {
         "type": "크로라드릴",
         "spec": "1식",
-        "prev": 171,
+        "prev": 174,
         "today": 0,
-        "cum": 171
+        "cum": 174
       },
       {
         "type": "살수차",
         "spec": "1식",
-        "prev": 176,
+        "prev": 178,
         "today": 0,
-        "cum": 176
+        "cum": 178
       },
       {
         "type": "오거",
@@ -82078,55 +82112,55 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 58,
+        "prev": 59,
         "today": 0,
-        "cum": 58
+        "cum": 59
       },
       {
         "type": "그레이더",
         "spec": "1식",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "진동로라",
         "spec": "1식",
-        "prev": 92,
+        "prev": 93,
         "today": 0,
-        "cum": 92
+        "cum": 93
       }
     ],
     "equipment": [
       {
         "type": "D/Z",
-        "prev": 505,
+        "prev": 513,
         "today": 0,
-        "cum": 505
+        "cum": 513
       },
       {
         "type": "B/H",
-        "prev": 1485,
+        "prev": 1502,
         "today": 0,
-        "cum": 1485
+        "cum": 1502
       },
       {
         "type": "D/T",
-        "prev": 1508,
+        "prev": 1533,
         "today": 0,
-        "cum": 1508
+        "cum": 1533
       },
       {
         "type": "크로라드릴",
-        "prev": 171,
+        "prev": 174,
         "today": 0,
-        "cum": 171
+        "cum": 174
       },
       {
         "type": "살수차",
-        "prev": 176,
+        "prev": 178,
         "today": 0,
-        "cum": 176
+        "cum": 178
       },
       {
         "type": "오거",
@@ -82148,33 +82182,33 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 58,
+        "prev": 59,
         "today": 0,
-        "cum": 58
+        "cum": 59
       },
       {
         "type": "그레이더",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "진동로라",
-        "prev": 92,
+        "prev": 93,
         "today": 0,
-        "cum": 92
+        "cum": 93
       }
     ],
     "equipment_total": {
-      "prev": 4045,
+      "prev": 4103,
       "today": 0,
-      "cum": 4045
+      "cum": 4103
     },
     "item_actuals": {
       "토공": {
-        "cum": 17737955506,
+        "cum": 18065799717,
         "total": 104325080885,
-        "pct": 17.0
+        "pct": 17.32
       },
       "우수공": {
         "cum": 0,
@@ -82222,9 +82256,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 267889659,
+        "cum": 268591659,
         "total": 3806661020,
-        "pct": 7.04
+        "pct": 7.06
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -82238,15 +82272,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 8.74,
-      "actual": 11.89,
-      "diff": 136.06
+      "actual": 12.11,
+      "diff": 138.53
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 368013,
+        "prev": 371661,
         "today": 0,
-        "cum": 368013,
+        "cum": 371661,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -82258,16 +82292,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 771465,
+        "prev": 786520,
         "today": 0,
-        "cum": 771465,
+        "cum": 786520,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1406093.399999999,
+        "prev": 1429376.599999999,
         "today": 0,
-        "cum": 1406093.399999999,
+        "cum": 1429376.599999999,
         "start": "2025-02-01"
       }
     },
@@ -82349,27 +82383,27 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 4898,
+        "prev": 4921,
         "today": 0,
-        "cum": 4898
+        "cum": 4921
       },
       {
         "role": "하도급직원",
-        "prev": 169,
+        "prev": 172,
         "today": 0,
-        "cum": 169
+        "cum": 172
       },
       {
         "role": "작업반장",
-        "prev": 213,
+        "prev": 216,
         "today": 0,
-        "cum": 213
+        "cum": 216
       },
       {
         "role": "보통인부",
-        "prev": 327,
+        "prev": 332,
         "today": 0,
-        "cum": 327
+        "cum": 332
       },
       {
         "role": "형틀목공",
@@ -82403,9 +82437,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "신 호 수",
-        "prev": 493,
+        "prev": 501,
         "today": 0,
-        "cum": 493
+        "cum": 501
       },
       {
         "role": "조 적 공",
@@ -82487,50 +82521,50 @@ let DAILY_REPORTS = {
       },
       {
         "role": "화약주임",
-        "prev": 71,
+        "prev": 72,
         "today": 0,
-        "cum": 71
+        "cum": 72
       },
       {
         "role": "장약공",
-        "prev": 90,
+        "prev": 92,
         "today": 0,
-        "cum": 90
+        "cum": 92
       }
     ],
     "personnel_total": {
-      "prev": 6261,
+      "prev": 6306,
       "today": 0,
-      "cum": 6261
+      "cum": 6306
     },
     "equipment_detail": [
       {
         "type": "D/Z",
         "spec": "D1",
-        "prev": 100,
+        "prev": 101,
         "today": 0,
-        "cum": 100
+        "cum": 101
       },
       {
         "type": "D/Z",
         "spec": "3K",
-        "prev": 36,
+        "prev": 37,
         "today": 0,
-        "cum": 36
+        "cum": 37
       },
       {
         "type": "D/Z",
         "spec": "5K",
-        "prev": 107,
+        "prev": 109,
         "today": 0,
-        "cum": 107
+        "cum": 109
       },
       {
         "type": "D/Z",
         "spec": "6H",
-        "prev": 51,
+        "prev": 52,
         "today": 0,
-        "cum": 51
+        "cum": 52
       },
       {
         "type": "D/Z",
@@ -82542,86 +82576,86 @@ let DAILY_REPORTS = {
       {
         "type": "D/Z",
         "spec": "11N",
-        "prev": 17,
+        "prev": 18,
         "today": 0,
-        "cum": 17
+        "cum": 18
       },
       {
         "type": "D/Z",
         "spec": "11R",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "D/Z",
         "spec": "11T",
-        "prev": 111,
+        "prev": 112,
         "today": 0,
-        "cum": 111
+        "cum": 112
       },
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 266,
+        "prev": 267,
         "today": 0,
-        "cum": 266
+        "cum": 267
       },
       {
         "type": "B/H",
         "spec": "0.6",
-        "prev": 253,
+        "prev": 255,
         "today": 0,
-        "cum": 253
+        "cum": 255
       },
       {
         "type": "B/H",
         "spec": "0.8",
-        "prev": 70,
+        "prev": 71,
         "today": 0,
-        "cum": 70
+        "cum": 71
       },
       {
         "type": "B/H",
         "spec": "1",
-        "prev": 343,
+        "prev": 347,
         "today": 0,
-        "cum": 343
+        "cum": 347
       },
       {
         "type": "B/H",
         "spec": "380(1.8)",
-        "prev": 104,
+        "prev": 105,
         "today": 0,
-        "cum": 104
+        "cum": 105
       },
       {
         "type": "B/H",
         "spec": "400(1.8)",
-        "prev": 37,
+        "prev": 38,
         "today": 0,
-        "cum": 37
+        "cum": 38
       },
       {
         "type": "B/H",
         "spec": "480(2.4)",
-        "prev": 154,
+        "prev": 158,
         "today": 0,
-        "cum": 154
+        "cum": 158
       },
       {
         "type": "B/H",
         "spec": "500(2.4)",
-        "prev": 258,
+        "prev": 261,
         "today": 0,
-        "cum": 258
+        "cum": 261
       },
       {
         "type": "D/T",
         "spec": "15t",
-        "prev": 661,
+        "prev": 670,
         "today": 0,
-        "cum": 661
+        "cum": 670
       },
       {
         "type": "D/T",
@@ -82633,23 +82667,23 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "spec": "25t",
-        "prev": 785,
+        "prev": 801,
         "today": 0,
-        "cum": 785
+        "cum": 801
       },
       {
         "type": "크로라드릴",
         "spec": "1식",
-        "prev": 171,
+        "prev": 174,
         "today": 0,
-        "cum": 171
+        "cum": 174
       },
       {
         "type": "살수차",
         "spec": "1식",
-        "prev": 176,
+        "prev": 178,
         "today": 0,
-        "cum": 176
+        "cum": 178
       },
       {
         "type": "오거",
@@ -82675,55 +82709,55 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 58,
+        "prev": 59,
         "today": 0,
-        "cum": 58
+        "cum": 59
       },
       {
         "type": "그레이더",
         "spec": "1식",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "진동로라",
         "spec": "1식",
-        "prev": 92,
+        "prev": 93,
         "today": 0,
-        "cum": 92
+        "cum": 93
       }
     ],
     "equipment": [
       {
         "type": "D/Z",
-        "prev": 505,
+        "prev": 513,
         "today": 0,
-        "cum": 505
+        "cum": 513
       },
       {
         "type": "B/H",
-        "prev": 1485,
+        "prev": 1502,
         "today": 0,
-        "cum": 1485
+        "cum": 1502
       },
       {
         "type": "D/T",
-        "prev": 1508,
+        "prev": 1533,
         "today": 0,
-        "cum": 1508
+        "cum": 1533
       },
       {
         "type": "크로라드릴",
-        "prev": 171,
+        "prev": 174,
         "today": 0,
-        "cum": 171
+        "cum": 174
       },
       {
         "type": "살수차",
-        "prev": 176,
+        "prev": 178,
         "today": 0,
-        "cum": 176
+        "cum": 178
       },
       {
         "type": "오거",
@@ -82745,33 +82779,33 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 58,
+        "prev": 59,
         "today": 0,
-        "cum": 58
+        "cum": 59
       },
       {
         "type": "그레이더",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "진동로라",
-        "prev": 92,
+        "prev": 93,
         "today": 0,
-        "cum": 92
+        "cum": 93
       }
     ],
     "equipment_total": {
-      "prev": 4045,
+      "prev": 4103,
       "today": 0,
-      "cum": 4045
+      "cum": 4103
     },
     "item_actuals": {
       "토공": {
-        "cum": 17737955506,
+        "cum": 18065799717,
         "total": 104325080885,
-        "pct": 17.0
+        "pct": 17.32
       },
       "우수공": {
         "cum": 0,
@@ -82819,9 +82853,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 268348874,
+        "cum": 269050874,
         "total": 3806661020,
-        "pct": 7.05
+        "pct": 7.07
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -82835,15 +82869,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 8.78,
-      "actual": 11.89,
-      "diff": 135.37
+      "actual": 12.11,
+      "diff": 137.83
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 368013,
+        "prev": 371661,
         "today": 0,
-        "cum": 368013,
+        "cum": 371661,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -82855,16 +82889,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 771465,
+        "prev": 786520,
         "today": 0,
-        "cum": 771465,
+        "cum": 786520,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1406093.399999999,
+        "prev": 1429376.599999999,
         "today": 0,
-        "cum": 1406093.399999999,
+        "cum": 1429376.599999999,
         "start": "2025-02-01"
       }
     },
@@ -82948,27 +82982,27 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 4898,
+        "prev": 4921,
         "today": 0,
-        "cum": 4898
+        "cum": 4921
       },
       {
         "role": "하도급직원",
-        "prev": 169,
+        "prev": 172,
         "today": 0,
-        "cum": 169
+        "cum": 172
       },
       {
         "role": "작업반장",
-        "prev": 213,
+        "prev": 216,
         "today": 0,
-        "cum": 213
+        "cum": 216
       },
       {
         "role": "보통인부",
-        "prev": 327,
+        "prev": 332,
         "today": 0,
-        "cum": 327
+        "cum": 332
       },
       {
         "role": "형틀목공",
@@ -83002,9 +83036,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "신 호 수",
-        "prev": 493,
+        "prev": 501,
         "today": 0,
-        "cum": 493
+        "cum": 501
       },
       {
         "role": "조 적 공",
@@ -83086,50 +83120,50 @@ let DAILY_REPORTS = {
       },
       {
         "role": "화약주임",
-        "prev": 71,
+        "prev": 72,
         "today": 0,
-        "cum": 71
+        "cum": 72
       },
       {
         "role": "장약공",
-        "prev": 90,
+        "prev": 92,
         "today": 0,
-        "cum": 90
+        "cum": 92
       }
     ],
     "personnel_total": {
-      "prev": 6261,
+      "prev": 6306,
       "today": 0,
-      "cum": 6261
+      "cum": 6306
     },
     "equipment_detail": [
       {
         "type": "D/Z",
         "spec": "D1",
-        "prev": 100,
+        "prev": 101,
         "today": 0,
-        "cum": 100
+        "cum": 101
       },
       {
         "type": "D/Z",
         "spec": "3K",
-        "prev": 36,
+        "prev": 37,
         "today": 0,
-        "cum": 36
+        "cum": 37
       },
       {
         "type": "D/Z",
         "spec": "5K",
-        "prev": 107,
+        "prev": 109,
         "today": 0,
-        "cum": 107
+        "cum": 109
       },
       {
         "type": "D/Z",
         "spec": "6H",
-        "prev": 51,
+        "prev": 52,
         "today": 0,
-        "cum": 51
+        "cum": 52
       },
       {
         "type": "D/Z",
@@ -83141,86 +83175,86 @@ let DAILY_REPORTS = {
       {
         "type": "D/Z",
         "spec": "11N",
-        "prev": 17,
+        "prev": 18,
         "today": 0,
-        "cum": 17
+        "cum": 18
       },
       {
         "type": "D/Z",
         "spec": "11R",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "D/Z",
         "spec": "11T",
-        "prev": 111,
+        "prev": 112,
         "today": 0,
-        "cum": 111
+        "cum": 112
       },
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 266,
+        "prev": 267,
         "today": 0,
-        "cum": 266
+        "cum": 267
       },
       {
         "type": "B/H",
         "spec": "0.6",
-        "prev": 253,
+        "prev": 255,
         "today": 0,
-        "cum": 253
+        "cum": 255
       },
       {
         "type": "B/H",
         "spec": "0.8",
-        "prev": 70,
+        "prev": 71,
         "today": 0,
-        "cum": 70
+        "cum": 71
       },
       {
         "type": "B/H",
         "spec": "1",
-        "prev": 343,
+        "prev": 347,
         "today": 0,
-        "cum": 343
+        "cum": 347
       },
       {
         "type": "B/H",
         "spec": "380(1.8)",
-        "prev": 104,
+        "prev": 105,
         "today": 0,
-        "cum": 104
+        "cum": 105
       },
       {
         "type": "B/H",
         "spec": "400(1.8)",
-        "prev": 37,
+        "prev": 38,
         "today": 0,
-        "cum": 37
+        "cum": 38
       },
       {
         "type": "B/H",
         "spec": "480(2.4)",
-        "prev": 154,
+        "prev": 158,
         "today": 0,
-        "cum": 154
+        "cum": 158
       },
       {
         "type": "B/H",
         "spec": "500(2.4)",
-        "prev": 258,
+        "prev": 261,
         "today": 0,
-        "cum": 258
+        "cum": 261
       },
       {
         "type": "D/T",
         "spec": "15t",
-        "prev": 661,
+        "prev": 670,
         "today": 0,
-        "cum": 661
+        "cum": 670
       },
       {
         "type": "D/T",
@@ -83232,23 +83266,23 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "spec": "25t",
-        "prev": 785,
+        "prev": 801,
         "today": 0,
-        "cum": 785
+        "cum": 801
       },
       {
         "type": "크로라드릴",
         "spec": "1식",
-        "prev": 171,
+        "prev": 174,
         "today": 0,
-        "cum": 171
+        "cum": 174
       },
       {
         "type": "살수차",
         "spec": "1식",
-        "prev": 176,
+        "prev": 178,
         "today": 0,
-        "cum": 176
+        "cum": 178
       },
       {
         "type": "오거",
@@ -83274,55 +83308,55 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 58,
+        "prev": 59,
         "today": 0,
-        "cum": 58
+        "cum": 59
       },
       {
         "type": "그레이더",
         "spec": "1식",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "진동로라",
         "spec": "1식",
-        "prev": 92,
+        "prev": 93,
         "today": 0,
-        "cum": 92
+        "cum": 93
       }
     ],
     "equipment": [
       {
         "type": "D/Z",
-        "prev": 505,
+        "prev": 513,
         "today": 0,
-        "cum": 505
+        "cum": 513
       },
       {
         "type": "B/H",
-        "prev": 1485,
+        "prev": 1502,
         "today": 0,
-        "cum": 1485
+        "cum": 1502
       },
       {
         "type": "D/T",
-        "prev": 1508,
+        "prev": 1533,
         "today": 0,
-        "cum": 1508
+        "cum": 1533
       },
       {
         "type": "크로라드릴",
-        "prev": 171,
+        "prev": 174,
         "today": 0,
-        "cum": 171
+        "cum": 174
       },
       {
         "type": "살수차",
-        "prev": 176,
+        "prev": 178,
         "today": 0,
-        "cum": 176
+        "cum": 178
       },
       {
         "type": "오거",
@@ -83344,33 +83378,33 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 58,
+        "prev": 59,
         "today": 0,
-        "cum": 58
+        "cum": 59
       },
       {
         "type": "그레이더",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "진동로라",
-        "prev": 92,
+        "prev": 93,
         "today": 0,
-        "cum": 92
+        "cum": 93
       }
     ],
     "equipment_total": {
-      "prev": 4045,
+      "prev": 4103,
       "today": 0,
-      "cum": 4045
+      "cum": 4103
     },
     "item_actuals": {
       "토공": {
-        "cum": 17737955506,
+        "cum": 18065799717,
         "total": 104325080885,
-        "pct": 17.0
+        "pct": 17.32
       },
       "우수공": {
         "cum": 0,
@@ -83418,9 +83452,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 268808089,
+        "cum": 269510089,
         "total": 3806661020,
-        "pct": 7.06
+        "pct": 7.08
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -83434,15 +83468,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 8.83,
-      "actual": 11.89,
-      "diff": 134.69
+      "actual": 12.11,
+      "diff": 137.14
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 368013,
+        "prev": 371661,
         "today": 0,
-        "cum": 368013,
+        "cum": 371661,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -83454,16 +83488,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 771465,
+        "prev": 786520,
         "today": 0,
-        "cum": 771465,
+        "cum": 786520,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1406093.399999999,
+        "prev": 1429376.599999999,
         "today": 0,
-        "cum": 1406093.399999999,
+        "cum": 1429376.599999999,
         "start": "2025-02-01"
       }
     },
@@ -83545,27 +83579,27 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 4898,
+        "prev": 4921,
         "today": 0,
-        "cum": 4898
+        "cum": 4921
       },
       {
         "role": "하도급직원",
-        "prev": 169,
+        "prev": 172,
         "today": 0,
-        "cum": 169
+        "cum": 172
       },
       {
         "role": "작업반장",
-        "prev": 213,
+        "prev": 216,
         "today": 0,
-        "cum": 213
+        "cum": 216
       },
       {
         "role": "보통인부",
-        "prev": 327,
+        "prev": 332,
         "today": 0,
-        "cum": 327
+        "cum": 332
       },
       {
         "role": "형틀목공",
@@ -83599,9 +83633,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "신 호 수",
-        "prev": 493,
+        "prev": 501,
         "today": 0,
-        "cum": 493
+        "cum": 501
       },
       {
         "role": "조 적 공",
@@ -83683,50 +83717,50 @@ let DAILY_REPORTS = {
       },
       {
         "role": "화약주임",
-        "prev": 71,
+        "prev": 72,
         "today": 0,
-        "cum": 71
+        "cum": 72
       },
       {
         "role": "장약공",
-        "prev": 90,
+        "prev": 92,
         "today": 0,
-        "cum": 90
+        "cum": 92
       }
     ],
     "personnel_total": {
-      "prev": 6261,
+      "prev": 6306,
       "today": 0,
-      "cum": 6261
+      "cum": 6306
     },
     "equipment_detail": [
       {
         "type": "D/Z",
         "spec": "D1",
-        "prev": 100,
+        "prev": 101,
         "today": 0,
-        "cum": 100
+        "cum": 101
       },
       {
         "type": "D/Z",
         "spec": "3K",
-        "prev": 36,
+        "prev": 37,
         "today": 0,
-        "cum": 36
+        "cum": 37
       },
       {
         "type": "D/Z",
         "spec": "5K",
-        "prev": 107,
+        "prev": 109,
         "today": 0,
-        "cum": 107
+        "cum": 109
       },
       {
         "type": "D/Z",
         "spec": "6H",
-        "prev": 51,
+        "prev": 52,
         "today": 0,
-        "cum": 51
+        "cum": 52
       },
       {
         "type": "D/Z",
@@ -83738,86 +83772,86 @@ let DAILY_REPORTS = {
       {
         "type": "D/Z",
         "spec": "11N",
-        "prev": 17,
+        "prev": 18,
         "today": 0,
-        "cum": 17
+        "cum": 18
       },
       {
         "type": "D/Z",
         "spec": "11R",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "D/Z",
         "spec": "11T",
-        "prev": 111,
+        "prev": 112,
         "today": 0,
-        "cum": 111
+        "cum": 112
       },
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 266,
+        "prev": 267,
         "today": 0,
-        "cum": 266
+        "cum": 267
       },
       {
         "type": "B/H",
         "spec": "0.6",
-        "prev": 253,
+        "prev": 255,
         "today": 0,
-        "cum": 253
+        "cum": 255
       },
       {
         "type": "B/H",
         "spec": "0.8",
-        "prev": 70,
+        "prev": 71,
         "today": 0,
-        "cum": 70
+        "cum": 71
       },
       {
         "type": "B/H",
         "spec": "1",
-        "prev": 343,
+        "prev": 347,
         "today": 0,
-        "cum": 343
+        "cum": 347
       },
       {
         "type": "B/H",
         "spec": "380(1.8)",
-        "prev": 104,
+        "prev": 105,
         "today": 0,
-        "cum": 104
+        "cum": 105
       },
       {
         "type": "B/H",
         "spec": "400(1.8)",
-        "prev": 37,
+        "prev": 38,
         "today": 0,
-        "cum": 37
+        "cum": 38
       },
       {
         "type": "B/H",
         "spec": "480(2.4)",
-        "prev": 154,
+        "prev": 158,
         "today": 0,
-        "cum": 154
+        "cum": 158
       },
       {
         "type": "B/H",
         "spec": "500(2.4)",
-        "prev": 258,
+        "prev": 261,
         "today": 0,
-        "cum": 258
+        "cum": 261
       },
       {
         "type": "D/T",
         "spec": "15t",
-        "prev": 661,
+        "prev": 670,
         "today": 0,
-        "cum": 661
+        "cum": 670
       },
       {
         "type": "D/T",
@@ -83829,23 +83863,23 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "spec": "25t",
-        "prev": 785,
+        "prev": 801,
         "today": 0,
-        "cum": 785
+        "cum": 801
       },
       {
         "type": "크로라드릴",
         "spec": "1식",
-        "prev": 171,
+        "prev": 174,
         "today": 0,
-        "cum": 171
+        "cum": 174
       },
       {
         "type": "살수차",
         "spec": "1식",
-        "prev": 176,
+        "prev": 178,
         "today": 0,
-        "cum": 176
+        "cum": 178
       },
       {
         "type": "오거",
@@ -83871,55 +83905,55 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 58,
+        "prev": 59,
         "today": 0,
-        "cum": 58
+        "cum": 59
       },
       {
         "type": "그레이더",
         "spec": "1식",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "진동로라",
         "spec": "1식",
-        "prev": 92,
+        "prev": 93,
         "today": 0,
-        "cum": 92
+        "cum": 93
       }
     ],
     "equipment": [
       {
         "type": "D/Z",
-        "prev": 505,
+        "prev": 513,
         "today": 0,
-        "cum": 505
+        "cum": 513
       },
       {
         "type": "B/H",
-        "prev": 1485,
+        "prev": 1502,
         "today": 0,
-        "cum": 1485
+        "cum": 1502
       },
       {
         "type": "D/T",
-        "prev": 1508,
+        "prev": 1533,
         "today": 0,
-        "cum": 1508
+        "cum": 1533
       },
       {
         "type": "크로라드릴",
-        "prev": 171,
+        "prev": 174,
         "today": 0,
-        "cum": 171
+        "cum": 174
       },
       {
         "type": "살수차",
-        "prev": 176,
+        "prev": 178,
         "today": 0,
-        "cum": 176
+        "cum": 178
       },
       {
         "type": "오거",
@@ -83941,33 +83975,33 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 58,
+        "prev": 59,
         "today": 0,
-        "cum": 58
+        "cum": 59
       },
       {
         "type": "그레이더",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "진동로라",
-        "prev": 92,
+        "prev": 93,
         "today": 0,
-        "cum": 92
+        "cum": 93
       }
     ],
     "equipment_total": {
-      "prev": 4045,
+      "prev": 4103,
       "today": 0,
-      "cum": 4045
+      "cum": 4103
     },
     "item_actuals": {
       "토공": {
-        "cum": 17737955506,
+        "cum": 18065799717,
         "total": 104325080885,
-        "pct": 17.0
+        "pct": 17.32
       },
       "우수공": {
         "cum": 0,
@@ -84015,9 +84049,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 269267304,
+        "cum": 269969304,
         "total": 3806661020,
-        "pct": 7.07
+        "pct": 7.09
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -84031,15 +84065,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 8.87,
-      "actual": 11.89,
-      "diff": 134.02
+      "actual": 12.11,
+      "diff": 136.46
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 368013,
+        "prev": 371661,
         "today": 0,
-        "cum": 368013,
+        "cum": 371661,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -84051,16 +84085,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 771465,
+        "prev": 786520,
         "today": 0,
-        "cum": 771465,
+        "cum": 786520,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1406093.399999999,
+        "prev": 1429376.599999999,
         "today": 0,
-        "cum": 1406093.399999999,
+        "cum": 1429376.599999999,
         "start": "2025-02-01"
       }
     },
@@ -84125,27 +84159,27 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 4898,
+        "prev": 4921,
         "today": 0,
-        "cum": 4898
+        "cum": 4921
       },
       {
         "role": "하도급직원",
-        "prev": 169,
+        "prev": 172,
         "today": 0,
-        "cum": 169
+        "cum": 172
       },
       {
         "role": "작업반장",
-        "prev": 213,
+        "prev": 216,
         "today": 0,
-        "cum": 213
+        "cum": 216
       },
       {
         "role": "보통인부",
-        "prev": 327,
+        "prev": 332,
         "today": 0,
-        "cum": 327
+        "cum": 332
       },
       {
         "role": "형틀목공",
@@ -84179,9 +84213,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "신 호 수",
-        "prev": 493,
+        "prev": 501,
         "today": 0,
-        "cum": 493
+        "cum": 501
       },
       {
         "role": "조 적 공",
@@ -84263,50 +84297,50 @@ let DAILY_REPORTS = {
       },
       {
         "role": "화약주임",
-        "prev": 71,
+        "prev": 72,
         "today": 0,
-        "cum": 71
+        "cum": 72
       },
       {
         "role": "장약공",
-        "prev": 90,
+        "prev": 92,
         "today": 0,
-        "cum": 90
+        "cum": 92
       }
     ],
     "personnel_total": {
-      "prev": 6261,
+      "prev": 6306,
       "today": 0,
-      "cum": 6261
+      "cum": 6306
     },
     "equipment_detail": [
       {
         "type": "D/Z",
         "spec": "D1",
-        "prev": 100,
+        "prev": 101,
         "today": 0,
-        "cum": 100
+        "cum": 101
       },
       {
         "type": "D/Z",
         "spec": "3K",
-        "prev": 36,
+        "prev": 37,
         "today": 0,
-        "cum": 36
+        "cum": 37
       },
       {
         "type": "D/Z",
         "spec": "5K",
-        "prev": 107,
+        "prev": 109,
         "today": 0,
-        "cum": 107
+        "cum": 109
       },
       {
         "type": "D/Z",
         "spec": "6H",
-        "prev": 51,
+        "prev": 52,
         "today": 0,
-        "cum": 51
+        "cum": 52
       },
       {
         "type": "D/Z",
@@ -84318,86 +84352,86 @@ let DAILY_REPORTS = {
       {
         "type": "D/Z",
         "spec": "11N",
-        "prev": 17,
+        "prev": 18,
         "today": 0,
-        "cum": 17
+        "cum": 18
       },
       {
         "type": "D/Z",
         "spec": "11R",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "D/Z",
         "spec": "11T",
-        "prev": 111,
+        "prev": 112,
         "today": 0,
-        "cum": 111
+        "cum": 112
       },
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 266,
+        "prev": 267,
         "today": 0,
-        "cum": 266
+        "cum": 267
       },
       {
         "type": "B/H",
         "spec": "0.6",
-        "prev": 253,
+        "prev": 255,
         "today": 0,
-        "cum": 253
+        "cum": 255
       },
       {
         "type": "B/H",
         "spec": "0.8",
-        "prev": 70,
+        "prev": 71,
         "today": 0,
-        "cum": 70
+        "cum": 71
       },
       {
         "type": "B/H",
         "spec": "1",
-        "prev": 343,
+        "prev": 347,
         "today": 0,
-        "cum": 343
+        "cum": 347
       },
       {
         "type": "B/H",
         "spec": "380(1.8)",
-        "prev": 104,
+        "prev": 105,
         "today": 0,
-        "cum": 104
+        "cum": 105
       },
       {
         "type": "B/H",
         "spec": "400(1.8)",
-        "prev": 37,
+        "prev": 38,
         "today": 0,
-        "cum": 37
+        "cum": 38
       },
       {
         "type": "B/H",
         "spec": "480(2.4)",
-        "prev": 154,
+        "prev": 158,
         "today": 0,
-        "cum": 154
+        "cum": 158
       },
       {
         "type": "B/H",
         "spec": "500(2.4)",
-        "prev": 258,
+        "prev": 261,
         "today": 0,
-        "cum": 258
+        "cum": 261
       },
       {
         "type": "D/T",
         "spec": "15t",
-        "prev": 661,
+        "prev": 670,
         "today": 0,
-        "cum": 661
+        "cum": 670
       },
       {
         "type": "D/T",
@@ -84409,23 +84443,23 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "spec": "25t",
-        "prev": 785,
+        "prev": 801,
         "today": 0,
-        "cum": 785
+        "cum": 801
       },
       {
         "type": "크로라드릴",
         "spec": "1식",
-        "prev": 171,
+        "prev": 174,
         "today": 0,
-        "cum": 171
+        "cum": 174
       },
       {
         "type": "살수차",
         "spec": "1식",
-        "prev": 176,
+        "prev": 178,
         "today": 0,
-        "cum": 176
+        "cum": 178
       },
       {
         "type": "오거",
@@ -84451,55 +84485,55 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 58,
+        "prev": 59,
         "today": 0,
-        "cum": 58
+        "cum": 59
       },
       {
         "type": "그레이더",
         "spec": "1식",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "진동로라",
         "spec": "1식",
-        "prev": 92,
+        "prev": 93,
         "today": 0,
-        "cum": 92
+        "cum": 93
       }
     ],
     "equipment": [
       {
         "type": "D/Z",
-        "prev": 505,
+        "prev": 513,
         "today": 0,
-        "cum": 505
+        "cum": 513
       },
       {
         "type": "B/H",
-        "prev": 1485,
+        "prev": 1502,
         "today": 0,
-        "cum": 1485
+        "cum": 1502
       },
       {
         "type": "D/T",
-        "prev": 1508,
+        "prev": 1533,
         "today": 0,
-        "cum": 1508
+        "cum": 1533
       },
       {
         "type": "크로라드릴",
-        "prev": 171,
+        "prev": 174,
         "today": 0,
-        "cum": 171
+        "cum": 174
       },
       {
         "type": "살수차",
-        "prev": 176,
+        "prev": 178,
         "today": 0,
-        "cum": 176
+        "cum": 178
       },
       {
         "type": "오거",
@@ -84521,33 +84555,33 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 58,
+        "prev": 59,
         "today": 0,
-        "cum": 58
+        "cum": 59
       },
       {
         "type": "그레이더",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "진동로라",
-        "prev": 92,
+        "prev": 93,
         "today": 0,
-        "cum": 92
+        "cum": 93
       }
     ],
     "equipment_total": {
-      "prev": 4045,
+      "prev": 4103,
       "today": 0,
-      "cum": 4045
+      "cum": 4103
     },
     "item_actuals": {
       "토공": {
-        "cum": 17737955506,
+        "cum": 18065799717,
         "total": 104325080885,
-        "pct": 17.0
+        "pct": 17.32
       },
       "우수공": {
         "cum": 0,
@@ -84595,9 +84629,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 269726519,
+        "cum": 270428519,
         "total": 3806661020,
-        "pct": 7.09
+        "pct": 7.1
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -84611,15 +84645,15 @@ let DAILY_REPORTS = {
     "weather": "비",
     "progress": {
       "plan": 0,
-      "actual": 11.89,
+      "actual": 12.11,
       "diff": 0
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 368013,
+        "prev": 371661,
         "today": 0,
-        "cum": 368013,
+        "cum": 371661,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -84631,16 +84665,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 771465,
+        "prev": 786520,
         "today": 0,
-        "cum": 771465,
+        "cum": 786520,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1406093.399999999,
+        "prev": 1429376.599999999,
         "today": 0,
-        "cum": 1406093.399999999,
+        "cum": 1429376.599999999,
         "start": "2025-02-01"
       }
     },
@@ -84661,27 +84695,27 @@ let DAILY_REPORTS = {
     "personnel": [
       {
         "role": "직    원",
-        "prev": 4898,
+        "prev": 4921,
         "today": 0,
-        "cum": 4898
+        "cum": 4921
       },
       {
         "role": "하도급직원",
-        "prev": 169,
+        "prev": 172,
         "today": 0,
-        "cum": 169
+        "cum": 172
       },
       {
         "role": "작업반장",
-        "prev": 213,
+        "prev": 216,
         "today": 0,
-        "cum": 213
+        "cum": 216
       },
       {
         "role": "보통인부",
-        "prev": 327,
+        "prev": 332,
         "today": 0,
-        "cum": 327
+        "cum": 332
       },
       {
         "role": "형틀목공",
@@ -84715,9 +84749,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "신 호 수",
-        "prev": 493,
+        "prev": 501,
         "today": 0,
-        "cum": 493
+        "cum": 501
       },
       {
         "role": "조 적 공",
@@ -84799,50 +84833,50 @@ let DAILY_REPORTS = {
       },
       {
         "role": "화약주임",
-        "prev": 71,
+        "prev": 72,
         "today": 0,
-        "cum": 71
+        "cum": 72
       },
       {
         "role": "장약공",
-        "prev": 90,
+        "prev": 92,
         "today": 0,
-        "cum": 90
+        "cum": 92
       }
     ],
     "personnel_total": {
-      "prev": 6261,
+      "prev": 6306,
       "today": 0,
-      "cum": 6261
+      "cum": 6306
     },
     "equipment_detail": [
       {
         "type": "D/Z",
         "spec": "D1",
-        "prev": 100,
+        "prev": 101,
         "today": 0,
-        "cum": 100
+        "cum": 101
       },
       {
         "type": "D/Z",
         "spec": "3K",
-        "prev": 36,
+        "prev": 37,
         "today": 0,
-        "cum": 36
+        "cum": 37
       },
       {
         "type": "D/Z",
         "spec": "5K",
-        "prev": 107,
+        "prev": 109,
         "today": 0,
-        "cum": 107
+        "cum": 109
       },
       {
         "type": "D/Z",
         "spec": "6H",
-        "prev": 51,
+        "prev": 52,
         "today": 0,
-        "cum": 51
+        "cum": 52
       },
       {
         "type": "D/Z",
@@ -84854,86 +84888,86 @@ let DAILY_REPORTS = {
       {
         "type": "D/Z",
         "spec": "11N",
-        "prev": 17,
+        "prev": 18,
         "today": 0,
-        "cum": 17
+        "cum": 18
       },
       {
         "type": "D/Z",
         "spec": "11R",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "D/Z",
         "spec": "11T",
-        "prev": 111,
+        "prev": 112,
         "today": 0,
-        "cum": 111
+        "cum": 112
       },
       {
         "type": "B/H",
         "spec": "0.2",
-        "prev": 266,
+        "prev": 267,
         "today": 0,
-        "cum": 266
+        "cum": 267
       },
       {
         "type": "B/H",
         "spec": "0.6",
-        "prev": 253,
+        "prev": 255,
         "today": 0,
-        "cum": 253
+        "cum": 255
       },
       {
         "type": "B/H",
         "spec": "0.8",
-        "prev": 70,
+        "prev": 71,
         "today": 0,
-        "cum": 70
+        "cum": 71
       },
       {
         "type": "B/H",
         "spec": "1",
-        "prev": 343,
+        "prev": 347,
         "today": 0,
-        "cum": 343
+        "cum": 347
       },
       {
         "type": "B/H",
         "spec": "380(1.8)",
-        "prev": 104,
+        "prev": 105,
         "today": 0,
-        "cum": 104
+        "cum": 105
       },
       {
         "type": "B/H",
         "spec": "400(1.8)",
-        "prev": 37,
+        "prev": 38,
         "today": 0,
-        "cum": 37
+        "cum": 38
       },
       {
         "type": "B/H",
         "spec": "480(2.4)",
-        "prev": 154,
+        "prev": 158,
         "today": 0,
-        "cum": 154
+        "cum": 158
       },
       {
         "type": "B/H",
         "spec": "500(2.4)",
-        "prev": 258,
+        "prev": 261,
         "today": 0,
-        "cum": 258
+        "cum": 261
       },
       {
         "type": "D/T",
         "spec": "15t",
-        "prev": 661,
+        "prev": 670,
         "today": 0,
-        "cum": 661
+        "cum": 670
       },
       {
         "type": "D/T",
@@ -84945,23 +84979,23 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "spec": "25t",
-        "prev": 785,
+        "prev": 801,
         "today": 0,
-        "cum": 785
+        "cum": 801
       },
       {
         "type": "크로라드릴",
         "spec": "1식",
-        "prev": 171,
+        "prev": 174,
         "today": 0,
-        "cum": 171
+        "cum": 174
       },
       {
         "type": "살수차",
         "spec": "1식",
-        "prev": 176,
+        "prev": 178,
         "today": 0,
-        "cum": 176
+        "cum": 178
       },
       {
         "type": "오거",
@@ -84987,55 +85021,55 @@ let DAILY_REPORTS = {
       {
         "type": "임목파쇄기",
         "spec": "1식",
-        "prev": 58,
+        "prev": 59,
         "today": 0,
-        "cum": 58
+        "cum": 59
       },
       {
         "type": "그레이더",
         "spec": "1식",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "진동로라",
         "spec": "1식",
-        "prev": 92,
+        "prev": 93,
         "today": 0,
-        "cum": 92
+        "cum": 93
       }
     ],
     "equipment": [
       {
         "type": "D/Z",
-        "prev": 505,
+        "prev": 513,
         "today": 0,
-        "cum": 505
+        "cum": 513
       },
       {
         "type": "B/H",
-        "prev": 1485,
+        "prev": 1502,
         "today": 0,
-        "cum": 1485
+        "cum": 1502
       },
       {
         "type": "D/T",
-        "prev": 1508,
+        "prev": 1533,
         "today": 0,
-        "cum": 1508
+        "cum": 1533
       },
       {
         "type": "크로라드릴",
-        "prev": 171,
+        "prev": 174,
         "today": 0,
-        "cum": 171
+        "cum": 174
       },
       {
         "type": "살수차",
-        "prev": 176,
+        "prev": 178,
         "today": 0,
-        "cum": 176
+        "cum": 178
       },
       {
         "type": "오거",
@@ -85057,27 +85091,27 @@ let DAILY_REPORTS = {
       },
       {
         "type": "임목파쇄기",
-        "prev": 58,
+        "prev": 59,
         "today": 0,
-        "cum": 58
+        "cum": 59
       },
       {
         "type": "그레이더",
-        "prev": 44,
+        "prev": 45,
         "today": 0,
-        "cum": 44
+        "cum": 45
       },
       {
         "type": "진동로라",
-        "prev": 92,
+        "prev": 93,
         "today": 0,
-        "cum": 92
+        "cum": 93
       }
     ],
     "equipment_total": {
-      "prev": 4045,
+      "prev": 4103,
       "today": 0,
-      "cum": 4045
+      "cum": 4103
     },
     "item_actuals": {
       "토공": {
