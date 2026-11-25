@@ -13,7 +13,7 @@ window.LIVE_CONFIG = {
   },
 
   path: "positions",      // Realtime Database 안의 저장 위치
-  staleSec: 60,           // 이 시간(초) 동안 갱신이 없으면 '신호없음'(회색)
+  staleSec: 240,          // 이 시간(초) 동안 갱신이 없으면 '신호없음'(회색). Traccar 정지중 60~120초 전송 기준
   hideMin: 30,            // 이 시간(분) 넘게 갱신이 없으면 지도에서 숨김
 
   // 구역(선택). 좌표는 [위도, 경도] 순서. danger:true 면 위험구역(인력 진입 시 경고)
