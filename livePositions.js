@@ -93,7 +93,8 @@
     '.lv-it.stale{opacity:.5}',
     '.lv-wrap{background:none;border:0}',
     '.lv-mk{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.6)}',
-    '.lv-mk.pp{background:var(--blue,#2979ff)}.lv-mk.eq{background:var(--orange,#ff6d00)}.lv-mk.stale{background:#6b7280;opacity:.7}',
+    '.lv-mk.pp{background:var(--blue,#2979ff)}.lv-mk.st{background:var(--green,#00c46a)}.lv-mk.eq{background:var(--orange,#ff6d00);font-weight:800;font-size:14px;color:#fff}.lv-mk.stale{background:#6b7280!important;opacity:.7}',
+    '.lv-kc{display:inline-flex;align-items:center;gap:4px}.lv-kd{width:12px;height:12px;border-radius:50%;display:inline-block;color:#fff;font-size:8px;font-weight:800;line-height:12px;text-align:center}',
     '.lv-lb{display:none;position:absolute;left:50%;top:31px;transform:translateX(-50%);white-space:nowrap;font-weight:700;font-size:10px;color:#fff;background:rgba(0,0,0,.65);padding:0 4px;border-radius:3px}',
     '.lv-showlb .lv-lb{display:block}',
     '.lv-zl{background:none;border:0;color:#bae6fd;font-weight:700;font-size:11px;text-shadow:0 0 3px #000;white-space:nowrap}',
@@ -123,6 +124,13 @@
       if (zones.length) zoneLayer.addTo(map);
     }
 
+    function typeOptions() {
+      var o = '<option value="all">전체</option><option value="equip">장비 전체</option>';
+      (C.equipKinds || []).forEach(function (k) { o += '<option value="equip:' + esc(k.key) + '">· ' + esc(k.key) + '</option>'; });
+      o += '<option value="equip:기타">· 기타 장비</option><option value="person">인력(신호수)</option><option value="staff">직원</option>';
+      return o;
+    }
+
     /* 패널 (지도 우측 하단, 기본은 접힌 상태) */
     var Ctl = L.Control.extend({
       options: { position: 'bottomright' },
@@ -134,7 +142,7 @@
           '<div class="lv-row"><label><input type="checkbox" id="lv-show" checked> 지도에 표시</label></div>' +
           '<div class="lv-row" id="lv-counts"></div>' +
           '<div class="lv-alert" id="lv-alert"></div>' +
-          '<div class="lv-row"><select id="lv-type"><option value="all">전체</option><option value="person">인력</option><option value="equip">장비</option></select>' +
+          '<div class="lv-row"><select id="lv-type">' + typeOptions() + '</select>' +
           '<input type="text" id="lv-q" placeholder="이름·업체 검색"></div>' +
           '<div class="lv-zones" id="lv-zones"></div>' +
           '<div class="lv-list" id="lv-list"></div></div>';
@@ -170,6 +178,34 @@
     function syncLabels() { map.getContainer().classList.toggle('lv-showlb', map.getZoom() >= 16); }
     map.on('zoomend', syncLabels); syncLabels();
 
+    /* ---- 구분: 장비(종류별) / 인력 / 직원 ---- */
+    var KINDS = C.equipKinds || [];
+    var ETC = { key: '기타', mark: '장', color: '#78716c' };
+    function typeOf(e) { return e.type === 'equip' ? 'equip' : (e.type === 'staff' ? 'staff' : 'person'); }
+    function kindOf(e) {                       // 장비 종류 (kind 값 → 없으면 이름 첫 단어)
+      var raw = String(e.kind || '').trim();
+      var first = String(e.label || e.name || '').trim().split(/\s+/)[0];
+      var cand = raw || first;
+      for (var i = 0; i < KINDS.length; i++) {
+        var names = [KINDS[i].key].concat(KINDS[i].alias || []);
+        for (var j = 0; j < names.length; j++) if (cand === names[j]) return KINDS[i];
+      }
+      return ETC;
+    }
+    function matchFilter(e) {
+      var v = f.type, t = typeOf(e);
+      if (v === 'all') return true;
+      if (v === 'equip') return t === 'equip';
+      if (v.indexOf('equip:') === 0) return t === 'equip' && kindOf(e).key === v.slice(6);
+      return t === v;
+    }
+    function nameOf(e) { return typeOf(e) === 'equip' ? (e.label || e.name) : e.name; }
+    function markHtml(e, s) {                  // 마커/목록 앞 표시
+      var t = typeOf(e);
+      if (t === 'equip') { var k = kindOf(e); return { cls: 'eq', style: s === 'stale' ? '' : ' style="background:' + k.color + '"', txt: k.mark }; }
+      return { cls: t === 'staff' ? 'st' : 'pp', style: '', txt: t === 'staff' ? '👔' : '👷' };
+    }
+
     function now() { return Date.now() + offset; }
     function zoneOf(e) {
       for (var i = 0; i < zones.length; i++) if (inPoly(e.lat, e.lng, zones[i].coords)) return i;
@@ -177,15 +213,17 @@
     }
 
     function mkIcon(e, s) {
-      var eq = e.type === 'equip';
+      var m = markHtml(e, s);
       return L.divIcon({
         className: 'lv-wrap', iconSize: [28, 28], iconAnchor: [14, 14],
-        html: '<div class="lv-mk ' + (eq ? 'eq' : 'pp') + (s === 'stale' ? ' stale' : '') + '">' + (eq ? '🚜' : '👷') + '</div><div class="lv-lb">' + esc(eq ? (e.label || e.name) : e.name) + '</div>'
+        html: '<div class="lv-mk ' + m.cls + (s === 'stale' ? ' stale' : '') + '"' + m.style + '>' + m.txt + '</div><div class="lv-lb">' + esc(nameOf(e)) + '</div>'
       });
     }
     function popupHtml(e, age) {
-      return '<b>' + esc(e.type === 'equip' ? (e.label || '장비') : e.name) + '</b><br>' +
-        (e.type === 'equip' && e.name ? '운전원: ' + esc(e.name) + '<br>' : '') +
+      var t = typeOf(e);
+      return '<b>' + esc(t === 'equip' ? (e.label || '장비') : e.name) + '</b>' +
+        (t === 'equip' ? ' <small>(' + esc(kindOf(e).key) + ')</small>' : (t === 'staff' ? ' <small>(직원)</small>' : '')) + '<br>' +
+        (t === 'equip' && e.name && e.name !== e.label ? '운전원: ' + esc(e.name) + '<br>' : '') +
         (e.company ? esc(e.company) + '<br>' : '') +
         '갱신 ' + ago(age) + (e.acc ? ' · 정확도 ±' + Math.round(e.acc) + 'm' : '');
     }
@@ -193,7 +231,7 @@
     /* 렌더 */
     function render() {
       var t = now(), list = [], keep = {};
-      var cnt = { person: 0, equip: 0, stale: 0 };
+      var cnt = { person: 0, staff: 0, equip: 0, stale: 0, kinds: {} };
       Object.keys(ents).forEach(function (id) {
         var e = ents[id];
         if (!e || typeof e.lat !== 'number' || typeof e.lng !== 'number') return;
@@ -201,13 +239,13 @@
         if (age > HIDE) return;
         var s = age > STALE ? 'stale' : 'live';
         var e2 = { id: id, e: e, age: age, s: s, z: zoneOf(e) };
-        cnt[e.type === 'equip' ? 'equip' : 'person']++;   // 신호없음도 인원·장비 합계에 포함
+        var tp = typeOf(e);
+        cnt[tp]++;                                          // 신호없음도 합계에 포함
+        if (tp === 'equip') { var kk = kindOf(e).key; cnt.kinds[kk] = (cnt.kinds[kk] || 0) + 1; }
         if (s === 'stale') cnt.stale++;
-        var isEq = e.type === 'equip';
-        if (f.type === 'person' && isEq) return;
-        if (f.type === 'equip' && !isEq) return;
+        if (!matchFilter(e)) return;
         if (f.q) {
-          var hay = (e.name + ' ' + (e.company || '') + ' ' + (e.label || '')).toLowerCase();
+          var hay = (e.name + ' ' + (e.company || '') + ' ' + (e.label || '') + ' ' + (e.kind || '')).toLowerCase();
           if (hay.indexOf(f.q.toLowerCase()) < 0) return;
         }
         list.push(e2); keep[id] = 1;
@@ -223,21 +261,25 @@
         m.getPopup().setContent(popupHtml(x.e, x.age));
       });
 
+      var kc = (C.equipKinds || []).concat([ETC]).filter(function (k) { return cnt.kinds[k.key]; }).map(function (k) {
+        return '<span class="lv-chip lv-kc"><span class="lv-kd" style="background:' + k.color + '">' + esc(k.mark) + '</span>' + esc(k.key) + ' ' + cnt.kinds[k.key] + '</span>';
+      }).join('');
       $('lv-counts').innerHTML =
-        '<span class="lv-chip">👷 ' + cnt.person + '</span><span class="lv-chip">🚜 ' + cnt.equip + '</span>' +
-        (cnt.stale ? '<span class="lv-chip">⚠ 신호없음 ' + cnt.stale + '</span>' : '');
+        '<span class="lv-chip">장비 ' + cnt.equip + '</span><span class="lv-chip">👷 인력 ' + cnt.person + '</span><span class="lv-chip">👔 직원 ' + cnt.staff + '</span>' +
+        (cnt.stale ? '<span class="lv-chip">⚠ 신호없음 ' + cnt.stale + '</span>' : '') +
+        (kc ? '<div class="lv-row" style="width:100%;margin:2px 0 0">' + kc + '</div>' : '');
 
       /* 구역 요약 + 위험구역 경고 */
       var zc = zones.map(function () { return { p: 0, q: 0, names: [] }; });
       list.forEach(function (x) {
         if (x.z < 0 || x.s !== 'live') return;
-        if (x.e.type === 'equip') zc[x.z].q++; else { zc[x.z].p++; zc[x.z].names.push(x.e.name); }
+        if (typeOf(x.e) === 'equip') zc[x.z].q++; else { zc[x.z].p++; zc[x.z].names.push(x.e.name); }
       });
       $('lv-zones').innerHTML = zones.map(function (z, i) {
-        return '<div class="' + (z.danger ? 'dg' : '') + '"><span>' + (z.danger ? '⚠ ' : '') + esc(z.name) + '</span><span>👷' + zc[i].p + ' 🚜' + zc[i].q + '</span></div>';
+        return '<div class="' + (z.danger ? 'dg' : '') + '"><span>' + (z.danger ? '⚠ ' : '') + esc(z.name) + '</span><span>👷' + zc[i].p + ' 장비' + zc[i].q + '</span></div>';
       }).join('');
       var al = [];
-      zones.forEach(function (z, i) { if (z.danger && zc[i].p) al.push(esc(z.name) + ' 내 인력 ' + zc[i].p + '명: ' + zc[i].names.map(esc).join(', ')); });
+      zones.forEach(function (z, i) { if (z.danger && zc[i].p) al.push(esc(z.name) + ' 내 인원 ' + zc[i].p + '명: ' + zc[i].names.map(esc).join(', ')); });
       var ael = $('lv-alert');
       ael.style.display = al.length ? 'block' : 'none';
       ael.innerHTML = al.length ? '⚠ ' + al.join('<br>⚠ ') : '';
@@ -245,9 +287,9 @@
       list.sort(function (a, b) { return a.age - b.age; });
       var box = $('lv-list');
       box.innerHTML = list.map(function (x) {
-        var eq = x.e.type === 'equip';
-        return '<div class="lv-it ' + x.s + '" data-id="' + esc(x.id) + '"><span>' + (eq ? '🚜' : '👷') + '</span><span>' +
-          esc(eq ? (x.e.label || x.e.name) : x.e.name) + (x.e.company ? ' <small style="margin:0">· ' + esc(x.e.company) + '</small>' : '') +
+        var mk = markHtml(x.e, x.s), mkc = typeOf(x.e) === 'equip' ? '<span class="lv-kd" style="background:' + (x.s === 'stale' ? '#6b7280' : kindOf(x.e).color) + '">' + mk.txt + '</span>' : '<span>' + mk.txt + '</span>';
+        return '<div class="lv-it ' + x.s + '" data-id="' + esc(x.id) + '">' + mkc + '<span>' +
+          esc(nameOf(x.e)) + (x.e.company ? ' <small style="margin:0">· ' + esc(x.e.company) + '</small>' : '') +
           '</span><small>' + (x.z >= 0 ? esc(zones[x.z].name) + ' · ' : '') + ago(x.age) + '</small></div>';
       }).join('') || '<div style="padding:8px;color:var(--text-dim,#4a5a7a)">표시할 대상이 없습니다</div>';
       Array.prototype.forEach.call(box.querySelectorAll('.lv-it'), function (el) {
@@ -272,16 +314,18 @@
       var co = ['한성건설', '대한철근', '동양전기', '우진토목'];
       var sim = [];
       function rnd(a, b) { return a + Math.random() * (b - a); }
-      for (var i = 1; i <= 9; i++) sim.push({ id: 'dp' + i, type: 'person', name: '작업자 0' + i, company: co[i % 4] });
-      [['굴착기 #1', '한성건설'], ['굴착기 #2', '한성건설'], ['덤프 #1', '대한철근'], ['덤프 #2', '우진토목'], ['크레인 #1', '동양전기']]
-        .forEach(function (q, k) { sim.push({ id: 'de' + k, type: 'equip', name: '운전원 0' + (k + 1), label: q[0], company: q[1] }); });
+      for (var i = 1; i <= 7; i++) sim.push({ id: 'dp' + i, type: 'person', kind: '신호수', name: '신호수 0' + i, company: co[i % 4] });
+      for (var i2 = 1; i2 <= 2; i2++) sim.push({ id: 'ds' + i2, type: 'staff', name: '직원 0' + i2, company: '본사' });
+      sim.push({ id: 'dp9', type: 'person', kind: '신호수', name: '신호수 09', company: co[1] });   // 신호없음 샘플
+      [['굴삭기 #1', '굴삭기', '한성건설'], ['굴삭기 #2', '굴삭기', '한성건설'], ['덤프 12가3456', '덤프', '대한철근'], ['덤프 34나5678', '덤프', '우진토목'], ['불도저 #1', '불도저', '동양전기'], ['천공기 #1', '천공기', '우진토목']]
+        .forEach(function (q, k) { sim.push({ id: 'de' + k, type: 'equip', kind: q[1], name: q[0], label: q[0], company: q[2] }); });
       sim.forEach(function (s) {
         s.lat = rnd(c.lat - d, c.lat + d); s.lng = rnd(c.lng - dl, c.lng + dl);
         s.vy = rnd(-1, 1) * 0.00012; s.vx = rnd(-1, 1) * 0.00015; s.acc = rnd(4, 12);
       });
       function tick() {
         sim.forEach(function (s) {
-          if (s.id === 'dp9') { ents[s.id] = Object.assign({}, s, { ts: Date.now() - 120000 }); return; } // 신호없음 샘플
+          if (s.id === 'dp9') { ents[s.id] = Object.assign({}, s, { ts: Date.now() - 400000 }); return; } // 신호없음 샘플(기준 staleSec 보다 오래됨)
           s.lat += s.vy + rnd(-.00003, .00003); s.lng += s.vx + rnd(-.00003, .00003);
           if (s.lat < c.lat - d || s.lat > c.lat + d) s.vy *= -1;
           if (s.lng < c.lng - dl || s.lng > c.lng + dl) s.vx *= -1;
