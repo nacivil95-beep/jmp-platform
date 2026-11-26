@@ -256,9 +256,18 @@
       });
       list.forEach(function (x) {
         var m = markers[x.id];
-        if (!m) { m = markers[x.id] = L.marker([x.e.lat, x.e.lng], { icon: mkIcon(x.e, x.s) }).addTo(markerLayer).bindPopup(''); }
-        else { m.setLatLng([x.e.lat, x.e.lng]); m.setIcon(mkIcon(x.e, x.s)); }
-        m.getPopup().setContent(popupHtml(x.e, x.age));
+        if (!m) {
+          m = markers[x.id] = L.marker([x.e.lat, x.e.lng], { icon: mkIcon(x.e, x.s) }).addTo(markerLayer);
+          // 팝업이 열려 있을 때 위치가 갱신돼도 지도가 따라 움직이지 않도록 autoPan 을 끔
+          m.bindPopup(function (layer) { return layer._lvHtml || ''; }, { autoPan: false });
+          // 사용자가 마커를 눌러 열었을 때만, 팝업이 화면 밖으로 잘리지 않게 한 번 맞춤
+          m.on('popupopen', function () {
+            if (this._lvSkip) return;
+            map.panInside(this.getLatLng(), { paddingTopLeft: [30, 130], paddingBottomRight: [30, 30], animate: true });
+          });
+        } else { m.setLatLng([x.e.lat, x.e.lng]); m.setIcon(mkIcon(x.e, x.s)); }
+        m._lvHtml = popupHtml(x.e, x.age);
+        if (m.isPopupOpen()) m.getPopup().update();     // 열려 있으면 내용만 갱신(지도는 그대로)
       });
 
       var kc = (C.equipKinds || []).concat([ETC]).filter(function (k) { return cnt.kinds[k.key]; }).map(function (k) {
@@ -295,7 +304,7 @@
       Array.prototype.forEach.call(box.querySelectorAll('.lv-it'), function (el) {
         el.addEventListener('click', function () {
           var m = markers[el.getAttribute('data-id')];
-          if (m) { map.flyTo(m.getLatLng(), Math.max(map.getZoom(), 18)); m.openPopup(); }
+          if (m) { m._lvSkip = true; map.flyTo(m.getLatLng(), Math.max(map.getZoom(), 18)); m.openPopup(); m._lvSkip = false; }
         });
       });
     }
