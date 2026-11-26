@@ -81083,15 +81083,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 8.65,
-      "actual": 12.11,
-      "diff": 139.95
+      "actual": 12.33,
+      "diff": 142.56
     },
     "earth": {
       "토사": {
         "design": 1507585,
         "prev": 371661,
-        "today": 0,
-        "cum": 371661,
+        "today": 1818,
+        "cum": 373479,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -81104,22 +81104,22 @@ let DAILY_REPORTS = {
       "발파암깎기": {
         "design": 3794908,
         "prev": 786520,
-        "today": 0,
-        "cum": 786520,
+        "today": 16139,
+        "cum": 802659,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
         "prev": 1429376.599999999,
-        "today": 0,
-        "cum": 1429376.599999999,
+        "today": 22657.72,
+        "cum": 1452034.319999999,
         "start": "2025-02-01"
       }
     },
     "work_today": [
       "◆토공",
       " 1. 흙깍기 및 흙쌓기(토사, 발파암) (BL.5, 6)",
-      "   - D/Z11N-1, D/Z11R-1, D/Z6H-1, B/H500-2, B/H480-2, B/H400-1, D/T25-11, D/T15-5, 신호수-3",
+      "   - D/Z11N-1, D/Z11R-1, D/Z6H-1, B/H500-2, B/H480-2, B/H400-1, D/T25-11, D/T15-4, 신호수-3",
       " 2. 흙깍기 및 흙쌓기(토사) (BL.10, 11)",
       "   - D/Z3K-1, B/H500-1, D/T25-2, 신호수-1",
       " 3. 흙깍기 및 흙쌓기(발파암) (BL.13)",
@@ -81172,14 +81172,14 @@ let DAILY_REPORTS = {
       "   - 그레이더-1, 진동롤러-1",
       " 9. 발파암 천공 및 작업면 평탄화 (BL.5, 6, 13)",
       "   - 천공기-3, B/H1.0-1, 신호수-1",
-      " 10. 발파 (BL.5, 6)",
+      " 10. 발파 (BL.13)                [200공, 1회]",
       "   - 관리자-1, 화약주임-1, 장약공-2",
-      " 11. 비탈면보호(녹생토) [철망조립] (BL.2)",
-      "   - 관리자-1, 작업반장-1, 법면보호공-2",
+      " 11. 비탈면보호(녹생토) [철망설치 및 앙카작업] (BL.2)",
+      "   - 관리자-1, 작업반장-1, 법면보호공-7",
       " 12. 발파암 노출 (BL.5, 6, 9, 12, 13, 소로(집)2-08)",
       "   - B/H1.0-1, B/H0.2-1, 보통인부-2",
-      " 13. 벌개제근, 임목폐기물 파쇄 및 운반 (BL.6)",
-      "   - B/H0.8-1, B/H0.6-1, 임목파쇄기-1",
+      " 13. 임목폐기물 파쇄장 정리 (BL.6)",
+      "   - B/H0.6-1",
       "◆부대공",
       " 1. 현장살수 (임목파쇄장 및 현장 전구간)",
       "   - 살수차-2",
@@ -81257,8 +81257,8 @@ let DAILY_REPORTS = {
       {
         "role": "법면보호공",
         "prev": 0,
-        "today": 0,
-        "cum": 0
+        "today": 4,
+        "cum": 4
       },
       {
         "role": "상수도공",
@@ -81341,8 +81341,8 @@ let DAILY_REPORTS = {
     ],
     "personnel_total": {
       "prev": 6261,
-      "today": 45,
-      "cum": 6306
+      "today": 49,
+      "cum": 6310
     },
     "equipment_detail": [
       {
@@ -81461,8 +81461,8 @@ let DAILY_REPORTS = {
         "type": "D/T",
         "spec": "15t",
         "prev": 661,
-        "today": 9,
-        "cum": 670
+        "today": 8,
+        "cum": 669
       },
       {
         "type": "D/T",
@@ -81551,8 +81551,8 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "prev": 1508,
-        "today": 25,
-        "cum": 1533
+        "today": 24,
+        "cum": 1532
       },
       {
         "type": "크로라드릴",
@@ -81605,14 +81605,14 @@ let DAILY_REPORTS = {
     ],
     "equipment_total": {
       "prev": 4045,
-      "today": 58,
-      "cum": 4103
+      "today": 57,
+      "cum": 4102
     },
     "item_actuals": {
       "토공": {
-        "cum": 18065799717,
+        "cum": 18408651028,
         "total": 104325080885,
-        "pct": 17.32
+        "pct": 17.65
       },
       "우수공": {
         "cum": 0,
@@ -81660,9 +81660,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 268132444,
+        "cum": 269068444,
         "total": 3806661020,
-        "pct": 7.04
+        "pct": 7.07
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -81676,15 +81676,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 8.69,
-      "actual": 12.11,
-      "diff": 139.24
+      "actual": 12.33,
+      "diff": 141.84
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 371661,
+        "prev": 373479,
         "today": 0,
-        "cum": 371661,
+        "cum": 373479,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -81696,16 +81696,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 786520,
+        "prev": 802659,
         "today": 0,
-        "cum": 786520,
+        "cum": 802659,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1429376.599999999,
+        "prev": 1452034.319999999,
         "today": 0,
-        "cum": 1429376.599999999,
+        "cum": 1452034.319999999,
         "start": "2025-02-01"
       }
     },
@@ -81852,9 +81852,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "법면보호공",
-        "prev": 0,
+        "prev": 4,
         "today": 0,
-        "cum": 0
+        "cum": 4
       },
       {
         "role": "상수도공",
@@ -81936,9 +81936,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 6306,
+      "prev": 6310,
       "today": 0,
-      "cum": 6306
+      "cum": 6310
     },
     "equipment_detail": [
       {
@@ -82056,9 +82056,9 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "spec": "15t",
-        "prev": 670,
+        "prev": 669,
         "today": 0,
-        "cum": 670
+        "cum": 669
       },
       {
         "type": "D/T",
@@ -82146,9 +82146,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "D/T",
-        "prev": 1533,
+        "prev": 1532,
         "today": 0,
-        "cum": 1533
+        "cum": 1532
       },
       {
         "type": "크로라드릴",
@@ -82200,15 +82200,15 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4103,
+      "prev": 4102,
       "today": 0,
-      "cum": 4103
+      "cum": 4102
     },
     "item_actuals": {
       "토공": {
-        "cum": 18065799717,
+        "cum": 18408651028,
         "total": 104325080885,
-        "pct": 17.32
+        "pct": 17.65
       },
       "우수공": {
         "cum": 0,
@@ -82256,9 +82256,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 268591659,
+        "cum": 269527659,
         "total": 3806661020,
-        "pct": 7.06
+        "pct": 7.08
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -82272,15 +82272,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 8.74,
-      "actual": 12.11,
-      "diff": 138.53
+      "actual": 12.33,
+      "diff": 141.12
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 371661,
+        "prev": 373479,
         "today": 0,
-        "cum": 371661,
+        "cum": 373479,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -82292,16 +82292,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 786520,
+        "prev": 802659,
         "today": 0,
-        "cum": 786520,
+        "cum": 802659,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1429376.599999999,
+        "prev": 1452034.319999999,
         "today": 0,
-        "cum": 1429376.599999999,
+        "cum": 1452034.319999999,
         "start": "2025-02-01"
       }
     },
@@ -82449,9 +82449,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "법면보호공",
-        "prev": 0,
+        "prev": 4,
         "today": 0,
-        "cum": 0
+        "cum": 4
       },
       {
         "role": "상수도공",
@@ -82533,9 +82533,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 6306,
+      "prev": 6310,
       "today": 0,
-      "cum": 6306
+      "cum": 6310
     },
     "equipment_detail": [
       {
@@ -82653,9 +82653,9 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "spec": "15t",
-        "prev": 670,
+        "prev": 669,
         "today": 0,
-        "cum": 670
+        "cum": 669
       },
       {
         "type": "D/T",
@@ -82743,9 +82743,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "D/T",
-        "prev": 1533,
+        "prev": 1532,
         "today": 0,
-        "cum": 1533
+        "cum": 1532
       },
       {
         "type": "크로라드릴",
@@ -82797,15 +82797,15 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4103,
+      "prev": 4102,
       "today": 0,
-      "cum": 4103
+      "cum": 4102
     },
     "item_actuals": {
       "토공": {
-        "cum": 18065799717,
+        "cum": 18408651028,
         "total": 104325080885,
-        "pct": 17.32
+        "pct": 17.65
       },
       "우수공": {
         "cum": 0,
@@ -82853,9 +82853,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 269050874,
+        "cum": 269986874,
         "total": 3806661020,
-        "pct": 7.07
+        "pct": 7.09
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -82869,15 +82869,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 8.78,
-      "actual": 12.11,
-      "diff": 137.83
+      "actual": 12.33,
+      "diff": 140.41
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 371661,
+        "prev": 373479,
         "today": 0,
-        "cum": 371661,
+        "cum": 373479,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -82889,16 +82889,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 786520,
+        "prev": 802659,
         "today": 0,
-        "cum": 786520,
+        "cum": 802659,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1429376.599999999,
+        "prev": 1452034.319999999,
         "today": 0,
-        "cum": 1429376.599999999,
+        "cum": 1452034.319999999,
         "start": "2025-02-01"
       }
     },
@@ -83048,9 +83048,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "법면보호공",
-        "prev": 0,
+        "prev": 4,
         "today": 0,
-        "cum": 0
+        "cum": 4
       },
       {
         "role": "상수도공",
@@ -83132,9 +83132,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 6306,
+      "prev": 6310,
       "today": 0,
-      "cum": 6306
+      "cum": 6310
     },
     "equipment_detail": [
       {
@@ -83252,9 +83252,9 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "spec": "15t",
-        "prev": 670,
+        "prev": 669,
         "today": 0,
-        "cum": 670
+        "cum": 669
       },
       {
         "type": "D/T",
@@ -83342,9 +83342,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "D/T",
-        "prev": 1533,
+        "prev": 1532,
         "today": 0,
-        "cum": 1533
+        "cum": 1532
       },
       {
         "type": "크로라드릴",
@@ -83396,15 +83396,15 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4103,
+      "prev": 4102,
       "today": 0,
-      "cum": 4103
+      "cum": 4102
     },
     "item_actuals": {
       "토공": {
-        "cum": 18065799717,
+        "cum": 18408651028,
         "total": 104325080885,
-        "pct": 17.32
+        "pct": 17.65
       },
       "우수공": {
         "cum": 0,
@@ -83452,9 +83452,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 269510089,
+        "cum": 270446089,
         "total": 3806661020,
-        "pct": 7.08
+        "pct": 7.1
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -83468,15 +83468,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 8.83,
-      "actual": 12.11,
-      "diff": 137.14
+      "actual": 12.33,
+      "diff": 139.7
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 371661,
+        "prev": 373479,
         "today": 0,
-        "cum": 371661,
+        "cum": 373479,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -83488,16 +83488,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 786520,
+        "prev": 802659,
         "today": 0,
-        "cum": 786520,
+        "cum": 802659,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1429376.599999999,
+        "prev": 1452034.319999999,
         "today": 0,
-        "cum": 1429376.599999999,
+        "cum": 1452034.319999999,
         "start": "2025-02-01"
       }
     },
@@ -83645,9 +83645,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "법면보호공",
-        "prev": 0,
+        "prev": 4,
         "today": 0,
-        "cum": 0
+        "cum": 4
       },
       {
         "role": "상수도공",
@@ -83729,9 +83729,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 6306,
+      "prev": 6310,
       "today": 0,
-      "cum": 6306
+      "cum": 6310
     },
     "equipment_detail": [
       {
@@ -83849,9 +83849,9 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "spec": "15t",
-        "prev": 670,
+        "prev": 669,
         "today": 0,
-        "cum": 670
+        "cum": 669
       },
       {
         "type": "D/T",
@@ -83939,9 +83939,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "D/T",
-        "prev": 1533,
+        "prev": 1532,
         "today": 0,
-        "cum": 1533
+        "cum": 1532
       },
       {
         "type": "크로라드릴",
@@ -83993,15 +83993,15 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4103,
+      "prev": 4102,
       "today": 0,
-      "cum": 4103
+      "cum": 4102
     },
     "item_actuals": {
       "토공": {
-        "cum": 18065799717,
+        "cum": 18408651028,
         "total": 104325080885,
-        "pct": 17.32
+        "pct": 17.65
       },
       "우수공": {
         "cum": 0,
@@ -84049,9 +84049,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 269969304,
+        "cum": 270905304,
         "total": 3806661020,
-        "pct": 7.09
+        "pct": 7.12
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -84065,15 +84065,15 @@ let DAILY_REPORTS = {
     "weather": "맑음",
     "progress": {
       "plan": 8.87,
-      "actual": 12.11,
-      "diff": 136.46
+      "actual": 12.33,
+      "diff": 139.01
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 371661,
+        "prev": 373479,
         "today": 0,
-        "cum": 371661,
+        "cum": 373479,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -84085,16 +84085,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 786520,
+        "prev": 802659,
         "today": 0,
-        "cum": 786520,
+        "cum": 802659,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1429376.599999999,
+        "prev": 1452034.319999999,
         "today": 0,
-        "cum": 1429376.599999999,
+        "cum": 1452034.319999999,
         "start": "2025-02-01"
       }
     },
@@ -84225,9 +84225,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "법면보호공",
-        "prev": 0,
+        "prev": 4,
         "today": 0,
-        "cum": 0
+        "cum": 4
       },
       {
         "role": "상수도공",
@@ -84309,9 +84309,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 6306,
+      "prev": 6310,
       "today": 0,
-      "cum": 6306
+      "cum": 6310
     },
     "equipment_detail": [
       {
@@ -84429,9 +84429,9 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "spec": "15t",
-        "prev": 670,
+        "prev": 669,
         "today": 0,
-        "cum": 670
+        "cum": 669
       },
       {
         "type": "D/T",
@@ -84519,9 +84519,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "D/T",
-        "prev": 1533,
+        "prev": 1532,
         "today": 0,
-        "cum": 1533
+        "cum": 1532
       },
       {
         "type": "크로라드릴",
@@ -84573,15 +84573,15 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4103,
+      "prev": 4102,
       "today": 0,
-      "cum": 4103
+      "cum": 4102
     },
     "item_actuals": {
       "토공": {
-        "cum": 18065799717,
+        "cum": 18408651028,
         "total": 104325080885,
-        "pct": 17.32
+        "pct": 17.65
       },
       "우수공": {
         "cum": 0,
@@ -84629,9 +84629,9 @@ let DAILY_REPORTS = {
         "pct": 0.0
       },
       "부대공": {
-        "cum": 270428519,
+        "cum": 271364519,
         "total": 3806661020,
-        "pct": 7.1
+        "pct": 7.13
       },
       "폐기물처리용역": {
         "cum": 151479668,
@@ -84644,16 +84644,16 @@ let DAILY_REPORTS = {
     "date": "2026-12-01",
     "weather": "비",
     "progress": {
-      "plan": 0,
-      "actual": 12.11,
-      "diff": 0
+      "plan": 8.94,
+      "actual": 12.33,
+      "diff": 137.9
     },
     "earth": {
       "토사": {
         "design": 1507585,
-        "prev": 371661,
+        "prev": 373479,
         "today": 0,
-        "cum": 371661,
+        "cum": 373479,
         "start": "2025-02-01"
       },
       "리핑암": {
@@ -84665,16 +84665,16 @@ let DAILY_REPORTS = {
       },
       "발파암깎기": {
         "design": 3794908,
-        "prev": 786520,
+        "prev": 802659,
         "today": 0,
-        "cum": 786520,
+        "cum": 802659,
         "start": "2025-04-05"
       },
       "흙쌓기(성토)": {
         "design": 7742307,
-        "prev": 1429376.599999999,
+        "prev": 1452034.319999999,
         "today": 0,
-        "cum": 1429376.599999999,
+        "cum": 1452034.319999999,
         "start": "2025-02-01"
       }
     },
@@ -84761,9 +84761,9 @@ let DAILY_REPORTS = {
       },
       {
         "role": "법면보호공",
-        "prev": 0,
+        "prev": 4,
         "today": 0,
-        "cum": 0
+        "cum": 4
       },
       {
         "role": "상수도공",
@@ -84845,9 +84845,9 @@ let DAILY_REPORTS = {
       }
     ],
     "personnel_total": {
-      "prev": 6306,
+      "prev": 6310,
       "today": 0,
-      "cum": 6306
+      "cum": 6310
     },
     "equipment_detail": [
       {
@@ -84965,9 +84965,9 @@ let DAILY_REPORTS = {
       {
         "type": "D/T",
         "spec": "15t",
-        "prev": 670,
+        "prev": 669,
         "today": 0,
-        "cum": 670
+        "cum": 669
       },
       {
         "type": "D/T",
@@ -85055,9 +85055,9 @@ let DAILY_REPORTS = {
       },
       {
         "type": "D/T",
-        "prev": 1533,
+        "prev": 1532,
         "today": 0,
-        "cum": 1533
+        "cum": 1532
       },
       {
         "type": "크로라드릴",
@@ -85109,9 +85109,9 @@ let DAILY_REPORTS = {
       }
     ],
     "equipment_total": {
-      "prev": 4103,
+      "prev": 4102,
       "today": 0,
-      "cum": 4103
+      "cum": 4102
     },
     "item_actuals": {
       "토공": {
